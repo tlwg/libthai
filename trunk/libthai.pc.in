@@ -8,4 +8,4 @@ Description: Thai support library
 Version: @VERSION@
 Requires: 
 Libs: -L${libdir} -lthai
-Cflags: -I${includedir}/thai
+Cflags: -I${includedir}
