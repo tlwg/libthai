@@ -1,3 +1,42 @@
+2001-07-30 Monday 18:43  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thwbrk/.cvsignore (1.1): -.cvsignore
+
+2001-07-30 Monday 18:42  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* configure.in (1.8): -add thwbrk
+
+2001-07-30 Monday 18:41  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* tests/: Makefile.am (1.4), test_thwbrk.c (1.1), test_thwchar.c
+	(1.1): -test drivers for thwbrk and thwchar
+
+2001-07-30 Monday 18:40  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thwbrk/: Makefile.am (1.1), thwbrk.c (1.1): -thwbrk
+	implementation
+
+2001-07-30 Monday 18:38  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/: Makefile.am (1.6), thwchar/thwchar.c (1.2): -thwchar
+	uni2tis620-0 implementation
+
+2001-07-30 Monday 18:37  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* include/thai/: thbrk.h (1.4), thwbrk.h (1.3), thwchar.h (1.5):
+	-add new interfaces and descriptions.
+
+2001-07-27 Friday 17:43  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in (1.7), include/thai/thwchar.h (1.4), src/Makefile.am
+	(1.5), src/thwchar/.cvsignore (1.1), src/thwchar/Makefile.am (1.1),
+	src/thwchar/thwchar.c (1.1): Add half-implementation of thwchar.
+
+2001-07-27 Friday 17:17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.10), src/thbrk/.cvsignore (1.4), tests/.cvsignore
+	(1.3): Update .cvsignore's in accordance with test_thbrk
+
 2001-07-27 Friday 17:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thbrk/Makefile.am (1.6), src/thbrk/test_thbrk.c (1.5),
@@ -181,13 +220,13 @@
 
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2),
 	include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
-	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.10 2001-07-27 10:17:02 thep Exp $
+	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.11 2001-07-31 11:14:51 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2), src/thcoll/cweight.h (1.2),
 	src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2),
-	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.10 2001-07-27 10:17:02 thep Exp $
+	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.11 2001-07-31 11:14:51 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 

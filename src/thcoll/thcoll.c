@@ -25,7 +25,7 @@
 
 
 /*
- * $Id: thcoll.c,v 1.2 2001-06-12 13:14:23 thep Exp $
+ * $Id: thcoll.c,v 1.3 2001-07-31 11:14:51 thep Exp $
  * thcoll.c - Thai string collating function definition
  * Created: 12 Nov 1998
  * Author: Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -42,7 +42,7 @@
 #include "cweight.h"
 
 /* FIXME: temporary implementation */
-#define th_isldvowel(c) ((0xe0 <= (c)) && ((c) <= 0xe4))
+/* #define th_isldvowel(c) ((0xe0 <= (c)) && ((c) <= 0xe4)) */
 
 static const thchar_t* th_non_ignore_(const thchar_t* p, int level)
 {
