@@ -1,5 +1,5 @@
 /*
- * $Id: thctype.h,v 1.4 2001-06-15 12:01:18 thep Exp $
+ * $Id: thctype.h,v 1.5 2001-07-31 11:14:51 thep Exp $
  * thctype.h - Thai character classifications
  * Created: 2001-05-17
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -13,8 +13,6 @@
 BEGIN_CDECL
 
 extern int th_istis(thchar_t c);
-extern int th_iswinthai(thchar_t c);
-extern int th_ismacthai(thchar_t c);
 
 extern int th_isthai(thchar_t c);
 extern int th_iseng(thchar_t c);
@@ -42,30 +40,31 @@ extern int th_isblvowel(thchar_t c);
  */
 extern int th_chlevel(thchar_t c);
 
+/* is combining character? */
+extern int th_iscombchar(thchar_t c);
+
 /*
  * implementation parts
  */
+#include <ctype.h>
 #define _th_ISbit(bit)  (1 << (bit))
 #define _th_bitfld(base, val)  ((val) << (base))
-#define _th_bitmsk(base, bits) (~(~((~0) << (bits)) << (base)))
+#define _th_bitmsk(base, bits) (~((~0) << (bits)) << (base))
 
 enum {
   _th_IStis   = _th_ISbit(0),        /* TIS-620 char */
-  _th_ISwin   = _th_ISbit(1),        /* Windows Thai extension */
-  _th_ISmac   = _th_ISbit(2),        /* MacThai extension */
 
-  _th_IScons  = _th_ISbit(3),        /* Thai consonant */
-  _th_ISvowel = _th_ISbit(4),        /* Thai vowel */
+  _th_IScons  = _th_ISbit(1),        /* Thai consonant */
+  _th_ISvowel = _th_ISbit(2),        /* Thai vowel */
+  _th_VClassMsk = _th_bitmsk(2, 3),  /*   Thai vowel class masks */
+  _th_VCflvowel = _th_bitfld(3, 0)|_th_ISvowel,  /*   Thai following vowel */
+  _th_VCldvowel = _th_bitfld(3, 1)|_th_ISvowel,  /*   Thai leading vowel */
+  _th_VCupvowel = _th_bitfld(3, 2)|_th_ISvowel,  /*   Thai upper vowel */
+  _th_VCblvowel = _th_bitfld(3, 3)|_th_ISvowel,  /*   Thai below vowel */
   _th_IStone  = _th_ISbit(5),        /* Thai tone mark */
-  _th_ISdiac  = _th_ISbit(6),        /* Thai tone mark */
-  _th_ISdigit = _th_ISbit(7),        /* Thai digit */
-  _th_ISpunct = _th_ISbit(8),        /* Thai punctuation */
-
-  _th_VClassMsk = _th_bitmsk(9, 2),  /* Thai vowel class masks */
-  _th_VCflvowel = _th_bitfld(9, 0),  /* Thai following vowel */
-  _th_VCldvowel = _th_bitfld(9, 1),  /* Thai leading vowel */
-  _th_VCupvowel = _th_bitfld(9, 2),  /* Thai upper vowel */
-  _th_VCblvowel = _th_bitfld(9, 3)   /* Thai below vowel */
+  _th_ISdiac  = _th_ISbit(6),        /* Thai diacritic */
+  _th_ISdigit = _th_ISbit(7),        /* digit */
+  _th_ISpunct = _th_ISbit(8),        /* punctuation */
 };
 
 extern const unsigned short _th_ctype_tbl[];
@@ -74,8 +73,6 @@ extern const unsigned short _th_ctype_tbl[];
 #define _th_isbits(c, mask, val)  (_th_ctype_tbl[c] & (mask) == (val))
 
 #define th_istis(c)         _th_isctype((c), _th_IStis)
-#define th_iswinthai(c)     _th_isctype((c), _th_ISwin)
-#define th_ismacthai(c)     _th_isctype((c), _th_ISmac)
 
 #define th_isthai(c)        (th_istis(c) && ((c) & 0x80))
 #define th_iseng(c)         isascii(c)
@@ -97,6 +94,7 @@ extern const unsigned short _th_ctype_tbl[];
 extern const int            _th_chlevel_tbl[];
 
 #define th_chlevel(c)       (_th_chlevel_tbl[c])
+#define th_iscombchar(c)    (th_chlevel(c) != 0)
 
 END_CDECL
 
