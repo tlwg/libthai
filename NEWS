@@ -2,8 +2,17 @@
 RELEASES INFORMATION
 =======================================================================
 
-0.1.0 	4 August 2001	-First public release, request for comments 
-			 for API. Word breaking function works. 
-			 All implementations not yet completed.
+LibThai 0.1.0 (4 August 2001):
+
+* First public release, request for comments for API
+* Thai character properties with WTT 2.0 tables
+* Thai string collation (bilingual)
+* Thai string normalization
+* WTT-based input sequence checking
+* Thai Word breaking (cttex)
+* Conversion between TIS-620 and Unicode
+* All implementations not yet completed
+
 =======================================================================
 See ChangeLog file for more details.
+
