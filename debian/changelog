@@ -1,3 +1,10 @@
+libthai (0.1.4-1) unstable; urgency=low 
+
+  * upstream version 1.4 (since 16 October 2004, see the NEWS file)
+  * add a check value of array size in th_brk
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sun,  12 Dec 2004 15:43:00 +0900
+
 libthai (0.1.3-2) unstable; urgency=low 
 
   * set the mode of cttex to firstmode=1 (we want it fast)
