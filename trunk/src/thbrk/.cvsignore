@@ -1,0 +1,9 @@
+aclocal.m4
+Makefile
+Makefile.in
+libtool
+config.h
+config.h.in
+configure
+configure.in
+SunWS_cache
