@@ -1,5 +1,5 @@
 /*
- * $Id: thrend.h,v 1.6 2001-08-08 12:39:19 thep Exp $
+ * $Id: thrend.h,v 1.7 2001-08-08 17:57:22 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-05-17
  */
@@ -20,13 +20,13 @@ typedef unsigned int thglyph_t;
  * On return: First res_sz glyph codes stored in res, '\0' terminated
  * Returns: total number of glyphs written to res[]
  */
-extern int th_render_cell_tis(struct thcell cell,
+extern int th_render_cell_tis(struct thcell_t cell,
                               thglyph_t res[], size_t res_sz,
                               int is_decomp_am);
-extern int th_render_cell_win(struct thcell cell,
+extern int th_render_cell_win(struct thcell_t cell,
                               thglyph_t res[], size_t res_sz,
                               int is_decomp_am);
-extern int th_render_cell_mac(struct thcell cell,
+extern int th_render_cell_mac(struct thcell_t cell,
                               thglyph_t res[], size_t res_sz,
                               int is_decomp_am);
 

@@ -1,6 +1,6 @@
 /*
- * $Id: thcell.c,v 1.2 2001-08-08 13:58:36 thep Exp $
- * thcell.c - Thai string cell custering
+ * $Id: thcell.c,v 1.3 2001-08-08 17:57:22 thep Exp $
+ * thcell_t.c - Thai string cell custering
  * Created: 2001-08-08 (split from thrend.c)
  */
 
@@ -12,7 +12,7 @@
 #define is_composible(c1,c2) (TACio_op(c1,c2)==CP)
 
 const thchar_t *th_next_cell(const thchar_t *s, size_t len,
-                             struct thcell *cell, size_t *nchars,
+                             struct thcell_t *cell, size_t *nchars,
                              int is_decomp_am)
 {
     size_t n = 0;
@@ -42,7 +42,7 @@ const thchar_t *th_next_cell(const thchar_t *s, size_t len,
 }
 
 size_t th_prev_cell(const thchar_t *s, size_t pos,
-                    struct thcell *cell, size_t *nchars,
+                    struct thcell_t *cell, size_t *nchars,
                     int is_decomp_am)
 {
     size_t n = 0;
@@ -77,7 +77,7 @@ size_t th_prev_cell(const thchar_t *s, size_t pos,
 }
 
 const thchar_t *th_make_cells(const thchar_t *s, size_t len,
-                              struct thcell cells[], size_t *ncells,
+                              struct thcell_t cells[], size_t *ncells,
                               int is_decomp_am)
 {
     size_t left = *ncells;
