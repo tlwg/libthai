@@ -1,5 +1,8 @@
-# $Id: Makefile.am,v 1.2 2001-06-12 13:18:33 thep Exp $
+# $Id: Makefile.am,v 1.3 2001-07-24 14:23:59 thep Exp $
 SUBDIRS = include src tests
 
 MAINTAINERCLEANFILES = Makefile.in
+
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = libthai.pc
 
