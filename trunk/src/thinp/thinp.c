@@ -1,5 +1,5 @@
 /*
- * $Id: thinp.c,v 1.4 2001-08-07 12:43:38 thep Exp $
+ * $Id: thinp.c,v 1.5 2001-08-08 17:52:10 thep Exp $
  * thinp.c - Thai string input sequence filtering
  * Created: 2001-08-04
  */
@@ -45,29 +45,79 @@ static int correct(thchar_t c_1, thchar_t c, thchar_t conv[3])
     for (p = corrections; p->c1; ++p) {
         if (c_1 == (thchar_t)p->c1 && c == (thchar_t)p->c2) {
             strcpy((char *)conv, p->to);
-            return 2;
+            return 1;
         }
     }
     return 0;
 }
 
-int th_validate(thchar_t c_2, thchar_t c_1, thchar_t c,
-                thchar_t conv[3], thstrict_t s)
+int th_validate(struct thcell context, thchar_t c, struct thinpconv_t *conv)
 {
-    /* try predefined corrections */
-    int ret = correct(c_1, c, conv);
-    if (ret) return ret;
+    thchar_t prev_c = context.top ?
+                          context.top :
+                          (context.hilo ? context.hilo : context.base);
+    int ret;
 
-    if (th_isaccept(c_1, c, s)) return 1;  /* no conversion needed */
+    if (context.hilo == SARA_AM) prev_c = SARA_AM;
+
+    /* try predefined corrections */
+    ret = correct(prev_c, c, conv->conv);
+    if (ret) {
+        conv->offset = -1;
+        return 1;
+    }
+
+    /* normal cases */
+    if (th_isaccept(prev_c, c, ISC_STRICT)) {
+        conv->conv[0] = c; conv->conv[1] = 0;
+        conv->offset = 0;
+        return 1;
+    }
 
     /* try correction by conversion */
-    if (th_isaccept(c_2, c, s)) {
-        *conv++ = c;
-        if (th_isaccept(c, c_1, s)) {
-            *conv++ = c_1;
+    switch (th_chlevel(c)) {
+    case -1:
+    case 1:
+        if (th_isaccept(context.base, c, ISC_STRICT)) {
+            /* replace from hilo on; use new hilo + old top if OK */
+            int i = 0;
+            conv->offset = 0;
+            conv->conv[i++] = c;
+            if (context.hilo) --conv->offset;
+            if (context.top) {
+                --conv->offset;
+                if (th_isaccept(c, context.top, ISC_STRICT))
+                    conv->conv[i++] = context.top;
+            }
+            conv->conv[i] = 0;
+            return 1;
         }
-        *conv = '\0';
-        return 2;
+        break;
+
+    case 2:
+        if (context.hilo && th_isaccept(context.hilo, c, ISC_STRICT)) {
+            /* hilo OK, replace top only */
+            conv->offset = 0;
+            conv->conv[0] = c; conv->conv[1] = 0;
+            if (context.top) --conv->offset;
+            return 1;
+        }
+        if (th_isaccept(context.base, c, ISC_STRICT) &&
+            (context.hilo != SARA_AM || th_isaccept(c, SARA_AM, ISC_STRICT)))
+        {
+            /* replace from hilo on, using new top */
+            int i = 0;
+            conv->offset = 0;
+            conv->conv[i++] = c;
+            if (context.hilo) {
+                --conv->offset;
+                if (context.hilo == SARA_AM)
+                    conv->conv[i++] = SARA_AM;
+            }
+            if (context.top) --conv->offset;
+            conv->conv[i] = 0;
+            return 1;
+        }
     }
 
     return 0;

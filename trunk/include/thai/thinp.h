@@ -1,5 +1,5 @@
 /*
- * $Id: thinp.h,v 1.6 2001-08-05 12:42:16 thep Exp $
+ * $Id: thinp.h,v 1.7 2001-08-08 17:52:10 thep Exp $
  * thinp.h - Thai string input sequence filtering
  * Created: 2001-05-17
  */
@@ -8,6 +8,7 @@
 #define THAI_THINP_H
 
 #include <thai/thailib.h>
+#include <thai/thcell.h>
 
 BEGIN_CDECL
 
@@ -26,18 +27,20 @@ typedef enum {
  */
 extern int th_isaccept(thchar_t c1, thchar_t c2, thstrict_t s);
 
+struct thinpconv_t {
+    thchar_t conv[4];  /* (null-terminated) string to put into input buffer */
+    int      offset;   /* offset (<=0) from cur pos where the conv begin */
+};
+
 /*
- * Given the context c_2 at position (n-2), and c_1 at position (n-1),
- * consider if c could be placed at position n or if any conversion
- * can make it fit otherwise.
- * Returns: 1 if (c_2,c_1,c) is a valid sequence in the first place
- *          2 if (c_1, c) can be converted to become valid, in which case
- *            the converted string meaning to replace (c_1, c) is written
- *            in conv[]
- *          0 if (c_1, c) CANNOT be validated, no matter how
+ * Given the previous cell as context, edit the input buffer using
+ * the given input c, maintaining WTT canonical order, and do some
+ * convenient conversion.
+ * Returns: 0 if the input is to be rejected
+ *          non-zero otherwise.
  */
-extern int th_validate(thchar_t c_2, thchar_t c_1, thchar_t c,
-                       thchar_t conv[3], thstrict_t s);
+extern int th_validate(struct thcell context, thchar_t c,
+                       struct thinpconv_t *conv);
 
 END_CDECL
 

@@ -1,3 +1,8 @@
+2001-08-08 Wednesday 20:58  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.29), include/thai/thcell.h (1.2),
+	src/thcell/thcell.c (1.2): Add th_prev_cell().
+
 2001-08-08 Wednesday 19:49  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.28), autogen.sh (1.4), configure.ac (1.1): Add
@@ -443,13 +448,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
 	src/thcoll/Makefile.am (1.2, r0_1_0), tests/Makefile.am (1.2): Add
-	$Id: ChangeLog,v 1.29 2001-08-08 13:58:36 thep Exp $
+	$Id: ChangeLog,v 1.30 2001-08-08 17:52:10 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.29 2001-08-08 13:58:36 thep Exp $
+	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.30 2001-08-08 17:52:10 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
