@@ -1,5 +1,5 @@
 /*
- * $Id: thctype.h,v 1.8 2001-08-14 06:11:41 thep Exp $
+ * $Id: thctype.h,v 1.9 2004-10-12 09:04:00 thep Exp $
  * thctype.h - Thai character classifications
  * Created: 2001-05-17
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -39,6 +39,7 @@ extern int th_isblvowel(thchar_t c);
 
 /*
  * For rendering :
+ *   3 = above/top
  *   2 = top
  *   1 = above
  *   0 = base
