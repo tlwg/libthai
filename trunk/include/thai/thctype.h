@@ -1,5 +1,5 @@
 /*
- * $Id: thctype.h,v 1.7 2001-08-07 09:12:58 thep Exp $
+ * $Id: thctype.h,v 1.8 2001-08-14 06:11:41 thep Exp $
  * thctype.h - Thai character classifications
  * Created: 2001-05-17
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -75,7 +75,7 @@ enum {
   _th_IStone  = _th_ISbit(7),        /* Thai tone mark */
   _th_ISdiac  = _th_ISbit(8),        /* Thai diacritic */
   _th_ISdigit = _th_ISbit(9),        /* digit */
-  _th_ISpunct = _th_ISbit(10),       /* punctuation */
+  _th_ISpunct = _th_ISbit(10)        /* punctuation */
 };
 
 extern const unsigned short _th_ctype_tbl[];
