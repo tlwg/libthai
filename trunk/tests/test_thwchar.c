@@ -1,6 +1,6 @@
 /* Test driver for thwchar
  *
- * $Id: test_thwchar.c,v 1.1 2001-07-30 11:41:43 ott Exp $
+ * $Id: test_thwchar.c,v 1.2 2001-08-04 13:35:26 ott Exp $
  */
 
 #define MAXLINELENGTH 1000
@@ -24,7 +24,6 @@ int main (int argc, char* argv[]) {
   // tis-620-0 to Unicode conversion
   outputLength = th_tis2uni_line(tis_620_0, uni, MAXLINELENGTH);
   printf("Output: Unicode string of length %d:", wcslen(uni));
-  wprintf("%ls", uni);
 
   // Unicode to tis-620-0 conversion
   printf("\nConvert back to tis-620-0 string...\n");
