@@ -1,5 +1,5 @@
 /*
- * $Id: thrend.c,v 1.7 2001-08-09 11:52:54 thep Exp $
+ * $Id: thrend.c,v 1.8 2001-08-10 11:07:30 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-08-06
  */
@@ -72,7 +72,7 @@ int th_render_cell(struct thcell_t cell,
     /* put base character */
     if (left > 0) {
         thchar_t c = cell.base;
-        if (th_isundersplitcons(c) && th_level(cell.hilo) < 0) {
+        if (th_isundersplitcons(c) && th_chlevel(cell.hilo) < 0) {
             c = tailcutcons(c, tbl);
         }
         *res++ = c ? c : ' '; --left;
@@ -83,9 +83,11 @@ int th_render_cell(struct thcell_t cell,
         if (cell.hilo != SARA_AM) { c = cell.hilo; }
         else if (is_decomp_am) { c = NIKHAHIT; }
         if (c) {
-            if (th_isovershootcons(cell.base) && th_level(c) > 0) {
-                c = shiftleft_av(c, tbl);
-            } else if (th_isundershootcons(cell.base) && th_level(c) < 0) {
+            if (th_isovershootcons(cell.base) && th_chlevel(c) > 0) {
+                if (c == NIKHAHIT) { c = shiftleft_tone_ad(c, tbl); }
+		else if (th_isupvowel(c)) { c = shiftleft_av(c, tbl); }
+		else { c = shiftleft_tone_ad(c, tbl); }
+            } else if (th_isundershootcons(cell.base) && th_chlevel(c) < 0) {
                 c = shiftdown_bv_bd(c, tbl);
             }
             *res++ = c; --left;
@@ -94,11 +96,11 @@ int th_render_cell(struct thcell_t cell,
     /* put top character */
     if (left > 0 && cell.top) {
         thchar_t c = cell.top;
-        if (th_isovershootcons(cell.base)) {
-            c = th_isupvowel(cell.hilo) ? shiftleft_tone_ad(c, tbl)
-                                          : shiftdownleft_tone_ad(c, tbl);
+        if (th_isupvowel(cell.hilo) || (is_decomp_am && cell.hilo == SARA_AM)) {
+            c = th_isovershootcons(cell.base) ? shiftleft_tone_ad(c, tbl) : c;
         } else {
-            c = th_isupvowel(cell.hilo) ? c : shiftdown_tone_ad(c, tbl);
+            c = th_isovershootcons(cell.base) ? shiftdownleft_tone_ad(c, tbl)
+                                              : shiftdown_tone_ad(c, tbl);
         }
         *res++ = c; --left;
     }

@@ -1,3 +1,10 @@
+2001-08-10 Friday 15:25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.38), include/thai/thcell.h (1.5),
+	src/thcell/thcell.c (1.5): Allow null pointer to struct thcell_t to
+	be passed in th_next_cell() and th_prev_cell(), where no cell data
+	will be written back.
+
 2001-08-09 Thursday 20:33  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.37), tests/test_thcell.c (1.4), tests/test_thstr.c
@@ -489,13 +496,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
 	src/thcoll/Makefile.am (1.2, r0_1_0), tests/Makefile.am (1.2): Add
-	$Id: ChangeLog,v 1.38 2001-08-10 08:25:19 thep Exp $
+	$Id: ChangeLog,v 1.39 2001-08-10 11:07:30 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.38 2001-08-10 08:25:19 thep Exp $
+	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.39 2001-08-10 11:07:30 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
