@@ -1,6 +1,6 @@
 /* Test driver for thwbrk 
  *
- * $Id: test_thwbrk.c,v 1.1 2001-07-30 11:41:43 ott Exp $
+ * $Id: test_thwbrk.c,v 1.2 2001-07-31 15:03:06 thep Exp $
  */
 
 #define MAXLINELENGTH 1000
@@ -16,7 +16,7 @@ int main (int argc, char* argv[]) {
   
 
   thchar_t _retval[MAXLINELENGTH], _str[MAXLINELENGTH];
-  thwchar_t _ustr[MAXLINELENGTH], uout[MAXLINELENGTH], unicodeCutCode[4];
+  thwchar_t _ustr[MAXLINELENGTH], uout[MAXLINELENGTH], unicodeCutCode[6];
   thchar_t *str, *retval;
   thwchar_t *ustr;
 
@@ -52,7 +52,7 @@ int main (int argc, char* argv[]) {
     exit (-1);
   }
 	
-  unicodeCutCodeLength = th_tis2uni_line("<WBR>", (thwchar_t*) unicodeCutCode, 5);
+  unicodeCutCodeLength = th_tis2uni_line("<WBR>", (thwchar_t*) unicodeCutCode, 6);
 
   printf("Calling th_wbrk_line() ....\n");
   outputLength = th_wbrk_line(ustr, (thwchar_t*) uout,MAXLINELENGTH, unicodeCutCode);
