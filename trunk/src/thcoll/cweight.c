@@ -36,6 +36,7 @@
  * 2525 B.E. Edition
  */
 
+#include <assert.h>
 #include "cweight.h"
 
 #define TOT_CHARS   256
