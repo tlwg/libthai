@@ -1,5 +1,5 @@
 /*
- * $Id: thcell.h,v 1.4 2001-08-09 11:52:54 thep Exp $
+ * $Id: thcell.h,v 1.5 2001-08-10 08:25:19 thep Exp $
  * thcell.h - Thai string cell custering
  * Created: 2001-08-08 (split from thrend.h)
  */
@@ -23,7 +23,7 @@ struct thcell_t {
  * Paramater:
  *   - is_decomp_am determines if SARA_AM is to be decomposed into
  *     NIKHAHIT and SARA_AA
- * On return: *cell = the cell
+ * On return: *cell = the cell (if cell != null)
  * Returns: total chars consumed by the cell
  */
 extern size_t th_next_cell(const thchar_t *s, size_t len,
@@ -34,7 +34,7 @@ extern size_t th_next_cell(const thchar_t *s, size_t len,
  * Paramater:
  *   - is_decomp_am determines if SARA_AM is to be decomposed into
  *     NIKHAHIT and SARA_AA
- * On return: *cell = the cell
+ * On return: *cell = the cell (if cell != null)
  * Returns: total chars consumed by the cell
  */
 extern size_t th_prev_cell(const thchar_t *s, size_t pos,
