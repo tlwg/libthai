@@ -1,7 +1,7 @@
 General Information
 ===================
 
-This is LibThai version 0.1.0 (see NEWS for release information).
+This is LibThai version 0.1.1 (see NEWS for release information).
 
 LibThai is a set of Thai language support routines aimed to ease
 developers' tasks to incorporate Thai language support in their
@@ -17,6 +17,7 @@ LibThai includes Thai language support routines:
   - Thai string manipulators
   - Thai string collation
   - Thai word breaking
+  - Thai cell clustering
   - Thai input method
   - Thai output method
 

@@ -4,13 +4,9 @@ TODO
  * Decompose cttex codes into libthai features;
    adjust the coding styles
 
- * Add WTT 2.0 tables
+ * Replace map.c in cttex with trie
 
- * Implement Thai I/O according to WTT 2.0
-
- * Extend WTT 2.0
-   - Input : input sequence correction
-   - Output : shaping
+ * Add unicode wrappers
 
  * Revise API
 
