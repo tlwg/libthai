@@ -1,10 +1,11 @@
 /*
- * $Id: thinp.c,v 1.2 2001-08-05 12:42:16 thep Exp $
+ * $Id: thinp.c,v 1.3 2001-08-06 14:08:05 thep Exp $
  * thinp.c - Thai string input sequence filtering
  * Created: 2001-08-04
  */
 
 #include <thai/thinp.h>
+#include <thai/tis.h>
 #include <thai/wtt.h>
 
 
@@ -32,10 +33,10 @@ int th_isaccept(thchar_t c1, thchar_t c2, thstrict_t s)
 static const struct correction_t {
     char c1, c2, to[3];
 } corrections[] = {
-    { 'à', 'à', "á" },
-    { 'Ä', 'Ò', "Äå" },
-    { 'Æ', 'Ò', "Æå" },
-    { 0xed, 'Ò', "Ó" },
+    { SARA_E, SARA_E, "á" },
+    { RU, SARA_AA, "Äå" },
+    { LU, SARA_AA, "Æå" },
+    { NIKHAHIT, SARA_AA, "Ó" },
     { 0, 0, 0 }
 };
 

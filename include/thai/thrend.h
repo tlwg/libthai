@@ -1,5 +1,5 @@
 /*
- * $Id: thrend.h,v 1.2 2001-05-17 17:58:56 thep Exp $
+ * $Id: thrend.h,v 1.3 2001-08-06 14:08:05 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-05-17
  */
@@ -11,10 +11,11 @@
 
 BEGIN_CDECL
 
-/* Thai char cell representation, according to WTT 2.0 */
+/* Thai char cell representation */
 struct thcell {
     thchar_t base;
     thchar_t hilo;
+    thchar_t top;
 };
 
 /* Glyph code type */
