@@ -1,3 +1,9 @@
+2001-08-05 Sunday 19:42  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.20), include/thai/thinp.h (1.6), src/thinp/thinp.c
+	(1.2): Change th_validate() to take more context. Define conversion
+	mechanism more deliberately. Implement th_validate().
+
 2001-08-04 Saturday 23:04  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* ChangeLog (1.19, r0_1_0): -before release 0.1.0
@@ -382,13 +388,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
 	src/thcoll/Makefile.am (1.2, r0_1_0), tests/Makefile.am (1.2): Add
-	$Id: ChangeLog,v 1.20 2001-08-05 12:42:15 thep Exp $
+	$Id: ChangeLog,v 1.21 2001-08-06 14:08:05 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.20 2001-08-05 12:42:15 thep Exp $
+	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.21 2001-08-06 14:08:05 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
