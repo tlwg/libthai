@@ -1,3 +1,11 @@
+2001-06-13  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+
+	* include/thai/thctypee.h, +src/thctype/thctype.c :
+	Create a first draft implementation of thctype.
+
+	* src/blank.c -> src/dummy.c :
+	Rename and comment the file, to be more meaningful.
+
 2001-06-12  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
 
 	* src/{cweight.h,cweight.c,thcoll.c} -> src/thcoll :
