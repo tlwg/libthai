@@ -1,3 +1,10 @@
+/*
+ * $Id: test_thstr.c,v 1.3 2001-08-09 13:33:03 thep Exp $
+ * test_thstr.c : Test suite for <thai/thstr.h> functions
+ * Created: 2001-08-03
+ * Author:  Theppitak Karoonboonyanan
+ */
+
 #include <thai/thstr.h>
 #include <string.h>
 

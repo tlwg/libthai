@@ -1,6 +1,7 @@
 2001-08-09 Thursday 20:27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* ChangeLog (1.35), tests/Makefile.am (1.9): Add thinp test suite.
+	* ChangeLog (1.35), tests/Makefile.am (1.9), ChangeLog (1.36),
+	tests/test_thinp.c (1.1): Add thinp test suite.
 
 2001-08-09 Thursday 18:52  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -483,13 +484,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
 	src/thcoll/Makefile.am (1.2, r0_1_0), tests/Makefile.am (1.2): Add
-	$Id: ChangeLog,v 1.36 2001-08-09 13:30:08 thep Exp $
+	$Id: ChangeLog,v 1.37 2001-08-09 13:33:03 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.36 2001-08-09 13:30:08 thep Exp $
+	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.37 2001-08-09 13:33:03 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
