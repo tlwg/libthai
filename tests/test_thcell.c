@@ -1,5 +1,5 @@
 /*
- * $Id: test_thcell.c,v 1.4 2001-08-09 13:33:03 thep Exp $
+ * $Id: test_thcell.c,v 1.5 2001-09-14 14:07:43 thep Exp $
  * test_thcell.c : Test suite for <thai/thcell.h> functions
  * Created: 2001-08-09
  * Author:  Theppitak Karoonboonyanan
@@ -9,6 +9,7 @@
 #include <thai/tis.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 static const thchar_t test_msg[] = "πÈ”π”°’Ë°Ë’°ÿË°Ëÿ°ÿÏ°Ïÿ°‘Ï°Ï‘‡‘‡”‡Èπ";
 static const struct thcell_t test_ans_nodecomp_am[] = {
