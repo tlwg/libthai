@@ -1,5 +1,5 @@
 /*
- * $Id: thcell.h,v 1.5 2001-08-10 08:25:19 thep Exp $
+ * $Id: thcell.h,v 1.6 2003-03-23 13:23:46 thep Exp $
  * thcell.h - Thai string cell custering
  * Created: 2001-08-08 (split from thrend.h)
  */
@@ -17,6 +17,11 @@ struct thcell_t {
     thchar_t hilo;
     thchar_t top;
 };
+
+/*
+ * initialize a Thai cell
+ */
+extern void th_init_cell(struct thcell_t *cell);
 
 /*
  * get first cell from the string bounded by s and len

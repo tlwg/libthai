@@ -1,5 +1,5 @@
 /*
- * $Id: thcell.c,v 1.6 2001-08-22 04:41:29 thep Exp $
+ * $Id: thcell.c,v 1.7 2003-03-23 13:23:46 thep Exp $
  * thcell_t.c - Thai string cell custering
  * Created: 2001-08-08 (split from thrend.c)
  * Author: Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -11,6 +11,13 @@
 #include <thai/tis.h>
 
 #define is_composible(c1,c2) (TACio_op(c1,c2)==CP)
+
+void th_init_cell(struct thcell_t *cell)
+{
+    cell->base = 0;
+    cell->hilo = 0;
+    cell->top = 0;
+}
 
 size_t th_next_cell(const thchar_t *s, size_t len,
                     struct thcell_t *cell, int is_decomp_am)
