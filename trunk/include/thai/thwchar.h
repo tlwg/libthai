@@ -1,5 +1,5 @@
 /*
- * $Id: thwchar.h,v 1.2 2001-05-17 17:58:56 thep Exp $
+ * $Id: thwchar.h,v 1.3 2001-05-17 18:07:08 thep Exp $
  * thwchar.h - wide char support for Thai
  * Created: 2001-05-17
  */
@@ -19,9 +19,9 @@ extern thwchar_t th_tis2uni(thchar_t c);
 extern thwchar_t th_winthai2uni(thchar_t c);
 extern thwchar_t th_macthai2uni(thchar_t c);
 
-extern thwchar_t th_uni2tis(thchar_t c);
-extern thwchar_t th_uni2winthai(thchar_t c);
-extern thwchar_t th_uni2macthai(thchar_t c);
+extern thchar_t th_uni2tis(thwchar_t c);
+extern thchar_t th_uni2winthai(thwchar_t c);
+extern thchar_t th_uni2macthai(thwchar_t c);
 
 END_CDECL
 
