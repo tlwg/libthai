@@ -1,5 +1,5 @@
 /*
- * $Id: test_thcell.c,v 1.5 2001-09-14 14:07:43 thep Exp $
+ * $Id: test_thcell.c,v 1.6 2004-10-12 09:04:00 thep Exp $
  * test_thcell.c : Test suite for <thai/thcell.h> functions
  * Created: 2001-08-09
  * Author:  Theppitak Karoonboonyanan
@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static const thchar_t test_msg[] = "πÈ”π”°’Ë°Ë’°ÿË°Ëÿ°ÿÏ°Ïÿ°‘Ï°Ï‘‡‘‡”‡Èπ";
+static const thchar_t test_msg[] = "πÈ”π”°’Ë°Ë’°ÿË°Ëÿ°ÿÏ°Ïÿ°‘Ï°Ï‘‡‘‡”‡Èπ°‘Ì°◊Á";
 static const struct thcell_t test_ans_nodecomp_am[] = {
     { NONU, 0, MAITHO },
     { SARA_AM, 0, 0 },
@@ -36,6 +36,8 @@ static const struct thcell_t test_ans_nodecomp_am[] = {
     { SARA_E, 0, 0 },
     { 0, 0, MAITHO },
     { NONU, 0, 0 },
+    { KOKAI, SARA_I, NIKHAHIT },
+    { KOKAI, SARA_UEE, MAITAIKHU },
     { 0, 0, 0 }
 };
 static const struct thcell_t test_ans_decomp_am[] = {
@@ -60,6 +62,8 @@ static const struct thcell_t test_ans_decomp_am[] = {
     { SARA_E, 0, 0 },
     { 0, 0, MAITHO },
     { NONU, 0, 0 },
+    { KOKAI, SARA_I, NIKHAHIT },
+    { KOKAI, SARA_UEE, MAITAIKHU },
     { 0, 0, 0 }
 };
 

@@ -1,5 +1,5 @@
 /*
- * $Id: thcell.c,v 1.7 2003-03-23 13:23:46 thep Exp $
+ * $Id: thcell.c,v 1.8 2004-10-12 09:04:00 thep Exp $
  * thcell_t.c - Thai string cell custering
  * Created: 2001-08-08 (split from thrend.c)
  * Author: Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -35,6 +35,10 @@ size_t th_next_cell(const thchar_t *s, size_t len,
                 case -1:
                 case 1: acell.hilo = *s++; break;
                 case 2: acell.top  = *s++; break;
+                case 3:
+                    if (!acell.hilo) { acell.hilo = *s++; }
+		    else { acell.top = *s++; }
+		    break;
             }
             ++n; --len;
         } while (
@@ -63,9 +67,17 @@ size_t th_prev_cell(const thchar_t *s, size_t pos,
                     if (is_decomp_am && c == SARA_AM) { acell.hilo = c; }
                     else { acell.base = c; }
                     break;
-                case -1:
-                case 1: acell.hilo = c; break;
+                case 1: 
+                    if (acell.hilo && th_chlevel(acell.hilo) == 3) {
+                        acell.top = acell.hilo;
+                    }
+                    /* fall through */
+                case -1: acell.hilo = c; break;
                 case 2: acell.top  = c; break;
+                case 3:
+                    if (!acell.hilo) { acell.hilo = c; }
+		    else { acell.top = c; }
+		    break;
             }
             ++n; --pos;
         } while (
