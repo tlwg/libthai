@@ -1,3 +1,17 @@
+2001-07-27 Friday 17:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/Makefile.am (1.6), src/thbrk/test_thbrk.c (1.5),
+	tests/Makefile.am (1.3), tests/test_thbrk.c (1.1): Move test_thbrk
+	to tests/.
+
+2001-07-25 Wednesday 09:11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* .cvsignore (1.3), ChangeLog (1.9), include/.cvsignore (1.2),
+	include/thai/.cvsignore (1.2), src/.cvsignore (1.2),
+	src/thbrk/.cvsignore (1.3), src/thcoll/.cvsignore (1.2),
+	src/thctype/.cvsignore (1.2), tests/.cvsignore (1.2): List more
+	auto-generated files to .cvsignore's.
+
 2001-07-25 Wednesday 04:31  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* include/thai/thbrk.h (1.3), src/thbrk/test_thbrk.c (1.4),
@@ -167,13 +181,13 @@
 
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2),
 	include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
-	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.9 2001-07-25 02:11:02 thep Exp $
+	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.10 2001-07-27 10:17:02 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2), src/thcoll/cweight.h (1.2),
 	src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2),
-	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.9 2001-07-25 02:11:02 thep Exp $
+	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.10 2001-07-27 10:17:02 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
