@@ -2,7 +2,7 @@
  * based on cttex by Vuthichai A. (vuthi@[crtl.titech.ac.jp|linux.thai.net])
 
  * Created 2001-07-15
- * $Id: thbrk.c,v 1.1 2001-07-15 16:31:54 ott Exp $ 
+ * $Id: thbrk.c,v 1.2 2001-07-16 10:54:05 thep Exp $ 
  */
 
 /* Maximum length of input line */
@@ -41,7 +41,7 @@
 /* Load Dictionary : wordptr & numword */
 #include "map.h"
 
-#include "thai/thailib.h"
+#include <thai/thailib.h>
 
 
 int dooneline2(unsigned char *,unsigned char *);
@@ -795,6 +795,10 @@ void clear_stack()
 
 /*
  * $Log: not supported by cvs2svn $
+ * Revision 1.1  2001/07/15 16:31:54  ott
+ * -first version.
+ * -wrapper for P'Hui's cttex.
+ *
  * Revision 1.22  2001/02/28 12:48:16  chanop
  * Import cttex.c (GPL version) into new cvs tree.
  * Add -W option for babel thailatex pacakge.

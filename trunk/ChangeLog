@@ -1,3 +1,10 @@
+2001-07-16  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+
+	* configure.in :
+	* src/Makefile.am :
+	* +src/thbrk/Makefile.am :
+	Create automake file for thbrk.
+
 2001-06-15  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
 
 	* include/thai/thctype.h :

@@ -3,7 +3,7 @@
  * extracted from old cttex code (by Vuthichai A. vuthi@[ctrl.titech.ac.jp|linux.thai.net])
  *
  * Created: 2001-7-15
- * $Id: cttex.c,v 1.1 2001-07-15 16:31:54 ott Exp $
+ * $Id: cttex.c,v 1.2 2001-07-16 10:54:04 thep Exp $
  */
 
 #include <stdio.h>
@@ -11,9 +11,9 @@
 #include <memory.h>
 #include <stdlib.h>
 
-#include "thai/thbrk.h"
+#include <thai/thbrk.h>
 
-// Hmm....:)
+/* Hmm... :) */
 #include "thbrk.c"
 
 int main(argc, argv)
@@ -35,7 +35,7 @@ char *argv[];
   firstmode = 0;
   r_cutcode = cutcode;
 
-  fprintf(stderr,"C-TTeX $Revision: 1.1 $\n");
+  fprintf(stderr,"C-TTeX $Revision: 1.2 $\n");
   fprintf(stderr,"cttex -h for help usage.\n");
   fprintf(stderr,"Built-in dictionary size: %d words\n", numword);
   
