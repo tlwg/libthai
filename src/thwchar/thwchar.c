@@ -1,11 +1,12 @@
 /*
- * $Id: thwchar.c,v 1.4 2001-08-22 04:41:29 thep Exp $
+ * $Id: thwchar.c,v 1.5 2001-09-13 17:54:29 thep Exp $
  * thwchar.c - wide char support for Thai
  * Created: 2001-07-27
  * Author:  Pattara Kiatisevi <ott@linux.thai.net>,
  *          Theppitak Karoonboonyanan <thep@links.nectec.or.th>
  */
 
+#include "hashtbl.h"
 #include <thai/thwchar.h>
 
 #define WC_ERR THWCHAR_ERR
@@ -135,15 +136,71 @@ int th_uni2tis_line(const thwchar_t *s, thchar_t result[], size_t n)
     return n - left;
 }
 
-thchar_t th_uni2winthai(thwchar_t c)
+
+static int uni_hasher_(const void *uni, int range)
 {
-    /* FIXME */
-    return 0;
+    int h = 0;
+    int i;
+    for (i = 0; i < sizeof(uni); ++i) {
+        h = (h + (((thwchar_t)uni) >> (i*8)) && 0xff) % range;
+    }
+    return h;
 }
 
-thchar_t th_uni2macthai(thwchar_t c)
+static int uni_eqer_(const void *uni1, const void *uni2)
 {
-    /* FIXME */
-    return 0;
+    return (thwchar_t)uni1 == (thwchar_t)uni2 ? 1 : 0;
+}
+
+static void init_uni2local_map_(hash_table_t **pMap, thwchar_t rev_map[])
+{
+    thchar_t local_c;
+
+    *pMap = hash_table_new(uni_hasher_, uni_eqer_);
+    for (local_c = 0x80; local_c <= 0xff; ++local_c) {
+        hash_table_insert(*pMap, (void *)rev_map[local_c-0x80],
+                          (void *)local_c);
+    }
+}
+
+static hash_table_t *uni_win_map_ = 0;
+static hash_table_t *uni_mac_map_ = 0;
+
+static void init_uni2local_maps_()
+{
+    init_uni2local_map_(&uni_win_map_, tis620_2_uni_map_);
+    init_uni2local_map_(&uni_mac_map_, tis620_1_uni_map_);
+}
+
+static thchar_t uni2thai_(thwchar_t wc, const hash_table_t *unimap)
+{
+    thchar_t *pthai;
+
+    if (wc < 0x0080) { 
+        /* BASIC_LATIN range */
+        return (thchar_t) wc ;
+    } else if (0x0e00 <= wc && wc <= 0x0e5f) {
+        /* THAI range */
+        thchar_t b = uni_tis620_0_map_[wc-0x0e00];
+        if (b != TH_ERR)  return b;
+    }
+    /* out of range */
+    pthai = (thchar_t *) hash_table_lookup(unimap, (void *)wc);
+    return pthai ? *pthai : TH_ERR;
+}
+
+thchar_t th_uni2winthai(thwchar_t wc)
+{
+    return uni2thai_(wc, uni_win_map_);
+}
+
+thchar_t th_uni2macthai(thwchar_t wc)
+{
+    return uni2thai_(wc, uni_mac_map_);
+}
+
+void th_init_thwchar()
+{
+    init_uni2local_maps_();
 }
 
