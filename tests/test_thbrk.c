@@ -1,6 +1,6 @@
 /* Test driver for thbrk 
  *
- * $Id: test_thbrk.c,v 1.3 2001-08-04 14:40:44 ott Exp $
+ * $Id: test_thbrk.c,v 1.4 2001-08-04 15:27:05 ott Exp $
  */
 
 #define MAXLINELENGTH 1000
@@ -37,7 +37,7 @@ int main (int argc, char* argv[]) {
   if ( interactive == 1) {
     while(!feof(fp)) {
       printf("Please enter thai words/sentences: ");
-      retval = "";
+      strcpy(retval,"");
       retval=(unsigned char *) fgets((char *)str, MAXLINELENGTH-1,fp);
       if(!feof(fp)) {
 	numCut = th_brk(str,pos,MAXLINELENGTH);
