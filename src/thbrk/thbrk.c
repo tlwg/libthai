@@ -2,7 +2,7 @@
  * based on cttex by Vuthichai A. (vuthi@[crtl.titech.ac.jp|linux.thai.net])
 
  * Created 2001-07-15
- * $Id: thbrk.c,v 1.6 2001-08-03 11:20:45 thep Exp $ 
+ * $Id: thbrk.c,v 1.7 2001-08-04 14:45:50 ott Exp $ 
  */
 
 /* Maximum length of input line */
@@ -75,7 +75,7 @@ int levtable[]={
                 0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0 };
 #endif
 
-// Global variable, hmmmm :-p
+/* Global variable, hmmmm :-p */
 
 int cutcode;
 int bShowAll,debugmode,reportmode,firstmode;
@@ -91,9 +91,9 @@ int piDifList[2*DIFLISTSIZE];
 int iDifPtr;
 
 void th_brk_init() {
-  // Constructor
+  /* Constructor */
 
-  // Init global Variables...Yikes!!
+  /* Init global Variables...Yikes!! */
   cutcode = CUTCODE;
   bShowAll = 0;  
   bIndexMode = 0;
@@ -110,48 +110,48 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
   unsigned char* s;
 
 
-  // Call the constructor
+  /* Call the constructor */
   th_brk_init();
 
-  // Init Variables
+  /* Init Variables */
   numFound = 0;
 
-  // get the input line length
+  /* get the input line length */
   inputLength=strlen(_s);
 
-  // Make local s
+  /* Make local s */
   s = malloc(inputLength+1);
   th_normalize(s, _s, inputLength+1);
 #if 0
   strcpy(s,_s);
 #endif
 
-  // Memeory allocation
+  /* Memeory allocation */
   out = (unsigned char*) malloc(2*inputLength+1);
   myPos = (int *) malloc(sizeof(int)*inputLength);
 
 #if 0
-  // fix the order of characters
+  /* fix the order of characters */
   fixline(s);
 #endif
 
-  // do cut!
+  /* do cut! */
   dooneline2(s, out);
 
-  // get the output line length
+  /* get the output line length */
   outputLength=strlen(out);
 
-  // find the position of cutcode
+  /* find the position of cutcode */
   for ( i = 0 ; i < outputLength ; i++) {
-    if ( out[i] == cutcode ) { // ok now we found the cut point
-      // save the position (related to the input string, not this out [so "- numFound"] is added
+    if ( out[i] == cutcode ) { /* ok now we found the cut point */
+      /* save the position (related to the input string, not this out [so "- numFound"] is added */
       myPos[numFound] = i - numFound;
-      // Increase the number of cut code found
+      /* Increase the number of cut code found */
       numFound++;
     }
   };
   
-  // now copy value to pos[]
+  /* now copy value to pos[] */
   if ( n < numFound ) {
     minValue = n ;
   } else {
@@ -161,12 +161,12 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
     pos[i] = myPos[i];
   }
 
-  // Memory deallocation
+  /* Memory deallocation */
   free(myPos);
   free(out);
   free(s);
 
-  // return numFound
+  /* return numFound */
   return numFound;
 
 }
@@ -177,57 +177,57 @@ int th_brk_line(const thchar_t *_in, thchar_t* _out, size_t n, const char* _cutC
   unsigned int i, minValue;
 
 
-  // call the constructor
+  /* call the constructor */
   th_brk_init();
 
-  // check the length of cutCode
+  /* check the length of cutCode */
   cutCodeLength=strlen (_cutCode);
 
-  // get the input line length
+  /* get the input line length */
   inputLength=strlen(_in);
 
-  // Make local in
+  /* Make local in */
   in = malloc(inputLength+1); 
   th_normalize(in, _in, inputLength+1);
 #if 0
   strcpy(in, _in);
 #endif
 
-  // memeory allocation (worst case)
+  /* memeory allocation (worst case) */
   out = (unsigned char*) malloc( ( 1 + cutCodeLength ) * inputLength+1);
   outFromCttex = (unsigned char*) malloc( 2 * inputLength+1);
 
-  // init value
+  /* init value */
   strcpy (out, "\x00");
   strcpy (outFromCttex, "\x00");
   
 #if 0
-  // fix the order of characters
+  /* fix the order of characters */
   fixline(in);
 #endif
 
-  // do cut!
+  /* do cut! */
   dooneline2(in, outFromCttex);
 
-  // get the output line length
+  /* get the output line length */
   outputFromCttexLength=strlen(outFromCttex);
 
-  // create the real output 
+  /* create the real output  */
   for ( i = 0 ; i < outputFromCttexLength; i++) {
-    if ( outFromCttex[i] == cutcode ) { // ok now we found the cut point
-      // change to user supplied cutcode
+    if ( outFromCttex[i] == cutcode ) { /* ok now we found the cut point */
+      /* change to user supplied cutcode */
       strcat( out, _cutCode);
     } else {
-      // copy to output
+      /* copy to output */
       strncat( out, outFromCttex + i, 1 );
     }
   };
-  // now copy to the real _out that will be returned to caller
+  /* now copy to the real _out that will be returned to caller */
 
-  // get the output line length
+  /* get the output line length */
   outputLength=strlen(out);
 
-  // choose the less value
+  /* choose the less value */
   if (  n < outputLength ) {
     minValue = n;
   } else {
@@ -236,17 +236,17 @@ int th_brk_line(const thchar_t *_in, thchar_t* _out, size_t n, const char* _cutC
 
   strncpy(_out, out, minValue);
 
-  // Memory deallocation
+  /* Memory deallocation */
   free(outFromCttex);
   free(out);
   free(in);
 
-  // return the size of output string
+  /* return the size of output string */
   return outputLength;
 } 
 
-// Private part begins -- original from cttex with few small 
-// code beautifying/compiler warning suppression
+/* Private part begins -- original from cttex with few small  */
+/* code beautifying/compiler warning suppression */
 
 /********************************************************/
 /* Find list of words which match  head of given string */
@@ -833,6 +833,10 @@ void clear_stack()
 
 /*
  * $Log: not supported by cvs2svn $
+ * Revision 1.6  2001/08/03 11:20:45  thep
+ * Make thbrk and cttex use thstr instead of fixline() and adj().
+ * Fix a memory leak.
+ *
  * Revision 1.5  2001/07/31 22:20:59  ott
  * -fix const casting problem
  *
