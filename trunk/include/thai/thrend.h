@@ -1,5 +1,5 @@
 /*
- * $Id: thrend.h,v 1.4 2001-08-07 10:29:19 thep Exp $
+ * $Id: thrend.h,v 1.5 2001-08-07 12:40:15 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-05-17
  */
@@ -49,20 +49,22 @@ extern const thchar_t *th_make_cells(const thchar_t *s, size_t len,
 /*
  * render the given cell using corresponding glyph map
  * On return: First res_sz glyph codes stored in res, '\0' terminated
+ * Returns: total number of glyphs written to res[]
  */
-extern void th_render_cell_tis(struct thcell cell,
-                               thglyph_t res[], size_t res_sz,
-                               int is_decomp_am);
-extern void th_render_cell_win(struct thcell cell,
-                               thglyph_t res[], size_t res_sz,
-                               int is_decomp_am);
-extern void th_render_cell_mac(struct thcell cell,
-                               thglyph_t res[], size_t res_sz,
-                               int is_decomp_am);
+extern int th_render_cell_tis(struct thcell cell,
+                              thglyph_t res[], size_t res_sz,
+                              int is_decomp_am);
+extern int th_render_cell_win(struct thcell cell,
+                              thglyph_t res[], size_t res_sz,
+                              int is_decomp_am);
+extern int th_render_cell_mac(struct thcell cell,
+                              thglyph_t res[], size_t res_sz,
+                              int is_decomp_am);
 
 /*
  * render the given text using corresponding glyph map
  * On return: First res_sz glyph codes stored in res, '\0' terminated
+ * Returns: total number of glyphs written to res[]
  */
 extern int th_render_text_tis(const thchar_t *s,
                               thglyph_t res[], size_t res_sz,

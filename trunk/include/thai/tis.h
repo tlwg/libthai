@@ -16,7 +16,9 @@
 
 /* PART 1 - STANDARD ASCII CODES (ISO-646) */
 
-#define NULL                 0
+#ifndef NULL
+# define NULL                 0
+#endif
 #define NUL                  0
 #define SOH                  1      /* 0x01 START OF HEADING */
 #define STX                  2      /* 0x02 START OF TEXT */

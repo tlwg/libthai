@@ -1,3 +1,11 @@
+2001-08-07 Tuesday 17:29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.23), include/thai/thrend.h (1.4),
+	src/thrend/thrend.c (1.2): Treat SARA_AM cases. Add is_decomp_am
+	argument to determine its appearance.  Redefine WTT "cell" for
+	decomposed SARA_AM case. Add code for plain TIS rendering with
+	SARA_AM concerned.
+
 2001-08-07 Tuesday 16:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.22), include/thai/thctype.h (1.7),
@@ -404,13 +412,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
 	src/thcoll/Makefile.am (1.2, r0_1_0), tests/Makefile.am (1.2): Add
-	$Id: ChangeLog,v 1.23 2001-08-07 10:29:19 thep Exp $
+	$Id: ChangeLog,v 1.24 2001-08-07 12:40:15 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.23 2001-08-07 10:29:19 thep Exp $
+	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.24 2001-08-07 12:40:15 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
