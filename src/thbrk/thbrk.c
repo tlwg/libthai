@@ -2,7 +2,7 @@
  * based on cttex by Vuthichai A. (vuthi@[crtl.titech.ac.jp|linux.thai.net])
 
  * Created 2001-07-15
- * $Id: thbrk.c,v 1.7 2001-08-04 14:45:50 ott Exp $ 
+ * $Id: thbrk.c,v 1.8 2001-08-04 14:59:21 ott Exp $ 
  */
 
 /* Maximum length of input line */
@@ -117,7 +117,7 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
   numFound = 0;
 
   /* get the input line length */
-  inputLength=strlen(_s);
+  inputLength=strlen( (char*) _s);
 
   /* Make local s */
   s = malloc(inputLength+1);
@@ -139,7 +139,7 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
   dooneline2(s, out);
 
   /* get the output line length */
-  outputLength=strlen(out);
+  outputLength=strlen( (char*) out);
 
   /* find the position of cutcode */
   for ( i = 0 ; i < outputLength ; i++) {
@@ -184,7 +184,7 @@ int th_brk_line(const thchar_t *_in, thchar_t* _out, size_t n, const char* _cutC
   cutCodeLength=strlen (_cutCode);
 
   /* get the input line length */
-  inputLength=strlen(_in);
+  inputLength=strlen( (char*) _in);
 
   /* Make local in */
   in = malloc(inputLength+1); 
@@ -198,8 +198,8 @@ int th_brk_line(const thchar_t *_in, thchar_t* _out, size_t n, const char* _cutC
   outFromCttex = (unsigned char*) malloc( 2 * inputLength+1);
 
   /* init value */
-  strcpy (out, "\x00");
-  strcpy (outFromCttex, "\x00");
+  strcpy ((char*) out, "\x00");
+  strcpy ((char*) outFromCttex, "\x00");
   
 #if 0
   /* fix the order of characters */
@@ -210,22 +210,22 @@ int th_brk_line(const thchar_t *_in, thchar_t* _out, size_t n, const char* _cutC
   dooneline2(in, outFromCttex);
 
   /* get the output line length */
-  outputFromCttexLength=strlen(outFromCttex);
+  outputFromCttexLength=strlen( (char*) outFromCttex);
 
   /* create the real output  */
   for ( i = 0 ; i < outputFromCttexLength; i++) {
     if ( outFromCttex[i] == cutcode ) { /* ok now we found the cut point */
       /* change to user supplied cutcode */
-      strcat( out, _cutCode);
+      strcat( (char *) out, _cutCode);
     } else {
       /* copy to output */
-      strncat( out, outFromCttex + i, 1 );
+      strncat( (char *) out, (char *) (outFromCttex + i), 1 );
     }
   };
   /* now copy to the real _out that will be returned to caller */
 
   /* get the output line length */
-  outputLength=strlen(out);
+  outputLength=strlen((char *) out);
 
   /* choose the less value */
   if (  n < outputLength ) {
@@ -234,7 +234,7 @@ int th_brk_line(const thchar_t *_in, thchar_t* _out, size_t n, const char* _cutC
     minValue = outputLength;
   };
 
-  strncpy(_out, out, minValue);
+  strncpy( (char*) _out, (char*) out, minValue);
 
   /* Memory deallocation */
   free(outFromCttex);
@@ -833,6 +833,9 @@ void clear_stack()
 
 /*
  * $Log: not supported by cvs2svn $
+ * Revision 1.7  2001/08/04 14:45:50  ott
+ * -change comments to C-style :(
+ *
  * Revision 1.6  2001/08/03 11:20:45  thep
  * Make thbrk and cttex use thstr instead of fixline() and adj().
  * Fix a memory leak.
