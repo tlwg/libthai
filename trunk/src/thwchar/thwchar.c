@@ -1,12 +1,11 @@
 /*
- * $Id: thwchar.c,v 1.6 2001-09-14 13:48:41 thep Exp $
+ * $Id: thwchar.c,v 1.7 2001-09-14 14:05:09 thep Exp $
  * thwchar.c - wide char support for Thai
  * Created: 2001-07-27
  * Author:  Pattara Kiatisevi <ott@linux.thai.net>,
  *          Theppitak Karoonboonyanan <thep@links.nectec.or.th>
  */
 
-#include "hashtbl.h"
 #include <thai/thwchar.h>
 
 #define WC_ERR THWCHAR_ERR
@@ -137,73 +136,25 @@ int th_uni2tis_line(const thwchar_t *s, thchar_t result[], size_t n)
 }
 
 
-static int uni_hasher_(const void *uni, int range)
+static thchar_t uni2thai_ext_(thwchar_t wc, const thwchar_t rev_map[])
 {
-    int h = 0;
-    int i;
-    for (i = 0; i < sizeof(uni); ++i) {
-        h = (h + (((thwchar_t)uni) >> (i*8)) && 0xff) % range;
-    }
-    return h;
-}
-
-static int uni_eqer_(const void *uni1, const void *uni2)
-{
-    return (thwchar_t)uni1 == (thwchar_t)uni2 ? 1 : 0;
-}
-
-static hash_table_t *init_uni2local_map_(thwchar_t rev_map[])
-{
-    hash_table_t *pMap = hash_table_new(uni_hasher_, uni_eqer_);
-    thchar_t local_c;
-    local_c = 0x80;
+    /* wc assumed out of TIS range */
+    thchar_t c = 0x80;
     do {
-        /* insert only non-TIS chars */
-        if (!th_istis(local_c)) {
-            thwchar_t wc = rev_map[local_c-0x80];
-            if (wc != WC_ERR) {
-                hash_table_insert(pMap, (void *)wc, (void *)local_c);
-            }
-        }
-    } while (local_c++ <= 0xff);
-    return pMap;
-}
-
-static hash_table_t *uni_win_map_ = 0;
-static hash_table_t *uni_mac_map_ = 0;
-
-static hash_table_t *get_uni2win_map_()
-{
-    if (!uni_win_map_) {
-        uni_win_map_ = init_uni2local_map_(tis620_2_uni_map_);
-    }
-    return uni_win_map_;
-}
-
-static hash_table_t *get_uni2mac_map_()
-{
-    if (!uni_mac_map_) {
-        uni_mac_map_ = init_uni2local_map_(tis620_1_uni_map_);
-    }
-    return uni_mac_map_;
-}
-
-static thchar_t uni2thai_ext_(thwchar_t wc, const hash_table_t *unimap)
-{
-    /* wc assumed out of range */
-    thchar_t *pthai = (thchar_t *) hash_table_lookup(unimap, (void *)wc);
-    return pthai ? *pthai : TH_ERR;
+        if (rev_map[c-0x80] == wc) return c;
+    } while (c++ <= 0xff);
+    return TH_ERR;
 }
 
 thchar_t th_uni2winthai(thwchar_t wc)
 {
     thchar_t c = th_uni2tis(wc);
-    return (c == TH_ERR) ? uni2thai_ext_(wc, get_uni2win_map_()) : c;
+    return (c == TH_ERR) ? uni2thai_ext_(wc, tis620_2_uni_map_) : c;
 }
 
 thchar_t th_uni2macthai(thwchar_t wc)
 {
     thchar_t c = th_uni2tis(wc);
-    return (c == TH_ERR) ? uni2thai_ext_(wc, get_uni2mac_map_()) : c;
+    return (c == TH_ERR) ? uni2thai_ext_(wc, tis620_1_uni_map_) : c;
 }
 
