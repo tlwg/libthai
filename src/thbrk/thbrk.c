@@ -2,7 +2,7 @@
  * based on cttex by Vuthichai A. (vuthi@[crtl.titech.ac.jp|linux.thai.net])
 
  * Created 2001-07-15
- * $Id: thbrk.c,v 1.4 2001-07-24 21:31:14 ott Exp $ 
+ * $Id: thbrk.c,v 1.5 2001-07-31 22:20:59 ott Exp $ 
  */
 
 /* Maximum length of input line */
@@ -103,7 +103,6 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
   unsigned int i, minValue;
   unsigned char* s;
 
-  s = (unsigned char*)  _s;
 
   // Call the constructor
   th_brk_init();
@@ -112,20 +111,24 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
   numFound = 0;
 
   // get the input line length
-  inputLength=strlen((unsigned char *) s);
+  inputLength=strlen(_s);
+
+  // Make local s
+  s = malloc(inputLength+1);
+  strcpy(s,_s);
 
   // Memeory allocation
   out = (unsigned char*) malloc(2*inputLength+1);
   myPos = (int *) malloc(sizeof(int)*inputLength);
 
   // fix the order of characters
-  fixline((unsigned char*) s);
+  fixline(s);
 
   // do cut!
-  dooneline2( (unsigned char *) s, out);
+  dooneline2(s, out);
 
   // get the output line length
-  outputLength=strlen((unsigned char *) out);
+  outputLength=strlen(out);
 
   // find the position of cutcode
   for ( i = 0 ; i < outputLength ; i++) {
@@ -156,8 +159,8 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
 
 }
 
-int th_brk_line(const thchar_t *in, thchar_t* _out, size_t n, const char* _cutCode) {
-  unsigned char *out, *outFromCttex;
+int th_brk_line(const thchar_t *_in, thchar_t* _out, size_t n, const char* _cutCode) {
+  unsigned char *in, *out, *outFromCttex;
   unsigned int inputLength, outputLength, outputFromCttexLength, cutCodeLength;
   unsigned int i, minValue;
 
@@ -165,13 +168,15 @@ int th_brk_line(const thchar_t *in, thchar_t* _out, size_t n, const char* _cutCo
   // call the constructor
   th_brk_init();
 
-  // init Variables
-
   // check the length of cutCode
-  cutCodeLength=strlen ((unsigned char*) _cutCode);
+  cutCodeLength=strlen (_cutCode);
 
   // get the input line length
-  inputLength=strlen((unsigned char *) in);
+  inputLength=strlen(_in);
+
+  // Make local in
+  in = malloc(inputLength+1); 
+  strcpy(in, _in);
 
   // memeory allocation (worst case)
   out = (unsigned char*) malloc( ( 1 + cutCodeLength ) * inputLength+1);
@@ -182,28 +187,28 @@ int th_brk_line(const thchar_t *in, thchar_t* _out, size_t n, const char* _cutCo
   strcpy (outFromCttex, "\x00");
   
   // fix the order of characters
-  fixline((unsigned char*) in);
+  fixline(in);
 
   // do cut!
-  dooneline2( (unsigned char *) in, outFromCttex);
+  dooneline2(in, outFromCttex);
 
   // get the output line length
-  outputFromCttexLength=strlen((unsigned char *) outFromCttex);
+  outputFromCttexLength=strlen(outFromCttex);
 
   // create the real output 
   for ( i = 0 ; i < outputFromCttexLength; i++) {
     if ( outFromCttex[i] == cutcode ) { // ok now we found the cut point
       // change to user supplied cutcode
-      strcat( (unsigned char*) out, _cutCode);
+      strcat( out, _cutCode);
     } else {
       // copy to output
-      strncat( (unsigned char*) out, outFromCttex + i, 1 );
+      strncat( out, outFromCttex + i, 1 );
     }
   };
   // now copy to the real _out that will be returned to caller
 
   // get the output line length
-  outputLength=strlen((unsigned char *) out);
+  outputLength=strlen(out);
 
   // choose the less value
   if (  n < outputLength ) {
@@ -806,6 +811,10 @@ void clear_stack()
 
 /*
  * $Log: not supported by cvs2svn $
+ * Revision 1.4  2001/07/24 21:31:14  ott
+ * -modified the th_brk_line to accept cutCode as char* instead of int.
+ * -modified according to the changed interface the test program.
+ *
  * Revision 1.3  2001/07/22 21:32:07  ott
  * -fix the segfault in char* stuff
  *
