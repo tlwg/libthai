@@ -1,3 +1,56 @@
+2001-08-04 Saturday 17:46  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thailib.h (1.5): Resolve conflict.
+
+2001-08-04 Saturday 17:32  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* include/thai/thailib.h (1.4): -sunCC prefers ((thchar_t) ~0) than
+	~((thchar_t) 0) (from P'Thep)
+
+2001-08-04 Saturday 17:26  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thwbrk/thwbrk.c (1.5), tests/test_thbrk.c (1.4): -casting
+
+2001-08-04 Saturday 17:11  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* tests/test_thwbrk.c (1.3): -casting
+
+2001-08-04 Saturday 17:08  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* tests/test_thwchar.c (1.3): -change comments to C-style
+
+2001-08-04 Saturday 16:59  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thbrk/thbrk.c (1.8): -fix missing casting between char * and
+	unsigned char *
+
+2001-08-04 Saturday 16:58  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thwchar.h (1.6): Remove duplicated macro THCHAR_ERR
+	(already defined in thailib.h)
+
+2001-08-04 Saturday 16:45  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/: thbrk/thbrk.c (1.7), thwbrk/thwbrk.c (1.4): -change
+	comments to C-style :(
+
+2001-08-04 Saturday 16:40  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* tests/test_thbrk.c (1.3): -change comments to C-style :(
+
+2001-08-04 Saturday 16:24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* tests/test_thstr.c (1.2): Fix signed/unsigned char warning.
+
+2001-08-04 Saturday 15:57  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thctype/thctype.c (1.6): Remove weird characters.
+
+2001-08-04 Saturday 15:41  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* ChangeLog (1.18): -hmm, do I always need to commit this
+	ChangeLog?
+
 2001-08-04 Saturday 15:35  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* tests/test_thwchar.c (1.2): -remove wprintf, useless
@@ -317,13 +370,13 @@
 
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2),
 	include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
-	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.18 2001-08-04 13:41:13 ott Exp $
+	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.19 2001-08-04 16:04:55 ott Exp $
 
 2001-06-12 Tuesday 15:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2), src/thcoll/cweight.h (1.2),
 	src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2),
-	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.18 2001-08-04 13:41:13 ott Exp $
+	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.19 2001-08-04 16:04:55 ott Exp $
 
 2001-06-12 Tuesday 15:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
