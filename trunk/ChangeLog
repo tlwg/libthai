@@ -1,3 +1,29 @@
+2001-08-04 Saturday 20:16  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* NEWS (1.2), README (1.5): -move release information to NEWS
+
+2001-08-04 Saturday 20:11  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* README (1.4): -more info in RELEASE INFORMATION
+
+2001-08-04 Saturday 20:07  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* README (1.3), AUTHORS (1.3): -more descriptive
+
+2001-08-04 Saturday 20:04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in (1.11), include/thai/Makefile.am (1.4),
+	include/thai/thinp.h (1.5), include/thai/wtt.h (1.1),
+	src/Makefile.am (1.8), src/thctype/Makefile.am (1.2),
+	src/thctype/wtt.c (1.1), src/thinp/.cvsignore (1.1),
+	src/thinp/Makefile.am (1.1), src/thinp/thinp.c (1.1): Add WTT 2.0
+	tables. Partially implement thinp.
+
+2001-08-04 Saturday 18:08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* AUTHORS (1.2), ChangeLog (1.16), README (1.2), TODO (1.1),
+	configure.in (1.10): Release first version 0.1.0
+
 2001-08-03 Friday 18:20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.15), src/thbrk/Makefile.am (1.7), src/thbrk/cttex.c
@@ -283,13 +309,13 @@
 
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2),
 	include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
-	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.16 2001-08-04 11:08:24 thep Exp $
+	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.17 2001-08-04 13:29:26 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2), src/thcoll/cweight.h (1.2),
 	src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2),
-	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.16 2001-08-04 11:08:24 thep Exp $
+	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.17 2001-08-04 13:29:26 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
