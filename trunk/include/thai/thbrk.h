@@ -1,5 +1,5 @@
 /*
- * $Id: thbrk.h,v 1.3 2001-07-24 21:31:13 ott Exp $
+ * $Id: thbrk.h,v 1.4 2001-07-30 11:37:39 ott Exp $
  * thbrk.h - Thai word segmentation
  * Created: 2001-05-17
  */
@@ -8,6 +8,7 @@
 #define THAI_THBRK_H
 
 #include <thai/thailib.h>
+#include <thai/thwchar.h>
 
 BEGIN_CDECL
 
@@ -16,7 +17,7 @@ BEGIN_CDECL
  *
  * @param s : the input string to be processed
  * @param pos : array to keep breaking positions (see on return)
- * @pram n : size of pos[]
+ * @param n : size of pos[]
  *
  * On returns: at most n breaking positions stored in pos[],
  *             from left to right
