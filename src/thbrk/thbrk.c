@@ -2,7 +2,7 @@
  * based on cttex by Vuthichai A. (vuthi@[crtl.titech.ac.jp|linux.thai.net])
 
  * Created 2001-07-15
- * $Id: thbrk.c,v 1.10 2004-12-12 06:40:49 ott Exp $ 
+ * $Id: thbrk.c,v 1.11 2005-01-13 09:23:13 ott Exp $ 
  */
 
 /* Maximum length of input line */
@@ -106,7 +106,7 @@ void th_brk_init() {
 int th_brk(const thchar_t *_s, int pos[], size_t n) {
   unsigned char *out;
   int *myPos;
-  unsigned int inputLength, outputLength, numFound;
+  unsigned int inputLength, outputLength, numFound, numSpace;
   unsigned int i, minValue;
   unsigned char* s;
 
@@ -120,6 +120,7 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
 
   /* Init Variables */
   numFound = 0;
+  numSpace = 0;
 
   /* get the input line length */
   inputLength=strlen( (char*) _s);
@@ -148,13 +149,17 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
 
   /* find the position of cutcode */
   for ( i = 0 ; i < outputLength ; i++) {
-    if ( out[i] == cutcode ) { /* ok now we found the cut point */
+    if ( out[i] == cutcode || out[i] == 32 ) { /* ok now we found the cut point or SPACE */
       /* save the position (related to the input string, not this out [so "- numFound"] is added */
-      myPos[numFound] = i - numFound;
-      /* Increase the number of cut code found */
+      myPos[numFound+numSpace] = i - numFound;
+    }
+    if ( out[i] == cutcode ) { 
       numFound++;
+    } else if ( out[i] == 32 ) { 
+      numSpace++;
     }
   };
+  numFound += numSpace;
   
   /* now copy value to pos[] */
   if ( n < numFound ) {
@@ -219,7 +224,7 @@ int th_brk_line(const thchar_t *_in, thchar_t* _out, size_t n, const char* _cutC
 
   /* create the real output  */
   for ( i = 0 ; i < outputFromCttexLength; i++) {
-    if ( outFromCttex[i] == cutcode ) { /* ok now we found the cut point */
+    if ( outFromCttex[i] == cutcode || outFromCttex[i] == 32 ) { /* ok now we found the cut point OR SPACE*/
       /* change to user supplied cutcode */
       strcat( (char *) out, _cutCode);
     } else {
@@ -838,6 +843,9 @@ void clear_stack()
 
 /*
  * $Log: not supported by cvs2svn $
+ * Revision 1.10  2004/12/12 06:40:49  ott
+ * -check the array size value not to be too large
+ *
  * Revision 1.9  2004/05/16 14:11:56  ott
  * -cttex: firstmode=1 for faster operation
  *
