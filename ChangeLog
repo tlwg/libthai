@@ -1,8 +1,14 @@
+2001-09-16 Sunday 21:59  poonlap
+
+	* man/: template.3 (1.1), man3/thctype.3 (1.1), man3/wtt.3 (1.1):
+	Create first man pages for thctype.3, wtt.3 Also template.3
+
 2001-09-14 Friday 21:36  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.48), configure.in (1.16), include/thai/thwctype.h
 	(1.3), src/Makefile.am (1.11), src/thwctype/.cvsignore (1.1),
-	src/thwctype/Makefile.am (1.1): Add a quick implementation of
+	src/thwctype/Makefile.am (1.1), ChangeLog (1.49),
+	src/thwctype/thwctype.c (1.1): Add a quick implementation of
 	thwctype.
 
 2001-09-14 Friday 21:07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
@@ -584,13 +590,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.49 2001-09-14 14:37:14 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.50 2001-09-17 01:53:01 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.49 2001-09-14 14:37:14 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.50 2001-09-17 01:53:01 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
