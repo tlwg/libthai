@@ -1,4 +1,5 @@
 /*
+ * $Id: thailib.h,v 1.2 2001-05-17 17:58:56 thep Exp $
  * thailib.h - general declarations for libthai
  * Created: 2001-05-17
  */

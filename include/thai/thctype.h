@@ -1,4 +1,5 @@
 /*
+ * $Id: thctype.h,v 1.2 2001-05-17 17:58:56 thep Exp $
  * thctype.h - Thai character classifications
  * Created: 2001-05-17
  */
