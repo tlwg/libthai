@@ -1,5 +1,5 @@
 /*
- * $Id: thrend.h,v 1.7 2001-08-08 17:57:22 thep Exp $
+ * $Id: thrend.h,v 1.8 2001-08-10 11:07:30 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-05-17
  */
@@ -13,7 +13,7 @@
 BEGIN_CDECL
 
 /* Glyph code type */
-typedef unsigned int thglyph_t;
+typedef unsigned char thglyph_t;
 
 /*
  * render the given cell using corresponding glyph map
