@@ -1,5 +1,5 @@
 /*
- * $Id: thrend.c,v 1.8 2001-08-10 11:07:30 thep Exp $
+ * $Id: thrend.c,v 1.9 2001-08-10 11:09:47 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-08-06
  */
@@ -84,8 +84,7 @@ int th_render_cell(struct thcell_t cell,
         else if (is_decomp_am) { c = NIKHAHIT; }
         if (c) {
             if (th_isovershootcons(cell.base) && th_chlevel(c) > 0) {
-                if (c == NIKHAHIT) { c = shiftleft_tone_ad(c, tbl); }
-		else if (th_isupvowel(c)) { c = shiftleft_av(c, tbl); }
+		if (th_isupvowel(c)) { c = shiftleft_av(c, tbl); }
 		else { c = shiftleft_tone_ad(c, tbl); }
             } else if (th_isundershootcons(cell.base) && th_chlevel(c) < 0) {
                 c = shiftdown_bv_bd(c, tbl);
