@@ -1,6 +1,6 @@
 /* Test driver for thbrk 
  *
- * $Id: test_thbrk.c,v 1.4 2001-08-04 15:27:05 ott Exp $
+ * $Id: test_thbrk.c,v 1.5 2001-09-14 14:07:43 thep Exp $
  */
 
 #define MAXLINELENGTH 1000
@@ -22,7 +22,6 @@ int main (int argc, char* argv[]) {
   int outputLength;
   int numCut, i;
   int interactive = 0;
-  int cutCode;
   
   str = _str;
   retval = _retval;
