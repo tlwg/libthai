@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.4 2001-07-30 11:41:43 ott Exp $
+# $Id: Makefile.am,v 1.5 2001-07-31 13:47:42 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 
 INCLUDES = -I$(top_srcdir)/include
@@ -8,6 +8,7 @@ EXTRA_DIST = sorttest.txt sorted.txt test-thcoll.sh
 TESTS_ENVIRONMENT = top_builddir=$(top_builddir)
 
 TESTS = \
+	test_thctype \
 	test-thcoll.sh \
 	test_thbrk \
 	test_thwchar \
@@ -17,13 +18,19 @@ check_SCRIPTS = \
 	test-thcoll.sh
 
 check_PROGRAMS = \
+	test_thctype \
 	thsort \
 	test_thbrk \
 	test_thwchar \
 	test_thwbrk
 
+test_thctype_SOURCES = test_thctype.c
+test_thctype_LDADD = $(top_builddir)/src/thctype/libthctype.la
+
 thsort_SOURCES = thsort.c
-thsort_LDADD = $(top_builddir)/src/thcoll/libthcoll.la
+thsort_LDADD = \
+	$(top_builddir)/src/thcoll/libthcoll.la \
+	$(top_builddir)/src/thctype/libthctype.la
 
 test_thbrk_SOURCES = test_thbrk.c
 test_thbrk_LDADD = $(top_builddir)/src/thbrk/libthbrk.la
