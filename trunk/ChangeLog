@@ -1,3 +1,12 @@
+2001-08-08 Wednesday 19:39  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.27), configure.in (1.13), include/thai/Makefile.am
+	(1.5), include/thai/thcell.h (1.1), include/thai/thrend.h (1.6),
+	src/Makefile.am (1.10), src/thcell/.cvsignore (1.1),
+	src/thcell/Makefile.am (1.1), src/thcell/thcell.c (1.1),
+	src/thrend/thrend.c (1.5): Split thcell functions into a separate
+	module.
+
 2001-08-08 Wednesday 11:45  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.26), src/thrend/thrend.c (1.4): Add guards for cells
@@ -429,13 +438,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
 	src/thcoll/Makefile.am (1.2, r0_1_0), tests/Makefile.am (1.2): Add
-	$Id: ChangeLog,v 1.27 2001-08-08 12:39:18 thep Exp $
+	$Id: ChangeLog,v 1.28 2001-08-08 12:49:22 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.27 2001-08-08 12:39:18 thep Exp $
+	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.28 2001-08-08 12:49:22 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 

@@ -1,0 +1,46 @@
+# $Id: configure.ac,v 1.1 2001-08-08 12:49:22 thep Exp $
+# Process this file with autoconf to produce a configure script.
+AC_INIT(include/thai/thailib.h)
+AM_INIT_AUTOMAKE(libthai, 0.1.0)
+
+AC_SUBST(VERSION)
+
+# Checks for programs.
+AC_PROG_CC
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AM_PROG_LIBTOOL
+
+# Checks for libraries.
+
+# Checks for header files.
+AC_CHECK_HEADERS([stddef.h stdlib.h string.h wchar.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_TYPE_SIZE_T
+
+# Checks for library functions.
+dnl AC_FUNC_MALLOC
+
+AC_OUTPUT(
+  libthai.pc
+  Makefile
+  include/Makefile
+  include/thai/Makefile
+  src/Makefile
+  src/thctype/Makefile
+  src/thstr/Makefile
+  src/thcell/Makefile
+  src/thinp/Makefile
+  src/thrend/Makefile
+  src/thcoll/Makefile
+  src/thbrk/Makefile
+  src/thwchar/Makefile
+  src/thwbrk/Makefile
+  tests/Makefile
+)
+
+AC_MSG_RESULT([Type make to build libthai.])
+

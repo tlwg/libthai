@@ -126,9 +126,11 @@ do
       automake --add-missing --gnu $am_opt
       echo "Running autoconf ..."
       autoconf
-    )
+    ) || DIE=1
   fi
 done
 
-echo "You can run ./configure now"
+if test "$DIE" -eq 0; then
+  echo "You can run ./configure now"
+fi
 
