@@ -1,4 +1,5 @@
 /*
+ * $Id: thwchar.h,v 1.2 2001-05-17 17:58:56 thep Exp $
  * thwchar.h - wide char support for Thai
  * Created: 2001-05-17
  */

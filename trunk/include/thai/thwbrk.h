@@ -1,5 +1,6 @@
 /*
- * thwbrk.h - Thai word segmentation
+ * $Id: thwbrk.h,v 1.2 2001-05-17 17:58:56 thep Exp $
+ * thwbrk.h - Thai wide-char word segmentation
  * Created: 2001-05-17
  */
 
@@ -10,7 +11,7 @@
 
 BEGIN_CDECL
 
-extern int th_wbrk(thchar_t *s, int *pos, size_t n);
+extern int th_wcbrk(const thwchar_t *s, int pos[], size_t n);
 
 END_CDECL
 

@@ -1,4 +1,5 @@
 /*
+ * $Id: thwinp.h,v 1.2 2001-05-17 17:58:56 thep Exp $
  * thwinp.h - Thai wide-char string input sequence filtering
  * Created: 2001-05-17
  */
