@@ -2,7 +2,7 @@
  * based on cttex by Vuthichai A. (vuthi@[crtl.titech.ac.jp|linux.thai.net])
 
  * Created 2001-07-15
- * $Id: thbrk.c,v 1.11 2005-01-13 09:23:13 ott Exp $ 
+ * $Id: thbrk.c,v 1.12 2005-03-01 15:57:15 ott Exp $ 
  */
 
 /* Maximum length of input line */
@@ -109,6 +109,14 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
   unsigned int inputLength, outputLength, numFound, numSpace;
   unsigned int i, minValue;
   unsigned char* s;
+
+  /*
+  FILE *fp;
+  fp = fopen("/tmp/libthai-debug.txt", "a");
+  fprintf(fp, "%s\t%x\t%d\n", _s, pos, n);
+  fprintf(fp, "%x\t%d\n", pos, n);
+  fclose(fp);
+  */
 
   if ( n > MAXARRAYLENGTH ) {
 	  fprintf(stderr,"th_brk: n is too large (%d)\n",n);
@@ -843,6 +851,9 @@ void clear_stack()
 
 /*
  * $Log: not supported by cvs2svn $
+ * Revision 1.11  2005/01/13 09:23:13  ott
+ * -space is considered and returned as a breakable point
+ *
  * Revision 1.10  2004/12/12 06:40:49  ott
  * -check the array size value not to be too large
  *
