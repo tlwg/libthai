@@ -1,5 +1,5 @@
 /*
- * $Id: thrend.c,v 1.10 2001-08-22 04:41:29 thep Exp $
+ * $Id: thrend.c,v 1.11 2004-01-24 16:08:17 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-08-06
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -76,7 +76,7 @@ int th_render_cell_(struct thcell_t cell,
         if (th_isundersplitcons(c) && th_chlevel(cell.hilo) < 0) {
             c = tailcutcons(c, tbl);
         }
-        *res++ = c ? c : ' '; --left;
+        *res++ = c ? c : TH_BLANK_BASE_GLYPH; --left;
     }
     /* put hilo character */
     if (left > 0 && cell.hilo) {
@@ -121,7 +121,9 @@ int th_render_cell_tis(struct thcell_t cell,
 {
     size_t left = res_sz;
 
-    if (left > 0) { *res++ = cell.base ? cell.base : ' '; --left; }
+    if (left > 0) {
+      *res++ = cell.base ? cell.base : TH_BLANK_BASE_GLYPH; --left;
+    }
     if (left > 0 && cell.hilo) {
         if (cell.hilo != SARA_AM) { *res++ = cell.hilo; --left; }
 	else if (is_decomp_am) { *res++ = NIKHAHIT; --left; }

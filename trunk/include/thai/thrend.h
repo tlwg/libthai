@@ -1,5 +1,5 @@
 /*
- * $Id: thrend.h,v 1.8 2001-08-10 11:07:30 thep Exp $
+ * $Id: thrend.h,v 1.9 2004-01-24 16:08:17 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-05-17
  */
@@ -14,6 +14,9 @@ BEGIN_CDECL
 
 /* Glyph code type */
 typedef unsigned char thglyph_t;
+
+/* Blank base glyph, for floating upper/lower vowel */
+#define TH_BLANK_BASE_GLYPH  0xdd
 
 /*
  * render the given cell using corresponding glyph map
