@@ -2,11 +2,12 @@
  * based on cttex by Vuthichai A. (vuthi@[crtl.titech.ac.jp|linux.thai.net])
 
  * Created 2001-07-15
- * $Id: thbrk.c,v 1.9 2004-05-16 14:11:56 ott Exp $ 
+ * $Id: thbrk.c,v 1.10 2004-12-12 06:40:49 ott Exp $ 
  */
 
 /* Maximum length of input line */
 #define                 MAXLINELENGTH           1000
+#define                 MAXARRAYLENGTH           10000
 
 /* Characters to be skipped */
 #define                 SKIPWORD(x)             \
@@ -109,6 +110,10 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
   unsigned int i, minValue;
   unsigned char* s;
 
+  if ( n > MAXARRAYLENGTH ) {
+	  fprintf(stderr,"th_brk: n is too large (%d)\n",n);
+	  return 0;
+  }
 
   /* Call the constructor */
   th_brk_init();
@@ -833,6 +838,9 @@ void clear_stack()
 
 /*
  * $Log: not supported by cvs2svn $
+ * Revision 1.9  2004/05/16 14:11:56  ott
+ * -cttex: firstmode=1 for faster operation
+ *
  * Revision 1.8  2001/08/04 14:59:21  ott
  * -fix missing casting between char * and unsigned char *
  *
