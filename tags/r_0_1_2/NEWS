@@ -1,0 +1,32 @@
+=======================================================================
+RELEASES INFORMATION
+=======================================================================
+
+LibThai 0.1.2 (10 September 2003):
+
+* It's still alive!
+* Bug fix & code furnishing
+* conversion functions for Win & Mac extension
+* Some document (man pages)
+* Experiment with GTK+ 2 plug-ins (in separate packages)
+
+LibThai 0.1.1 (14 August 2001):
+
+* WTT-based cell clustering
+* Thai input sequence correction
+* Thai shaping
+
+LibThai 0.1.0 (4 August 2001):
+
+* First public release, request for comments for API
+* Thai character properties with WTT 2.0 tables
+* Thai string collation (bilingual)
+* Thai string normalization
+* WTT-based input sequence checking
+* Thai Word breaking (cttex)
+* Conversion between TIS-620 and Unicode
+* All implementations not yet completed
+
+=======================================================================
+See ChangeLog file for more details.
+
