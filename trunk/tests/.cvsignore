@@ -3,5 +3,8 @@
 Makefile
 Makefile.in
 out.txt
+test_thctype
+test_thwchar
 thsort
 test_thbrk
+test_thwbrk
