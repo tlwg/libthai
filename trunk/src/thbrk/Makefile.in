@@ -10,7 +10,7 @@
 # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
-# $Id: Makefile.in,v 1.3 2001-07-17 05:00:44 chanop Exp $
+# $Id: Makefile.in,v 1.4 2001-07-17 05:20:09 chanop Exp $
 
 
 SHELL = @SHELL@
@@ -460,12 +460,7 @@ mostlyclean-generic distclean-generic clean-generic \
 maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 
 
-map.h: tdict.txt dict2state
-	$(top_builddir)/src/thbrk/dict2state \
-		$(top_srcdir)/src/thbrk/tdict.txt \
-		map.c map.h
-
-map.c: tdict.txt dict2state
+map.c map.h: tdict.txt dict2state
 	$(top_builddir)/src/thbrk/dict2state \
 		$(top_srcdir)/src/thbrk/tdict.txt \
 		map.c map.h
