@@ -1,5 +1,5 @@
 /*
- * $Id: wtt.c,v 1.2 2001-08-22 04:41:29 thep Exp $
+ * $Id: wtt.c,v 1.3 2003-03-23 13:26:55 thep Exp $
  * wtt.h - WTT I/O implementation
  * Created: 2001-08-04
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -51,7 +51,7 @@ short TACio_op_[17][17] = {
   ,{XC, AC, AC, AC, SR, SR, AC, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ}/*NON*/
   ,{XC, AC, AC, AC, AC, SR, AC, CP, CP, CP, CP, CP, CP, CP, CP, CP, CP}/*CONS*/
   ,{XC, SR, AC, SR, SR, SR, SR, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ}/*LV*/
-  ,{XC, SR, AC, SR, AC, SR, AC, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ}/*FV1*/
+  ,{XC, AC, AC, AC, AC, SR, AC, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ}/*FV1*/
   ,{XC, AC, AC, AC, AC, SR, AC, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ}/*FV2*/
   ,{XC, AC, AC, AC, SR, AC, SR, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ, RJ}/*FV3*/
   ,{XC, AC, AC, AC, AC, SR, AC, RJ, RJ, RJ, CP, CP, RJ, RJ, RJ, RJ, RJ}/*BV1*/
