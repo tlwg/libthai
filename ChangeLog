@@ -1,3 +1,8 @@
+2001-08-14 Tuesday 13:18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.43), NEWS (1.5) (utags: r0_1_1): Release Version
+	0.1.1.
+
 2001-08-14 Tuesday 13:16  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.42): Prepare to release Version 0.1.1.
@@ -11,44 +16,45 @@
 	* configure.in (1.15), include/thai/thctype.h (1.8), src/dummy.c
 	(1.2), src/thbrk/dict2state.c (1.3), src/thcoll/cweight.c (1.3),
 	src/thcoll/cweight.h (1.3), src/thinp/thinp.c (1.7),
-	src/thstr/thstr.c (1.2): Require autoconf 2.50. Add --enable-ansi
-	and --enable-debug flags.  Turn on all warnings. Fix warnings.
+	src/thstr/thstr.c (1.2) (utags: r0_1_1): Require autoconf 2.50. Add
+	--enable-ansi and --enable-debug flags.  Turn on all warnings. Fix
+	warnings.
 
 2001-08-13 Monday 13:07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* ChangeLog (1.41), NEWS (1.4), README (1.6), TODO (1.2),
-	configure.ac (1.2), configure.in (1.14): Version 0.1.1
+	* ChangeLog (1.41), NEWS (1.4), README (1.6, r0_1_1), TODO (1.2,
+	r0_1_1), configure.ac (1.2), configure.in (1.14): Version 0.1.1
 
 2001-08-10 Friday 18:09  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* ChangeLog (1.40), src/thrend/thrend.c (1.9): Merge special case
-	of NIKHAHIT with tone/ad in general.
+	* ChangeLog (1.40), src/thrend/thrend.c (1.9, r0_1_1): Merge
+	special case of NIKHAHIT with tone/ad in general.
 
 2001-08-10 Friday 18:07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* ChangeLog (1.39), include/thai/thrend.h (1.8),
-	src/thrend/thrend.c (1.8), tests/Makefile.am (1.10),
-	tests/test_thrend.c (1.1): Add test suite for thrend. Fix bugs in
-	thrend: th_chlevel() typo; treat NIKHAHIT and MAITAIKHU with
-	shift_left_tone_ad() in th_render_cell(); also shift top-level
+	* ChangeLog (1.39), include/thai/thrend.h (1.8, r0_1_1),
+	src/thrend/thrend.c (1.8), tests/Makefile.am (1.10, r0_1_1),
+	tests/test_thrend.c (1.1, r0_1_1): Add test suite for thrend. Fix
+	bugs in thrend: th_chlevel() typo; treat NIKHAHIT and MAITAIKHU
+	with shift_left_tone_ad() in th_render_cell(); also shift top-level
 	character left when collapsed with NIKHAHIT split from SARA_AM.
 
 2001-08-10 Friday 15:25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* ChangeLog (1.38), include/thai/thcell.h (1.5),
-	src/thcell/thcell.c (1.5): Allow null pointer to struct thcell_t to
-	be passed in th_next_cell() and th_prev_cell(), where no cell data
-	will be written back.
+	* ChangeLog (1.38), include/thai/thcell.h (1.5, r0_1_1),
+	src/thcell/thcell.c (1.5, r0_1_1): Allow null pointer to struct
+	thcell_t to be passed in th_next_cell() and th_prev_cell(), where
+	no cell data will be written back.
 
 2001-08-09 Thursday 20:33  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* ChangeLog (1.37), tests/test_thcell.c (1.4), tests/test_thstr.c
-	(1.3): Add header comments.
+	* ChangeLog (1.37), tests/test_thcell.c (1.4, r0_1_1),
+	tests/test_thstr.c (1.3, r0_1_1): Add header comments.
 
 2001-08-09 Thursday 20:27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.35), tests/Makefile.am (1.9), ChangeLog (1.36),
-	tests/test_thinp.c (1.1): Add thinp test suite.
+	tests/test_thinp.c (1.1, r0_1_1): Add thinp test suite.
 
 2001-08-09 Thursday 18:52  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -70,7 +76,7 @@
 2001-08-09 Thursday 00:57  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.31), include/thai/thcell.h (1.3),
-	include/thai/thinp.h (1.8), include/thai/thrend.h (1.7),
+	include/thai/thinp.h (1.8, r0_1_1), include/thai/thrend.h (1.7),
 	src/thcell/thcell.c (1.3), src/thinp/thinp.c (1.6),
 	src/thrend/thrend.c (1.6): Rename struct thcell to struct thcell_t,
 	for naming consistency.
@@ -88,17 +94,18 @@
 
 2001-08-08 Wednesday 19:49  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* ChangeLog (1.28), autogen.sh (1.4), configure.ac (1.1): Add
-	result checking in autogen.sh. Add configure.ac for autoconf 2.50+.
+	* ChangeLog (1.28), autogen.sh (1.4, r0_1_1), configure.ac (1.1):
+	Add result checking in autogen.sh. Add configure.ac for autoconf
+	2.50+.
 
 2001-08-08 Wednesday 19:39  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.27), configure.in (1.13), include/thai/Makefile.am
-	(1.5), include/thai/thcell.h (1.1), include/thai/thrend.h (1.6),
-	src/Makefile.am (1.10), src/thcell/.cvsignore (1.1),
-	src/thcell/Makefile.am (1.1), src/thcell/thcell.c (1.1),
-	src/thrend/thrend.c (1.5): Split thcell functions into a separate
-	module.
+	(1.5, r0_1_1), include/thai/thcell.h (1.1), include/thai/thrend.h
+	(1.6), src/Makefile.am (1.10, r0_1_1), src/thcell/.cvsignore (1.1,
+	r0_1_1), src/thcell/Makefile.am (1.1, r0_1_1), src/thcell/thcell.c
+	(1.1), src/thrend/thrend.c (1.5): Split thcell functions into a
+	separate module.
 
 2001-08-08 Wednesday 11:45  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -113,9 +120,9 @@
 2001-08-07 Tuesday 19:40  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.24), include/thai/thrend.h (1.5), include/thai/tis.h
-	(1.2), src/thrend/thrend.c (1.3): Fix NULL redefinition in tis.h.
-	Change rendering function API to return total glyphs. Implement
-	Win/Mac shaping. Implement string rendering functions.
+	(1.2, r0_1_1), src/thrend/thrend.c (1.3): Fix NULL redefinition in
+	tis.h. Change rendering function API to return total glyphs.
+	Implement Win/Mac shaping. Implement string rendering functions.
 
 2001-08-07 Tuesday 17:29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -128,18 +135,19 @@
 2001-08-07 Tuesday 16:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.22), include/thai/thctype.h (1.7),
-	src/thctype/thctype.c (1.7), tests/test_thctype.c (1.2): Add
-	consonant shapes classification in thctype, for the use of elegant
-	renderers.
+	src/thctype/thctype.c (1.7, r0_1_1), tests/test_thctype.c (1.2,
+	r0_1_1): Add consonant shapes classification in thctype, for the
+	use of elegant renderers.
 
 2001-08-06 Monday 21:08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.21), configure.in (1.12), include/thai/thrend.h
 	(1.3), src/Makefile.am (1.9), src/thinp/thinp.c (1.3),
-	src/thrend/.cvsignore (1.1), src/thrend/Makefile.am (1.1),
-	src/thrend/thrend.c (1.1): Add partial implementation for thrend
-	(cell clustering). Change cell definition (WTT hilo byte encoding
-	is too complicated). Use menomic TIS character names in thinp.c.
+	src/thrend/.cvsignore (1.1, r0_1_1), src/thrend/Makefile.am (1.1,
+	r0_1_1), src/thrend/thrend.c (1.1): Add partial implementation for
+	thrend (cell clustering). Change cell definition (WTT hilo byte
+	encoding is too complicated). Use menomic TIS character names in
+	thinp.c.
 
 2001-08-05 Sunday 19:42  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -153,7 +161,7 @@
 
 2001-08-04 Saturday 22:46  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* include/thai/thailib.h (1.5, r0_1_0): Resolve conflict.
+	* include/thai/thailib.h (1.5, r0_1_1, r0_1_0): Resolve conflict.
 
 2001-08-04 Saturday 22:32  Pattara Kiatisevi <ott@linux.thai.net>
 
@@ -163,25 +171,26 @@
 2001-08-04 Saturday 22:26  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/thwbrk/thwbrk.c (1.5), tests/test_thbrk.c (1.4) (utags:
-	r0_1_0): -casting
+	r0_1_1, r0_1_0): -casting
 
 2001-08-04 Saturday 22:11  Pattara Kiatisevi <ott@linux.thai.net>
 
-	* tests/test_thwbrk.c (1.3, r0_1_0): -casting
+	* tests/test_thwbrk.c (1.3, r0_1_1, r0_1_0): -casting
 
 2001-08-04 Saturday 22:08  Pattara Kiatisevi <ott@linux.thai.net>
 
-	* tests/test_thwchar.c (1.3, r0_1_0): -change comments to C-style
+	* tests/test_thwchar.c (1.3, r0_1_1, r0_1_0): -change comments to
+	C-style
 
 2001-08-04 Saturday 21:59  Pattara Kiatisevi <ott@linux.thai.net>
 
-	* src/thbrk/thbrk.c (1.8, r0_1_0): -fix missing casting between
-	char * and unsigned char *
+	* src/thbrk/thbrk.c (1.8, r0_1_1, r0_1_0): -fix missing casting
+	between char * and unsigned char *
 
 2001-08-04 Saturday 21:58  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* include/thai/thwchar.h (1.6, r0_1_0): Remove duplicated macro
-	THCHAR_ERR (already defined in thailib.h)
+	* include/thai/thwchar.h (1.6, r0_1_1, r0_1_0): Remove duplicated
+	macro THCHAR_ERR (already defined in thailib.h)
 
 2001-08-04 Saturday 21:45  Pattara Kiatisevi <ott@linux.thai.net>
 
@@ -225,16 +234,17 @@
 
 2001-08-04 Saturday 20:07  Pattara Kiatisevi <ott@linux.thai.net>
 
-	* README (1.3), AUTHORS (1.3, r0_1_0): -more descriptive
+	* README (1.3), AUTHORS (1.3, r0_1_1, r0_1_0): -more descriptive
 
 2001-08-04 Saturday 20:04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in (1.11), include/thai/Makefile.am (1.4),
-	include/thai/thinp.h (1.5), include/thai/wtt.h (1.1),
-	src/Makefile.am (1.8), src/thctype/Makefile.am (1.2),
-	src/thctype/wtt.c (1.1), src/thinp/.cvsignore (1.1),
-	src/thinp/Makefile.am (1.1), src/thinp/thinp.c (1.1) (utags:
-	r0_1_0): Add WTT 2.0 tables. Partially implement thinp.
+	include/thai/thinp.h (1.5), include/thai/wtt.h (1.1, r0_1_1),
+	src/Makefile.am (1.8), src/thctype/Makefile.am (1.2, r0_1_1),
+	src/thctype/wtt.c (1.1, r0_1_1), src/thinp/.cvsignore (1.1,
+	r0_1_1), src/thinp/Makefile.am (1.1, r0_1_1), src/thinp/thinp.c
+	(1.1) (utags: r0_1_0): Add WTT 2.0 tables. Partially implement
+	thinp.
 
 2001-08-04 Saturday 18:08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -243,18 +253,19 @@
 
 2001-08-03 Friday 18:20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* ChangeLog (1.15), src/thbrk/Makefile.am (1.7, r0_1_0),
-	src/thbrk/cttex.c (1.3, r0_1_0), src/thbrk/thbrk.c (1.6),
+	* ChangeLog (1.15), src/thbrk/Makefile.am (1.7, r0_1_1, r0_1_0),
+	src/thbrk/cttex.c (1.3, r0_1_1, r0_1_0), src/thbrk/thbrk.c (1.6),
 	tests/Makefile.am (1.7, r0_1_0): Make thbrk and cttex use thstr
 	instead of fixline() and adj().  Fix a memory leak.
 
 2001-08-03 Friday 17:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.14), configure.in (1.9), include/thai/Makefile.am
-	(1.3), include/thai/thstr.h (1.1, r0_1_0), include/thai/thwstr.h
-	(1.1, r0_1_0), src/Makefile.am (1.7), src/thctype/thctype.c (1.5),
-	src/thstr/.cvsignore (1.1, r0_1_0), src/thstr/Makefile.am (1.1,
-	r0_1_0), src/thstr/thstr.c (1.1, r0_1_0), tests/.cvsignore (1.5,
+	(1.3), include/thai/thstr.h (1.1, r0_1_1, r0_1_0),
+	include/thai/thwstr.h (1.1, r0_1_1, r0_1_0), src/Makefile.am (1.7),
+	src/thctype/thctype.c (1.5), src/thstr/.cvsignore (1.1, r0_1_1,
+	r0_1_0), src/thstr/Makefile.am (1.1, r0_1_1, r0_1_0),
+	src/thstr/thstr.c (1.1, r0_1_0), tests/.cvsignore (1.5, r0_1_1,
 	r0_1_0), tests/Makefile.am (1.6), tests/test_thstr.c (1.1): Add
 	thstr, thwstr API set. Add th_normalize() implementation (extracted
 	from cttex). Fix level table for top characters in thctype.
@@ -279,7 +290,7 @@
 
 2001-07-31 Tuesday 22:01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* src/thwchar/thwchar.c (1.3, r0_1_0): Revise thwchar.
+	* src/thwchar/thwchar.c (1.3, r0_1_1, r0_1_0): Revise thwchar.
 
 2001-07-31 Tuesday 20:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -300,14 +311,14 @@
 2001-07-31 Tuesday 18:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.11), include/thai/thctype.h (1.5),
-	src/thcoll/thcoll.c (1.3, r0_1_0), src/thctype/thctype.c (1.3):
-	Refine thctype interface & implementation (remove win/mac checking,
-	add combining char checking, fix vowel class bitmasks). Make thcoll
-	use thctype.
+	src/thcoll/thcoll.c (1.3, r0_1_1, r0_1_0), src/thctype/thctype.c
+	(1.3): Refine thctype interface & implementation (remove win/mac
+	checking, add combining char checking, fix vowel class bitmasks).
+	Make thcoll use thctype.
 
 2001-07-30 Monday 18:43  Pattara Kiatisevi <ott@linux.thai.net>
 
-	* src/thwbrk/.cvsignore (1.1, r0_1_0): -.cvsignore
+	* src/thwbrk/.cvsignore (1.1, r0_1_1, r0_1_0): -.cvsignore
 
 2001-07-30 Monday 18:42  Pattara Kiatisevi <ott@linux.thai.net>
 
@@ -320,8 +331,8 @@
 
 2001-07-30 Monday 18:40  Pattara Kiatisevi <ott@linux.thai.net>
 
-	* src/thwbrk/: Makefile.am (1.1, r0_1_0), thwbrk.c (1.1): -thwbrk
-	implementation
+	* src/thwbrk/: Makefile.am (1.1, r0_1_1, r0_1_0), thwbrk.c (1.1):
+	-thwbrk implementation
 
 2001-07-30 Monday 18:38  Pattara Kiatisevi <ott@linux.thai.net>
 
@@ -330,19 +341,20 @@
 
 2001-07-30 Monday 18:37  Pattara Kiatisevi <ott@linux.thai.net>
 
-	* include/thai/: thbrk.h (1.4, r0_1_0), thwbrk.h (1.3, r0_1_0),
-	thwchar.h (1.5): -add new interfaces and descriptions.
+	* include/thai/: thbrk.h (1.4, r0_1_1, r0_1_0), thwbrk.h (1.3,
+	r0_1_1, r0_1_0), thwchar.h (1.5): -add new interfaces and
+	descriptions.
 
 2001-07-27 Friday 17:43  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in (1.7), include/thai/thwchar.h (1.4), src/Makefile.am
-	(1.5), src/thwchar/.cvsignore (1.1, r0_1_0),
-	src/thwchar/Makefile.am (1.1, r0_1_0), src/thwchar/thwchar.c (1.1):
-	Add half-implementation of thwchar.
+	(1.5), src/thwchar/.cvsignore (1.1, r0_1_1, r0_1_0),
+	src/thwchar/Makefile.am (1.1, r0_1_1, r0_1_0),
+	src/thwchar/thwchar.c (1.1): Add half-implementation of thwchar.
 
 2001-07-27 Friday 17:17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* ChangeLog (1.10), src/thbrk/.cvsignore (1.4, r0_1_0),
+	* ChangeLog (1.10), src/thbrk/.cvsignore (1.4, r0_1_1, r0_1_0),
 	tests/.cvsignore (1.3): Update .cvsignore's in accordance with
 	test_thbrk
 
@@ -354,11 +366,12 @@
 
 2001-07-25 Wednesday 09:11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* .cvsignore (1.3, r0_1_0), ChangeLog (1.9), include/.cvsignore
-	(1.2, r0_1_0), include/thai/.cvsignore (1.2, r0_1_0),
-	src/.cvsignore (1.2, r0_1_0), src/thbrk/.cvsignore (1.3),
-	src/thcoll/.cvsignore (1.2, r0_1_0), src/thctype/.cvsignore (1.2,
-	r0_1_0), tests/.cvsignore (1.2): List more auto-generated files to
+	* .cvsignore (1.3, r0_1_1, r0_1_0), ChangeLog (1.9),
+	include/.cvsignore (1.2, r0_1_1, r0_1_0), include/thai/.cvsignore
+	(1.2, r0_1_1, r0_1_0), src/.cvsignore (1.2, r0_1_1, r0_1_0),
+	src/thbrk/.cvsignore (1.3), src/thcoll/.cvsignore (1.2, r0_1_1,
+	r0_1_0), src/thctype/.cvsignore (1.2, r0_1_1, r0_1_0),
+	tests/.cvsignore (1.2): List more auto-generated files to
 	.cvsignore's.
 
 2001-07-25 Wednesday 04:31  Pattara Kiatisevi <ott@linux.thai.net>
@@ -370,8 +383,8 @@
 
 2001-07-24 Tuesday 21:23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* Makefile.am (1.3, r0_1_0), configure.in (1.6), libthai.pc.in
-	(1.1, r0_1_0): Add pkg-config metadata.
+	* Makefile.am (1.3, r0_1_1, r0_1_0), configure.in (1.6),
+	libthai.pc.in (1.1, r0_1_1, r0_1_0): Add pkg-config metadata.
 
 2001-07-24 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -387,8 +400,8 @@
 
 2001-07-24 Tuesday 19:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* COPYING (1.3, r0_1_0), src/thbrk/Makefile (1.3): Change license
-	to LGPL. Remove excessive Makefile.
+	* COPYING (1.3, r0_1_1, r0_1_0), src/thbrk/Makefile (1.3): Change
+	license to LGPL. Remove excessive Makefile.
 
 2001-07-24 Tuesday 19:49  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -472,11 +485,12 @@
 	(1.3), configure.in (1.4), include/Makefile.in (1.3),
 	include/thai/Makefile.in (1.3), src/Makefile.am (1.4),
 	src/Makefile.in (1.3), src/thbrk/Makefile.am (1.1),
-	src/thbrk/Makefile.in (1.1), src/thbrk/Makefile.ott (1.1, r0_1_0),
-	src/thbrk/cttex.c (1.2), src/thbrk/dict2state.c (1.2, r0_1_0),
-	src/thbrk/map.c (1.1), src/thbrk/map.h (1.1), src/thbrk/thbrk.c
-	(1.2), src/thcoll/Makefile.in (1.3), src/thctype/Makefile.in (1.2),
-	tests/Makefile.in (1.3): Add automake files for building thbrk.
+	src/thbrk/Makefile.in (1.1), src/thbrk/Makefile.ott (1.1, r0_1_1,
+	r0_1_0), src/thbrk/cttex.c (1.2), src/thbrk/dict2state.c (1.2,
+	r0_1_0), src/thbrk/map.c (1.1), src/thbrk/map.h (1.1),
+	src/thbrk/thbrk.c (1.2), src/thcoll/Makefile.in (1.3),
+	src/thctype/Makefile.in (1.2), tests/Makefile.in (1.3): Add
+	automake files for building thbrk.
 
 2001-07-15 Sunday 23:35  Pattara Kiatisevi <ott@linux.thai.net>
 
@@ -484,9 +498,10 @@
 
 2001-07-15 Sunday 23:31  Pattara Kiatisevi <ott@linux.thai.net>
 
-	* src/thbrk/: Makefile (1.1), README.TXT (1.1, r0_1_0), cttex.c
-	(1.1), dict2state.c (1.1), tdict.txt (1.1, r0_1_0), test_thbrk.c
-	(1.1), thbrk.c (1.1): -first version.  -wrapper for P'Hui's cttex.
+	* src/thbrk/: Makefile (1.1), README.TXT (1.1, r0_1_1, r0_1_0),
+	cttex.c (1.1), dict2state.c (1.1), tdict.txt (1.1, r0_1_1, r0_1_0),
+	test_thbrk.c (1.1), thbrk.c (1.1): -first version.  -wrapper for
+	P'Hui's cttex.
 
 2001-07-09 Monday 21:54  Pattara Kiatisevi <ott@linux.thai.net>
 
@@ -502,8 +517,8 @@
 	nectec/riheads.txt (1.1), nectec/riheads_org.txt (1.1),
 	nectec/riwords.txt (1.1), nectec/riwords_org.txt (1.1),
 	nectec/slang.txt (1.1), nectec/suffix.txt (1.1), nectec/verb.txt
-	(1.1) (utags: r0_1_0): -tdict.txt preparation part from cttex with
-	some modifications
+	(1.1) (utags: r0_1_1, r0_1_0): -tdict.txt preparation part from
+	cttex with some modifications
 
 2001-06-15 Friday 19:01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -529,15 +544,15 @@
 2001-06-12 Tuesday 20:18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
-	r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
-	src/thcoll/Makefile.am (1.2, r0_1_0), tests/Makefile.am (1.2): Add
-	$Id: ChangeLog,v 1.43 2001-08-14 06:18:42 thep Exp $
+	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
+	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.44 2001-08-22 04:41:28 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_0), tests/thsort.c (1.2, r0_1_0): Add $Id: ChangeLog,v 1.43 2001-08-14 06:18:42 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.44 2001-08-22 04:41:28 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -553,20 +568,21 @@
 	(1.1), src/thcoll/Makefile.in (1.1), src/thcoll/cweight.c (1.1),
 	src/thcoll/cweight.h (1.1), src/thcoll/thcoll.c (1.1),
 	tests/Makefile.am (1.1), tests/Makefile.in (1.1), tests/sorted.txt
-	(1.1, r0_1_0), tests/test-thcoll.sh (1.1): add building system
+	(1.1, r0_1_1, r0_1_0), tests/test-thcoll.sh (1.1): add building
+	system
 
 2001-06-11 Monday 21:16  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/cweight.c (1.1), src/cweight.h (1.1), src/thcoll.c (1.1),
-	tests/sorttest.txt (1.1, r0_1_0), tests/thsort.c (1.1): add a draft
-	thcoll implementation
+	tests/sorttest.txt (1.1, r0_1_1, r0_1_0), tests/thsort.c (1.1): add
+	a draft thcoll implementation
 
 2001-05-18 Friday 11:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* include/thai/: thailib.h (1.3), thcoll.h (1.3, r0_1_0), thinp.h
-	(1.4), thwcoll.h (1.3, r0_1_0), thwinp.h (1.3, r0_1_0): size_t
-	definition in <thai/thailib.h>, strict_t to thstrict_t in
-	<thai/thinp.h>
+	* include/thai/: thailib.h (1.3), thcoll.h (1.3, r0_1_1, r0_1_0),
+	thinp.h (1.4), thwcoll.h (1.3, r0_1_1, r0_1_0), thwinp.h (1.3,
+	r0_1_1, r0_1_0): size_t definition in <thai/thailib.h>, strict_t to
+	thstrict_t in <thai/thinp.h>
 
 2001-05-18 Friday 01:15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -586,9 +602,9 @@
 
 	* include/thai/: thailib.h (1.2), thcoll.h (1.2), thctype.h (1.2),
 	thinp.h (1.2), thrend.h (1.2, r0_1_0), thwbrk.h (1.2), thwchar.h
-	(1.2), thwcoll.h (1.2), thwctype.h (1.2, r0_1_0), thwinp.h (1.2),
-	thwrend.h (1.2, r0_1_0): Add comments. Fix many declarations. Add
-	thglyph_t.
+	(1.2), thwcoll.h (1.2), thwctype.h (1.2, r0_1_1, r0_1_0), thwinp.h
+	(1.2), thwrend.h (1.2, r0_1_1, r0_1_0): Add comments. Fix many
+	declarations. Add thglyph_t.
 
 2001-05-17 Thursday 23:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 

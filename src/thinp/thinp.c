@@ -1,7 +1,8 @@
 /*
- * $Id: thinp.c,v 1.7 2001-08-14 06:11:42 thep Exp $
+ * $Id: thinp.c,v 1.8 2001-08-22 04:41:29 thep Exp $
  * thinp.c - Thai string input sequence filtering
  * Created: 2001-08-04
+ * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
  */
 
 #include <thai/thinp.h>
@@ -39,7 +40,7 @@ static const struct correction_t {
     { 0, 0, { 0, 0, 0 } }
 };
 
-static int correct(thchar_t c_1, thchar_t c, thchar_t conv[3])
+static int correct_(thchar_t c_1, thchar_t c, thchar_t conv[3])
 {
     const struct correction_t *p;
     for (p = corrections; p->c1; ++p) {
@@ -58,16 +59,17 @@ int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
                           (context.hilo ? context.hilo : context.base);
     int ret;
 
+    /* SARA_AM, if present, is always the last char of the cell */
     if (context.hilo == SARA_AM) prev_c = SARA_AM;
 
     /* try predefined corrections */
-    ret = correct(prev_c, c, conv->conv);
+    ret = correct_(prev_c, c, conv->conv);
     if (ret) {
         conv->offset = -1;
         return 1;
     }
 
-    /* normal cases */
+    /* normal cases, using Strict level */
     if (th_isaccept(prev_c, c, ISC_STRICT)) {
         conv->conv[0] = c; conv->conv[1] = 0;
         conv->offset = 0;
@@ -102,6 +104,7 @@ int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
             if (context.top) --conv->offset;
             return 1;
         }
+        /* hilo not OK with c (hilo == SARA_AM falls here), or no hilo */
         if (th_isaccept(context.base, c, ISC_STRICT) &&
             (context.hilo != SARA_AM || th_isaccept(c, SARA_AM, ISC_STRICT)))
         {
@@ -118,6 +121,7 @@ int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
             conv->conv[i] = 0;
             return 1;
         }
+        break;
     }
 
     return 0;

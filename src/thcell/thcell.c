@@ -1,7 +1,8 @@
 /*
- * $Id: thcell.c,v 1.5 2001-08-10 08:25:19 thep Exp $
+ * $Id: thcell.c,v 1.6 2001-08-22 04:41:29 thep Exp $
  * thcell_t.c - Thai string cell custering
  * Created: 2001-08-08 (split from thrend.c)
+ * Author: Theppitak Karoonboonyanan <thep@links.nectec.or.th>
  */
 
 #include <thai/thcell.h>

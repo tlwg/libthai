@@ -1,7 +1,8 @@
 /*
- * $Id: thstr.c,v 1.2 2001-08-14 06:11:42 thep Exp $
+ * $Id: thstr.c,v 1.3 2001-08-22 04:41:29 thep Exp $
  * thstr.c - Thai string manipulators
  * Created: 2001-08-03
+ * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
  */
 
 #include <thai/thstr.h>
