@@ -1,3 +1,48 @@
+2003-02-02 Sunday 15:45  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* debian/: ex.package.doc-base (1.2), files (1.2),
+	libthai0.postinst.debhelper (1.2), libthai0.postrm.debhelper (1.2),
+	libthai0.substvars (1.2): -some more bullshits
+
+2003-02-02 Sunday 15:44  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* debian/: conffiles.ex (1.2), cron.d.ex (1.2), emacsen-install.ex
+	(1.2), emacsen-remove.ex (1.2), emacsen-startup.ex (1.2), init.d.ex
+	(1.2), manpage.1.ex (1.2), manpage.sgml.ex (1.2), menu.ex (1.2),
+	postinst.ex (1.2), postrm.ex (1.2), preinst.ex (1.2), prerm.ex
+	(1.2), shlibs.local.ex (1.2), watch.ex (1.2): -remove these
+	bullshits
+
+2003-02-02 Sunday 15:35  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* debian/: README.Debian (1.1), changelog (1.1), conffiles.ex
+	(1.1), control (1.1), copyright (1.1), cron.d.ex (1.1), dirs (1.1),
+	docs (1.1), emacsen-install.ex (1.1), emacsen-remove.ex (1.1),
+	emacsen-startup.ex (1.1), ex.package.doc-base (1.1), files (1.1),
+	init.d.ex (1.1), libthai-dev.dirs (1.1), libthai-dev.files (1.1),
+	libthai0.dirs (1.1), libthai0.files (1.1),
+	libthai0.postinst.debhelper (1.1), libthai0.postrm.debhelper (1.1),
+	libthai0.substvars (1.1), manpage.1.ex (1.1), manpage.sgml.ex
+	(1.1), menu.ex (1.1), postinst.ex (1.1), postrm.ex (1.1),
+	preinst.ex (1.1), prerm.ex (1.1), rules (1.1), shlibs.local.ex
+	(1.1), watch.ex (1.1): -let's debianize it
+
+2002-09-20 Friday 21:40  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* libthai.pc.in (1.2): Fix Cflags to not descend to thai/ subdir in
+	include path
+
+2001-10-03 Wednesday 21:52  poonlap
+
+	* man/man3/libthai.3 (1.1): Main manpage.
+
+2001-09-30 Sunday 21:03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.53), configure.in (1.18), include/thai/thwstr.h
+	(1.2), src/Makefile.am (1.13), src/thwstr/.cvsignore (1.1),
+	src/thwstr/Makefile.am (1.1), src/thwstr/thwstr.c (1.1): Add a
+	quick-and-dirty implementation of thwstr.
+
 2001-09-30 Sunday 18:48  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.52), tests/test_thwchar.c (1.4): Add tests for
@@ -611,13 +656,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.53 2001-09-30 14:03:24 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.54 2003-03-23 13:23:45 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.53 2001-09-30 14:03:24 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.54 2003-03-23 13:23:45 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
@@ -673,16 +718,16 @@
 
 2001-05-17 Thursday 23:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
-	* include/thai/: thailib.h (1.1), thcoll.h (1.1), thctype.h (1.1),
-	thinp.h (1.1), thrend.h (1.1), thwbrk.h (1.1), thwchar.h (1.1),
-	thwcoll.h (1.1), thwctype.h (1.1), thwinp.h (1.1), thwrend.h (1.1),
-	tis.h (1.1): Initial revision
-
-2001-05-17 Thursday 23:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
-
 	* include/thai/: thailib.h (1.1.1.1), thcoll.h (1.1.1.1), thctype.h
 	(1.1.1.1), thinp.h (1.1.1.1), thrend.h (1.1.1.1), thwbrk.h
 	(1.1.1.1), thwchar.h (1.1.1.1), thwcoll.h (1.1.1.1), thwctype.h
 	(1.1.1.1), thwinp.h (1.1.1.1), thwrend.h (1.1.1.1), tis.h (1.1.1.1,
 	r0_1_0) (utags: libthai_0_1): first draft API
+
+2001-05-17 Thursday 23:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/: thailib.h (1.1), thcoll.h (1.1), thctype.h (1.1),
+	thinp.h (1.1), thrend.h (1.1), thwbrk.h (1.1), thwchar.h (1.1),
+	thwcoll.h (1.1), thwctype.h (1.1), thwinp.h (1.1), thwrend.h (1.1),
+	tis.h (1.1): Initial revision
 
