@@ -1,5 +1,6 @@
-# $Id: Makefile.am,v 1.1 2001-09-25 12:26:49 thep Exp $
+# $Id: Makefile.am,v 1.2 2003-09-10 05:29:45 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 
-man_MANS = thctype.3 wtt.3
+EXTRA_DIST = libthai.3 thctype.3 wtt.3
+man_MANS = libthai.3 thctype.3 wtt.3
 
