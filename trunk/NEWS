@@ -2,6 +2,12 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.1 :
+
+* WTT-based cell clustering
+* Thai input sequence correction
+* Thai shaping
+
 LibThai 0.1.0 (4 August 2001):
 
 * First public release, request for comments for API
