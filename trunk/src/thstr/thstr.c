@@ -1,5 +1,5 @@
 /*
- * $Id: thstr.c,v 1.3 2001-08-22 04:41:29 thep Exp $
+ * $Id: thstr.c,v 1.4 2004-10-13 06:41:17 thep Exp $
  * thstr.c - Thai string manipulators
  * Created: 2001-08-03
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -31,9 +31,13 @@ size_t th_normalize(thchar_t dest[], const thchar_t *src, size_t n)
         case -1 : 
             low = *src; break;
         case 1 : 
+            if (up && th_chlevel (up) == 3) { top = up; }
             up = *src; break;
         case 2 : 
             top = *src; break;
+        case 3 : 
+            if (!up) { up = *src; }
+            else { top = *src; }
         }
         ++src;
     }
