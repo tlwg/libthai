@@ -2,6 +2,11 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.3 (22 February 2004):
+
+* Define blank base glyph for floating upper/lower vowels rendering.
+* (Minor modified version as required by pango-libthai binding).
+
 LibThai 0.1.2 (10 September 2003):
 
 * It's still alive!
