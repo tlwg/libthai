@@ -1,3 +1,10 @@
+2001-09-14 Friday 00:54  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.45), include/thai/thwchar.h (1.7),
+	src/thwchar/Makefile.am (1.2), src/thwchar/hashtbl.c (1.1),
+	src/thwchar/hashtbl.h (1.1), src/thwchar/thwchar.c (1.5): Implement
+	uni2winthai(), uni2macthai() with hash table added in hashtbl.[ch].
+
 2001-08-22 Wednesday 11:41  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.44), include/thai/wtt.h (1.2), src/thcell/thcell.c
@@ -554,13 +561,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.45 2001-09-13 17:54:27 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.46 2001-09-14 13:48:40 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.45 2001-09-13 17:54:27 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.46 2001-09-14 13:48:40 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
