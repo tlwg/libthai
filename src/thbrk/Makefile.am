@@ -1,5 +1,6 @@
-# $Id: Makefile.am,v 1.2 2001-07-17 03:55:00 thep Exp $
+# $Id: Makefile.am,v 1.3 2001-07-17 05:00:44 chanop Exp $
 MAINTAINERCLEANFILES = Makefile.in
+CLEANFILES = map.c map.h
 
 INCLUDES = -I. -I$(top_srcdir)/include
 
@@ -24,12 +25,10 @@ test_thbrk_LDADD = libthbrk.la
 map.h: tdict.txt dict2state
 	$(top_builddir)/src/thbrk/dict2state \
 		$(top_srcdir)/src/thbrk/tdict.txt \
-		$(top_srcdir)/src/thbrk/map.c \
-		$(top_srcdir)/src/thbrk/map.h
+		map.c map.h
 
 map.c: tdict.txt dict2state
 	$(top_builddir)/src/thbrk/dict2state \
 		$(top_srcdir)/src/thbrk/tdict.txt \
-		$(top_srcdir)/src/thbrk/map.c \
-		$(top_srcdir)/src/thbrk/map.h
+		map.c map.h
 
