@@ -1,3 +1,7 @@
+2001-07-17 00:27  ott
+
+	* ChangeLog: -add cvs2cl.pl
+
 2001-07-16 12:54  thep
 
 	* ChangeLog, Makefile.in, aclocal.m4, configure, configure.in,
@@ -55,12 +59,12 @@
 
 	* Makefile.am, configure.in, include/Makefile.am,
 	include/thai/Makefile.am, src/Makefile.am, src/thcoll/Makefile.am,
-	tests/Makefile.am: Add $Id: ChangeLog,v 1.5 2001-07-16 22:27:38 ott Exp $
+	tests/Makefile.am: Add $Id: ChangeLog,v 1.6 2001-07-16 22:30:03 ott Exp $
 
 2001-06-12 15:14  thep
 
 	* src/thcoll/cweight.c, src/thcoll/cweight.h, src/thcoll/thcoll.c,
-	tests/test-thcoll.sh, tests/thsort.c: Add $Id: ChangeLog,v 1.5 2001-07-16 22:27:38 ott Exp $
+	tests/test-thcoll.sh, tests/thsort.c: Add $Id: ChangeLog,v 1.6 2001-07-16 22:30:03 ott Exp $
 
 2001-06-12 15:12  thep
 
