@@ -1,0 +1,32 @@
+General Information
+===================
+
+This is LibThai version 0.1.0. LibThai is a library which includes
+Thai language support routines, such as :
+
+  - Thai character set support: TIS 620, ISO/IEC 10646
+  - Thai character properties
+  - Thai string manipulators
+  - Thai string collation
+  - Thai word breaking
+  - Thai input method
+  - Thai output method
+
+The official web site is:
+  http://linux.thai.net/libthai
+
+Installation
+============
+
+See the file 'INSTALL'.
+
+License
+=======
+
+LibThai is licensed under the terms of the
+GNU Lesser Public License (LGPL) - see the file
+COPYING for details.
+
+Thai Linux Working Group (TLWG)
+info@linux.thai.net
+4 August 2001

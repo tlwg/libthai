@@ -1,7 +1,7 @@
-# $Id: configure.in,v 1.9 2001-08-03 10:51:51 thep Exp $
+# $Id: configure.in,v 1.10 2001-08-04 11:08:24 thep Exp $
 # Process this file with autoconf to produce a configure script.
 AC_INIT(include/thai/thailib.h)
-AM_INIT_AUTOMAKE(libthai, 0.1.1)
+AM_INIT_AUTOMAKE(libthai, 0.1.0)
 
 AC_SUBST(VERSION)
 
