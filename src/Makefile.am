@@ -1,5 +1,6 @@
-# $Id: Makefile.am,v 1.10 2001-08-08 12:39:19 thep Exp $
-SUBDIRS = thctype thstr thcell thinp thrend thcoll thbrk thwchar thwbrk
+# $Id: Makefile.am,v 1.11 2001-09-14 14:36:04 thep Exp $
+SUBDIRS = thctype thstr thcell thinp thrend thcoll thbrk thwchar thwctype \
+	thwbrk
 
 MAINTAINERCLEANFILES = Makefile.in
 
@@ -15,5 +16,6 @@ libthai_la_LIBADD = \
 	$(top_builddir)/src/thcoll/libthcoll.la \
 	$(top_builddir)/src/thbrk/libthbrk.la \
 	$(top_builddir)/src/thwchar/libthwchar.la \
+	$(top_builddir)/src/thwctype/libthwctype.la 
 	$(top_builddir)/src/thwbrk/libthwbrk.la 
 
