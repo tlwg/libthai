@@ -1,16 +1,24 @@
-2001-08-04 Saturday 20:16  Pattara Kiatisevi <ott@linux.thai.net>
+2001-08-04 Saturday 15:35  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* tests/test_thwchar.c (1.2): -remove wprintf, useless
+
+2001-08-04 Saturday 15:29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.17), NEWS (1.3): More detailed info in NEWS.
+
+2001-08-04 Saturday 15:16  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* NEWS (1.2), README (1.5): -move release information to NEWS
 
-2001-08-04 Saturday 20:11  Pattara Kiatisevi <ott@linux.thai.net>
+2001-08-04 Saturday 15:11  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* README (1.4): -more info in RELEASE INFORMATION
 
-2001-08-04 Saturday 20:07  Pattara Kiatisevi <ott@linux.thai.net>
+2001-08-04 Saturday 15:07  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* README (1.3), AUTHORS (1.3): -more descriptive
 
-2001-08-04 Saturday 20:04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-08-04 Saturday 15:04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in (1.11), include/thai/Makefile.am (1.4),
 	include/thai/thinp.h (1.5), include/thai/wtt.h (1.1),
@@ -19,19 +27,19 @@
 	src/thinp/Makefile.am (1.1), src/thinp/thinp.c (1.1): Add WTT 2.0
 	tables. Partially implement thinp.
 
-2001-08-04 Saturday 18:08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-08-04 Saturday 13:08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* AUTHORS (1.2), ChangeLog (1.16), README (1.2), TODO (1.1),
 	configure.in (1.10): Release first version 0.1.0
 
-2001-08-03 Friday 18:20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-08-03 Friday 13:20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.15), src/thbrk/Makefile.am (1.7), src/thbrk/cttex.c
 	(1.3), src/thbrk/thbrk.c (1.6), tests/Makefile.am (1.7): Make thbrk
 	and cttex use thstr instead of fixline() and adj().  Fix a memory
 	leak.
 
-2001-08-03 Friday 17:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-08-03 Friday 12:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.14), configure.in (1.9), include/thai/Makefile.am
 	(1.3), include/thai/thstr.h (1.1), include/thai/thwstr.h (1.1),
@@ -42,44 +50,44 @@
 	th_normalize() implementation (extracted from cttex). Fix level
 	table for top characters in thctype.
 
-2001-08-01 Wednesday 20:13  Pattara Kiatisevi <ott@linux.thai.net>
+2001-08-01 Wednesday 15:13  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/thwbrk/thwbrk.c (1.3): -new implementation, not convert
 	cutCode to tis620 back and forth
 
-2001-08-01 Wednesday 05:21  Pattara Kiatisevi <ott@linux.thai.net>
+2001-08-01 Wednesday 00:21  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* tests/test_thbrk.c (1.2): -cosmetic on error messages
 
-2001-08-01 Wednesday 05:20  Pattara Kiatisevi <ott@linux.thai.net>
+2001-08-01 Wednesday 00:20  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/thbrk/thbrk.c (1.5): -fix const casting problem
 
-2001-07-31 Tuesday 22:03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-31 Tuesday 17:03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.13), src/thwbrk/thwbrk.c (1.2), tests/test_thwbrk.c
 	(1.2): Fix changes affected by the revised thwchar.
 
-2001-07-31 Tuesday 22:01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-31 Tuesday 17:01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thwchar/thwchar.c (1.3): Revise thwchar.
 
-2001-07-31 Tuesday 20:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-31 Tuesday 15:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* tests/test_thctype.c (1.1): Add test_thctype.c to repository.
 
-2001-07-31 Tuesday 20:50  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-31 Tuesday 15:50  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.12), tests/.cvsignore (1.4): Add .cvsignore entries
 	in tests/.
 
-2001-07-31 Tuesday 20:47  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-31 Tuesday 15:47  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* include/thai/thctype.h (1.6), src/thctype/thctype.c (1.4),
 	tests/Makefile.am (1.5): Add test program for thctype. Fix many
 	bugs in thctype.
 
-2001-07-31 Tuesday 18:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-31 Tuesday 13:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.11), include/thai/thctype.h (1.5),
 	src/thcoll/thcoll.c (1.3), src/thctype/thctype.c (1.3): Refine
@@ -87,52 +95,52 @@
 	combining char checking, fix vowel class bitmasks). Make thcoll use
 	thctype.
 
-2001-07-30 Monday 18:43  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-30 Monday 13:43  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/thwbrk/.cvsignore (1.1): -.cvsignore
 
-2001-07-30 Monday 18:42  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-30 Monday 13:42  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* configure.in (1.8): -add thwbrk
 
-2001-07-30 Monday 18:41  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-30 Monday 13:41  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* tests/: Makefile.am (1.4), test_thwbrk.c (1.1), test_thwchar.c
 	(1.1): -test drivers for thwbrk and thwchar
 
-2001-07-30 Monday 18:40  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-30 Monday 13:40  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/thwbrk/: Makefile.am (1.1), thwbrk.c (1.1): -thwbrk
 	implementation
 
-2001-07-30 Monday 18:38  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-30 Monday 13:38  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/: Makefile.am (1.6), thwchar/thwchar.c (1.2): -thwchar
 	uni2tis620-0 implementation
 
-2001-07-30 Monday 18:37  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-30 Monday 13:37  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* include/thai/: thbrk.h (1.4), thwbrk.h (1.3), thwchar.h (1.5):
 	-add new interfaces and descriptions.
 
-2001-07-27 Friday 17:43  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-27 Friday 12:43  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in (1.7), include/thai/thwchar.h (1.4), src/Makefile.am
 	(1.5), src/thwchar/.cvsignore (1.1), src/thwchar/Makefile.am (1.1),
 	src/thwchar/thwchar.c (1.1): Add half-implementation of thwchar.
 
-2001-07-27 Friday 17:17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-27 Friday 12:17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.10), src/thbrk/.cvsignore (1.4), tests/.cvsignore
 	(1.3): Update .cvsignore's in accordance with test_thbrk
 
-2001-07-27 Friday 17:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-27 Friday 12:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thbrk/Makefile.am (1.6), src/thbrk/test_thbrk.c (1.5),
 	tests/Makefile.am (1.3), tests/test_thbrk.c (1.1): Move test_thbrk
 	to tests/.
 
-2001-07-25 Wednesday 09:11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-25 Wednesday 04:11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* .cvsignore (1.3), ChangeLog (1.9), include/.cvsignore (1.2),
 	include/thai/.cvsignore (1.2), src/.cvsignore (1.2),
@@ -140,41 +148,41 @@
 	src/thctype/.cvsignore (1.2), tests/.cvsignore (1.2): List more
 	auto-generated files to .cvsignore's.
 
-2001-07-25 Wednesday 04:31  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-24 Tuesday 23:31  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* include/thai/thbrk.h (1.3), src/thbrk/test_thbrk.c (1.4),
 	src/thbrk/thbrk.c (1.4): -modified the th_brk_line to accept
 	cutCode as char* instead of int.  -modified according to the
 	changed interface the test program.
 
-2001-07-24 Tuesday 21:23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-24 Tuesday 16:23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* Makefile.am (1.3), configure.in (1.6), libthai.pc.in (1.1): Add
 	pkg-config metadata.
 
-2001-07-24 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-24 Tuesday 15:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* autogen.sh (1.3): Remove ineffective warning message about
 	'configure'.
 
-2001-07-24 Tuesday 20:00  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-24 Tuesday 15:00  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* include/.cvsignore (1.1), include/thai/.cvsignore (1.1),
 	src/.cvsignore (1.1), src/thbrk/.cvsignore (1.2),
 	src/thcoll/.cvsignore (1.1), src/thctype/.cvsignore (1.1),
 	tests/.cvsignore (1.1): Add .cvsignore to subdirs.
 
-2001-07-24 Tuesday 19:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-24 Tuesday 14:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* COPYING (1.3), src/thbrk/Makefile (1.3): Change license to LGPL.
 	Remove excessive Makefile.
 
-2001-07-24 Tuesday 19:49  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-24 Tuesday 14:49  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* autogen.sh (1.2), configure.in (1.5), src/thbrk/Makefile (1.2):
 	Remove 'configure' invoking from autogen.sh, output some message.
 
-2001-07-24 Tuesday 19:41  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-24 Tuesday 14:41  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* .cvsignore (1.2), COPYING (1.2), ChangeLog (1.8), INSTALL (1.2),
 	Makefile.in (1.7), aclocal.m4 (1.3), config.guess (1.2), config.sub
@@ -185,7 +193,7 @@
 	src/thctype/Makefile.in (1.5), tests/Makefile.in (1.6): Remove
 	autotool-generated files.
 
-2001-07-24 Tuesday 19:31  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-24 Tuesday 14:31  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* .cvsignore (1.1), Makefile.in (1.6), autogen.sh (1.1),
 	include/Makefile.in (1.5), include/thai/Makefile.in (1.5),
@@ -193,41 +201,41 @@
 	src/thcoll/Makefile.in (1.5), src/thctype/Makefile.in (1.4),
 	tests/Makefile.in (1.5): Add .cvsignore and autogen.sh
 
-2001-07-23 Monday 04:44  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-22 Sunday 23:44  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/thbrk/Makefile.am (1.5): -changed to use dynamic link instead
 	of static for test_thwbk
 
-2001-07-23 Monday 04:32  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-22 Sunday 23:32  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/thbrk/: test_thbrk.c (1.3), thbrk.c (1.3): -fix the segfault
 	in char* stuff
 
-2001-07-23 Monday 04:30  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-22 Sunday 23:30  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/thbrk/.cvsignore (1.1): -testing
 
-2001-07-19 Thursday 06:43  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-19 Thursday 01:43  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/thbrk/test_thbrk.c (1.2): -change to be non-interactive
 	unless "-i" option is specified.  -still segfault, not yet finished
 
-2001-07-17 Tuesday 12:23  Chanop Silpa-Anan <chanop@linux.thai.net>
+2001-07-17 Tuesday 07:23  Chanop Silpa-Anan <chanop@linux.thai.net>
 
 	* ChangeLog (1.7): latest updated
 
-2001-07-17 Tuesday 12:20  Chanop Silpa-Anan <chanop@linux.thai.net>
+2001-07-17 Tuesday 07:20  Chanop Silpa-Anan <chanop@linux.thai.net>
 
 	* src/thbrk/: Makefile.am (1.4), Makefile.in (1.4): merge map.c and
 	map.h into one target, save typo error
 
-2001-07-17 Tuesday 12:00  Chanop Silpa-Anan <chanop@linux.thai.net>
+2001-07-17 Tuesday 07:00  Chanop Silpa-Anan <chanop@linux.thai.net>
 
 	* src/thbrk/: Makefile.am (1.3), Makefile.in (1.3), map.c (1.2),
 	map.h (1.2): Dynamically generate map.c and map.h in a build
 	directory.  Remove map.c and map.h from the repository.
 
-2001-07-17 Tuesday 10:54  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-17 Tuesday 05:54  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* Makefile.in (1.5), include/Makefile.in (1.4),
 	include/thai/Makefile.in (1.4), src/Makefile.in (1.4),
@@ -236,16 +244,16 @@
 	tests/Makefile.in (1.4): Fix dependencies for test_thbrk, so map.c
 	won't always be rebuilt.
 
-2001-07-17 Tuesday 05:30  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-17 Tuesday 00:30  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* ChangeLog (1.6): -ChangeLog is now automatically generated by
 	manually run ../bin/cvs2cl.pl :)
 
-2001-07-17 Tuesday 05:27  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-17 Tuesday 00:27  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* ChangeLog (1.5): -add cvs2cl.pl
 
-2001-07-16 Monday 17:54  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-07-16 Monday 12:54  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.4), Makefile.in (1.4), aclocal.m4 (1.2), configure
 	(1.3), configure.in (1.4), include/Makefile.in (1.3),
@@ -257,17 +265,17 @@
 	(1.2), src/thcoll/Makefile.in (1.3), src/thctype/Makefile.in (1.2),
 	tests/Makefile.in (1.3): Add automake files for building thbrk.
 
-2001-07-15 Sunday 23:35  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-15 Sunday 18:35  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* include/thai/thbrk.h (1.2): -add th_brk_line interface
 
-2001-07-15 Sunday 23:31  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-15 Sunday 18:31  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/thbrk/: Makefile (1.1), README.TXT (1.1), cttex.c (1.1),
 	dict2state.c (1.1), tdict.txt (1.1), test_thbrk.c (1.1), thbrk.c
 	(1.1): -first version.	-wrapper for P'Hui's cttex.
 
-2001-07-09 Monday 21:54  Pattara Kiatisevi <ott@linux.thai.net>
+2001-07-09 Monday 16:54  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/thbrk/tdict-preparation/: Makefile (1.1), README.TXT (1.1),
 	dictsort (1.1), dictsort.c (1.1), tdict.local (1.1),
@@ -284,17 +292,17 @@
 	(1.1): -tdict.txt preparation part from cttex with some
 	modifications
 
-2001-06-15 Friday 19:01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-06-15 Friday 14:01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.3), Makefile.in (1.3), include/thai/thctype.h (1.4),
 	src/thctype/thctype.c (1.2): Add th_isdiac() API. Add function body
 	for thctype functions.
 
-2001-06-14 Thursday 10:29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-06-14 Thursday 05:29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* ChangeLog (1.2): Add ChangeLog item.
 
-2001-06-13 Wednesday 22:35  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-06-13 Wednesday 17:35  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* Makefile.in (1.2), configure (1.2), configure.in (1.3),
 	include/Makefile.in (1.2), include/thai/Makefile.in (1.2),
@@ -305,19 +313,19 @@
 	tests/Makefile.in (1.2): Add thctype implementation (first draft,
 	so dirty)
 
-2001-06-12 Tuesday 20:18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-06-12 Tuesday 15:18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2),
 	include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
-	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.17 2001-08-04 13:29:26 thep Exp $
+	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.18 2001-08-04 13:41:13 ott Exp $
 
-2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-06-12 Tuesday 15:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2), src/thcoll/cweight.h (1.2),
 	src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2),
-	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.17 2001-08-04 13:29:26 thep Exp $
+	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.18 2001-08-04 13:41:13 ott Exp $
 
-2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-06-12 Tuesday 15:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* AUTHORS (1.1), COPYING (1.1), ChangeLog (1.1), INSTALL (1.1),
 	Makefile.am (1.1), Makefile.in (1.1), NEWS (1.1), README (1.1),
@@ -333,47 +341,47 @@
 	tests/Makefile.am (1.1), tests/Makefile.in (1.1), tests/sorted.txt
 	(1.1), tests/test-thcoll.sh (1.1): add building system
 
-2001-06-11 Monday 21:16  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-06-11 Monday 16:16  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/cweight.c (1.1), src/cweight.h (1.1), src/thcoll.c (1.1),
 	tests/sorttest.txt (1.1), tests/thsort.c (1.1): add a draft thcoll
 	implementation
 
-2001-05-18 Friday 11:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-05-18 Friday 06:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* include/thai/: thailib.h (1.3), thcoll.h (1.3), thinp.h (1.4),
 	thwcoll.h (1.3), thwinp.h (1.3): size_t definition in
 	<thai/thailib.h>, strict_t to thstrict_t in <thai/thinp.h>
 
-2001-05-18 Friday 01:15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-05-17 Thursday 20:15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* include/thai/thinp.h (1.3): Change the spec (comment) of
 	th_validate()
 
-2001-05-18 Friday 01:07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-05-17 Thursday 20:07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* include/thai/thwchar.h (1.3): fix arg & return types of uni2*
 
-2001-05-18 Friday 01:04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-05-17 Thursday 20:04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* include/thai/thbrk.h (1.1): use thbrk.h for 8-bit code, to
 	prevent confusion
 
-2001-05-18 Friday 00:58  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-05-17 Thursday 19:58  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* include/thai/: thailib.h (1.2), thcoll.h (1.2), thctype.h (1.2),
 	thinp.h (1.2), thrend.h (1.2), thwbrk.h (1.2), thwchar.h (1.2),
 	thwcoll.h (1.2), thwctype.h (1.2), thwinp.h (1.2), thwrend.h (1.2):
 	Add comments. Fix many declarations. Add thglyph_t.
 
-2001-05-17 Thursday 23:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-05-17 Thursday 18:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* include/thai/: thailib.h (1.1), thcoll.h (1.1), thctype.h (1.1),
 	thinp.h (1.1), thrend.h (1.1), thwbrk.h (1.1), thwchar.h (1.1),
 	thwcoll.h (1.1), thwctype.h (1.1), thwinp.h (1.1), thwrend.h (1.1),
 	tis.h (1.1): Initial revision
 
-2001-05-17 Thursday 23:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+2001-05-17 Thursday 18:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* include/thai/: thailib.h (1.1.1.1), thcoll.h (1.1.1.1), thctype.h
 	(1.1.1.1), thinp.h (1.1.1.1), thrend.h (1.1.1.1), thwbrk.h
