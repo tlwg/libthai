@@ -1,5 +1,5 @@
 /*
- * $Id: thrend.c,v 1.6 2001-08-08 17:57:22 thep Exp $
+ * $Id: thrend.c,v 1.7 2001-08-09 11:52:54 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-08-06
  */
@@ -161,8 +161,8 @@ int th_render_text(const thchar_t *s,
         size_t nchars = 0;
         int    nglyphs = 0;
 
-        s = th_next_cell(s, len, &cell, &nchars, is_decomp_am);
-        len -= nchars;
+        nchars = th_next_cell(s, len, &cell, is_decomp_am);
+        s += nchars; len -= nchars;
         nglyphs = (*cell_rend_fn)(cell, res, left, is_decomp_am);
         res += nglyphs; left -= nglyphs;
     }

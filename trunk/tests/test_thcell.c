@@ -70,8 +70,8 @@ int test_th_next_cell()
         struct thcell_t aCell;
         size_t nChars;
 
-        s = th_next_cell(s, len, &aCell, &nChars, 0);
-        len -= nChars;
+        nChars = th_next_cell(s, len, &aCell, 0);
+        s += nChars; len -= nChars;
         if (aCell.base != pCell->base ||
             aCell.hilo != pCell->hilo ||
             aCell.top  != pCell->top)
@@ -93,8 +93,8 @@ int test_th_next_cell()
         struct thcell_t aCell;
         size_t nChars;
 
-        s = th_next_cell(s, len, &aCell, &nChars, 1);
-        len -= nChars;
+        nChars = th_next_cell(s, len, &aCell, 1);
+        s += nChars; len -= nChars;
         if (aCell.base != pCell->base ||
             aCell.hilo != pCell->hilo ||
             aCell.top  != pCell->top)
@@ -125,9 +125,8 @@ int test_th_prev_cell()
     pos = strlen((const char *)test_msg);
     while (pos > 0) {
         struct thcell_t aCell;
-        size_t nChars;
 
-        pos = th_prev_cell(s, pos, &aCell, &nChars, 0);
+        pos -= th_prev_cell(s, pos, &aCell, 0);
         if (aCell.base != pCell->base ||
             aCell.hilo != pCell->hilo ||
             aCell.top  != pCell->top)
@@ -148,9 +147,8 @@ int test_th_prev_cell()
     pos = strlen((const char *)test_msg);
     while (pos > 0) {
         struct thcell_t aCell;
-        size_t nChars;
 
-        pos = th_prev_cell(s, pos, &aCell, &nChars, 1);
+        pos -= th_prev_cell(s, pos, &aCell, 1);
         if (aCell.base != pCell->base ||
             aCell.hilo != pCell->hilo ||
             aCell.top  != pCell->top)
@@ -187,9 +185,8 @@ int test_th_make_cells()
     while (*s) {
         size_t nCells = TESTCELLS;
         size_t i;
-        const thchar_t *t = th_make_cells(s, len, cells, &nCells, 0);
-        len -= (t - s);
-        s = t;
+        size_t nChars = th_make_cells(s, len, cells, &nCells, 0);
+        s += nChars; len -= nChars;
         for (i = 0; i < nCells; ++i) {
             if (cells[i].base != pCell->base ||
                 cells[i].hilo != pCell->hilo ||
@@ -213,9 +210,8 @@ int test_th_make_cells()
     while (*s) {
         size_t nCells = TESTCELLS;
         size_t i;
-        const thchar_t *t = th_make_cells(s, len, cells, &nCells, 1);
-        len -= (t - s);
-        s = t;
+        size_t nChars = th_make_cells(s, len, cells, &nCells, 1);
+        s += nChars; len -= nChars;
         for (i = 0; i < nCells; ++i) {
             if (cells[i].base != pCell->base ||
                 cells[i].hilo != pCell->hilo ||
