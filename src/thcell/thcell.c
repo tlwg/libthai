@@ -1,5 +1,5 @@
 /*
- * $Id: thcell.c,v 1.4 2001-08-09 11:52:54 thep Exp $
+ * $Id: thcell.c,v 1.5 2001-08-10 08:25:19 thep Exp $
  * thcell_t.c - Thai string cell custering
  * Created: 2001-08-08 (split from thrend.c)
  */
@@ -15,27 +15,29 @@ size_t th_next_cell(const thchar_t *s, size_t len,
                     struct thcell_t *cell, int is_decomp_am)
 {
     size_t n = 0;
-    cell->base = cell->hilo = cell->top = 0;
+    struct thcell_t acell;
+    acell.base = acell.hilo = acell.top = 0;
     if (len > 0) {
         do {
             switch (th_chlevel(*s)) {
                 case 0:
-                    if (is_decomp_am && *s == SARA_AM) { cell->hilo = *s++; }
-                    else { cell->base = *s++; }
+                    if (is_decomp_am && *s == SARA_AM) { acell.hilo = *s++; }
+                    else { acell.base = *s++; }
                     break;
                 case -1:
-                case 1: cell->hilo = *s++; break;
-                case 2: cell->top  = *s++; break;
+                case 1: acell.hilo = *s++; break;
+                case 2: acell.top  = *s++; break;
             }
             ++n; --len;
         } while (
             len > 0 && (
                 is_composible(s[-1], s[0]) || (
-                    is_decomp_am && s[0] == SARA_AM && th_isthcons(cell->base)
+                    is_decomp_am && s[0] == SARA_AM && th_isthcons(acell.base)
                 )
             )
         );
     }
+    if (cell) { *cell = acell; }
     return n;
 }
 
@@ -43,32 +45,34 @@ size_t th_prev_cell(const thchar_t *s, size_t pos,
                     struct thcell_t *cell, int is_decomp_am)
 {
     size_t n = 0;
-    cell->base = cell->hilo = cell->top = 0;
+    struct thcell_t acell;
+    acell.base = acell.hilo = acell.top = 0;
     if (pos > 0) {
         do {
             thchar_t c = s[pos-1];
             switch (th_chlevel(c)) {
                 case 0:
-                    if (is_decomp_am && c == SARA_AM) { cell->hilo = c; }
-                    else { cell->base = c; }
+                    if (is_decomp_am && c == SARA_AM) { acell.hilo = c; }
+                    else { acell.base = c; }
                     break;
                 case -1:
-                case 1: cell->hilo = c; break;
-                case 2: cell->top  = c; break;
+                case 1: acell.hilo = c; break;
+                case 2: acell.top  = c; break;
             }
             ++n; --pos;
         } while (
             pos > 0 && (
                 is_composible(s[pos-1], s[pos]) || (
-                    cell->hilo == SARA_AM &&
-                    !cell->base && (
-                        (!cell->top && th_isthtone(s[pos-1])) ||
+                    acell.hilo == SARA_AM &&
+                    !acell.base && (
+                        (!acell.top && th_isthtone(s[pos-1])) ||
                         th_isthcons(s[pos-1])
                     )
                 )
             )
         );
     }
+    if (cell) { *cell = acell; }
     return n;
 }
 
