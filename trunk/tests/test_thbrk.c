@@ -1,6 +1,6 @@
 /* Test driver for thbrk 
  *
- * $Id: test_thbrk.c,v 1.2 2001-07-31 22:21:25 ott Exp $
+ * $Id: test_thbrk.c,v 1.3 2001-08-04 14:40:44 ott Exp $
  */
 
 #define MAXLINELENGTH 1000
@@ -9,8 +9,8 @@
 #include <stdlib.h>
 #include <thai/thbrk.h>
 
-// run with "-i" argument to get the interactive version
-// otherwise it will run the self test and exit
+/* run with "-i" argument to get the interactive version
+   otherwise it will run the self test and exit */
 
 int main (int argc, char* argv[]) {
   
@@ -50,11 +50,11 @@ int main (int argc, char* argv[]) {
 	}
 	printf("\n");
 	outputLength = th_brk_line(str,out,MAXLINELENGTH*2+1,"<WBR>");
-	printf("Output string length is %d\n",outputLength-1) ; // the penultimate is \n
+	printf("Output string length is %d\n",outputLength-1) ; /* the penultimate is \n */
 	printf("Output string is %s",out);
 	printf("***********************************************************************\n");
-      }; // if
-    }; //while
+      }; /* if */
+    }; /* while */
   } else {
     strcpy(str,"สวัสดีครับ นี่เป็นการทดสอบตัวเอง");
     printf ("Testing with string: %s\n",str);
