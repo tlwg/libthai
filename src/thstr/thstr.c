@@ -1,5 +1,5 @@
 /*
- * $Id: thstr.c,v 1.1 2001-08-03 10:51:52 thep Exp $
+ * $Id: thstr.c,v 1.2 2001-08-14 06:11:42 thep Exp $
  * thstr.c - Thai string manipulators
  * Created: 2001-08-03
  */
@@ -10,7 +10,7 @@
 /* FIXME: should use WTT 2.0 instead? */
 size_t th_normalize(thchar_t dest[], const thchar_t *src, size_t n)
 {
-    thchar_t top, up, middle, low, c;
+    thchar_t top, up, middle, low;
     size_t   left = n;
 
     top = up = middle = low = 0;

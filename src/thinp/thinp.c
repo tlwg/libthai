@@ -1,17 +1,17 @@
 /*
- * $Id: thinp.c,v 1.6 2001-08-08 17:57:22 thep Exp $
+ * $Id: thinp.c,v 1.7 2001-08-14 06:11:42 thep Exp $
  * thinp.c - Thai string input sequence filtering
  * Created: 2001-08-04
  */
 
 #include <thai/thinp.h>
+#include <thai/thctype.h>
 #include <thai/tis.h>
 #include <thai/wtt.h>
 
 
 int th_isaccept(thchar_t c1, thchar_t c2, thstrict_t s)
 {
-    int op = TACio_op(c1, c2);
     switch (s) {
     case ISC_PASSTHROUGH:
         return 1;
@@ -31,12 +31,12 @@ int th_isaccept(thchar_t c1, thchar_t c2, thstrict_t s)
 }
 
 static const struct correction_t {
-    char c1, c2, to[3];
+    thchar_t c1, c2, to[3];
 } corrections[] = {
-    { RU, SARA_AA, "Äå" },
-    { LU, SARA_AA, "Æå" },
-    { NIKHAHIT, SARA_AA, "Ó" },
-    { 0, 0, 0 }
+    { RU, SARA_AA, { RU, LAKKHANGYAO, 0 } },
+    { LU, SARA_AA, { LU, LAKKHANGYAO, 0 } },
+    { NIKHAHIT, SARA_AA, { SARA_AM, 0, 0 } },
+    { 0, 0, { 0, 0, 0 } }
 };
 
 static int correct(thchar_t c_1, thchar_t c, thchar_t conv[3])
@@ -44,7 +44,7 @@ static int correct(thchar_t c_1, thchar_t c, thchar_t conv[3])
     const struct correction_t *p;
     for (p = corrections; p->c1; ++p) {
         if (c_1 == (thchar_t)p->c1 && c == (thchar_t)p->c2) {
-            strcpy((char *)conv, p->to);
+            strcpy((char *)conv, (const char *)p->to);
             return 1;
         }
     }

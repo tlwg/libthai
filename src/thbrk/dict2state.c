@@ -39,7 +39,7 @@ int state[MAXSTATE];
 int maxstate, rnumword;
 int mincol, maxcol;
 
-void readfile(unsigned char *);
+void readfile(char *);
 void fixline(unsigned char *);
 void dooneline(unsigned char *,unsigned char *);
 int findword(unsigned char *);
@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
   for(i=0;i<numword;i++) {
     /* Remove duplicate words */
     if(i<numword-1) {
-      if(strcmp(wordptr[i]+1, wordptr[i+1]+1)!=0) {
+      if(strcmp((char*)wordptr[i]+1, (char*)wordptr[i+1]+1)!=0) {
 	add2map(wordptr[i]+1,wordptr[i][0]);
 	nn++;
       }
@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
   return 0;
 }
 
-void readfile(unsigned char *fname)
+void readfile(char *fname)
 {
   FILE *fp, *fopen();
   unsigned char str[MAXWORDLENGTH];
@@ -96,22 +96,22 @@ void readfile(unsigned char *fname)
   fp = fopen(fname,"r");
 
   while(!feof(fp)) {
-    fgets(str,MAXWORDLENGTH-1,fp);
+    fgets((char*)str,MAXWORDLENGTH-1,fp);
     if(!feof(fp)) {
       fixline(str);
-      wordptr[numword] = (unsigned char *)malloc((l=strlen(str))+2);
+      wordptr[numword] = (unsigned char *)malloc((l=strlen((char*)str))+2);
       if(wordptr[numword]==NULL)
         printf("Memory Error\n");
-      strcpy(wordptr[numword]+1, str);
+      strcpy((char*)wordptr[numword]+1, (char*)str);
       wordptr[numword][l]=0;            /* Remove new line */
       wordptr[numword][0] = l-1;
 
       if(numword > 0)
-      if(strcmp(wordptr[numword]+1,wordptr[numword-1]+1)<0) 
+      if(strcmp((char*)wordptr[numword]+1,(char*)wordptr[numword-1]+1)<0) 
       {
         ostr = wordptr[numword];
         i = numword;
-        while(i && (strcmp(ostr+1,wordptr[i-1]+1)<0)) {
+        while(i && (strcmp((char*)ostr+1,(char*)wordptr[i-1]+1)<0)) {
           wordptr[i] = wordptr[i-1];
           i--;
         }
@@ -135,7 +135,7 @@ unsigned char *line;
   int i,j,c;
 
   i=j=0;
-  strcpy(out,line);
+  strcpy((char*)out,(char*)line);
   top=up=middle=low=0;
   while( (c=out[i++]) ) {
     switch((c>0xD0)?levtable[c-0xD0]:0) {
