@@ -1,3 +1,4 @@
+# $Id: configure.in,v 1.2 2001-06-12 13:18:33 thep Exp $
 # Process this file with autoconf to produce a configure script.
 AC_INIT(include/thai/thailib.h)
 AM_INIT_AUTOMAKE(libthai, 0.1.1)
