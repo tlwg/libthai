@@ -10,7 +10,7 @@
 # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
-# $Id: Makefile.in,v 1.3 2001-07-16 10:54:07 thep Exp $
+# $Id: Makefile.in,v 1.1 2001-07-16 10:54:04 thep Exp $
 
 
 SHELL = @SHELL@
@@ -40,7 +40,7 @@ pkgdatadir = $(datadir)/@PACKAGE@
 pkglibdir = $(libdir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
 
-top_builddir = ..
+top_builddir = ../..
 
 ACLOCAL = @ACLOCAL@
 AUTOCONF = @AUTOCONF@
@@ -78,34 +78,53 @@ VERSION = @VERSION@
 
 MAINTAINERCLEANFILES = Makefile.in
 
-INCLUDES = -I$(top_srcdir)/include
+INCLUDES = -I. -I$(top_srcdir)/include
 
-EXTRA_DIST = sorttest.txt sorted.txt test-thcoll.sh
+EXTRA_DIST = tdict.txt
 
-TESTS_ENVIRONMENT = top_builddir=$(top_builddir)
+bin_PROGRAMS = cttex
+noinst_PROGRAMS = dict2state
+noinst_LTLIBRARIES = libthbrk.la
 
-TESTS =  	test-thcoll.sh
+TESTS = test_thbrk
+check_PROGRAMS = test_thbrk
 
+dict2state_SOURCES = dict2state.c
 
-check_SCRIPTS =  	test-thcoll.sh
+libthbrk_la_SOURCES = map.c map.h thbrk.c
 
+cttex_SOURCES = map.c cttex.c
 
-check_PROGRAMS =  	thsort
-
-
-thsort_SOURCES = thsort.c
-thsort_LDADD = $(top_builddir)/src/thcoll/libthcoll.la
+test_thbrk_SOURCES = test_thbrk.c
+test_thbrk_LDADD = $(top_builddir)/src/thbrk/libthbrk.la
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES = 
-check_PROGRAMS =  thsort$(EXEEXT)
+LTLIBRARIES =  $(noinst_LTLIBRARIES)
+
 
 DEFS = @DEFS@ -I. -I$(srcdir) 
 CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
-thsort_OBJECTS =  thsort.$(OBJEXT)
-thsort_DEPENDENCIES =  $(top_builddir)/src/thcoll/libthcoll.la
-thsort_LDFLAGS = 
+libthbrk_la_LDFLAGS = 
+libthbrk_la_LIBADD = 
+libthbrk_la_OBJECTS =  map.lo thbrk.lo
+bin_PROGRAMS =  cttex$(EXEEXT)
+check_PROGRAMS =  test_thbrk$(EXEEXT)
+noinst_PROGRAMS =  dict2state$(EXEEXT)
+PROGRAMS =  $(bin_PROGRAMS) $(noinst_PROGRAMS)
+
+cttex_OBJECTS =  map.$(OBJEXT) cttex.$(OBJEXT)
+cttex_LDADD = $(LDADD)
+cttex_DEPENDENCIES = 
+cttex_LDFLAGS = 
+test_thbrk_OBJECTS =  test_thbrk.$(OBJEXT)
+test_thbrk_DEPENDENCIES =  $(top_builddir)/src/thbrk/libthbrk.la
+test_thbrk_LDFLAGS = 
+dict2state_OBJECTS =  dict2state.$(OBJEXT)
+dict2state_LDADD = $(LDADD)
+dict2state_DEPENDENCIES = 
+dict2state_LDFLAGS = 
 CFLAGS = @CFLAGS@
 COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -118,29 +137,30 @@ DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
 TAR = tar
 GZIP_ENV = --best
-DEP_FILES =  .deps/thsort.P
-SOURCES = $(thsort_SOURCES)
-OBJECTS = $(thsort_OBJECTS)
+DEP_FILES =  .deps/cttex.P .deps/dict2state.P .deps/map.P \
+.deps/test_thbrk.P .deps/thbrk.P
+SOURCES = $(libthbrk_la_SOURCES) $(cttex_SOURCES) $(test_thbrk_SOURCES) $(dict2state_SOURCES)
+OBJECTS = $(libthbrk_la_OBJECTS) $(cttex_OBJECTS) $(test_thbrk_OBJECTS) $(dict2state_OBJECTS)
 
 all: all-redirect
 .SUFFIXES:
 .SUFFIXES: .S .c .lo .o .obj .s
 $(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
-	cd $(top_srcdir) && $(AUTOMAKE) --gnu tests/Makefile
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu src/thbrk/Makefile
 
 Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status $(BUILT_SOURCES)
 	cd $(top_builddir) \
 	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
 
 
-mostlyclean-checkPROGRAMS:
+mostlyclean-noinstLTLIBRARIES:
 
-clean-checkPROGRAMS:
-	-test -z "$(check_PROGRAMS)" || rm -f $(check_PROGRAMS)
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
 
-distclean-checkPROGRAMS:
+distclean-noinstLTLIBRARIES:
 
-maintainer-clean-checkPROGRAMS:
+maintainer-clean-noinstLTLIBRARIES:
 
 # FIXME: We should only use cygpath when building on Windows,
 # and only if it is available.
@@ -180,9 +200,63 @@ distclean-libtool:
 
 maintainer-clean-libtool:
 
-thsort$(EXEEXT): $(thsort_OBJECTS) $(thsort_DEPENDENCIES)
-	@rm -f thsort$(EXEEXT)
-	$(LINK) $(thsort_LDFLAGS) $(thsort_OBJECTS) $(thsort_LDADD) $(LIBS)
+libthbrk.la: $(libthbrk_la_OBJECTS) $(libthbrk_la_DEPENDENCIES)
+	$(LINK)  $(libthbrk_la_LDFLAGS) $(libthbrk_la_OBJECTS) $(libthbrk_la_LIBADD) $(LIBS)
+
+mostlyclean-binPROGRAMS:
+
+clean-binPROGRAMS:
+	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+
+distclean-binPROGRAMS:
+
+maintainer-clean-binPROGRAMS:
+
+install-binPROGRAMS: $(bin_PROGRAMS)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(bindir)
+	@list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo " $(LIBTOOL)  --mode=install $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`"; \
+	    $(LIBTOOL)  --mode=install $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`; \
+	  else :; fi; \
+	done
+
+uninstall-binPROGRAMS:
+	@$(NORMAL_UNINSTALL)
+	list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`; \
+	done
+
+mostlyclean-checkPROGRAMS:
+
+clean-checkPROGRAMS:
+	-test -z "$(check_PROGRAMS)" || rm -f $(check_PROGRAMS)
+
+distclean-checkPROGRAMS:
+
+maintainer-clean-checkPROGRAMS:
+
+mostlyclean-noinstPROGRAMS:
+
+clean-noinstPROGRAMS:
+	-test -z "$(noinst_PROGRAMS)" || rm -f $(noinst_PROGRAMS)
+
+distclean-noinstPROGRAMS:
+
+maintainer-clean-noinstPROGRAMS:
+
+cttex$(EXEEXT): $(cttex_OBJECTS) $(cttex_DEPENDENCIES)
+	@rm -f cttex$(EXEEXT)
+	$(LINK) $(cttex_LDFLAGS) $(cttex_OBJECTS) $(cttex_LDADD) $(LIBS)
+
+test_thbrk$(EXEEXT): $(test_thbrk_OBJECTS) $(test_thbrk_DEPENDENCIES)
+	@rm -f test_thbrk$(EXEEXT)
+	$(LINK) $(test_thbrk_LDFLAGS) $(test_thbrk_OBJECTS) $(test_thbrk_LDADD) $(LIBS)
+
+dict2state$(EXEEXT): $(dict2state_OBJECTS) $(dict2state_DEPENDENCIES)
+	@rm -f dict2state$(EXEEXT)
+	$(LINK) $(dict2state_LDFLAGS) $(dict2state_OBJECTS) $(dict2state_LDADD) $(LIBS)
 
 tags: TAGS
 
@@ -215,14 +289,14 @@ maintainer-clean-tags:
 
 distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
 
-subdir = tests
+subdir = src/thbrk
 
 distdir: $(DISTFILES)
 	here=`cd $(top_builddir) && pwd`; \
 	top_distdir=`cd $(top_distdir) && pwd`; \
 	distdir=`cd $(distdir) && pwd`; \
 	cd $(top_srcdir) \
-	  && $(AUTOMAKE) --include-deps --build-dir=$$here --srcdir-name=$(top_srcdir) --output-dir=$$top_distdir --gnu tests/Makefile
+	  && $(AUTOMAKE) --include-deps --build-dir=$$here --srcdir-name=$(top_srcdir) --output-dir=$$top_distdir --gnu src/thbrk/Makefile
 	@for file in $(DISTFILES); do \
 	  d=$(srcdir); \
 	  if test -d $$d/$$file; then \
@@ -295,12 +369,12 @@ info: info-am
 dvi-am:
 dvi: dvi-am
 check-am: all-am
-	$(MAKE) $(AM_MAKEFLAGS) $(check_PROGRAMS) $(check_SCRIPTS)
+	$(MAKE) $(AM_MAKEFLAGS) $(check_PROGRAMS)
 	$(MAKE) $(AM_MAKEFLAGS) check-TESTS
 check: check-am
 installcheck-am:
 installcheck: installcheck-am
-install-exec-am:
+install-exec-am: install-binPROGRAMS
 install-exec: install-exec-am
 
 install-data-am:
@@ -309,13 +383,14 @@ install-data: install-data-am
 install-am: all-am
 	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
 install: install-am
-uninstall-am:
+uninstall-am: uninstall-binPROGRAMS
 uninstall: uninstall-am
-all-am: Makefile
+all-am: Makefile $(LTLIBRARIES) $(PROGRAMS)
 all-redirect: all-am
 install-strip:
 	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
 installdirs:
+	$(mkinstalldirs)  $(DESTDIR)$(bindir)
 
 
 mostlyclean-generic:
@@ -328,38 +403,52 @@ distclean-generic:
 
 maintainer-clean-generic:
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
-mostlyclean-am:  mostlyclean-checkPROGRAMS mostlyclean-compile \
-		mostlyclean-libtool mostlyclean-tags mostlyclean-depend \
-		mostlyclean-generic
+mostlyclean-am:  mostlyclean-noinstLTLIBRARIES mostlyclean-compile \
+		mostlyclean-libtool mostlyclean-binPROGRAMS \
+		mostlyclean-checkPROGRAMS mostlyclean-noinstPROGRAMS \
+		mostlyclean-tags mostlyclean-depend mostlyclean-generic
 
 mostlyclean: mostlyclean-am
 
-clean-am:  clean-checkPROGRAMS clean-compile clean-libtool clean-tags \
-		clean-depend clean-generic mostlyclean-am
+clean-am:  clean-noinstLTLIBRARIES clean-compile clean-libtool \
+		clean-binPROGRAMS clean-checkPROGRAMS \
+		clean-noinstPROGRAMS clean-tags clean-depend \
+		clean-generic mostlyclean-am
 
 clean: clean-am
 
-distclean-am:  distclean-checkPROGRAMS distclean-compile \
-		distclean-libtool distclean-tags distclean-depend \
-		distclean-generic clean-am
+distclean-am:  distclean-noinstLTLIBRARIES distclean-compile \
+		distclean-libtool distclean-binPROGRAMS \
+		distclean-checkPROGRAMS distclean-noinstPROGRAMS \
+		distclean-tags distclean-depend distclean-generic \
+		clean-am
 	-rm -f libtool
 
 distclean: distclean-am
 
-maintainer-clean-am:  maintainer-clean-checkPROGRAMS \
+maintainer-clean-am:  maintainer-clean-noinstLTLIBRARIES \
 		maintainer-clean-compile maintainer-clean-libtool \
-		maintainer-clean-tags maintainer-clean-depend \
-		maintainer-clean-generic distclean-am
+		maintainer-clean-binPROGRAMS \
+		maintainer-clean-checkPROGRAMS \
+		maintainer-clean-noinstPROGRAMS maintainer-clean-tags \
+		maintainer-clean-depend maintainer-clean-generic \
+		distclean-am
 	@echo "This command is intended for maintainers to use;"
 	@echo "it deletes files that may require special tools to rebuild."
 
 maintainer-clean: maintainer-clean-am
 
-.PHONY: mostlyclean-checkPROGRAMS distclean-checkPROGRAMS \
-clean-checkPROGRAMS maintainer-clean-checkPROGRAMS mostlyclean-compile \
-distclean-compile clean-compile maintainer-clean-compile \
-mostlyclean-libtool distclean-libtool clean-libtool \
-maintainer-clean-libtool tags mostlyclean-tags distclean-tags \
+.PHONY: mostlyclean-noinstLTLIBRARIES distclean-noinstLTLIBRARIES \
+clean-noinstLTLIBRARIES maintainer-clean-noinstLTLIBRARIES \
+mostlyclean-compile distclean-compile clean-compile \
+maintainer-clean-compile mostlyclean-libtool distclean-libtool \
+clean-libtool maintainer-clean-libtool mostlyclean-binPROGRAMS \
+distclean-binPROGRAMS clean-binPROGRAMS maintainer-clean-binPROGRAMS \
+uninstall-binPROGRAMS install-binPROGRAMS mostlyclean-checkPROGRAMS \
+distclean-checkPROGRAMS clean-checkPROGRAMS \
+maintainer-clean-checkPROGRAMS mostlyclean-noinstPROGRAMS \
+distclean-noinstPROGRAMS clean-noinstPROGRAMS \
+maintainer-clean-noinstPROGRAMS tags mostlyclean-tags distclean-tags \
 clean-tags maintainer-clean-tags distdir mostlyclean-depend \
 distclean-depend clean-depend maintainer-clean-depend check-TESTS \
 info-am info dvi-am dvi check check-am installcheck-am installcheck \
@@ -368,6 +457,18 @@ install uninstall-am uninstall all-redirect all-am all installdirs \
 mostlyclean-generic distclean-generic clean-generic \
 maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 
+
+map.h: tdict.txt $(top_builddir)/src/thbrk/dict2state
+	$(top_builddir)/src/thbrk/dict2state \
+		$(top_srcdir)/src/thbrk/tdict.txt \
+		$(top_srcdir)/src/thbrk/map.c \
+		$(top_srcdir)/src/thbrk/map.h
+
+map.c: tdict.txt $(top_builddir)/src/thbrk/dict2state
+	$(top_builddir)/src/thbrk/dict2state \
+		$(top_srcdir)/src/thbrk/tdict.txt \
+		$(top_srcdir)/src/thbrk/map.c \
+		$(top_srcdir)/src/thbrk/map.h
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

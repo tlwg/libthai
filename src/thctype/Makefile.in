@@ -1,4 +1,4 @@
-# Makefile.in generated automatically by automake 1.4-p3 from Makefile.am
+# Makefile.in generated automatically by automake 1.4-p4 from Makefile.am
 
 # Copyright (C) 1994, 1995-8, 1999 Free Software Foundation, Inc.
 # This Makefile.in is free software; the Free Software Foundation
@@ -10,7 +10,7 @@
 # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
-# $Id: Makefile.in,v 1.1 2001-06-13 15:35:21 thep Exp $
+# $Id: Makefile.in,v 1.2 2001-07-16 10:54:06 thep Exp $
 
 
 SHELL = @SHELL@

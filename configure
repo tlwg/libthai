@@ -5535,6 +5535,7 @@ trap 'rm -fr `echo "Makefile
   src/Makefile
   src/thctype/Makefile
   src/thcoll/Makefile
+  src/thbrk/Makefile
   tests/Makefile
 " | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
 EOF
@@ -5645,6 +5646,7 @@ CONFIG_FILES=\${CONFIG_FILES-"Makefile
   src/Makefile
   src/thctype/Makefile
   src/thcoll/Makefile
+  src/thbrk/Makefile
   tests/Makefile
 "}
 EOF

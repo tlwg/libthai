@@ -45,12 +45,13 @@ void dooneline(unsigned char *,unsigned char *);
 int findword(unsigned char *);
 void add2map(unsigned char *,int);
 void initmap();
-void prmap();
+void prmap(const char* cfile, const char* hfile);
 
 unsigned char *wordptr[MAXWORD];
 int numword;                    /* Number of words in memory */
 
-int main()
+/* Usage : dict2state <wordlist> <cfile> <hfile> */
+int main(int argc, char* argv[])
 {
   FILE *fopen();
   int i, count, nn;
@@ -58,7 +59,7 @@ int main()
   numword = nn = 0;
 
   /* Sort while reading */
-  readfile(DICTFILE);
+  readfile(argc >= 2 ? argv[1] : DICTFILE);
 
   initmap();
   for(i=0;i<numword;i++) {
@@ -81,7 +82,7 @@ int main()
   printf("Word Count: %d %d\n", nn, count);
   printf("Min Max Code: %d %d\n", mincol, maxcol);
   rnumword=nn;
-  prmap();
+  prmap(argc >= 3 ? argv[2] : 0, argc >= 4 ? argv[3] : 0);
   return 0;
 }
 
@@ -214,7 +215,7 @@ void add2map(unsigned char *str,int len)
 
 }
 
-void prmap()
+void prmap(const char* cfile, const char* hfile)
 {
   FILE *FP;
   int i,j,c;
@@ -228,7 +229,7 @@ void prmap()
 
   printf("Writing Map File...\n");
 
-  FP=fopen("map.c","w");
+  FP=fopen(cfile ? cfile : "map.c","w");
   fprintf(FP,"unsigned short map[] = {\n");
   for(i=0;i<maxstate;i++) {
     min=max=0;
@@ -284,7 +285,7 @@ void prmap()
   fprintf(FP,"};\n");
   fclose(FP);
     
-  FP=fopen("map.h","w");
+  FP=fopen(hfile ? hfile : "map.h","w");
   fprintf(FP,"int numword = %d;\n", rnumword);
   fprintf(FP,"int mincol = %d;\n", mincol);
   fprintf(FP,"int maxcol = %d;\n", maxcol);
