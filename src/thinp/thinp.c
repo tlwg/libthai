@@ -1,5 +1,5 @@
 /*
- * $Id: thinp.c,v 1.8 2001-08-22 04:41:29 thep Exp $
+ * $Id: thinp.c,v 1.9 2004-10-13 06:54:13 thep Exp $
  * thinp.c - Thai string input sequence filtering
  * Created: 2001-08-04
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -78,24 +78,7 @@ int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
 
     /* try correction by conversion */
     switch (th_chlevel(c)) {
-    case -1:
-    case 1:
-        if (th_isaccept(context.base, c, ISC_STRICT)) {
-            /* replace from hilo on; use new hilo + old top if OK */
-            int i = 0;
-            conv->offset = 0;
-            conv->conv[i++] = c;
-            if (context.hilo) --conv->offset;
-            if (context.top) {
-                --conv->offset;
-                if (th_isaccept(c, context.top, ISC_STRICT))
-                    conv->conv[i++] = context.top;
-            }
-            conv->conv[i] = 0;
-            return 1;
-        }
-        break;
-
+    case 3:
     case 2:
         if (context.hilo && th_isaccept(context.hilo, c, ISC_STRICT)) {
             /* hilo OK, replace top only */
@@ -118,6 +101,25 @@ int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
                     conv->conv[i++] = SARA_AM;
             }
             if (context.top) --conv->offset;
+            conv->conv[i] = 0;
+            return 1;
+        }
+        if (th_chlevel(c) == 2)
+          break;
+        /* fall through for level 3 */
+    case -1:
+    case 1:
+        if (th_isaccept(context.base, c, ISC_STRICT)) {
+            /* replace from hilo on; use new hilo + old top if OK */
+            int i = 0;
+            conv->offset = 0;
+            conv->conv[i++] = c;
+            if (context.hilo) --conv->offset;
+            if (context.top) {
+                --conv->offset;
+                if (th_isaccept(c, context.top, ISC_STRICT))
+                    conv->conv[i++] = context.top;
+            }
             conv->conv[i] = 0;
             return 1;
         }
