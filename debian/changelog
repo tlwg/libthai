@@ -1,3 +1,13 @@
+libthai (0.1.2-1) unstable; urgency=low
+
+  * It's still alive!
+  * Bug fix & code furnishing
+  * conversion functions for Win & Mac extension
+  * Some document (man pages)
+  * Experiment with GTK+ 2 plug-ins (in separate packages)
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sun,  14 Sep 2003 02:16:00 +0900
+
 libthai (0.1.1-1) unstable; urgency=low
 
   * Initial Release.
