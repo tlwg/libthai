@@ -1,6 +1,6 @@
 /* Test driver for thbrk 
  *
- * $Id: test_thbrk.c,v 1.2 2001-07-18 23:43:41 ott Exp $
+ * $Id: test_thbrk.c,v 1.3 2001-07-22 21:32:07 ott Exp $
  */
 
 #define MAXLINELENGTH 1000
@@ -49,13 +49,13 @@ int main (int argc, char* argv[]) {
 	}
 	printf("\n");
 	outputLength = th_brk_line(str,out,MAXLINELENGTH*2+1,254);
-	printf("Output string length is %d\n",outputLength);
+	printf("Output string length is %d\n",outputLength-1) ; // the penultimate is \n
 	printf("Output string is %s",out);
 	printf("**********************************************************\n");
       }; // if
     }; //while
   } else {
-    str = "สวัสดีครับ นี่เป็นการทดสอบตัวเอง";
+    strcpy(str,"สวัสดีครับ นี่เป็นการทดสอบตัวเอง");
     printf ("Testing with string: %s\n",str);
     numCut = th_brk(str,pos,MAXLINELENGTH);
     printf ("Total %d cut points.", numCut);
@@ -73,13 +73,13 @@ int main (int argc, char* argv[]) {
     printf("\n");
     outputLength = th_brk_line(str,out,MAXLINELENGTH*2+1,254);
     printf("Output string length is %d\n",outputLength);
-    if ( outputLength == 40 ) {
+    if ( outputLength == 39 ) {
       printf("Correct! .. test th_brk_line() passed...\n");
     } else {
       printf("Error! .. test th_brk_line() failed...\n");
       exit (-1);
     }
-    printf("Output string is %s",out);
+    printf("Output string is %s\n",out);
     printf("*** End of thbrk self test ******\n");
   }
   return 0;
