@@ -1,51 +1,119 @@
-2001-07-16  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+2001-07-16 12:54  thep
 
-	* configure.in :
-	* src/Makefile.am :
-	* +src/thbrk/Makefile.am :
-	Create automake file for thbrk.
+	* ChangeLog, Makefile.in, aclocal.m4, configure, configure.in,
+	include/Makefile.in, include/thai/Makefile.in, src/Makefile.am,
+	src/Makefile.in, src/thbrk/Makefile.am, src/thbrk/Makefile.in,
+	src/thbrk/Makefile.ott, src/thbrk/cttex.c, src/thbrk/dict2state.c,
+	src/thbrk/map.c, src/thbrk/map.h, src/thbrk/thbrk.c,
+	src/thcoll/Makefile.in, src/thctype/Makefile.in, tests/Makefile.in:
+	Add automake files for building thbrk.
 
-2001-06-15  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+2001-07-15 18:35  ott
 
-	* include/thai/thctype.h :
-	Add th_isdiac() API.
+	* include/thai/thbrk.h: -add th_brk_line interface
 
-	* src/thctype/thctype.c :
-	Add function body for thctype functions.
+2001-07-15 18:31  ott
 
-2001-06-13  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+	* src/thbrk/: Makefile, README.TXT, cttex.c, dict2state.c,
+	tdict.txt, test_thbrk.c, thbrk.c: -first version.  -wrapper for
+	P'Hui's cttex.
 
-	* include/thai/thctypee.h, +src/thctype/thctype.c :
-	Create a first draft implementation of thctype.
+2001-07-09 16:54  ott
 
-	* src/blank.c -> src/dummy.c :
-	Rename and comment the file, to be more meaningful.
+	* src/thbrk/tdict-preparation/: Makefile, README.TXT, dictsort,
+	dictsort.c, tdict.local, tdict.nonsorted, tdict.org, tdict.txt,
+	nectec/adjv.txt, nectec/archaic.txt, nectec/conj.txt,
+	nectec/exclam.txt, nectec/formal.txt, nectec/idiom.txt,
+	nectec/local.txt, nectec/nibat.txt, nectec/nouns.txt,
+	nectec/obsolete.txt, nectec/poem.txt, nectec/prefix.txt,
+	nectec/prep.txt, nectec/pron.txt, nectec/raja.txt,
+	nectec/riheads.txt, nectec/riheads_org.txt, nectec/riwords.txt,
+	nectec/riwords_org.txt, nectec/slang.txt, nectec/suffix.txt,
+	nectec/verb.txt: -tdict.txt preparation part from cttex with some
+	modifications
 
-2001-06-12  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+2001-06-15 14:01  thep
 
-	* src/{cweight.h,cweight.c,thcoll.c} -> src/thcoll :
-	Make a subdir for thcoll, so that libraries are separated.
+	* ChangeLog, Makefile.in, include/thai/thctype.h,
+	src/thctype/thctype.c: Add th_isdiac() API. Add function body for
+	thctype functions.
 
-	* +configure.in, Makefile.am, {src/,src/thcoll,tests/}Makefile.am :
-	Create building system, using automake, autoconf, libtool.
+2001-06-14 05:29  thep
 
-	* src/thcoll/cweight.c :
-	Add missing #include <assert.h>.
+	* ChangeLog: Add ChangeLog item.
 
-	* +tests/test-thcoll.sh :
-	Add test suite for libthcoll.
+2001-06-13 17:35  thep
 
-2001-06-11  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+	* Makefile.in, configure, configure.in, include/Makefile.in,
+	include/thai/Makefile.in, include/thai/thctype.h, src/Makefile.am,
+	src/Makefile.in, src/blank.c, src/dummy.c, src/thcoll/Makefile.in,
+	src/thctype/Makefile.am, src/thctype/Makefile.in,
+	src/thctype/thctype.c, tests/Makefile.in: Add thctype
+	implementation (first draft, so dirty)
 
-	* +src/{cweight.h,cweight.c,thcoll.c} :
-	Add a sample implementation of Thai string collation.
+2001-06-12 15:18  thep
 
-2001-05-17  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+	* Makefile.am, configure.in, include/Makefile.am,
+	include/thai/Makefile.am, src/Makefile.am, src/thcoll/Makefile.am,
+	tests/Makefile.am: Add $Id: ChangeLog,v 1.5 2001-07-16 22:27:38 ott Exp $
 
-	* Version 0.1.1 (First creation)
+2001-06-12 15:14  thep
 
-	* +include/thai/{thailib.h,thbrk.h,thcoll.h,thctype.h,thinp.h,
-	  thrend.h,thwbrk.h,thwchar.h,thwcoll.h,thwctype.h,thwinp.h,
-	  thwrend.h,tis.h} :
-	First API draft.
+	* src/thcoll/cweight.c, src/thcoll/cweight.h, src/thcoll/thcoll.c,
+	tests/test-thcoll.sh, tests/thsort.c: Add $Id: ChangeLog,v 1.5 2001-07-16 22:27:38 ott Exp $
+
+2001-06-12 15:12  thep
+
+	* AUTHORS, COPYING, ChangeLog, INSTALL, Makefile.am, Makefile.in,
+	NEWS, README, aclocal.m4, config.guess, config.sub, configure,
+	configure.in, install-sh, ltmain.sh, missing, mkinstalldirs,
+	include/Makefile.am, include/Makefile.in, include/thai/Makefile.am,
+	include/thai/Makefile.in, src/Makefile.am, src/Makefile.in,
+	src/blank.c, src/cweight.c, src/cweight.h, src/thcoll.c,
+	src/thcoll/Makefile.am, src/thcoll/Makefile.in,
+	src/thcoll/cweight.c, src/thcoll/cweight.h, src/thcoll/thcoll.c,
+	tests/Makefile.am, tests/Makefile.in, tests/sorted.txt,
+	tests/test-thcoll.sh: add building system
+
+2001-06-11 16:16  thep
+
+	* src/cweight.c, src/cweight.h, src/thcoll.c, tests/sorttest.txt,
+	tests/thsort.c: add a draft thcoll implementation
+
+2001-05-18 06:51  thep
+
+	* include/thai/: thailib.h, thcoll.h, thinp.h, thwcoll.h, thwinp.h:
+	size_t definition in <thai/thailib.h>, strict_t to thstrict_t in
+	<thai/thinp.h>
+
+2001-05-17 20:15  thep
+
+	* include/thai/thinp.h: Change the spec (comment) of th_validate()
+
+2001-05-17 20:07  thep
+
+	* include/thai/thwchar.h: fix arg & return types of uni2*
+
+2001-05-17 20:04  thep
+
+	* include/thai/thbrk.h: use thbrk.h for 8-bit code, to prevent
+	confusion
+
+2001-05-17 19:58  thep
+
+	* include/thai/: thailib.h, thcoll.h, thctype.h, thinp.h, thrend.h,
+	thwbrk.h, thwchar.h, thwcoll.h, thwctype.h, thwinp.h, thwrend.h:
+	Add comments. Fix many declarations. Add thglyph_t.
+
+2001-05-17 18:12  thep
+
+	* include/thai/: thailib.h, thcoll.h, thctype.h, thinp.h, thrend.h,
+	thwbrk.h, thwchar.h, thwcoll.h, thwctype.h, thwinp.h, thwrend.h,
+	tis.h: Initial revision
+
+2001-05-17 18:12  thep
+
+	* include/thai/: thailib.h, thcoll.h, thctype.h, thinp.h, thrend.h,
+	thwbrk.h, thwchar.h, thwcoll.h, thwctype.h, thwinp.h, thwrend.h,
+	tis.h: first draft API
 
