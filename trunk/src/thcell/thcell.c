@@ -1,5 +1,5 @@
 /*
- * $Id: thcell.c,v 1.8 2004-10-12 09:04:00 thep Exp $
+ * $Id: thcell.c,v 1.9 2004-10-13 05:35:19 thep Exp $
  * thcell_t.c - Thai string cell custering
  * Created: 2001-08-08 (split from thrend.c)
  * Author: Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -44,7 +44,8 @@ size_t th_next_cell(const thchar_t *s, size_t len,
         } while (
             len > 0 && (
                 is_composible(s[-1], s[0]) || (
-                    is_decomp_am && s[0] == SARA_AM && th_isthcons(acell.base)
+                    is_decomp_am && s[0] == SARA_AM
+                    && th_isthcons(acell.base) && acell.hilo == 0
                 )
             )
         );
