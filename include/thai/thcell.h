@@ -1,5 +1,5 @@
 /*
- * $Id: thcell.h,v 1.1 2001-08-08 12:39:18 thep Exp $
+ * $Id: thcell.h,v 1.2 2001-08-08 13:58:36 thep Exp $
  * thcell.h - Thai string cell custering
  * Created: 2001-08-08 (split from thrend.h)
  */
@@ -29,6 +29,18 @@ struct thcell {
 extern const thchar_t *th_next_cell(const thchar_t *s, size_t len,
                                     struct thcell *cell, size_t *nchars,
                                     int is_decomp_am);
+/*
+ * get last cell from the string bounded by s and pos
+ * Paramater:
+ *   - is_decomp_am determines if SARA_AM is to be decomposed into
+ *     NIKHAHIT and SARA_AA
+ * On return: *cell = the cell; *nchars = total chars consumed by the cell
+ * Returns: index to the beginning pos of the cell (i.e. the pos for
+ *          retrieving previous cell for the next round)
+ */
+extern size_t th_prev_cell(const thchar_t *s, size_t pos,
+                           struct thcell *cell, size_t *nchars,
+                           int is_decomp_am);
 /*
  * tokenizes the string bounded by s and len into cells
  * No more than *ncells will be stored in (*cells)[]
