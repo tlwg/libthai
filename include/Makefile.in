@@ -10,6 +10,8 @@
 # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
+# $Id: Makefile.in,v 1.2 2001-06-13 15:35:21 thep Exp $
+
 
 SHELL = @SHELL@
 
