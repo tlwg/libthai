@@ -1,3 +1,14 @@
+2001-08-03 Friday 17:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.14), configure.in (1.9), include/thai/Makefile.am
+	(1.3), include/thai/thstr.h (1.1), include/thai/thwstr.h (1.1),
+	src/Makefile.am (1.7), src/thctype/thctype.c (1.5),
+	src/thstr/.cvsignore (1.1), src/thstr/Makefile.am (1.1),
+	src/thstr/thstr.c (1.1), tests/.cvsignore (1.5), tests/Makefile.am
+	(1.6), tests/test_thstr.c (1.1): Add thstr, thwstr API set. Add
+	th_normalize() implementation (extracted from cttex). Fix level
+	table for top characters in thctype.
+
 2001-08-01 Wednesday 20:13  Pattara Kiatisevi <ott@linux.thai.net>
 
 	* src/thwbrk/thwbrk.c (1.3): -new implementation, not convert
@@ -265,13 +276,13 @@
 
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2),
 	include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
-	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.14 2001-08-03 10:51:51 thep Exp $
+	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.15 2001-08-03 11:20:45 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2), src/thcoll/cweight.h (1.2),
 	src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2),
-	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.14 2001-08-03 10:51:51 thep Exp $
+	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.15 2001-08-03 11:20:45 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
