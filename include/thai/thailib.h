@@ -1,5 +1,5 @@
 /*
- * $Id: thailib.h,v 1.3 2001-05-18 04:51:02 thep Exp $
+ * $Id: thailib.h,v 1.4 2001-08-04 15:32:39 ott Exp $
  * thailib.h - general declarations for libthai
  * Created: 2001-05-17
  */
@@ -17,7 +17,7 @@
 # define  END_CDECL
 #endif /* __cplusplus */
 
-#define THCHAR_ERR  (~(thchar_t)0)
+#define THCHAR_ERR  ((thchar_t) ~0)
 typedef unsigned char thchar_t;
 
 #endif  /* THAI_THAILIB_H */
