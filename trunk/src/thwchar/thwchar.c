@@ -1,5 +1,5 @@
 /*
- * $Id: thwchar.c,v 1.1 2001-07-27 10:43:07 thep Exp $
+ * $Id: thwchar.c,v 1.2 2001-07-30 11:38:35 ott Exp $
  * thwchar.c - wide char support for Thai
  * Created: 2001-07-27
  */
@@ -9,7 +9,7 @@
 #define WC_ERR THWCHAR_ERR
 #define TH_ERR THCHAR_ERR
 
-static thwchar_t tis620_0_uni_map[224] = {
+static thwchar_t tis620_0_uni_map[128] = {
     WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, 
     WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, 
     WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, 
@@ -28,7 +28,26 @@ static thwchar_t tis620_0_uni_map[224] = {
     0x0e58, 0x0e59, 0x0e5a, 0x0e5b, WC_ERR, WC_ERR, WC_ERR, WC_ERR
 };
 
-static thwchar_t tis620_1_uni_map[224] = {
+static thchar_t uni_tis620_0_map[128] = {
+  TH_ERR,    0xa1,   0xa2,   0xa3,   0xa4,   0xa5,   0xa6,   0xa7,
+    0xa8,    0xa9,   0xaa,   0xab,   0xac,   0xad,   0xae,   0xaf,
+    0xb0,    0xb1,   0xb2,   0xb3,   0xb4,   0xb5,   0xb6,   0xb7,
+    0xb8,    0xb9,   0xba,   0xbb,   0xbc,   0xbd,   0xbe,   0xbf,
+    0xc0,    0xc1,   0xc2,   0xc3,   0xc4,   0xc5,   0xc6,   0xc7,
+    0xc8,    0xc9,   0xca,   0xcb,   0xcc,   0xcd,   0xce,   0xcf,
+    0xd0,    0xd1,   0xd2,   0xd3,   0xd4,   0xd5,   0xd6,   0xd7,
+    0xd8,    0xd9,   0xda, TH_ERR, TH_ERR, TH_ERR, TH_ERR,   0xdf,
+    0xe0,    0xe1,   0xe2,   0xe3,   0xe4,   0xe5,   0xe6,   0xe7,
+    0xe8,    0xe9,   0xea,   0xeb,   0xec,   0xed,   0xee,   0xef,
+    0xf0,    0xf1,   0xf2,   0xf3,   0xf4,   0xf5,   0xf6,   0xf7,
+    0xf8,    0xf9,   0xfa,   0xfb, TH_ERR, TH_ERR, TH_ERR, TH_ERR,
+  TH_ERR,  TH_ERR, TH_ERR, TH_ERR, TH_ERR, TH_ERR, TH_ERR, TH_ERR,
+  TH_ERR,  TH_ERR, TH_ERR, TH_ERR, TH_ERR, TH_ERR, TH_ERR, TH_ERR,
+  TH_ERR,  TH_ERR, TH_ERR, TH_ERR, TH_ERR, TH_ERR, TH_ERR, TH_ERR,
+  TH_ERR,  TH_ERR, TH_ERR, TH_ERR, TH_ERR, TH_ERR, TH_ERR, TH_ERR
+};
+
+static thwchar_t tis620_1_uni_map[128] = {
     0x00ab, 0x00bb, 0x2026, 0xf88c, 0xf88f, 0xf892, 0xf895, 0xf898,
     0xf88b, 0xf88e, 0xf891, 0xf894, 0xf897, 0x201c, 0x201d, 0xf899,
     WC_ERR, 0x2022, 0xf884, 0xf889, 0xf885, 0xf886, 0xf887, 0xf888,
@@ -47,7 +66,7 @@ static thwchar_t tis620_1_uni_map[224] = {
     0x0e58, 0x0e59, 0x00ae, 0x00a9, WC_ERR, WC_ERR, WC_ERR, WC_ERR
 };
 
-static thwchar_t tis620_2_uni_map[224] = {
+static thwchar_t tis620_2_uni_map[128] = {
     0xf700, 0xf701, 0xf702, 0xf703, 0xf704, 0x2026, 0xf705, 0xf706,
     0xf707, 0xf708, 0xf709, 0xf70a, 0xf70b, 0xf70c, 0xf70d, 0xf70e,
     0xf70f, 0x2018, 0x2019, 0x201c, 0x201d, 0x2022, 0x2013, 0x2014,
@@ -69,23 +88,74 @@ static thwchar_t tis620_2_uni_map[224] = {
 thwchar_t th_tis2uni(thchar_t c)
 {
     return (c < 0x80) ? (thwchar_t)c : tis620_0_uni_map[c-0x80];
-}
+};
+
+int th_tis2uni_line(const thchar_t* s, thwchar_t* result, size_t n) {
+  int outputLength, minValue;
+  int resultLength, i;
+
+  outputLength = strlen(s);
+  resultLength = n;
+
+  // choose the minimum value
+  if (outputLength < n){
+    minValue = outputLength;
+  } else {
+  minValue = n;
+  };
+
+  // Loop creating the output
+  for (i = 0 ; i < minValue ; i++) {
+    result[i] = th_tis2uni(s[i]);
+  };
+  result[minValue] = 0;
+  return outputLength;
+};
 
 thwchar_t th_winthai2uni(thchar_t c)
 {
     return (c < 0x80) ? (thwchar_t)c : tis620_2_uni_map[c-0x80];
-}
+};
 
 thwchar_t th_macthai2uni(thchar_t c)
 {
     return (c < 0x80) ? (thwchar_t)c : tis620_1_uni_map[c-0x80];
-}
+};
 
 
 thchar_t th_uni2tis(thwchar_t c)
 {
-    // FIXME
-    return 0;
+  if ( c < 0x0080 ) { 
+    // BASIC_LATIN range
+    return (thchar_t) c ;
+  } else if ( c <= 0x0E7F && c >= 0x0e00 ) {
+    // THAI range
+    return uni_tis620_0_map[c-0x0e00];
+  } else {
+    // out of range
+    return TH_ERR;
+  }
+};
+
+int th_uni2tis_line(const thwchar_t* s, thchar_t* result, size_t n) {
+  int outputLength, minValue;
+  int resultLength, i;
+ 
+  outputLength = wcslen(s);
+  resultLength = n;
+  // choose the minimum value
+  if (outputLength < n){
+    minValue = outputLength;
+  } else {
+  minValue = n;
+  };
+ 
+  // Loop creating the output
+  for (i = 0 ; i < minValue ; i++) {
+    result[i] = th_uni2tis(s[i]);
+  };
+  result[minValue] = 0;
+  return outputLength;
 }
 
 thchar_t th_uni2winthai(thwchar_t c)
