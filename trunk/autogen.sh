@@ -137,12 +137,5 @@ do
   fi
 done
 
-#conf_flags="--enable-maintainer-mode --enable-compile-warnings" #--enable-iso-c
+echo "You can run ./configure now"
 
-if test x$NOCONFIGURE = x; then
-  echo Running $srcdir/configure $conf_flags "$@" ...
-  $srcdir/configure $conf_flags "$@" \
-  && echo Now type \`make\' to compile $PKG_NAME
-else
-  echo Skipping configure process.
-fi
