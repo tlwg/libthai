@@ -1,10 +1,11 @@
-# $Id: Makefile.am,v 1.4 2001-08-04 13:04:49 thep Exp $
+# $Id: Makefile.am,v 1.5 2001-08-08 12:39:18 thep Exp $
 libthaiincludedir = $(includedir)/thai
 libthaiinclude_HEADERS = \
 	thailib.h \
 	thctype.h \
 	thstr.h \
 	thcoll.h \
+	thcell.h \
 	thinp.h \
 	thrend.h \
 	thbrk.h \
