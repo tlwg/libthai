@@ -2,7 +2,7 @@
  * based on cttex by Vuthichai A. (vuthi@[crtl.titech.ac.jp|linux.thai.net])
 
  * Created 2001-07-15
- * $Id: thbrk.c,v 1.2 2001-07-16 10:54:05 thep Exp $ 
+ * $Id: thbrk.c,v 1.3 2001-07-22 21:32:07 ott Exp $ 
  */
 
 /* Maximum length of input line */
@@ -96,11 +96,14 @@ void th_brk_init() {
   firstmode = 0;  
 }
 
-int th_brk(const thchar_t *s, int pos[], size_t n) {
+int th_brk(const thchar_t *_s, int pos[], size_t n) {
   unsigned char *out;
   int *myPos;
   unsigned int inputLength, outputLength, numFound;
   unsigned int i, minValue;
+  unsigned char* s;
+
+  s = (unsigned char*)  _s;
 
   // Call the constructor
   th_brk_init();
@@ -795,6 +798,9 @@ void clear_stack()
 
 /*
  * $Log: not supported by cvs2svn $
+ * Revision 1.2  2001/07/16 10:54:05  thep
+ * Add automake files for building thbrk.
+ *
  * Revision 1.1  2001/07/15 16:31:54  ott
  * -first version.
  * -wrapper for P'Hui's cttex.
