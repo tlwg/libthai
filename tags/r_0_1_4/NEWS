@@ -1,0 +1,44 @@
+=======================================================================
+RELEASES INFORMATION
+=======================================================================
+
+LibThai 0.1.4 (16 October 2004):
+
+* Handle the rendering of NIKHAHIT and MAITAIKHU for Pali and Kuy,
+  respectively, in which the marks can be in either above or top level.
+* Input sequence validation for NIKHAHIT and MAITAIKHU is improved as well.
+* Render the error case of repeated SARA AM's more gracefully.
+
+LibThai 0.1.3 (22 February 2004):
+
+* Define blank base glyph for floating upper/lower vowels rendering.
+* (Minor modified version as required by pango-libthai binding).
+
+LibThai 0.1.2 (10 September 2003):
+
+* It's still alive!
+* Bug fix & code furnishing
+* conversion functions for Win & Mac extension
+* Some document (man pages)
+* Experiment with GTK+ 2 plug-ins (in separate packages)
+
+LibThai 0.1.1 (14 August 2001):
+
+* WTT-based cell clustering
+* Thai input sequence correction
+* Thai shaping
+
+LibThai 0.1.0 (4 August 2001):
+
+* First public release, request for comments for API
+* Thai character properties with WTT 2.0 tables
+* Thai string collation (bilingual)
+* Thai string normalization
+* WTT-based input sequence checking
+* Thai Word breaking (cttex)
+* Conversion between TIS-620 and Unicode
+* All implementations not yet completed
+
+=======================================================================
+See ChangeLog file for more details.
+
