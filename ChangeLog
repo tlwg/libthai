@@ -1,3 +1,48 @@
+2001-07-25 Wednesday 04:31  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* include/thai/thbrk.h (1.3), src/thbrk/test_thbrk.c (1.4),
+	src/thbrk/thbrk.c (1.4): -modified the th_brk_line to accept
+	cutCode as char* instead of int.  -modified according to the
+	changed interface the test program.
+
+2001-07-24 Tuesday 21:23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* Makefile.am (1.3), configure.in (1.6), libthai.pc.in (1.1): Add
+	pkg-config metadata.
+
+2001-07-24 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* autogen.sh (1.3): Remove ineffective warning message about
+	'configure'.
+
+2001-07-24 Tuesday 20:00  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/.cvsignore (1.1), include/thai/.cvsignore (1.1),
+	src/.cvsignore (1.1), src/thbrk/.cvsignore (1.2),
+	src/thcoll/.cvsignore (1.1), src/thctype/.cvsignore (1.1),
+	tests/.cvsignore (1.1): Add .cvsignore to subdirs.
+
+2001-07-24 Tuesday 19:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* COPYING (1.3), src/thbrk/Makefile (1.3): Change license to LGPL.
+	Remove excessive Makefile.
+
+2001-07-24 Tuesday 19:49  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* autogen.sh (1.2), configure.in (1.5), src/thbrk/Makefile (1.2):
+	Remove 'configure' invoking from autogen.sh, output some message.
+
+2001-07-24 Tuesday 19:41  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* .cvsignore (1.2), COPYING (1.2), ChangeLog (1.8), INSTALL (1.2),
+	Makefile.in (1.7), aclocal.m4 (1.3), config.guess (1.2), config.sub
+	(1.2), configure (1.4), install-sh (1.2), ltmain.sh (1.2), missing
+	(1.2), mkinstalldirs (1.2), include/Makefile.in (1.6),
+	include/thai/Makefile.in (1.6), src/Makefile.in (1.6),
+	src/thbrk/Makefile.in (1.6), src/thcoll/Makefile.in (1.6),
+	src/thctype/Makefile.in (1.5), tests/Makefile.in (1.6): Remove
+	autotool-generated files.
+
 2001-07-24 Tuesday 19:31  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* .cvsignore (1.1), Makefile.in (1.6), autogen.sh (1.1),
@@ -122,13 +167,13 @@
 
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2),
 	include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
-	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.8 2001-07-24 12:41:18 thep Exp $
+	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.9 2001-07-25 02:11:02 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2), src/thcoll/cweight.h (1.2),
 	src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2),
-	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.8 2001-07-24 12:41:18 thep Exp $
+	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.9 2001-07-25 02:11:02 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
