@@ -10,7 +10,7 @@
 # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 # PARTICULAR PURPOSE.
 
-# $Id: Makefile.in,v 1.1 2001-07-16 10:54:04 thep Exp $
+# $Id: Makefile.in,v 1.2 2001-07-17 03:55:00 thep Exp $
 
 
 SHELL = @SHELL@
@@ -96,7 +96,7 @@ libthbrk_la_SOURCES = map.c map.h thbrk.c
 cttex_SOURCES = map.c cttex.c
 
 test_thbrk_SOURCES = test_thbrk.c
-test_thbrk_LDADD = $(top_builddir)/src/thbrk/libthbrk.la
+test_thbrk_LDADD = libthbrk.la
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES = 
 LTLIBRARIES =  $(noinst_LTLIBRARIES)
@@ -119,7 +119,7 @@ cttex_LDADD = $(LDADD)
 cttex_DEPENDENCIES = 
 cttex_LDFLAGS = 
 test_thbrk_OBJECTS =  test_thbrk.$(OBJEXT)
-test_thbrk_DEPENDENCIES =  $(top_builddir)/src/thbrk/libthbrk.la
+test_thbrk_DEPENDENCIES =  libthbrk.la
 test_thbrk_LDFLAGS = 
 dict2state_OBJECTS =  dict2state.$(OBJEXT)
 dict2state_LDADD = $(LDADD)
@@ -458,13 +458,13 @@ mostlyclean-generic distclean-generic clean-generic \
 maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 
 
-map.h: tdict.txt $(top_builddir)/src/thbrk/dict2state
+map.h: tdict.txt dict2state
 	$(top_builddir)/src/thbrk/dict2state \
 		$(top_srcdir)/src/thbrk/tdict.txt \
 		$(top_srcdir)/src/thbrk/map.c \
 		$(top_srcdir)/src/thbrk/map.h
 
-map.c: tdict.txt $(top_builddir)/src/thbrk/dict2state
+map.c: tdict.txt dict2state
 	$(top_builddir)/src/thbrk/dict2state \
 		$(top_srcdir)/src/thbrk/tdict.txt \
 		$(top_srcdir)/src/thbrk/map.c \
