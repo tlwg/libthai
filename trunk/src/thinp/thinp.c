@@ -1,5 +1,5 @@
 /*
- * $Id: thinp.c,v 1.5 2001-08-08 17:52:10 thep Exp $
+ * $Id: thinp.c,v 1.6 2001-08-08 17:57:22 thep Exp $
  * thinp.c - Thai string input sequence filtering
  * Created: 2001-08-04
  */
@@ -51,7 +51,7 @@ static int correct(thchar_t c_1, thchar_t c, thchar_t conv[3])
     return 0;
 }
 
-int th_validate(struct thcell context, thchar_t c, struct thinpconv_t *conv)
+int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
 {
     thchar_t prev_c = context.top ?
                           context.top :

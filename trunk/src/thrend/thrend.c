@@ -1,5 +1,5 @@
 /*
- * $Id: thrend.c,v 1.5 2001-08-08 12:39:19 thep Exp $
+ * $Id: thrend.c,v 1.6 2001-08-08 17:57:22 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-08-06
  */
@@ -62,7 +62,7 @@ static const ThaiShapeTable Win_shape_table = {
 };
 
 static
-int th_render_cell(struct thcell cell,
+int th_render_cell(struct thcell_t cell,
                    thglyph_t res[], size_t res_sz,
                    int is_decomp_am,
                    const ThaiShapeTable *tbl)
@@ -113,7 +113,7 @@ int th_render_cell(struct thcell cell,
     return res_sz - left;
 }
 
-int th_render_cell_tis(struct thcell cell,
+int th_render_cell_tis(struct thcell_t cell,
                        thglyph_t res[], size_t res_sz,
                        int is_decomp_am)
 {
@@ -133,14 +133,14 @@ int th_render_cell_tis(struct thcell cell,
     return res_sz - left;
 }
 
-int th_render_cell_win(struct thcell cell,
+int th_render_cell_win(struct thcell_t cell,
                        thglyph_t res[], size_t res_sz,
                        int is_decomp_am)
 {
     return th_render_cell(cell, res, res_sz, is_decomp_am, &Win_shape_table);
 }
 
-int th_render_cell_mac(struct thcell cell,
+int th_render_cell_mac(struct thcell_t cell,
                        thglyph_t res[], size_t res_sz,
                        int is_decomp_am)
 {
@@ -151,13 +151,13 @@ static
 int th_render_text(const thchar_t *s,
                    thglyph_t res[], size_t res_sz,
                    int is_decomp_am,
-                   int (*cell_rend_fn)(struct thcell, thglyph_t[], size_t, int))
+                   int (*cell_rend_fn)(struct thcell_t, thglyph_t[], size_t, int))
 {
     size_t left = res_sz;
     int len = strlen((const char*)s);
 
     while (left > 0 && len > 0) {
-        struct thcell cell;
+        struct thcell_t cell;
         size_t nchars = 0;
         int    nglyphs = 0;
 

@@ -1,5 +1,5 @@
 /*
- * $Id: thinp.h,v 1.7 2001-08-08 17:52:10 thep Exp $
+ * $Id: thinp.h,v 1.8 2001-08-08 17:57:22 thep Exp $
  * thinp.h - Thai string input sequence filtering
  * Created: 2001-05-17
  */
@@ -39,7 +39,7 @@ struct thinpconv_t {
  * Returns: 0 if the input is to be rejected
  *          non-zero otherwise.
  */
-extern int th_validate(struct thcell context, thchar_t c,
+extern int th_validate(struct thcell_t context, thchar_t c,
                        struct thinpconv_t *conv);
 
 END_CDECL
