@@ -2,6 +2,14 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.2 (10 September 2003):
+
+* It's still alive!
+* Bug fix & code furnishing
+* conversion functions for Win & Mac extension
+* Some document (man pages)
+* Experiment with GTK+ 2 plug-ins (in separate packages)
+
 LibThai 0.1.1 (14 August 2001):
 
 * WTT-based cell clustering
