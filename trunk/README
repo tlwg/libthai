@@ -1,7 +1,7 @@
 General Information
 ===================
 
-This is LibThai version 0.1.0. 
+This is LibThai version 0.1.0 (see NEWS for release information).
 
 LibThai is a set of Thai language support routines aimed to ease
 developers' tasks to incorporate Thai language support in their
@@ -33,21 +33,3 @@ License
 
 LibThai is copyrighted by its authors and licensed under terms of the
 GNU Lesser Public License (LGPL) - see file COPYING for details.
-
-=======================================================================
-RELEASES INFORMATION
-=======================================================================
-
-0.1.0 	4 August 2001	-First public release, request for comments 
-			 for API. Word breaking function works. 
-			 All implementations not yet completed.
-=======================================================================
-See ChangeLog file for updated changes detail.
-
-
-
-
-
-
-
-
