@@ -2,7 +2,7 @@
  * based on cttex by Vuthichai A. (vuthi@[crtl.titech.ac.jp|linux.thai.net])
 
  * Created 2001-07-15
- * $Id: thwbrk.c,v 1.4 2001-08-04 14:45:50 ott Exp $
+ * $Id: thwbrk.c,v 1.5 2001-08-04 15:26:49 ott Exp $
  */
 
 #include <stdio.h>
@@ -62,7 +62,7 @@ int th_wbrk_line(const thwchar_t *in, thwchar_t *_out, size_t n, const thwchar_t
   };
   
   /* malloc for tis620-0output cut string */
-  tis620_0_outLength =  2 * strlen(tis620_0_string);
+  tis620_0_outLength =  2 * strlen( (char*) tis620_0_string);
   tis620_0_out = malloc( tis620_0_outLength+1);
   
   /* Do word cut */
