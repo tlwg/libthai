@@ -4,6 +4,7 @@ Makefile
 Makefile.in
 out.txt
 test_thctype
+test_thstr
 test_thwchar
 thsort
 test_thbrk

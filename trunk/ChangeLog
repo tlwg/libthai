@@ -1,3 +1,21 @@
+2001-08-01 Wednesday 20:13  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thwbrk/thwbrk.c (1.3): -new implementation, not convert
+	cutCode to tis620 back and forth
+
+2001-08-01 Wednesday 05:21  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* tests/test_thbrk.c (1.2): -cosmetic on error messages
+
+2001-08-01 Wednesday 05:20  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thbrk/thbrk.c (1.5): -fix const casting problem
+
+2001-07-31 Tuesday 22:03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.13), src/thwbrk/thwbrk.c (1.2), tests/test_thwbrk.c
+	(1.2): Fix changes affected by the revised thwchar.
+
 2001-07-31 Tuesday 22:01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thwchar/thwchar.c (1.3): Revise thwchar.
@@ -247,13 +265,13 @@
 
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2),
 	include/thai/Makefile.am (1.2), src/Makefile.am (1.2),
-	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.13 2001-07-31 15:03:06 thep Exp $
+	src/thcoll/Makefile.am (1.2), tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.14 2001-08-03 10:51:51 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2), src/thcoll/cweight.h (1.2),
 	src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2),
-	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.13 2001-07-31 15:03:06 thep Exp $
+	tests/thsort.c (1.2): Add $Id: ChangeLog,v 1.14 2001-08-03 10:51:51 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
