@@ -1,4 +1,4 @@
-# $Id: configure.in,v 1.6 2001-07-24 14:23:59 thep Exp $
+# $Id: configure.in,v 1.7 2001-07-27 10:43:07 thep Exp $
 # Process this file with autoconf to produce a configure script.
 AC_INIT(include/thai/thailib.h)
 AM_INIT_AUTOMAKE(libthai, 0.1.1)
@@ -33,6 +33,7 @@ AC_OUTPUT(
   src/thctype/Makefile
   src/thcoll/Makefile
   src/thbrk/Makefile
+  src/thwchar/Makefile
   tests/Makefile
 )
 
