@@ -1,5 +1,5 @@
 /*
- * $Id: test_thrend.c,v 1.1 2001-08-10 11:07:30 thep Exp $
+ * $Id: test_thrend.c,v 1.2 2004-02-22 15:51:46 thep Exp $
  * test_thrend.c : Test suite for <thai/thrend.h> functions
  * Created: 2001-08-10
  * Author:  Theppitak Karoonboonyanan
@@ -10,12 +10,12 @@
 #include <stdio.h>
 
 static const thchar_t test_msg[] = "พ่อปู่พี่ปี่ฎุฐุญุกำปำก้ำป้ำปำ้ท่ีก็ป็";
-static const thchar_t ans_tis[] = "พ่อปู่พี่ปี่ฎุฐุญุกําปํากํ้าปํ้าปํา ้ท่ ีก็ป็";
-static const thchar_t ans_tis_nd[] = "พ่อปู่พี่ปี่ฎุฐุญุกำปำก้ำป้ำปำ ้ท่ ีก็ป็";
-static const thglyph_t ans_win_nd[] = "พ\x8bอปู\x86พี่ป\x82\x9bฎ\xfc\x80ุ\x90ุกำปำก\x8cำป\x87ำปำ \x8cท\x8b ีก็ป\x9a";
-static const thglyph_t ans_win[] = "พ\x8bอปู\x86พี่ป\x82\x9bฎ\xfc\x80ุ\x90ุกําป\x99ากํ้าป\x99\x9cาป\x99า \x8cท\x8b ีก็ป\x9a";
-static const thglyph_t ans_mac_nd[] = "พ\x88อปู\x83พี่ป\x95\x98ฎ\xd8\xb0ุ\xadุกำปำก\x89ำป\x84ำปำ \x89ท\x88 ีก็ป\x93";
-static const thglyph_t ans_mac[] = "พ\x88อปู\x83พี่ป\x95\x98ฎ\xd8\xb0ุ\xadุกําป\x8fากํ้าป\x8f\x99าป\x8fา \x89ท\x88 ีก็ป\x93";
+static const thchar_t ans_tis[] = "พ่อปู่พี่ปี่ฎุฐุญุกําปํากํ้าปํ้าปํา\xdd้ท่\xddีก็ป็";
+static const thchar_t ans_tis_nd[] = "พ่อปู่พี่ปี่ฎุฐุญุกำปำก้ำป้ำปำ\xdd้ท่\xddีก็ป็";
+static const thglyph_t ans_win_nd[] = "พ\x8bอปู\x86พี่ป\x82\x9bฎ\xfc\x80ุ\x90ุกำปำก\x8cำป\x87ำปำ\xdd\x8cท\x8b\xddีก็ป\x9a";
+static const thglyph_t ans_win[] = "พ\x8bอปู\x86พี่ป\x82\x9bฎ\xfc\x80ุ\x90ุกําป\x99ากํ้าป\x99\x9cาป\x99า\xdd\x8cท\x8b\xddีก็ป\x9a";
+static const thglyph_t ans_mac_nd[] = "พ\x88อปู\x83พี่ป\x95\x98ฎ\xd8\xb0ุ\xadุกำปำก\x89ำป\x84ำปำ\xdd\x89ท\x88\xddีก็ป\x93";
+static const thglyph_t ans_mac[] = "พ\x88อปู\x83พี่ป\x95\x98ฎ\xd8\xb0ุ\xadุกําป\x8fากํ้าป\x8f\x99าป\x8fา\xdd\x89ท\x88\xddีก็ป\x93";
 
 int test_th_render_tis()
 {
