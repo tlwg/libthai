@@ -1,5 +1,5 @@
 /*
- * $Id: thctype.c,v 1.6 2001-08-04 13:57:06 thep Exp $
+ * $Id: thctype.c,v 1.7 2001-08-07 09:12:58 thep Exp $
  * thctype.c - Thai character classifications
  * Created: 2001-06-13
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -16,10 +16,10 @@
 #define  _epunct   (_th_IStis|_th_ISpunct)
 #define  _tdigit   (_th_IStis|_th_ISdigit)
 #define  _tcons    (_th_IStis|_th_IScons)
-#define  _tflvowel (_th_IStis|_th_ISvowel|_th_VCflvowel)
-#define  _tldvowel (_th_IStis|_th_ISvowel|_th_VCldvowel)
-#define  _tupvowel (_th_IStis|_th_ISvowel|_th_VCupvowel)
-#define  _tblvowel (_th_IStis|_th_ISvowel|_th_VCblvowel)
+#define  _tflvowel (_th_IStis|_th_VCflvowel)
+#define  _tldvowel (_th_IStis|_th_VCldvowel)
+#define  _tupvowel (_th_IStis|_th_VCupvowel)
+#define  _tblvowel (_th_IStis|_th_VCblvowel)
 #define  _ttone    (_th_IStis|_th_IStone)
 #define  _tdiac    (_th_IStis|_th_ISdiac)
 #define  _tpunct   (_th_IStis|_th_ISpunct)
@@ -198,10 +198,10 @@ const unsigned short _th_ctype_tbl[] = {
 /* aa ª */  _tcons,
 /* ab « */  _tcons,
 /* ac ¬ */  _tcons,
-/* ad ­ */  _tcons,
-/* ae ® */  _tcons,
-/* af ¯ */  _tcons,
-/* b0 ° */  _tcons,
+/* ad ­ */  _tcons|_th_CCundersplit,
+/* ae ® */  _tcons|_th_CCundershoot,
+/* af ¯ */  _tcons|_th_CCundershoot,
+/* b0 ° */  _tcons|_th_CCundersplit,
 /* b1 ± */  _tcons,
 /* b2 ² */  _tcons,
 /* b3 ³ */  _tcons,
@@ -212,11 +212,11 @@ const unsigned short _th_ctype_tbl[] = {
 /* b8 ¸ */  _tcons,
 /* b9 ¹ */  _tcons,
 /* ba º */  _tcons,
-/* bb » */  _tcons,
+/* bb » */  _tcons|_th_CCovershoot,
 /* bc ¼ */  _tcons,
-/* bd ½ */  _tcons,
+/* bd ½ */  _tcons|_th_CCovershoot,
 /* be ¾ */  _tcons,
-/* bf ¿ */  _tcons,
+/* bf ¿ */  _tcons|_th_CCovershoot,
 /* c0 À */  _tcons,
 /* c1 Á */  _tcons,
 /* c2 Â */  _tcons,
@@ -229,7 +229,7 @@ const unsigned short _th_ctype_tbl[] = {
 /* c9 É */  _tcons,
 /* ca Ê */  _tcons,
 /* cb Ë */  _tcons,
-/* cc Ì */  _tcons,
+/* cc Ì */  _tcons|_th_CCovershoot,
 /* cd Í */  _tcons,
 /* ce Î */  _tcons,
 /* cf Ï */  _tpunct,
@@ -556,6 +556,11 @@ const int _th_chlevel_tbl[] = {
 #undef th_isthdigit
 #undef th_isthpunct
 
+#undef th_istaillesscons
+#undef th_isovershootcons
+#undef th_isundershootcons
+#undef th_isundersplitcons
+
 #undef th_isldvowel
 #undef th_isflvowel
 #undef th_isupvowel
@@ -577,11 +582,25 @@ int th_isthdiac(thchar_t c)   { return _th_isctype(c, _th_ISdiac); }
 int th_isthdigit(thchar_t c)  { return _th_isctype(c, _th_ISdigit); }
 int th_isthpunct(thchar_t c)  { return _th_isctype(c, _th_ISpunct); }
 
+/* Thai consonant shapes classification */
+int th_istaillesscons(thchar_t c)
+{ return _th_isbits(c, _th_CClassMsk, _th_CCtailless); }
+int th_isovershootcons(thchar_t c)
+{ return _th_isbits(c, _th_CClassMsk, _th_CCovershoot); }
+int th_isundershootcons(thchar_t c)
+{ return _th_isbits(c, _th_CClassMsk, _th_CCundershoot); }
+int th_isundersplitcons(thchar_t c)
+{ return _th_isbits(c, _th_CClassMsk, _th_CCundersplit); }
+
 /* Thai vowel classification */
-int th_isldvowel(thchar_t c) { return _th_isbits(c, _th_VClassMsk, _th_VCldvowel); }
-int th_isflvowel(thchar_t c) { return _th_isbits(c, _th_VClassMsk, _th_VCflvowel); }
-int th_isupvowel(thchar_t c) { return _th_isbits(c, _th_VClassMsk, _th_VCupvowel); }
-int th_isblvowel(thchar_t c) { return _th_isbits(c, _th_VClassMsk, _th_VCblvowel); }
+int th_isldvowel(thchar_t c)
+{ return _th_isbits(c, _th_VClassMsk, _th_VCldvowel); }
+int th_isflvowel(thchar_t c)
+{ return _th_isbits(c, _th_VClassMsk, _th_VCflvowel); }
+int th_isupvowel(thchar_t c)
+{ return _th_isbits(c, _th_VClassMsk, _th_VCupvowel); }
+int th_isblvowel(thchar_t c)
+{ return _th_isbits(c, _th_VClassMsk, _th_VCblvowel); }
 
 /*
  * For rendering :
