@@ -38,8 +38,9 @@ GNU Lesser Public License (LGPL) - see file COPYING for details.
 RELEASES INFORMATION
 =======================================================================
 
-0.1.0 	4 August 2001	-First public release
-
+0.1.0 	4 August 2001	-First public release, request for comments 
+			 for API. Word breaking function works. 
+			 All implementations not yet completed.
 =======================================================================
 See ChangeLog file for updated changes detail.
 
