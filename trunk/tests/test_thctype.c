@@ -1,5 +1,5 @@
 /*
- * $Id: test_thctype.c,v 1.1 2001-07-31 13:51:09 thep Exp $
+ * $Id: test_thctype.c,v 1.2 2001-08-07 09:12:59 thep Exp $
  * test_thctype.c : Test bed for <thai/thctype.h> functions
  * Created: 2001-07-31
  * Author:  Theppitak Karoonboonyanan
@@ -27,6 +27,25 @@ const struct char_range eng_ranges[] = {
 
 const struct char_range thcons_ranges[] = {
     { 0xa1, 0xc3 }, { 0xc5, 0xc5 }, { 0xc7, 0xce }, { 0, 0 }
+};
+
+const struct char_range tlcons_ranges[] = {
+    { 0xa1, 0xac }, { 0xb1, 0xba }, { 0xbc, 0xbc }, { 0xbe, 0xbe },
+    { 0xc0, 0xc3 }, { 0xc5, 0xc5 }, { 0xc7, 0xcb }, { 0xcd, 0xce },
+    { 0, 0 }
+};
+
+const struct char_range oscons_ranges[] = {
+    { 0xbb, 0xbb }, { 0xbd, 0xbd }, { 0xbf, 0xbf }, { 0xcc, 0xcc },
+    { 0, 0 }
+};
+
+const struct char_range uscons_ranges[] = {
+    { 0xae, 0xaf }, { 0, 0 }
+};
+
+const struct char_range spcons_ranges[] = {
+    { 0xad, 0xad }, { 0xb0, 0xb0 }, { 0, 0 }
 };
 
 const struct char_range thvowel_ranges[] = {
@@ -120,6 +139,10 @@ int main()
     err_code += test_bool_funcs(thdiac_ranges, th_isthdiac);
     err_code += test_bool_funcs(thdigit_ranges, th_isthdigit);
     err_code += test_bool_funcs(thpunct_ranges, th_isthpunct);
+    err_code += test_bool_funcs(tlcons_ranges, th_istaillesscons);
+    err_code += test_bool_funcs(oscons_ranges, th_isovershootcons);
+    err_code += test_bool_funcs(uscons_ranges, th_isundershootcons);
+    err_code += test_bool_funcs(spcons_ranges, th_isundersplitcons);
     err_code += test_bool_funcs(ldvowel_ranges, th_isldvowel);
     err_code += test_bool_funcs(flvowel_ranges, th_isflvowel);
     err_code += test_bool_funcs(upvowel_ranges, th_isupvowel);
