@@ -1,12 +1,13 @@
 /*
- * $Id: wtt.c,v 1.1 2001-08-04 13:04:49 thep Exp $
+ * $Id: wtt.c,v 1.2 2001-08-22 04:41:29 thep Exp $
  * wtt.h - WTT I/O implementation
  * Created: 2001-08-04
+ * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
  */
 
 #include <thai/wtt.h>
 
-short _TACchtype[256] = {
+short TACchtype_[256] = {
     CTRL, CTRL, CTRL, CTRL, CTRL, CTRL, CTRL, CTRL,  /*  0 -  7 */
     CTRL, CTRL, CTRL, CTRL, CTRL, CTRL, CTRL, CTRL,  /*  8 - 15 */
     CTRL, CTRL, CTRL, CTRL, CTRL, CTRL, CTRL, CTRL,  /* 16 - 23 */
@@ -42,7 +43,7 @@ short _TACchtype[256] = {
 };
 
 /* Table for Thai Cell Manipulation */
-short _TACio_op[17][17] = {
+short TACio_op_[17][17] = {
       /* Table 2: WTT I/O sequence check rules */
       /* row: leading char,  column: following char */
 /* CTRL NON CONS LV FV1 FV2 FV3 BV1 BV2 BD TONE AD1 AD2 AD3 AV1 AV2 AV3 */
@@ -70,11 +71,11 @@ short _TACio_op[17][17] = {
 
 int TACchtype(thchar_t c)
 {
-    return _TACchtype[c];
+    return TACchtype_[c];
 }
 
 int TACio_op(thchar_t c1, thchar_t c2)
 {
-    return _TACio_op[_TACchtype[c1]][_TACchtype[c2]];
+    return TACio_op_[TACchtype_[c1]][TACchtype_[c2]];
 }
 

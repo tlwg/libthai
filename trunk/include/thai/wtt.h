@@ -1,5 +1,5 @@
 /*
- * $Id: wtt.h,v 1.1 2001-08-04 13:04:49 thep Exp $
+ * $Id: wtt.h,v 1.2 2001-08-22 04:41:28 thep Exp $
  * wtt.h - WTT I/O implementation
  * Created: 2001-08-04
  */
@@ -46,11 +46,11 @@ extern int TACio_op(thchar_t c1, thchar_t c2);
  * implementation parts
  */
 
-extern short _TACchtype[256];
-extern short _TACio_op[17][17];
+extern short TACchtype_[256];
+extern short TACio_op_[17][17];
 
-#define TACchtype(c)     (_TACchtype[c])
-#define TACio_op(c1, c2) (_TACio_op[TACchtype(c1)][TACchtype(c2)])
+#define TACchtype(c)     (TACchtype_[c])
+#define TACio_op(c1, c2) (TACio_op_[TACchtype(c1)][TACchtype(c2)])
 
 END_CDECL
 

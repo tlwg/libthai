@@ -1,7 +1,8 @@
 /*
- * $Id: thrend.c,v 1.9 2001-08-10 11:09:47 thep Exp $
+ * $Id: thrend.c,v 1.10 2001-08-22 04:41:29 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-08-06
+ * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
  */
 
 #include <thai/thrend.h>
@@ -28,7 +29,7 @@ typedef struct {
 /*
  * No adjusted vowel/tonemark glyphs (tis620-0)
  */
-static const ThaiShapeTable tis620_0_shape_table = {
+static const ThaiShapeTable tis620_0_shape_table_ = {
     { 0xE7, 0xE8, 0xE9, 0xEA, 0xEB, 0xEC, 0xED, 0xEE },
     { 0xE7, 0xE8, 0xE9, 0xEA, 0xEB, 0xEC, 0xED, 0xEE },
     { 0xE7, 0xE8, 0xE9, 0xEA, 0xEB, 0xEC, 0xED, 0xEE },
@@ -40,7 +41,7 @@ static const ThaiShapeTable tis620_0_shape_table = {
 /*
  * Macintosh
  */
-static const ThaiShapeTable Mac_shape_table = {
+static const ThaiShapeTable Mac_shape_table_ = {
     { 0xE7, 0x88, 0x89, 0x8A, 0x8B, 0x8C, 0xED, 0xEE },
     { 0x93, 0x83, 0x84, 0x85, 0x86, 0x87, 0x8F, 0xEE },
     { 0x93, 0x98, 0x99, 0x9A, 0x9B, 0x9C, 0x8F, 0xEE },
@@ -52,7 +53,7 @@ static const ThaiShapeTable Mac_shape_table = {
 /*
  * Microsoft Window
  */
-static const ThaiShapeTable Win_shape_table = {
+static const ThaiShapeTable Win_shape_table_ = {
     { 0xE7, 0x8B, 0x8C, 0x8D, 0x8E, 0x8F, 0xED, 0xEE },
     { 0x9A, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x99, 0xEE },
     { 0x9A, 0x9B, 0x9C, 0x9D, 0x9E, 0x9F, 0x99, 0xEE },
@@ -62,10 +63,10 @@ static const ThaiShapeTable Win_shape_table = {
 };
 
 static
-int th_render_cell(struct thcell_t cell,
-                   thglyph_t res[], size_t res_sz,
-                   int is_decomp_am,
-                   const ThaiShapeTable *tbl)
+int th_render_cell_(struct thcell_t cell,
+                    thglyph_t res[], size_t res_sz,
+                    int is_decomp_am,
+                    const ThaiShapeTable *tbl)
 {
     size_t left = res_sz;
 
@@ -84,8 +85,8 @@ int th_render_cell(struct thcell_t cell,
         else if (is_decomp_am) { c = NIKHAHIT; }
         if (c) {
             if (th_isovershootcons(cell.base) && th_chlevel(c) > 0) {
-		if (th_isupvowel(c)) { c = shiftleft_av(c, tbl); }
-		else { c = shiftleft_tone_ad(c, tbl); }
+		c = th_isupvowel(c) ? shiftleft_av(c, tbl)
+		                    : shiftleft_tone_ad(c, tbl);
             } else if (th_isundershootcons(cell.base) && th_chlevel(c) < 0) {
                 c = shiftdown_bv_bd(c, tbl);
             }
@@ -138,14 +139,14 @@ int th_render_cell_win(struct thcell_t cell,
                        thglyph_t res[], size_t res_sz,
                        int is_decomp_am)
 {
-    return th_render_cell(cell, res, res_sz, is_decomp_am, &Win_shape_table);
+    return th_render_cell_(cell, res, res_sz, is_decomp_am, &Win_shape_table_);
 }
 
 int th_render_cell_mac(struct thcell_t cell,
                        thglyph_t res[], size_t res_sz,
                        int is_decomp_am)
 {
-    return th_render_cell(cell, res, res_sz, is_decomp_am, &Mac_shape_table);
+    return th_render_cell_(cell, res, res_sz, is_decomp_am, &Mac_shape_table_);
 }
 
 static
