@@ -1,12 +1,13 @@
 /* Test driver for thwbrk 
  *
- * $Id: test_thwbrk.c,v 1.3 2001-08-04 15:11:35 ott Exp $
+ * $Id: test_thwbrk.c,v 1.4 2004-10-12 09:27:19 thep Exp $
  */
 
 #define MAXLINELENGTH 1000
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <thai/thbrk.h>
 #include <thai/thwchar.h>
 #include <thai/thwbrk.h>

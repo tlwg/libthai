@@ -1,12 +1,13 @@
 /* Test driver for thwchar
  *
- * $Id: test_thwchar.c,v 1.4 2001-09-30 11:49:00 thep Exp $
+ * $Id: test_thwchar.c,v 1.5 2004-10-12 09:27:19 thep Exp $
  */
 
 #define MAXLINELENGTH 1000
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <thai/thwchar.h>
 
 static const thchar_t win_sample[] = "æ\x8bÕªŸ\x86æ’Ëª\x82\x9bÆ\xfc\x80ÿ\x90ÿ°Ì“ª\x99“°ÌÈ“ª\x99\x9c“ª\x99“ \x8c∑\x8b ’°Áª\x9a";

@@ -1,5 +1,5 @@
 /*
- * $Id: test_thctype.c,v 1.2 2001-08-07 09:12:59 thep Exp $
+ * $Id: test_thctype.c,v 1.3 2004-10-12 09:27:19 thep Exp $
  * test_thctype.c : Test bed for <thai/thctype.h> functions
  * Created: 2001-07-31
  * Author:  Theppitak Karoonboonyanan
@@ -103,23 +103,27 @@ int test_bool_funcs(const struct char_range ranges[], int (*fn)(thchar_t))
             ++c;
         }
         /* in-range check */
-        if (c <= pRange->end) {
-            do {
-                if (!(*fn)(c)) {
-                    fprintf(stderr, "-%02x ", c);
-                    err_code = 1;
-                }
-            } while (c++ < pRange->end);
+        while (c <= pRange->end) {
+            if (!(*fn)(c)) {
+                fprintf(stderr, "-%02x ", c);
+                err_code = 1;
+            }
+            ++c;
         }
         ++pRange;
     }
-    if (c <= 0xff) {
-        do {
-            if ((*fn)(c)) {
-                fprintf(stderr, "+%02x ", c);
-                err_code = 1;
-            }
-        } while (c++ < 0xff);
+    /* out-of-range check */
+    while (c < 0xff) {
+        if ((*fn)(c)) {
+            fprintf(stderr, "+%02x ", c);
+            err_code = 1;
+        }
+        ++c;
+    }
+    /* 0xff itself */
+    if ((*fn)(c)) {
+        fprintf(stderr, "+%02x ", c);
+        err_code = 1;
     }
     fprintf(stderr, "\n");
 
