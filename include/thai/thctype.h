@@ -1,5 +1,5 @@
 /*
- * $Id: thctype.h,v 1.3 2001-06-13 15:35:21 thep Exp $
+ * $Id: thctype.h,v 1.4 2001-06-15 12:01:18 thep Exp $
  * thctype.h - Thai character classifications
  * Created: 2001-05-17
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -23,6 +23,7 @@ extern int th_iseng(thchar_t c);
 extern int th_isthcons(thchar_t c);
 extern int th_isthvowel(thchar_t c);
 extern int th_isthtone(thchar_t c);
+extern int th_isthdiac(thchar_t c);
 extern int th_isthdigit(thchar_t c);
 extern int th_isthpunct(thchar_t c);
 
@@ -56,14 +57,15 @@ enum {
   _th_IScons  = _th_ISbit(3),        /* Thai consonant */
   _th_ISvowel = _th_ISbit(4),        /* Thai vowel */
   _th_IStone  = _th_ISbit(5),        /* Thai tone mark */
-  _th_ISdigit = _th_ISbit(6),        /* Thai digit */
-  _th_ISpunct = _th_ISbit(7),        /* Thai punctuation */
+  _th_ISdiac  = _th_ISbit(6),        /* Thai tone mark */
+  _th_ISdigit = _th_ISbit(7),        /* Thai digit */
+  _th_ISpunct = _th_ISbit(8),        /* Thai punctuation */
 
-  _th_VClassMsk = _th_bitmsk(8, 2),  /* Thai vowel class masks */
-  _th_VCflvowel = _th_bitfld(8, 0),  /* Thai following vowel */
-  _th_VCldvowel = _th_bitfld(8, 1),  /* Thai leading vowel */
-  _th_VCupvowel = _th_bitfld(8, 2),  /* Thai upper vowel */
-  _th_VCblvowel = _th_bitfld(8, 3)  /* Thai below vowel */
+  _th_VClassMsk = _th_bitmsk(9, 2),  /* Thai vowel class masks */
+  _th_VCflvowel = _th_bitfld(9, 0),  /* Thai following vowel */
+  _th_VCldvowel = _th_bitfld(9, 1),  /* Thai leading vowel */
+  _th_VCupvowel = _th_bitfld(9, 2),  /* Thai upper vowel */
+  _th_VCblvowel = _th_bitfld(9, 3)   /* Thai below vowel */
 };
 
 extern const unsigned short _th_ctype_tbl[];
@@ -82,6 +84,7 @@ extern const unsigned short _th_ctype_tbl[];
 #define th_isthcons(c)      _th_isctype((c), _th_IScons)
 #define th_isthvowel(c)     _th_isctype((c), _th_ISvowel)
 #define th_isthtone(c)      _th_isctype((c), _th_IStone)
+#define th_isthdiac(c)      _th_isctype((c), _th_ISdiac)
 #define th_isthdigit(c)     _th_isctype((c), _th_ISdigit)
 #define th_isthpunct(c)     _th_isctype((c), _th_ISpunct)
 

@@ -1,3 +1,11 @@
+2001-06-15  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+
+	* include/thai/thctype.h :
+	Add th_isdiac() API.
+
+	* src/thctype/thctype.c :
+	Add function body for thctype functions.
+
 2001-06-13  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
 
 	* include/thai/thctypee.h, +src/thctype/thctype.c :
