@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.8 2001-08-09 10:55:48 thep Exp $
+# $Id: Makefile.am,v 1.9 2001-08-09 13:27:51 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 
 INCLUDES = -I$(top_srcdir)/include
@@ -10,6 +10,7 @@ TESTS_ENVIRONMENT = top_builddir=$(top_builddir)
 TESTS = \
 	test_thctype \
 	test_thcell \
+	test_thinp \
 	test_thstr \
 	test-thcoll.sh \
 	test_thbrk \
@@ -22,6 +23,7 @@ check_SCRIPTS = \
 check_PROGRAMS = \
 	test_thctype \
 	test_thcell \
+	test_thinp \
 	test_thstr \
 	thsort \
 	test_thbrk \
@@ -33,6 +35,12 @@ test_thctype_LDADD = $(top_builddir)/src/thctype/libthctype.la
 
 test_thcell_SOURCES = test_thcell.c
 test_thcell_LDADD = \
+	$(top_builddir)/src/thcell/libthcell.la \
+	$(top_builddir)/src/thctype/libthctype.la
+
+test_thinp_SOURCES = test_thinp.c
+test_thinp_LDADD = \
+	$(top_builddir)/src/thinp/libthinp.la \
 	$(top_builddir)/src/thcell/libthcell.la \
 	$(top_builddir)/src/thctype/libthctype.la
 
