@@ -1,5 +1,5 @@
 /*
- * $Id: thwcoll.h,v 1.2 2001-05-17 17:58:56 thep Exp $
+ * $Id: thwcoll.h,v 1.3 2001-05-18 04:51:02 thep Exp $
  * thwcoll.h - Thai wide-char string collation
  * Created: 2001-05-17
  */
@@ -8,7 +8,6 @@
 #define THAI_THWCOLL_H
 
 #include <thai/thailib.h>
-#include <stddef.h>
 
 BEGIN_CDECL
 

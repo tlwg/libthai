@@ -1,11 +1,13 @@
 /*
- * $Id: thailib.h,v 1.2 2001-05-17 17:58:56 thep Exp $
+ * $Id: thailib.h,v 1.3 2001-05-18 04:51:02 thep Exp $
  * thailib.h - general declarations for libthai
  * Created: 2001-05-17
  */
 
 #ifndef THAI_THAILIB_H
 #define THAI_THAILIB_H
+
+#include <stddef.h>
 
 #ifdef __cplusplus
 # define  BEGIN_CDECL extern "C" {
