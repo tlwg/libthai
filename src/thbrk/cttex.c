@@ -3,7 +3,7 @@
  * extracted from old cttex code (by Vuthichai A. vuthi@[ctrl.titech.ac.jp|linux.thai.net])
  *
  * Created: 2001-7-15
- * $Id: cttex.c,v 1.2 2001-07-16 10:54:04 thep Exp $
+ * $Id: cttex.c,v 1.3 2001-08-03 11:20:45 thep Exp $
  */
 
 #include <stdio.h>
@@ -35,7 +35,7 @@ char *argv[];
   firstmode = 0;
   r_cutcode = cutcode;
 
-  fprintf(stderr,"C-TTeX $Revision: 1.2 $\n");
+  fprintf(stderr,"C-TTeX $Revision: 1.3 $\n");
   fprintf(stderr,"cttex -h for help usage.\n");
   fprintf(stderr,"Built-in dictionary size: %d words\n", numword);
   
@@ -126,7 +126,8 @@ char *argv[];
 				   MAXLINELENGTH-1,fp);
     if(!feof(fp)) {
       iLineNumber++;
-      fixline(str);
+      th_normalize(str, str, sizeof str);
+      /*fixline(str); */
       if(testmode) {               /* Non-TeX mode */
         switch (testmode) {
         case 1 :                   /* Break with given code */
@@ -205,7 +206,8 @@ char *argv[];
       }
       else {                   /* TeX Mode */ 
 	dooneline2(str,out);
-	adj(out);		/* Choose appropriate WANNAYUK */
+	th_normalize(out, out, sizeof out);
+	/*adj(out);*/		/* Choose appropriate WANNAYUK */
 	j = 0;
 	while((c = (int)out[j])!=0) {
 	  if(cr && thaimode) {

@@ -2,7 +2,7 @@
  * based on cttex by Vuthichai A. (vuthi@[crtl.titech.ac.jp|linux.thai.net])
 
  * Created 2001-07-15
- * $Id: thbrk.c,v 1.5 2001-07-31 22:20:59 ott Exp $ 
+ * $Id: thbrk.c,v 1.6 2001-08-03 11:20:45 thep Exp $ 
  */
 
 /* Maximum length of input line */
@@ -18,7 +18,7 @@
 
 /* Check level of a character */
 #define                 NOTMIDDLE(x)            \
-                        ((x)<0xD0?0:(levtable[(x)-0xD0]!=0))
+                        (th_chlevel(x)!=0)
 
 #define                 GETLENGTH(x)            \
                         ((x)<-100?-(x)-100:((x)<0?-(x):(x)))
@@ -42,13 +42,17 @@
 #include "map.h"
 
 #include <thai/thailib.h>
+#include <thai/thctype.h>
+#include <thai/thstr.h>
 
 
 int dooneline2(unsigned char *,unsigned char *);
 int dooneline2sub(unsigned char *in, int *cutlist, int cutpoint, int,int);
 int docut(unsigned char *in,unsigned char *out, int *);
 void adj(unsigned char *);
+#if 0
 void fixline(unsigned char *);
+#endif
 int findword(unsigned char *, int *);
 int moveleft(int);
 
@@ -64,10 +68,12 @@ void th_brk_init();
 
 /* Table Look-Up for level of a character */
 /* only those in the range D0-FF */
+#if 0
 int levtable[]={
                 0,2,0,0,2,2,2,2,1,1,1,0,0,0,0,0,
                 0,0,0,0,0,0,0,2,3,3,3,3,3,2,3,0,
                 0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0 };
+#endif
 
 // Global variable, hmmmm :-p
 
@@ -115,14 +121,19 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
 
   // Make local s
   s = malloc(inputLength+1);
+  th_normalize(s, _s, inputLength+1);
+#if 0
   strcpy(s,_s);
+#endif
 
   // Memeory allocation
   out = (unsigned char*) malloc(2*inputLength+1);
   myPos = (int *) malloc(sizeof(int)*inputLength);
 
+#if 0
   // fix the order of characters
   fixline(s);
+#endif
 
   // do cut!
   dooneline2(s, out);
@@ -153,6 +164,7 @@ int th_brk(const thchar_t *_s, int pos[], size_t n) {
   // Memory deallocation
   free(myPos);
   free(out);
+  free(s);
 
   // return numFound
   return numFound;
@@ -176,7 +188,10 @@ int th_brk_line(const thchar_t *_in, thchar_t* _out, size_t n, const char* _cutC
 
   // Make local in
   in = malloc(inputLength+1); 
+  th_normalize(in, _in, inputLength+1);
+#if 0
   strcpy(in, _in);
+#endif
 
   // memeory allocation (worst case)
   out = (unsigned char*) malloc( ( 1 + cutCodeLength ) * inputLength+1);
@@ -186,8 +201,10 @@ int th_brk_line(const thchar_t *_in, thchar_t* _out, size_t n, const char* _cutC
   strcpy (out, "\x00");
   strcpy (outFromCttex, "\x00");
   
+#if 0
   // fix the order of characters
   fixline(in);
+#endif
 
   // do cut!
   dooneline2(in, outFromCttex);
@@ -222,6 +239,7 @@ int th_brk_line(const thchar_t *_in, thchar_t* _out, size_t n, const char* _cutC
   // Memory deallocation
   free(outFromCttex);
   free(out);
+  free(in);
 
   // return the size of output string
   return outputLength;
@@ -269,6 +287,7 @@ int findword(unsigned char *str, int *matchlist)
 /* Fix alphabet/vowel order, remove redundant vowels/toners */
 /************************************************************/
 
+#if 0
 void fixline(line)
 unsigned char *line;
 {
@@ -307,6 +326,7 @@ unsigned char *line;
   }
   line[j]=0;
 }
+#endif
 
 int docut(unsigned char *in,unsigned char *out, int *cutlist)
 {
@@ -370,6 +390,7 @@ int docut(unsigned char *in,unsigned char *out, int *cutlist)
 /* Old one by Fong (Completely Removed)
    New one by Hui */
 
+#if 0
 void adj(unsigned char *line)
 {
   unsigned char top[MAXLINELENGTH];
@@ -457,6 +478,7 @@ void adj(unsigned char *line)
   /* Numbef of Bytes might change */
   line[k]=0;
 }
+#endif
 
 int lefttab[]={   136, 131,        /* Meaning : change 136 to 131, ... */
 		  137, 132,        /* Up Level Mai Ek, To, Ti ... */
@@ -811,6 +833,9 @@ void clear_stack()
 
 /*
  * $Log: not supported by cvs2svn $
+ * Revision 1.5  2001/07/31 22:20:59  ott
+ * -fix const casting problem
+ *
  * Revision 1.4  2001/07/24 21:31:14  ott
  * -modified the th_brk_line to accept cutCode as char* instead of int.
  * -modified according to the changed interface the test program.
