@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.3 2001-07-17 05:00:44 chanop Exp $
+# $Id: Makefile.am,v 1.4 2001-07-17 05:20:09 chanop Exp $
 MAINTAINERCLEANFILES = Makefile.in
 CLEANFILES = map.c map.h
 
@@ -22,13 +22,7 @@ cttex_SOURCES = map.c cttex.c
 test_thbrk_SOURCES = test_thbrk.c
 test_thbrk_LDADD = libthbrk.la
 
-map.h: tdict.txt dict2state
+map.c map.h: tdict.txt dict2state
 	$(top_builddir)/src/thbrk/dict2state \
 		$(top_srcdir)/src/thbrk/tdict.txt \
 		map.c map.h
-
-map.c: tdict.txt dict2state
-	$(top_builddir)/src/thbrk/dict2state \
-		$(top_srcdir)/src/thbrk/tdict.txt \
-		map.c map.h
-
