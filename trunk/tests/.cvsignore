@@ -1,1 +1,6 @@
+.deps
+.libs
+Makefile
 Makefile.in
+out.txt
+thsort

@@ -1,2 +1,12 @@
+.deps
+.libs
+Makefile
 Makefile.in
+*.lo
+*.la
+cttex
+dict2state
+map.c
+map.h
+test_thbrk
 SunWS_cache
