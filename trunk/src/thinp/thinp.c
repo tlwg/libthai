@@ -1,5 +1,5 @@
 /*
- * $Id: thinp.c,v 1.3 2001-08-06 14:08:05 thep Exp $
+ * $Id: thinp.c,v 1.4 2001-08-07 12:43:38 thep Exp $
  * thinp.c - Thai string input sequence filtering
  * Created: 2001-08-04
  */
@@ -33,7 +33,6 @@ int th_isaccept(thchar_t c1, thchar_t c2, thstrict_t s)
 static const struct correction_t {
     char c1, c2, to[3];
 } corrections[] = {
-    { SARA_E, SARA_E, "á" },
     { RU, SARA_AA, "Äå" },
     { LU, SARA_AA, "Æå" },
     { NIKHAHIT, SARA_AA, "Ó" },
