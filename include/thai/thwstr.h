@@ -1,5 +1,5 @@
 /*
- * $Id: thwstr.h,v 1.1 2001-08-03 10:51:51 thep Exp $
+ * $Id: thwstr.h,v 1.2 2001-09-30 14:03:24 thep Exp $
  * thwstr.h - Thai wide-char string manipulators
  * Created: 2001-08-03
  */
@@ -8,6 +8,7 @@
 #define THAI_THWSTR_H
 
 #include <thai/thailib.h>
+#include <thai/thwchar.h>
 
 BEGIN_CDECL
 
