@@ -1,0 +1,12 @@
+TODO
+====
+
+ * Decompose cttex codes into libthai features;
+   adjust the coding styles
+
+ * Replace map.c in cttex with trie
+
+ * Add unicode wrappers
+
+ * Revise API
+
