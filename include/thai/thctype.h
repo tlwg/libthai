@@ -1,5 +1,5 @@
 /*
- * $Id: thctype.h,v 1.5 2001-07-31 11:14:51 thep Exp $
+ * $Id: thctype.h,v 1.6 2001-07-31 13:47:42 thep Exp $
  * thctype.h - Thai character classifications
  * Created: 2001-05-17
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -27,7 +27,7 @@ extern int th_isthpunct(thchar_t c);
 
 /* Thai vowel classification */
 extern int th_isldvowel(thchar_t c);
-extern int th_lsflvowel(thchar_t c);
+extern int th_isflvowel(thchar_t c);
 extern int th_isupvowel(thchar_t c);
 extern int th_isblvowel(thchar_t c);
 
@@ -49,7 +49,7 @@ extern int th_iscombchar(thchar_t c);
 #include <ctype.h>
 #define _th_ISbit(bit)  (1 << (bit))
 #define _th_bitfld(base, val)  ((val) << (base))
-#define _th_bitmsk(base, bits) (~((~0) << (bits)) << (base))
+#define _th_bitmsk(base, bits) (~((~(unsigned short)0) << (bits)) << (base))
 
 enum {
   _th_IStis   = _th_ISbit(0),        /* TIS-620 char */
@@ -70,7 +70,7 @@ enum {
 extern const unsigned short _th_ctype_tbl[];
 
 #define _th_isctype(c, type)      (_th_ctype_tbl[c] & (type))
-#define _th_isbits(c, mask, val)  (_th_ctype_tbl[c] & (mask) == (val))
+#define _th_isbits(c, mask, val)  ((_th_ctype_tbl[c] & (mask)) == (val))
 
 #define th_istis(c)         _th_isctype((c), _th_IStis)
 
@@ -87,7 +87,7 @@ extern const unsigned short _th_ctype_tbl[];
 
 /* Thai vowel classification */
 #define th_isldvowel(c)     _th_isbits((c), _th_VClassMsk, _th_VCldvowel)
-#define th_lsflvowel(c)     _th_isbits((c), _th_VClassMsk, _th_VCflvowel)
+#define th_isflvowel(c)     _th_isbits((c), _th_VClassMsk, _th_VCflvowel)
 #define th_isupvowel(c)     _th_isbits((c), _th_VClassMsk, _th_VCupvowel)
 #define th_isblvowel(c)     _th_isbits((c), _th_VClassMsk, _th_VCblvowel)
 
