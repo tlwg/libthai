@@ -1,5 +1,5 @@
 /*
- * $Id: thinp.h,v 1.2 2001-05-17 17:58:56 thep Exp $
+ * $Id: thinp.h,v 1.3 2001-05-17 18:15:04 thep Exp $
  * thinp.h - Thai string input sequence filtering
  * Created: 2001-05-17
  */
@@ -27,8 +27,11 @@ typedef enum {
 extern int th_iscompose(thchar_t c1, thchar_t c2, strict_t s);
 
 /*
- * Is c2 allowed to be placed after c1? And if not, swap them.
- * Returns: non-zero if the swap happenned, 0 otherwise
+ * Is *c2 allowed to be placed after *c1? And if not, and if swapping
+ * them makes it valid, do it.
+ * Returns: 1 if (*c1, *c2) is a valid sequence in the first place
+ *          2 if (*c1, *c2) has been swapped and the sequence becomes valid
+ *          0 if (*c1, *c2) is invalid, no matter how
  */
 extern int th_validate(thchar_t *c1, thchar_t *c2, strict_t s);
 
