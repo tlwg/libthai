@@ -1,5 +1,5 @@
 /*
- * $Id: thbrk.h,v 1.2 2001-07-15 16:35:24 ott Exp $
+ * $Id: thbrk.h,v 1.3 2001-07-24 21:31:13 ott Exp $
  * thbrk.h - Thai word segmentation
  * Created: 2001-05-17
  */
@@ -31,12 +31,12 @@ extern int th_brk(const thchar_t *s, int pos[], size_t n);
  * @param in : the input string to be processed
  * @param out : the output string after processed
  * @param n : the size of "out"
- * @param cutcode : the word-break character (default = 254)
+ * @param cutcode : user-defined word-break code
  * On returns: at most n breaking positions stored in pos[],
  *             from left to right
  * Returns: the actual size of the processed string
  */
-extern int th_brk_line(const thchar_t *in, thchar_t *out, size_t n, int _cutcode );
+extern int th_brk_line(const thchar_t *in, thchar_t *_out, size_t n, const char* _cutCode );
 
 END_CDECL
 
