@@ -62,7 +62,7 @@ int test_th_next_cell()
     int   len;
     const struct thcell_t *pCell;
 
-    fprintf(stderr, "testing without decomposing SARA AM...\n");
+    fprintf(stderr, "testing th_next_cell() without decomposing SARA AM...\n");
     pCell = test_ans_nodecomp_am;
     s = test_msg;
     len = strlen((const char *)test_msg);
@@ -85,7 +85,7 @@ int test_th_next_cell()
             ++pCell;
     }
 
-    fprintf(stderr, "testing decomposing SARA AM...\n");
+    fprintf(stderr, "testing th_next_cell() decomposing SARA AM...\n");
     s = test_msg;
     len = strlen((const char *)test_msg);
     pCell = test_ans_decomp_am;
@@ -118,7 +118,7 @@ int test_th_prev_cell()
     int   pos;
     const struct thcell_t *pCell;
 
-    fprintf(stderr, "testing without decomposing SARA AM...\n");
+    fprintf(stderr, "testing th_prev_cell() without decomposing SARA AM...\n");
     pCell = test_ans_nodecomp_am +
             (sizeof test_ans_nodecomp_am)/(sizeof test_ans_nodecomp_am[0]) - 2;
     s = test_msg;
@@ -141,7 +141,7 @@ int test_th_prev_cell()
             --pCell;
     }
 
-    fprintf(stderr, "testing decomposing SARA AM...\n");
+    fprintf(stderr, "testing th_prev_cell() decomposing SARA AM...\n");
     pCell = test_ans_decomp_am +
             (sizeof test_ans_decomp_am)/(sizeof test_ans_decomp_am[0]) - 2;
     s = test_msg;
@@ -167,13 +167,82 @@ int test_th_prev_cell()
     return err_no;
 }
 
+#define TESTCELLS 10
+
+int test_th_make_cells()
+{
+    int err_no = 0;
+    struct thcell_t *cells;
+    const thchar_t *s;
+    int   len;
+    const struct thcell_t *pCell;
+
+    cells = (struct thcell_t *) malloc(TESTCELLS * sizeof(struct thcell_t));
+
+    fprintf(stderr, "testing th_make_cells() without decomposing SARA AM...\n");
+    pCell = test_ans_nodecomp_am;
+    s = test_msg;
+    len = strlen((const char *)test_msg);
+
+    while (*s) {
+        size_t nCells = TESTCELLS;
+        size_t i;
+        const thchar_t *t = th_make_cells(s, len, cells, &nCells, 0);
+        len -= (t - s);
+        s = t;
+        for (i = 0; i < nCells; ++i) {
+            if (cells[i].base != pCell->base ||
+                cells[i].hilo != pCell->hilo ||
+                cells[i].top  != pCell->top)
+            {
+                fprintf(stderr, "(%c,%c,%c) != (%c,%c,%c)\n",
+                        cells[i].base, cells[i].hilo, cells[i].top,
+                        pCell->base, pCell->hilo, pCell->top);
+                ++err_no;
+            }
+            if (pCell->base || pCell->hilo || pCell->top)
+                ++pCell;
+        }
+    }
+
+    fprintf(stderr, "testing th_make_cells() decomposing SARA AM...\n");
+    pCell = test_ans_decomp_am;
+    s = test_msg;
+    len = strlen((const char *)test_msg);
+
+    while (*s) {
+        size_t nCells = TESTCELLS;
+        size_t i;
+        const thchar_t *t = th_make_cells(s, len, cells, &nCells, 1);
+        len -= (t - s);
+        s = t;
+        for (i = 0; i < nCells; ++i) {
+            if (cells[i].base != pCell->base ||
+                cells[i].hilo != pCell->hilo ||
+                cells[i].top  != pCell->top)
+            {
+                fprintf(stderr, "(%c,%c,%c) != (%c,%c,%c)\n",
+                        cells[i].base, cells[i].hilo, cells[i].top,
+                        pCell->base, pCell->hilo, pCell->top);
+                ++err_no;
+            }
+            if (pCell->base || pCell->hilo || pCell->top)
+                ++pCell;
+        }
+    }
+
+    free(cells);
+
+    return err_no;
+}
+
 int main()
 {
     int err_no = 0;
 
     err_no += test_th_next_cell();
     err_no += test_th_prev_cell();
-    //err_no += test_th_make_cells();
+    err_no += test_th_make_cells();
 
     return err_no;
 }
