@@ -1,5 +1,5 @@
 /*
- * $Id: thrend.c,v 1.3 2001-08-07 12:40:15 thep Exp $
+ * $Id: thrend.c,v 1.4 2001-08-08 04:45:25 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-08-06
  */
@@ -125,10 +125,10 @@ int th_render_cell(struct thcell cell,
         if (th_isundersplitcons(c) && th_level(cell.hilo) < 0) {
             c = tailcutcons(c, tbl);
         }
-        *res++ = c; --left;
+        *res++ = c ? c : ' '; --left;
     }
     /* put hilo character */
-    if (left > 0) {
+    if (left > 0 && cell.hilo) {
         thchar_t c = 0;
         if (cell.hilo != SARA_AM) { c = cell.hilo; }
         else if (is_decomp_am) { c = NIKHAHIT; }
@@ -169,8 +169,8 @@ int th_render_cell_tis(struct thcell cell,
 {
     size_t left = res_sz;
 
-    if (left > 0) { *res++ = cell.base; --left; }
-    if (left > 0) {
+    if (left > 0) { *res++ = cell.base ? cell.base : ' '; --left; }
+    if (left > 0 && cell.hilo) {
         if (cell.hilo != SARA_AM) { *res++ = cell.hilo; --left; }
 	else if (is_decomp_am) { *res++ = NIKHAHIT; --left; }
     }
