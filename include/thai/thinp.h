@@ -1,5 +1,5 @@
 /*
- * $Id: thinp.h,v 1.4 2001-05-18 04:51:02 thep Exp $
+ * $Id: thinp.h,v 1.5 2001-08-04 13:04:49 thep Exp $
  * thinp.h - Thai string input sequence filtering
  * Created: 2001-05-17
  */
@@ -24,7 +24,7 @@ typedef enum {
  * Is c2 allowed to be placed after c1?
  * Returns: non-zero if yes, 0 otherwise
  */
-extern int th_iscompose(thchar_t c1, thchar_t c2, thstrict_t s);
+extern int th_isaccept(thchar_t c1, thchar_t c2, thstrict_t s);
 
 /*
  * Is *c2 allowed to be placed after *c1? And if not, and if swapping
