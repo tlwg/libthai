@@ -1,4 +1,4 @@
-# $Id: configure.in,v 1.16 2001-09-14 14:36:03 thep Exp $
+# $Id: configure.in,v 1.17 2001-09-25 12:26:48 thep Exp $
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
@@ -77,6 +77,8 @@ AC_OUTPUT(
   src/thwctype/Makefile
   src/thwbrk/Makefile
   tests/Makefile
+  man/Makefile
+  man/man3/Makefile
 )
 
 AC_MSG_RESULT([Type make to build libthai.])
