@@ -1,0 +1,21 @@
+This package was debianized by Pattara Kiatisevi <ott@linux.thai.net> on
+Sun,  2 Feb 2003 16:37:08 +0900.
+
+Upstream Authors:  
+
+Project Leader 
+	Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+
+Members
+	Chanop Silpa-Anan <chanop@syseng.anu.edu.au>
+	Pattara Kiatisevi <ott@linux.thai.net>
+	Vuthichai Ampornaramveth <vuthi@nii.ac.jp>
+
+More information about LibThai can be found at its official web site:
+http://linux.thai.net/libthai/ or via e-mail info@linux.thai.net
+
+License
+=======
+
+LibThai is copyrighted by its authors and licensed under terms of the
+GNU Lesser Public License (LGPL) - see file COPYING for details.
