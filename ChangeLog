@@ -1,0 +1,28 @@
+2001-06-12  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+
+	* src/{cweight.h,cweight.c,thcoll.c} -> src/thcoll :
+	Make a subdir for thcoll, so that libraries are separated.
+
+	* +configure.in, Makefile.am, {src/,src/thcoll,tests/}Makefile.am :
+	Create building system, using automake, autoconf, libtool.
+
+	* src/thcoll/cweight.c :
+	Add missing #include <assert.h>.
+
+	* +tests/test-thcoll.sh :
+	Add test suite for libthcoll.
+
+2001-06-11  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+
+	* +src/{cweight.h,cweight.c,thcoll.c} :
+	Add a sample implementation of Thai string collation.
+
+2001-05-17  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+
+	* Version 0.1.1 (First creation)
+
+	* +include/thai/{thailib.h,thbrk.h,thcoll.h,thctype.h,thinp.h,
+	  thrend.h,thwbrk.h,thwchar.h,thwcoll.h,thwctype.h,thwinp.h,
+	  thwrend.h,tis.h} :
+	First API draft.
+
