@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.7 2001-08-03 11:20:45 thep Exp $
+# $Id: Makefile.am,v 1.8 2006-02-18 04:45:51 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 CLEANFILES = map.c map.h
 
@@ -14,7 +14,7 @@ dict2state_SOURCES = dict2state.c
 
 libthbrk_la_SOURCES = map.c map.h thbrk.c
 
-cttex_SOURCES = map.c cttex.c
+cttex_SOURCES = cttex.c
 cttex_LDADD = \
 	$(top_builddir)/src/thbrk/libthbrk.la \
 	$(top_builddir)/src/thstr/libthstr.la \
