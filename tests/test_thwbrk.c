@@ -1,6 +1,6 @@
 /* Test driver for thwbrk 
  *
- * $Id: test_thwbrk.c,v 1.5 2005-01-13 09:23:13 ott Exp $
+ * $Id: test_thwbrk.c,v 1.6 2006-03-13 15:35:35 thep Exp $
  */
 
 #define MAXLINELENGTH 1000
@@ -73,6 +73,8 @@ int main (int argc, char* argv[]) {
     printf("Correct! .. test th_wbrk_line() passed...\n");
   } else {
     printf("Error! Comparison of results from th_brk_line() and th_wbrk_line() failed.\n");
+    printf("th_brk_line :\"%s\"\n", out1);
+    printf("th_wbrk_line:\"%s\"\n", out2);
     printf("Test th_wbrk_line() failed...\n");
     exit (-1);
   }
