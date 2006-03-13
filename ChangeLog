@@ -1,3 +1,8 @@
+2006-03-13  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* tests/test_thcell.c: Fix bug in test_th_prev_cell() due to wrong
+	variable referencing.
+
 2006-02-18  Theppitak Karoonboonyanan <thep@linux.thai.net>
 
 	* src/tkbrk/Makefile.am: Remove map.c from cttex sources, to fix
@@ -800,13 +805,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.75 2006-02-18 04:45:51 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.76 2006-03-13 15:02:29 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.75 2006-02-18 04:45:51 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.76 2006-03-13 15:02:29 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 

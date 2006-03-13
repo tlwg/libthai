@@ -1,5 +1,5 @@
 /*
- * $Id: test_thcell.c,v 1.7 2004-10-13 05:35:19 thep Exp $
+ * $Id: test_thcell.c,v 1.8 2006-03-13 15:02:30 thep Exp $
  * test_thcell.c : Test suite for <thai/thcell.h> functions
  * Created: 2001-08-09
  * Author:  Theppitak Karoonboonyanan
@@ -172,7 +172,7 @@ int test_th_prev_cell()
                     pCell->base, pCell->hilo, pCell->top);
             ++err_no;
         }
-        if (pCell > test_ans_nodecomp_am)
+        if (pCell > test_ans_decomp_am)
             --pCell;
     }
 
