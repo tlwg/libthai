@@ -1,5 +1,10 @@
 2006-03-13  Theppitak Karoonboonyanan <thep@linux.thai.net>
 
+	* tests/test_thwbrk.c: Allocate more buffer for th_brk_line() output,
+	fixing bogus bug that blocks the test.
+
+2006-03-13  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
 	* tests/test_thwbrk.c: Print out the strings in problem when the
 	result from th_brk_line() and th_wbrk_line() do not match.
 
@@ -810,13 +815,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.77 2006-03-13 15:35:35 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.78 2006-03-13 15:58:27 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.77 2006-03-13 15:35:35 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.78 2006-03-13 15:58:27 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
