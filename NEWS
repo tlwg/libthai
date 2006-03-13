@@ -2,6 +2,11 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.5 (13 March 2006):
+* Improved word breaking. Space is now also considered a breakable point.
+* More PUA support for Mac fonts rendering.
+* Start maintaining library version info from now on.
+
 LibThai 0.1.4 (16 October 2004):
 
 * Handle the rendering of NIKHAHIT and MAITAIKHU for Pali and Kuy,

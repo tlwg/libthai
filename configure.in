@@ -1,10 +1,10 @@
-# $Id: configure.in,v 1.23 2006-02-18 04:32:10 thep Exp $
+# $Id: configure.in,v 1.24 2006-03-13 16:21:32 thep Exp $
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
 
 AC_INIT(include/thai/thailib.h)
-AM_INIT_AUTOMAKE(libthai, 0.1.4)
+AM_INIT_AUTOMAKE(libthai, 0.1.5)
 
 AC_SUBST(VERSION)
 
@@ -13,7 +13,7 @@ AC_SUBST(VERSION)
 # Interfaces added:              CURRENT++  REVISION=0  AGE++
 # Interfaces changed/removed:    CURRENT++  REVISION=0  AGE=0
 LT_CURRENT=0
-LT_REVISION=0
+LT_REVISION=1
 LT_AGE=0
 AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION)
