@@ -1,3 +1,19 @@
+libthai (0.1.5-1ubuntu1) dapper; urgency=low
+
+  * initial ubuntu version
+  * removed the CVS dirs from the source (repacked it)
+  * debian/control: 
+    - added "libs" to Source section 
+    - changed standard version to 3.6.2.2
+  
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Tue, 14 Mar 2006 11:49:48 +0000
+
+libthai (0.1.5-1) unstable; urgency=low 
+
+  * upstream version 1.5 
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Tue,  14 Mar 2006 00:54:00 +0700
+
 libthai (0.1.4-1) unstable; urgency=low 
 
   * upstream version 1.4 (since 16 October 2004, see the NEWS file)
