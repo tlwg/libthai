@@ -1,3 +1,16 @@
+libthai (0.1.5-2) unstable; urgency=low
+
+  * initial debian version
+  * debian/rules:
+    - removed replacement of upstream's config.guess and config.sub
+  * debian/copyright:
+    - updated e-mail addresses and urls
+    - mentioned system file for LGPL-2
+  * debian/control:
+    - added myself as an uploader
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Tue, 21 Mar 2006 16:54:12 +0700
+
 libthai (0.1.5-1ubuntu1) dapper; urgency=low
 
   * initial ubuntu version

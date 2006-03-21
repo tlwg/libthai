@@ -1,23 +1,39 @@
 This package was debianized by Pattara Kiatisevi <ott@linux.thai.net> on
 Sun,  2 Feb 2003 16:37:08 +0900.
 
+It was downloaded from http://libthai.sourceforge.net/ .
+
 Upstream Authors:  
 
 Project Leader 
-	Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+	Theppitak Karoonboonyanan <thep@linux.thai.net>
 
 Members
-	Chanop Silpa-Anan <chanop@syseng.anu.edu.au>
+	Chanop Silpa-Anan <chanop@linux.thai.net>
 	Pattara Kiatisevi <ott@linux.thai.net>
-	Poonlap Veerathanabutr <Poonlap.Veerathanabutr@sun.co.jp>
+	Poonlap Veerathanabutr <poonlap@linux.thai.net>
 	Vuthichai Ampornaramveth <vuthi@nii.ac.jp>
 
 
 More information about LibThai can be found at its official web site:
-http://linux.thai.net/libthai/ or via e-mail info@linux.thai.net
+http://libthai.sourceforge.net/ or via e-mail info@linux.thai.net
 
 License
 =======
 
-LibThai is copyrighted by its authors and licensed under terms of the
-GNU Lesser Public License (LGPL) - see file COPYING for details.
+ This library is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published by the
+ Free Software Foundation; either version 2 of the License, or (at your
+ option) any later version.
+
+ This library is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
+ for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the
+ Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ 02110-1301  USA.
+
+ See /usr/share/common-licenses/LGPL-2 on your debian system.
