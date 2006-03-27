@@ -1,8 +1,8 @@
 Source: libthai
 Priority: optional
 Section: libs
-Maintainer: Pattara Kiatisevi <ott@linux.thai.net>
-Uploaders: Theppitak Karoonboonyanan <thep@linux.thai.net>
+Maintainer: Theppitak Karoonboonyanan <thep@linux.thai.net>
+Uploaders:  Pattara Kiatisevi <ott@linux.thai.net>
 Build-Depends: debhelper (>> 3.0.0)
 Standards-Version: 3.6.2.2
 
