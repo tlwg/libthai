@@ -1,3 +1,14 @@
+libthai (0.1.5-3) unstable; urgency=low
+
+  * actually closed ITP bug (Closes: #358539)
+  * debian/control:
+    - took over the packaging from Pattara Kiatisevi with his consent.
+      thanks for your initial works! (he's still an uploader, anyway)
+  * debian/rules:
+    - removed commented debhelper instructions
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon, 27 Mar 2006 17:21:19 +0700
+
 libthai (0.1.5-2) unstable; urgency=low
 
   * initial debian version
