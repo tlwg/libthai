@@ -6,8 +6,11 @@ libthai (0.1.5-3) unstable; urgency=low
       thanks for your initial works! (he's still an uploader, anyway)
   * debian/rules:
     - removed commented debhelper instructions
+  * debian/copyright:
+    - more info on current maintainer
+    - added missing copyright years
 
- -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon, 27 Mar 2006 17:21:19 +0700
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Tue, 28 Mar 2006 09:14:55 +0700
 
 libthai (0.1.5-2) unstable; urgency=low
 
