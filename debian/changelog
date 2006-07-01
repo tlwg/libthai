@@ -1,3 +1,10 @@
+libthai (0.1.5-4) UNRELEASED; urgency=low
+
+  * debian/control: Provided more informative short description.
+    (Closes: #360621)
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat,  1 Jul 2006 12:55:00 +0700
+
 libthai (0.1.5-3) unstable; urgency=low
 
   * actually closed ITP bug (Closes: #358539)
