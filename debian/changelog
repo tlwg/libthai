@@ -3,8 +3,9 @@ libthai (0.1.5-4) UNRELEASED; urgency=low
   * debian/control: Provided more informative short description.
     (Closes: #360621)
   * Bumped standard version to 3.7.2, no changes needed.
+  * debian/watch: Added.
 
- -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon,  3 Jul 2006 13:46:23 +0700
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon,  3 Jul 2006 15:41:51 +0700
 
 libthai (0.1.5-3) unstable; urgency=low
 
