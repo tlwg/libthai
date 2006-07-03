@@ -1,10 +1,11 @@
 /*
- * $Id: thrend.c,v 1.12 2005-03-15 13:11:13 thep Exp $
+ * $Id: thrend.c,v 1.13 2006-07-03 04:43:56 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-08-06
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
  */
 
+#include <string.h>
 #include <thai/thrend.h>
 #include <thai/thctype.h>
 #include <thai/tis.h>
