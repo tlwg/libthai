@@ -25,7 +25,7 @@
 
 
 /*
- * $Id: cweight.c,v 1.3 2001-08-14 06:11:41 thep Exp $
+ * $Id: cweight.c,v 1.4 2006-07-03 04:53:23 thep Exp $
  * cweight.c - Thai Character Weight Table for TIS-620/2533 Collating
  * Created: 9 Nov 1998
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -474,8 +474,7 @@ static thchar_t char_weight_tbl_[TOT_CHARS][TOT_LEVELS] = {
 
 thchar_t th_char_weight_(thchar_t c, int level)
 {
-    if (c < ((sizeof char_weight_tbl_)/(sizeof char_weight_tbl_[0]))
-        && (0 <= level && level < TOT_LEVELS))
+    if (0 <= level && level < TOT_LEVELS)
     {
         return char_weight_tbl_[c][level];
     }
