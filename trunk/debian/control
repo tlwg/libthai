@@ -4,7 +4,7 @@ Section: libs
 Maintainer: Theppitak Karoonboonyanan <thep@linux.thai.net>
 Uploaders:  Pattara Kiatisevi <ott@linux.thai.net>
 Build-Depends: debhelper (>> 3.0.0)
-Standards-Version: 3.6.2.2
+Standards-Version: 3.7.2
 
 Package: libthai-dev
 Section: devel
