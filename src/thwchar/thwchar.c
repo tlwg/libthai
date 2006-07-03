@@ -1,5 +1,5 @@
 /*
- * $Id: thwchar.c,v 1.7 2001-09-14 14:05:09 thep Exp $
+ * $Id: thwchar.c,v 1.8 2006-07-03 04:53:23 thep Exp $
  * thwchar.c - wide char support for Thai
  * Created: 2001-07-27
  * Author:  Pattara Kiatisevi <ott@linux.thai.net>,
@@ -142,7 +142,7 @@ static thchar_t uni2thai_ext_(thwchar_t wc, const thwchar_t rev_map[])
     thchar_t c = 0x80;
     do {
         if (rev_map[c-0x80] == wc) return c;
-    } while (c++ <= 0xff);
+    } while (c++ != 0xff);
     return TH_ERR;
 }
 
