@@ -1,5 +1,5 @@
 /*
- * $Id: thwstr.h,v 1.2 2001-09-30 14:03:24 thep Exp $
+ * $Id: thwstr.h,v 1.3 2006-07-31 12:54:02 thep Exp $
  * thwstr.h - Thai wide-char string manipulators
  * Created: 2001-08-03
  */
@@ -12,10 +12,23 @@
 
 BEGIN_CDECL
 
-/*
- * fix combining character order and remove excessive characters.
- * At most n characters are put in dest.
- * Returns: total bytes written to dest, excluding the terminating '\0'
+/**
+ * @file   thwstr.h
+ * @brief  Thai wide-char string manipulators
+ */
+
+/**
+ * @brief  Normalize character order and remove excessive characters
+ *
+ * @param  dest : the destination wide-char string buffer
+ * @param  src  : the wide-char string to normalize
+ * @param  n    : the size of @a dest buffer (as number of elements)
+ *
+ * @return  total number of elements written to @a dest, excluding the 
+ *          terminating '\\0'.
+ *
+ * Corrects combining character order and remove excessive characters.
+ * At most @a n characters are put in @a dest.
  */
 extern size_t th_wnormalize(thwchar_t dest[], const thwchar_t *src, size_t n);
 

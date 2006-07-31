@@ -1,5 +1,5 @@
 /*
- * $Id: thwctype.c,v 1.1 2001-09-14 14:37:14 thep Exp $
+ * $Id: thwctype.c,v 1.2 2006-07-31 12:54:02 thep Exp $
  * thwctype.c - Thai wide-char character classifications
  * Created: 2001-09-14
  */
@@ -16,7 +16,14 @@
 #undef th_wcisthvowel
 #undef th_wcisthtone
 #undef th_wcisthdigit
+#undef th_wcisthdiac
 #undef th_wcisthpunct
+
+/* Thai consonant shapes classification */
+#undef th_wcistaillesscons
+#undef th_wcisovershootcons
+#undef th_wcisundershootcons
+#undef th_wcisundersplitcons
 
 /* Thai vowel classification */
 #undef th_wcisldvowel
@@ -37,7 +44,18 @@ int th_wcisthcons(thwchar_t wc)  { return th_isthcons(th_uni2tis(wc)); }
 int th_wcisthvowel(thwchar_t wc) { return th_isthvowel(th_uni2tis(wc)); }
 int th_wcisthtone(thwchar_t wc)  { return th_isthtone(th_uni2tis(wc)); }
 int th_wcisthdigit(thwchar_t wc) { return th_isthdigit(th_uni2tis(wc)); }
+int th_wcisthdiac(thwchar_t wc)  { return th_isthdiac(th_uni2tis(wc)); }
 int th_wcisthpunct(thwchar_t wc) { return th_isthpunct(th_uni2tis(wc)); }
+
+/* Thai consonant shapes classification */
+int th_wcistaillesscons(thwchar_t wc)
+    { return th_istaillesscons(th_uni2tis(wc)); }
+int th_wcisovershootcons(thwchar_t wc)
+    { return th_isovershootcons(th_uni2tis(wc)); }
+int th_wcisundershootcons(thwchar_t wc)
+    { return th_isundershootcons(th_uni2tis(wc)); }
+int th_wcisundersplitcons(thwchar_t wc)
+    { return th_isundersplitcons(th_uni2tis(wc)); }
 
 /* Thai vowel classification */
 int th_wcisldvowel(thwchar_t wc) { return th_isldvowel(th_uni2tis(wc)); }

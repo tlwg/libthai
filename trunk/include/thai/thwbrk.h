@@ -1,5 +1,5 @@
 /*
- * $Id: thwbrk.h,v 1.3 2001-07-30 11:37:39 ott Exp $
+ * $Id: thwbrk.h,v 1.4 2006-07-31 12:54:02 thep Exp $
  * thwbrk.h - Thai wide-char word segmentation
  * Created: 2001-05-17
  */
@@ -11,32 +11,40 @@
 
 BEGIN_CDECL
 
-/*
- * Find word break positions in Thai Unicode string s
+/**
+ * @file   thwbrk.h
+ * @brief  Thai wide-char word segmentation
+ */
+
+/**
+ * @brief  Find word break positions in Thai wide-char string
  *
- * @param s : the input string to be processed
- * @param pos : array to keep breaking positions (see on return)
- * @pram n : size of pos[]
+ * @param  s   : the input string to be processed
+ * @param  pos : array to keep breaking positions
+ * @param  n   : size of @a pos[]
  *
- * On returns: at most n breaking positions stored in pos[],
- *             from left to right
- * Returns: the actual number of breaking positions occurred
+ * @return  the actual number of breaking positions occurred
  *
+ * Finds word break positions in Thai string @a s and stores at most @a n 
+ * breaking positions in @a pos[], from left to right.
  */
 extern int th_wbrk(const thwchar_t *s, int pos[], size_t n);
 
-/*
- * Find word break positions in Thai string in
+/**
+ * @brief  Insert word delimitors in given wide-char string
  *
- * @param in : the input string to be processed
- * @param out : the output string after processed
- * @param n : the size of "out"
- * @param cutcode : user-defined word-break code
- * On returns: at most n breaking positions stored in pos[],
- *             from left to right
- * Returns: the actual size of the processed string
+ * @param  in  : the input wide-char string to be processed
+ * @param  out : the output wide-char buffer
+ * @param  n   : the size of @a out (as number of elements)
+ * @param  delim : the wide-char word delimitor to insert
+ *
+ * @return  the actual size of the processed string (as number of elements)
+ *
+ * Analyzes the input string and store the string in output buffer
+ * with the given word delimitor inserted at every word boundary.
  */
-extern int th_wbrk_line(const thwchar_t *in, thwchar_t *_out, size_t n, const thwchar_t* _cutCode );
+extern int th_wbrk_line(const thwchar_t *in, thwchar_t *out, size_t n,
+                        const thwchar_t *delim);
 
 
 END_CDECL

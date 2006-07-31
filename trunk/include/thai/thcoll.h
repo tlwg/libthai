@@ -1,5 +1,5 @@
 /*
- * $Id: thcoll.h,v 1.4 2006-07-31 11:07:46 thep Exp $
+ * $Id: thcoll.h,v 1.5 2006-07-31 12:54:02 thep Exp $
  * thcoll.h - Thai string collation
  * Created: 2001-05-17
  */
@@ -35,7 +35,7 @@ extern int    th_strcoll(const thchar_t *s1, const thchar_t *s2);
  * @param  n    : the size of @a dest buffer
  *
  * @returns  the number of bytes required to store the result in @a dest,
- *           excluding the terminating '\0'.
+ *           excluding the terminating '\\0'.
  *           If the return value >= @a n, @a dest is undefined.
  *
  * Transforms @a src into a form from which comparison using strcmp() yields
