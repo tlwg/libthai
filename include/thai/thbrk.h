@@ -1,5 +1,5 @@
 /**
- * $Id: thbrk.h,v 1.5 2006-07-31 11:07:46 thep Exp $
+ * $Id: thbrk.h,v 1.6 2006-07-31 12:54:02 thep Exp $
  * thbrk.h - Thai word segmentation
  * Created: 2001-05-17
  */
@@ -20,7 +20,7 @@ BEGIN_CDECL
  * @brief  Find word break positions in Thai string
  *
  * @param  s   : the input string to be processed
- * @param  pos : array to keep breaking positions (see on return)
+ * @param  pos : array to keep breaking positions
  * @param  n   : size of @a pos[]
  *
  * @return  the actual number of breaking positions occurred
