@@ -19,7 +19,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
-.\" $Id: libthai.3,v 1.2 2003-09-10 05:29:45 thep Exp $
+.\" $Id: libthai.3,v 1.3 2006-07-31 13:55:51 thep Exp $
 .\" Standard preamble:
 .\" ======================================================================
 .de Sh \" Subsection heading
@@ -168,20 +168,21 @@ string supports. LibThai is an Open Source and collaborative effort
 initiated by Thai Linux Working Group and opened for all contributors.
 .Sh "LibThai Functions by Category"
 .IX Subsection "LibThai Functions by Category"
-LibThai provides functions to hadle both tis-620 character
-set(single-byte) and unicode(multi-byte). A function name which
-includes \&\f(CW\*(C`w\*(C'\fR, for example, \fBth_wbrk\fR is unicode
+LibThai provides functions to handle both tis-620 character
+set (single-byte) and unicode (multi-byte). A function name which
+includes \&\f(CW\*(C`w\*(C'\fR, such as \fBth_wbrk\fR is unicode
 version of \fBth_brk\fR function. 
-.Ip "Functions for classifying character" 4
-.IX Item "Functions for classifying character"
+.Ip "Functions for classifying characters" 4
+.IX Item "Functions for classifying characters"
 th_istis, th_isthai, th_iseng, th_isthcons, th_isthvowel, th_isthtone,
 th_isthdiac, th_isthdigit, th_isthpunct, th_istaillesscons,
 th_isovershootcons, th_isundershootcons, th_isundersplitcons,
 th_isldvowel, th_isflvowel, th_isupvowel, th_isblvowel, th_chlevel,
 th_iscombchar, th_wcistis, th_wcisthai, th_wciseng, th_wcisthcons,
 th_wcisthvowel, th_wcisthtone, th_wcisthdiac, th_wcisthdigit,
-th_wcisthpunct, th_wcisldvowel, th_wcisflvowel, th_wcisupvowel,
-th_wcisblvowel, th_wcchlevel, th_wciscombchar
+th_wcisthpunct, th_wcistaillesscons, th_wcisovershootcons, 
+th_wcisundershootcons, th_wcisundersplitcons, th_wcisldvowel, th_wcisflvowel, 
+th_wcisupvowel, th_wcisblvowel, th_wcchlevel, th_wciscombchar
 .Ip "Functions for word segmentation" 4
 .IX Item "Functions for word segmentation"
 th_brk, th_brk_line, th_wbrk, th_wbrk_line
@@ -193,17 +194,14 @@ th_strcoll, th_strxfrm, th_wcstrcoll, th_wcstrxfrm
 th_normalize, th_wnormalize
 .Ip "Functions for Thai string cell operation" 4
 .IX Item "Functions for Thai string cell clustering"
-th_next_cell, th_prev_cell, th_make_cells, th_wcnext_cell,
-th_wcmake_cells, 
+th_next_cell, th_prev_cell, th_make_cells
 .Ip "Functions for Thai characters input" 4
 .IX Item "Functions for Thai characters input"
-th_isaccept, th_validate, th_wcisaccept, th_wcvalidate
+th_isaccept, th_validate
 .Ip "Functions for Thai string rendering" 4
 .IX Item "Functions for Thai string rendering"
 th_render_cell_tis, th_render_cell_win, th_render_cell_mac,
-th_render_text_tis, th_render_text_win, th_render_text_mac,
-th_wcrender_cell_tis, th_wcrender_cell_win, th_wcrender_cell_mac,
-th_wcrender_text_tis, th_wcrender_text_win, th_wcrender_text_mac
+th_render_text_tis, th_render_text_win, th_render_text_mac
 .Ip "Functions for converting between unicode and tis-620" 4
 .IX Item "Functions for converting between unicode and tis-620"
 th_tis2uni, th_tis2uni_line, th_winthai2uni, th_macthai2uni,
