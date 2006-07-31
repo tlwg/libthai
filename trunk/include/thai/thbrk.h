@@ -1,5 +1,5 @@
-/*
- * $Id: thbrk.h,v 1.4 2001-07-30 11:37:39 ott Exp $
+/**
+ * $Id: thbrk.h,v 1.5 2006-07-31 11:07:46 thep Exp $
  * thbrk.h - Thai word segmentation
  * Created: 2001-05-17
  */
@@ -8,36 +8,43 @@
 #define THAI_THBRK_H
 
 #include <thai/thailib.h>
-#include <thai/thwchar.h>
 
 BEGIN_CDECL
 
-/*
- * Find word break positions in Thai string s
+/**
+ * @file   thbrk.h
+ * @brief  Thai word segmentation
+ */
+
+/**
+ * @brief  Find word break positions in Thai string
  *
- * @param s : the input string to be processed
- * @param pos : array to keep breaking positions (see on return)
- * @param n : size of pos[]
+ * @param  s   : the input string to be processed
+ * @param  pos : array to keep breaking positions (see on return)
+ * @param  n   : size of @a pos[]
  *
- * On returns: at most n breaking positions stored in pos[],
- *             from left to right
- * Returns: the actual number of breaking positions occurred
+ * @return  the actual number of breaking positions occurred
  *
+ * Finds word break positions in Thai string @a s and stores at most @a n 
+ * breaking positions in @a pos[], from left to right.
  */
 extern int th_brk(const thchar_t *s, int pos[], size_t n);
 
-/*
- * Find word break positions in Thai string in
+/**
+ * @brief  Insert word delimitors in given string
  *
- * @param in : the input string to be processed
- * @param out : the output string after processed
- * @param n : the size of "out"
- * @param cutcode : user-defined word-break code
- * On returns: at most n breaking positions stored in pos[],
- *             from left to right
- * Returns: the actual size of the processed string
+ * @param  in  : the input string to be processed
+ * @param  out : the output buffer
+ * @param  n   : the size of @a out
+ * @param  delim : the word delimitor to insert
+ *
+ * @return  the actual size of the processed string
+ *
+ * Analyzes the input string and store the string in output buffer
+ * with the given word delimitor inserted at every word boundary.
  */
-extern int th_brk_line(const thchar_t *in, thchar_t *_out, size_t n, const char* _cutCode );
+extern int th_brk_line(const thchar_t *in, thchar_t *out, size_t n,
+                       const char *delim);
 
 END_CDECL
 
