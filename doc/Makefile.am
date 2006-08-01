@@ -2,8 +2,11 @@ if ENABLE_DOXYGEN_DOC
 
 pkgdocdir = $(docdir)
 
-all-local:
+html.stamp: $(top_srcdir)/include/thai/*.h
 	$(DOXYGEN)
+	touch html.stamp
+
+all-local: html.stamp
 
 install-data-local:
 	$(INSTALL) -d $(DESTDIR)$(pkgdocdir)
