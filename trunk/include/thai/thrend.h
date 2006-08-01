@@ -1,5 +1,5 @@
 /*
- * $Id: thrend.h,v 1.10 2006-07-31 11:07:46 thep Exp $
+ * $Id: thrend.h,v 1.11 2006-08-01 11:46:57 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-05-17
  */
@@ -41,7 +41,7 @@ typedef unsigned char thglyph_t;
  * Calculates glyphs from TIS-620 glyph set for the given @a cell,
  * and store the glyph string in @a res, terminated with '\\0'.
  * If resulting glyphs are longer than the provided buffer, only
- * the first @res_sz glyphs are stored.
+ * the first @a res_sz glyphs are stored.
  */
 extern int th_render_cell_tis(struct thcell_t cell,
                               thglyph_t res[], size_t res_sz,
@@ -61,7 +61,7 @@ extern int th_render_cell_tis(struct thcell_t cell,
  * Calculates glyphs from Thai Windows glyph set for the given @a cell,
  * and store the glyph string in @a res, terminated with '\\0'.
  * If resulting glyphs are longer than the provided buffer, only
- * the first @res_sz glyphs are stored.
+ * the first @a res_sz glyphs are stored.
  */
 extern int th_render_cell_win(struct thcell_t cell,
                               thglyph_t res[], size_t res_sz,
@@ -81,7 +81,7 @@ extern int th_render_cell_win(struct thcell_t cell,
  * Calculates glyphs from Mac Thai glyph set for the given @a cell,
  * and store the glyph string in @a res, terminated with '\\0'.
  * If resulting glyphs are longer than the provided buffer, only
- * the first @res_sz glyphs are stored.
+ * the first @a res_sz glyphs are stored.
  */
 extern int th_render_cell_mac(struct thcell_t cell,
                               thglyph_t res[], size_t res_sz,
@@ -102,7 +102,7 @@ extern int th_render_cell_mac(struct thcell_t cell,
  * Calculates glyphs from TIS-620 glyph set for the given string @a s,
  * and store the glyph string in @a res, terminated with '\\0'.
  * If resulting glyphs are longer than the provided buffer, only
- * the first @res_sz glyphs are stored.
+ * the first @a res_sz glyphs are stored.
  */
 extern int th_render_text_tis(const thchar_t *s,
                               thglyph_t res[], size_t res_sz,
@@ -122,7 +122,7 @@ extern int th_render_text_tis(const thchar_t *s,
  * Calculates glyphs from Thai Windows glyph set for the given string @a s,
  * and store the glyph string in @a res, terminated with '\\0'.
  * If resulting glyphs are longer than the provided buffer, only
- * the first @res_sz glyphs are stored.
+ * the first @a res_sz glyphs are stored.
  */
 extern int th_render_text_win(const thchar_t *s,
                               thglyph_t res[], size_t res_sz,
@@ -142,7 +142,7 @@ extern int th_render_text_win(const thchar_t *s,
  * Calculates glyphs from Mac Thai glyph set for the given string @a s,
  * and store the glyph string in @a res, terminated with '\\0'.
  * If resulting glyphs are longer than the provided buffer, only
- * the first @res_sz glyphs are stored.
+ * the first @a res_sz glyphs are stored.
  */
 extern int th_render_text_mac(const thchar_t *s,
                               thglyph_t res[], size_t res_sz,

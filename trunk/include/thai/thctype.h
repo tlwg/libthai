@@ -1,5 +1,5 @@
 /*
- * $Id: thctype.h,v 1.11 2006-08-01 06:26:32 thep Exp $
+ * $Id: thctype.h,v 1.12 2006-08-01 11:46:57 thep Exp $
  * thctype.h - Thai character classifications
  * Created: 2001-05-17
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -25,221 +25,221 @@ BEGIN_CDECL
  * their names.
  *
  * <pre>
- * 0x00   <U0000> NULL (NUL)                                       
- * 0x01   <U0001> START OF HEADING (SOH)                           
- * 0x02   <U0002> START OF TEXT (STX)                              
- * 0x03   <U0003> END OF TEXT (ETX)                                
- * 0x04   <U0004> END OF TRANSMISSION (EOT)                        
- * 0x05   <U0005> ENQUIRY (ENQ)                                    
- * 0x06   <U0006> ACKNOWLEDGE (ACK)                                
- * 0x07   <U0007> BELL (BEL)                                       
- * 0x08   <U0008> BACKSPACE (BS)                                   
- * 0x09   <U0009> CHARACTER TABULATION (HT)                        
- * 0x0A   <U000A> LINE FEED (LF)                                   
- * 0x0B   <U000B> LINE TABULATION (VT)                             
- * 0x0C   <U000C> FORM FEED (FF)                                   
- * 0x0D   <U000D> CARRIAGE RETURN (CR)                             
- * 0x0E   <U000E> SHIFT OUT (SO)                                   
- * 0x0F   <U000F> SHIFT IN (SI)                                    
- * 0x10   <U0010> DATALINK ESCAPE (DLE)                            
- * 0x11   <U0011> DEVICE CONTROL ONE (DC1)                         
- * 0x12   <U0012> DEVICE CONTROL TWO (DC2)                         
- * 0x13   <U0013> DEVICE CONTROL THREE (DC3)                       
- * 0x14   <U0014> DEVICE CONTROL FOUR (DC4)                        
- * 0x15   <U0015> NEGATIVE ACKNOWLEDGE (NAK)                       
- * 0x16   <U0016> SYNCHRONOUS IDLE (SYN)                           
- * 0x17   <U0017> END OF TRANSMISSION BLOCK (ETB)                  
- * 0x18   <U0018> CANCEL (CAN)                                     
- * 0x19   <U0019> END OF MEDIUM (EM)                               
- * 0x1A   <U001A> SUBSTITUTE (SUB)                                 
- * 0x1B   <U001B> ESCAPE (ESC)                                     
- * 0x1C   <U001C> FILE SEPARATOR (IS4)                             
- * 0x1D   <U001D> GROUP SEPARATOR (IS3)                            
- * 0x1E   <U001E> RECORD SEPARATOR (IS2)                           
- * 0x1F   <U001F> UNIT SEPARATOR (IS1)                             
- * 0x20   <U0020> SPACE                                            
- * 0x21   <U0021> EXCLAMATION MARK                                 
- * 0x22   <U0022> QUOTATION MARK                                   
- * 0x23   <U0023> NUMBER SIGN                                      
- * 0x24   <U0024> DOLLAR SIGN                                      
- * 0x25   <U0025> PERCENT SIGN                                     
- * 0x26   <U0026> AMPERSAND                                        
- * 0x27   <U0027> APOSTROPHE                                       
- * 0x28   <U0028> LEFT PARENTHESIS                                 
- * 0x29   <U0029> RIGHT PARENTHESIS                                
- * 0x2A   <U002A> ASTERISK                                         
- * 0x2B   <U002B> PLUS SIGN                                        
- * 0x2C   <U002C> COMMA                                            
- * 0x2D   <U002D> HYPHEN-MINUS                                     
- * 0x2E   <U002E> FULL STOP                                        
- * 0x2F   <U002F> SOLIDUS                                          
- * 0x30   <U0030> DIGIT ZERO                                       
- * 0x31   <U0031> DIGIT ONE                                        
- * 0x32   <U0032> DIGIT TWO                                        
- * 0x33   <U0033> DIGIT THREE                                      
- * 0x34   <U0034> DIGIT FOUR                                       
- * 0x35   <U0035> DIGIT FIVE                                       
- * 0x36   <U0036> DIGIT SIX                                        
- * 0x37   <U0037> DIGIT SEVEN                                      
- * 0x38   <U0038> DIGIT EIGHT                                      
- * 0x39   <U0039> DIGIT NINE                                       
- * 0x3A   <U003A> COLON                                            
- * 0x3B   <U003B> SEMICOLON                                        
- * 0x3C   <U003C> LESS-THAN SIGN                                   
- * 0x3D   <U003D> EQUALS SIGN                                      
- * 0x3E   <U003E> GREATER-THAN SIGN                                
- * 0x3F   <U003F> QUESTION MARK                                    
- * 0x40   <U0040> COMMERCIAL AT                                    
- * 0x41   <U0041> LATIN CAPITAL LETTER A                           
- * 0x42   <U0042> LATIN CAPITAL LETTER B                           
- * 0x43   <U0043> LATIN CAPITAL LETTER C                           
- * 0x44   <U0044> LATIN CAPITAL LETTER D                           
- * 0x45   <U0045> LATIN CAPITAL LETTER E                           
- * 0x46   <U0046> LATIN CAPITAL LETTER F                           
- * 0x47   <U0047> LATIN CAPITAL LETTER G                           
- * 0x48   <U0048> LATIN CAPITAL LETTER H                           
- * 0x49   <U0049> LATIN CAPITAL LETTER I                           
- * 0x4A   <U004A> LATIN CAPITAL LETTER J                           
- * 0x4B   <U004B> LATIN CAPITAL LETTER K                           
- * 0x4C   <U004C> LATIN CAPITAL LETTER L                           
- * 0x4D   <U004D> LATIN CAPITAL LETTER M                           
- * 0x4E   <U004E> LATIN CAPITAL LETTER N                           
- * 0x4F   <U004F> LATIN CAPITAL LETTER O                           
- * 0x50   <U0050> LATIN CAPITAL LETTER P                           
- * 0x51   <U0051> LATIN CAPITAL LETTER Q                           
- * 0x52   <U0052> LATIN CAPITAL LETTER R                           
- * 0x53   <U0053> LATIN CAPITAL LETTER S                           
- * 0x54   <U0054> LATIN CAPITAL LETTER T                           
- * 0x55   <U0055> LATIN CAPITAL LETTER U                           
- * 0x56   <U0056> LATIN CAPITAL LETTER V                           
- * 0x57   <U0057> LATIN CAPITAL LETTER W                           
- * 0x58   <U0058> LATIN CAPITAL LETTER X                           
- * 0x59   <U0059> LATIN CAPITAL LETTER Y                           
- * 0x5A   <U005A> LATIN CAPITAL LETTER Z                           
- * 0x5B   <U005B> LEFT SQUARE BRACKET                              
- * 0x5C   <U005C> REVERSE SOLIDUS                                  
- * 0x5D   <U005D> RIGHT SQUARE BRACKET                             
- * 0x5E   <U005E> CIRCUMFLEX ACCENT                                
- * 0x5F   <U005F> LOW LINE                                         
- * 0x60   <U0060> GRAVE ACCENT                                     
- * 0x61   <U0061> LATIN SMALL LETTER A                             
- * 0x62   <U0062> LATIN SMALL LETTER B                             
- * 0x63   <U0063> LATIN SMALL LETTER C                             
- * 0x64   <U0064> LATIN SMALL LETTER D                             
- * 0x65   <U0065> LATIN SMALL LETTER E                             
- * 0x66   <U0066> LATIN SMALL LETTER F                             
- * 0x67   <U0067> LATIN SMALL LETTER G                             
- * 0x68   <U0068> LATIN SMALL LETTER H                             
- * 0x69   <U0069> LATIN SMALL LETTER I                             
- * 0x6A   <U006A> LATIN SMALL LETTER J                             
- * 0x6B   <U006B> LATIN SMALL LETTER K                             
- * 0x6C   <U006C> LATIN SMALL LETTER L                             
- * 0x6D   <U006D> LATIN SMALL LETTER M                             
- * 0x6E   <U006E> LATIN SMALL LETTER N                             
- * 0x6F   <U006F> LATIN SMALL LETTER O                             
- * 0x70   <U0070> LATIN SMALL LETTER P                             
- * 0x71   <U0071> LATIN SMALL LETTER Q                             
- * 0x72   <U0072> LATIN SMALL LETTER R                             
- * 0x73   <U0073> LATIN SMALL LETTER S                             
- * 0x74   <U0074> LATIN SMALL LETTER T                             
- * 0x75   <U0075> LATIN SMALL LETTER U                             
- * 0x76   <U0076> LATIN SMALL LETTER V                             
- * 0x77   <U0077> LATIN SMALL LETTER W                             
- * 0x78   <U0078> LATIN SMALL LETTER X                             
- * 0x79   <U0079> LATIN SMALL LETTER Y                             
- * 0x7A   <U007A> LATIN SMALL LETTER Z                             
- * 0x7B   <U007B> LEFT CURLY BRACKET                               
- * 0x7C   <U007C> VERTICAL LINE                                    
- * 0x7D   <U007D> RIGHT CURLY BRACKET                              
- * 0x7E   <U007E> TILDE                                            
- * 0x7F   <U007F> DELETE (DEL)                                     
- * 0xA1   <U0E01> THAI CHARACTER KO KAI                            
- * 0xA2   <U0E02> THAI CHARACTER KHO KHAI                          
- * 0xA3   <U0E03> THAI CHARACTER KHO KHUAT                         
- * 0xA4   <U0E04> THAI CHARACTER KHO KHWAI                         
- * 0xA5   <U0E05> THAI CHARACTER KHO KHON                          
- * 0xA6   <U0E06> THAI CHARACTER KHO RAKHANG                       
- * 0xA7   <U0E07> THAI CHARACTER NGO NGU                           
- * 0xA8   <U0E08> THAI CHARACTER CHO CHAN                          
- * 0xA9   <U0E09> THAI CHARACTER CHO CHING                         
- * 0xAA   <U0E0A> THAI CHARACTER CHO CHANG                         
- * 0xAB   <U0E0B> THAI CHARACTER SO SO                             
- * 0xAC   <U0E0C> THAI CHARACTER CHO CHOE                          
- * 0xAD   <U0E0D> THAI CHARACTER YO YING                           
- * 0xAE   <U0E0E> THAI CHARACTER DO CHADA                          
- * 0xAF   <U0E0F> THAI CHARACTER TO PATAK                          
- * 0xB0   <U0E10> THAI CHARACTER THO THAN                          
- * 0xB1   <U0E11> THAI CHARACTER THO NANGMONTHO                    
- * 0xB2   <U0E12> THAI CHARACTER THO PHUTHAO                       
- * 0xB3   <U0E13> THAI CHARACTER NO NEN                            
- * 0xB4   <U0E14> THAI CHARACTER DO DEK                            
- * 0xB5   <U0E15> THAI CHARACTER TO TAO                            
- * 0xB6   <U0E16> THAI CHARACTER THO THUNG                         
- * 0xB7   <U0E17> THAI CHARACTER THO THAHAN                        
- * 0xB8   <U0E18> THAI CHARACTER THO THONG                         
- * 0xB9   <U0E19> THAI CHARACTER NO NU                             
- * 0xBA   <U0E1A> THAI CHARACTER BO BAIMAI                         
- * 0xBB   <U0E1B> THAI CHARACTER PO PLA                            
- * 0xBC   <U0E1C> THAI CHARACTER PHO PHUNG                         
- * 0xBD   <U0E1D> THAI CHARACTER FO FA                             
- * 0xBE   <U0E1E> THAI CHARACTER PHO PHAN                          
- * 0xBF   <U0E1F> THAI CHARACTER FO FAN                            
- * 0xC0   <U0E20> THAI CHARACTER PHO SAMPHAO                       
- * 0xC1   <U0E21> THAI CHARACTER MO MA                             
- * 0xC2   <U0E22> THAI CHARACTER YO YAK                            
- * 0xC3   <U0E23> THAI CHARACTER RO RUA                            
- * 0xC4   <U0E24> THAI CHARACTER RU                                
- * 0xC5   <U0E25> THAI CHARACTER LO LING                           
- * 0xC6   <U0E26> THAI CHARACTER LU                                
- * 0xC7   <U0E27> THAI CHARACTER WO WAEN                           
- * 0xC8   <U0E28> THAI CHARACTER SO SALA                           
- * 0xC9   <U0E29> THAI CHARACTER SO RUSI                           
- * 0xCA   <U0E2A> THAI CHARACTER SO SUA                            
- * 0xCB   <U0E2B> THAI CHARACTER HO HIP                            
- * 0xCC   <U0E2C> THAI CHARACTER LO CHULA                          
- * 0xCD   <U0E2D> THAI CHARACTER O ANG                             
- * 0xCE   <U0E2E> THAI CHARACTER HO NOKHUK                         
- * 0xCF   <U0E2F> THAI CHARACTER PAIYANNOI                         
- * 0xD0   <U0E30> THAI CHARACTER SARA A                            
- * 0xD1   <U0E31> THAI CHARACTER MAI HAN-AKAT                      
- * 0xD2   <U0E32> THAI CHARACTER SARA AA                           
- * 0xD3   <U0E33> THAI CHARACTER SARA AM                           
- * 0xD4   <U0E34> THAI CHARACTER SARA I                            
- * 0xD5   <U0E35> THAI CHARACTER SARA II                           
- * 0xD6   <U0E36> THAI CHARACTER SARA UE                           
- * 0xD7   <U0E37> THAI CHARACTER SARA UEE                          
- * 0xD8   <U0E38> THAI CHARACTER SARA U                            
- * 0xD9   <U0E39> THAI CHARACTER SARA UU                           
- * 0xDA   <U0E3A> THAI CHARACTER PHINTHU                           
- * 0xDF   <U0E3F> THAI CHARACTER SYMBOL BAHT                       
- * 0xE0   <U0E40> THAI CHARACTER SARA E                            
- * 0xE1   <U0E41> THAI CHARACTER SARA AE                           
- * 0xE2   <U0E42> THAI CHARACTER SARA O                            
- * 0xE3   <U0E43> THAI CHARACTER SARA AI MAIMUAN                   
- * 0xE4   <U0E44> THAI CHARACTER SARA AI MAIMALAI                  
- * 0xE5   <U0E45> THAI CHARACTER LAKKHANGYAO                       
- * 0xE6   <U0E46> THAI CHARACTER MAIYAMOK                          
- * 0xE7   <U0E47> THAI CHARACTER MAITAIKHU                         
- * 0xE8   <U0E48> THAI CHARACTER MAI EK                            
- * 0xE9   <U0E49> THAI CHARACTER MAI THO                           
- * 0xEA   <U0E4A> THAI CHARACTER MAI TRI                           
- * 0xEB   <U0E4B> THAI CHARACTER MAI CHATTAWA                      
- * 0xEC   <U0E4C> THAI CHARACTER THANTHAKHAT                       
- * 0xED   <U0E4D> THAI CHARACTER NIKHAHIT                          
- * 0xEE   <U0E4E> THAI CHARACTER YAMAKKAN                          
- * 0xEF   <U0E4F> THAI CHARACTER FONGMAN                           
- * 0xF0   <U0E50> THAI DIGIT ZERO                                  
- * 0xF1   <U0E51> THAI DIGIT ONE                                   
- * 0xF2   <U0E52> THAI DIGIT TWO                                   
- * 0xF3   <U0E53> THAI DIGIT THREE                                 
- * 0xF4   <U0E54> THAI DIGIT FOUR                                  
- * 0xF5   <U0E55> THAI DIGIT FIVE                                  
- * 0xF6   <U0E56> THAI DIGIT SIX                                   
- * 0xF7   <U0E57> THAI DIGIT SEVEN                                 
- * 0xF8   <U0E58> THAI DIGIT EIGHT                                 
- * 0xF9   <U0E59> THAI DIGIT NINE                                  
- * 0xFA   <U0E5A> THAI CHARACTER ANGKHANKHU                        
- * 0xFB   <U0E5B> THAI CHARACTER KHOMUT
+ * 0x00   &lt;U0000&gt; NULL (NUL)
+ * 0x01   &lt;U0001&gt; START OF HEADING (SOH)
+ * 0x02   &lt;U0002&gt; START OF TEXT (STX)
+ * 0x03   &lt;U0003&gt; END OF TEXT (ETX)
+ * 0x04   &lt;U0004&gt; END OF TRANSMISSION (EOT)
+ * 0x05   &lt;U0005&gt; ENQUIRY (ENQ)
+ * 0x06   &lt;U0006&gt; ACKNOWLEDGE (ACK)
+ * 0x07   &lt;U0007&gt; BELL (BEL)
+ * 0x08   &lt;U0008&gt; BACKSPACE (BS)
+ * 0x09   &lt;U0009&gt; CHARACTER TABULATION (HT)
+ * 0x0A   &lt;U000A&gt; LINE FEED (LF)
+ * 0x0B   &lt;U000B&gt; LINE TABULATION (VT)
+ * 0x0C   &lt;U000C&gt; FORM FEED (FF)
+ * 0x0D   &lt;U000D&gt; CARRIAGE RETURN (CR)
+ * 0x0E   &lt;U000E&gt; SHIFT OUT (SO)
+ * 0x0F   &lt;U000F&gt; SHIFT IN (SI)
+ * 0x10   &lt;U0010&gt; DATALINK ESCAPE (DLE)
+ * 0x11   &lt;U0011&gt; DEVICE CONTROL ONE (DC1)
+ * 0x12   &lt;U0012&gt; DEVICE CONTROL TWO (DC2)
+ * 0x13   &lt;U0013&gt; DEVICE CONTROL THREE (DC3)
+ * 0x14   &lt;U0014&gt; DEVICE CONTROL FOUR (DC4)
+ * 0x15   &lt;U0015&gt; NEGATIVE ACKNOWLEDGE (NAK)
+ * 0x16   &lt;U0016&gt; SYNCHRONOUS IDLE (SYN)
+ * 0x17   &lt;U0017&gt; END OF TRANSMISSION BLOCK (ETB)
+ * 0x18   &lt;U0018&gt; CANCEL (CAN)
+ * 0x19   &lt;U0019&gt; END OF MEDIUM (EM)
+ * 0x1A   &lt;U001A&gt; SUBSTITUTE (SUB)
+ * 0x1B   &lt;U001B&gt; ESCAPE (ESC)
+ * 0x1C   &lt;U001C&gt; FILE SEPARATOR (IS4)
+ * 0x1D   &lt;U001D&gt; GROUP SEPARATOR (IS3)
+ * 0x1E   &lt;U001E&gt; RECORD SEPARATOR (IS2)
+ * 0x1F   &lt;U001F&gt; UNIT SEPARATOR (IS1)
+ * 0x20   &lt;U0020&gt; SPACE
+ * 0x21   &lt;U0021&gt; EXCLAMATION MARK
+ * 0x22   &lt;U0022&gt; QUOTATION MARK
+ * 0x23   &lt;U0023&gt; NUMBER SIGN
+ * 0x24   &lt;U0024&gt; DOLLAR SIGN
+ * 0x25   &lt;U0025&gt; PERCENT SIGN
+ * 0x26   &lt;U0026&gt; AMPERSAND
+ * 0x27   &lt;U0027&gt; APOSTROPHE
+ * 0x28   &lt;U0028&gt; LEFT PARENTHESIS
+ * 0x29   &lt;U0029&gt; RIGHT PARENTHESIS
+ * 0x2A   &lt;U002A&gt; ASTERISK
+ * 0x2B   &lt;U002B&gt; PLUS SIGN
+ * 0x2C   &lt;U002C&gt; COMMA
+ * 0x2D   &lt;U002D&gt; HYPHEN-MINUS
+ * 0x2E   &lt;U002E&gt; FULL STOP
+ * 0x2F   &lt;U002F&gt; SOLIDUS
+ * 0x30   &lt;U0030&gt; DIGIT ZERO
+ * 0x31   &lt;U0031&gt; DIGIT ONE
+ * 0x32   &lt;U0032&gt; DIGIT TWO
+ * 0x33   &lt;U0033&gt; DIGIT THREE
+ * 0x34   &lt;U0034&gt; DIGIT FOUR
+ * 0x35   &lt;U0035&gt; DIGIT FIVE
+ * 0x36   &lt;U0036&gt; DIGIT SIX
+ * 0x37   &lt;U0037&gt; DIGIT SEVEN
+ * 0x38   &lt;U0038&gt; DIGIT EIGHT
+ * 0x39   &lt;U0039&gt; DIGIT NINE
+ * 0x3A   &lt;U003A&gt; COLON
+ * 0x3B   &lt;U003B&gt; SEMICOLON
+ * 0x3C   &lt;U003C&gt; LESS-THAN SIGN
+ * 0x3D   &lt;U003D&gt; EQUALS SIGN
+ * 0x3E   &lt;U003E&gt; GREATER-THAN SIGN
+ * 0x3F   &lt;U003F&gt; QUESTION MARK
+ * 0x40   &lt;U0040&gt; COMMERCIAL AT
+ * 0x41   &lt;U0041&gt; LATIN CAPITAL LETTER A
+ * 0x42   &lt;U0042&gt; LATIN CAPITAL LETTER B
+ * 0x43   &lt;U0043&gt; LATIN CAPITAL LETTER C
+ * 0x44   &lt;U0044&gt; LATIN CAPITAL LETTER D
+ * 0x45   &lt;U0045&gt; LATIN CAPITAL LETTER E
+ * 0x46   &lt;U0046&gt; LATIN CAPITAL LETTER F
+ * 0x47   &lt;U0047&gt; LATIN CAPITAL LETTER G
+ * 0x48   &lt;U0048&gt; LATIN CAPITAL LETTER H
+ * 0x49   &lt;U0049&gt; LATIN CAPITAL LETTER I
+ * 0x4A   &lt;U004A&gt; LATIN CAPITAL LETTER J
+ * 0x4B   &lt;U004B&gt; LATIN CAPITAL LETTER K
+ * 0x4C   &lt;U004C&gt; LATIN CAPITAL LETTER L
+ * 0x4D   &lt;U004D&gt; LATIN CAPITAL LETTER M
+ * 0x4E   &lt;U004E&gt; LATIN CAPITAL LETTER N
+ * 0x4F   &lt;U004F&gt; LATIN CAPITAL LETTER O
+ * 0x50   &lt;U0050&gt; LATIN CAPITAL LETTER P
+ * 0x51   &lt;U0051&gt; LATIN CAPITAL LETTER Q
+ * 0x52   &lt;U0052&gt; LATIN CAPITAL LETTER R
+ * 0x53   &lt;U0053&gt; LATIN CAPITAL LETTER S
+ * 0x54   &lt;U0054&gt; LATIN CAPITAL LETTER T
+ * 0x55   &lt;U0055&gt; LATIN CAPITAL LETTER U
+ * 0x56   &lt;U0056&gt; LATIN CAPITAL LETTER V
+ * 0x57   &lt;U0057&gt; LATIN CAPITAL LETTER W
+ * 0x58   &lt;U0058&gt; LATIN CAPITAL LETTER X
+ * 0x59   &lt;U0059&gt; LATIN CAPITAL LETTER Y
+ * 0x5A   &lt;U005A&gt; LATIN CAPITAL LETTER Z
+ * 0x5B   &lt;U005B&gt; LEFT SQUARE BRACKET
+ * 0x5C   &lt;U005C&gt; REVERSE SOLIDUS
+ * 0x5D   &lt;U005D&gt; RIGHT SQUARE BRACKET
+ * 0x5E   &lt;U005E&gt; CIRCUMFLEX ACCENT
+ * 0x5F   &lt;U005F&gt; LOW LINE
+ * 0x60   &lt;U0060&gt; GRAVE ACCENT
+ * 0x61   &lt;U0061&gt; LATIN SMALL LETTER A
+ * 0x62   &lt;U0062&gt; LATIN SMALL LETTER B
+ * 0x63   &lt;U0063&gt; LATIN SMALL LETTER C
+ * 0x64   &lt;U0064&gt; LATIN SMALL LETTER D
+ * 0x65   &lt;U0065&gt; LATIN SMALL LETTER E
+ * 0x66   &lt;U0066&gt; LATIN SMALL LETTER F
+ * 0x67   &lt;U0067&gt; LATIN SMALL LETTER G
+ * 0x68   &lt;U0068&gt; LATIN SMALL LETTER H
+ * 0x69   &lt;U0069&gt; LATIN SMALL LETTER I
+ * 0x6A   &lt;U006A&gt; LATIN SMALL LETTER J
+ * 0x6B   &lt;U006B&gt; LATIN SMALL LETTER K
+ * 0x6C   &lt;U006C&gt; LATIN SMALL LETTER L
+ * 0x6D   &lt;U006D&gt; LATIN SMALL LETTER M
+ * 0x6E   &lt;U006E&gt; LATIN SMALL LETTER N
+ * 0x6F   &lt;U006F&gt; LATIN SMALL LETTER O
+ * 0x70   &lt;U0070&gt; LATIN SMALL LETTER P
+ * 0x71   &lt;U0071&gt; LATIN SMALL LETTER Q
+ * 0x72   &lt;U0072&gt; LATIN SMALL LETTER R
+ * 0x73   &lt;U0073&gt; LATIN SMALL LETTER S
+ * 0x74   &lt;U0074&gt; LATIN SMALL LETTER T
+ * 0x75   &lt;U0075&gt; LATIN SMALL LETTER U
+ * 0x76   &lt;U0076&gt; LATIN SMALL LETTER V
+ * 0x77   &lt;U0077&gt; LATIN SMALL LETTER W
+ * 0x78   &lt;U0078&gt; LATIN SMALL LETTER X
+ * 0x79   &lt;U0079&gt; LATIN SMALL LETTER Y
+ * 0x7A   &lt;U007A&gt; LATIN SMALL LETTER Z
+ * 0x7B   &lt;U007B&gt; LEFT CURLY BRACKET
+ * 0x7C   &lt;U007C&gt; VERTICAL LINE
+ * 0x7D   &lt;U007D&gt; RIGHT CURLY BRACKET
+ * 0x7E   &lt;U007E&gt; TILDE
+ * 0x7F   &lt;U007F&gt; DELETE (DEL)
+ * 0xA1   &lt;U0E01&gt; THAI CHARACTER KO KAI
+ * 0xA2   &lt;U0E02&gt; THAI CHARACTER KHO KHAI
+ * 0xA3   &lt;U0E03&gt; THAI CHARACTER KHO KHUAT
+ * 0xA4   &lt;U0E04&gt; THAI CHARACTER KHO KHWAI
+ * 0xA5   &lt;U0E05&gt; THAI CHARACTER KHO KHON
+ * 0xA6   &lt;U0E06&gt; THAI CHARACTER KHO RAKHANG
+ * 0xA7   &lt;U0E07&gt; THAI CHARACTER NGO NGU
+ * 0xA8   &lt;U0E08&gt; THAI CHARACTER CHO CHAN
+ * 0xA9   &lt;U0E09&gt; THAI CHARACTER CHO CHING
+ * 0xAA   &lt;U0E0A&gt; THAI CHARACTER CHO CHANG
+ * 0xAB   &lt;U0E0B&gt; THAI CHARACTER SO SO
+ * 0xAC   &lt;U0E0C&gt; THAI CHARACTER CHO CHOE
+ * 0xAD   &lt;U0E0D&gt; THAI CHARACTER YO YING
+ * 0xAE   &lt;U0E0E&gt; THAI CHARACTER DO CHADA
+ * 0xAF   &lt;U0E0F&gt; THAI CHARACTER TO PATAK
+ * 0xB0   &lt;U0E10&gt; THAI CHARACTER THO THAN
+ * 0xB1   &lt;U0E11&gt; THAI CHARACTER THO NANGMONTHO
+ * 0xB2   &lt;U0E12&gt; THAI CHARACTER THO PHUTHAO
+ * 0xB3   &lt;U0E13&gt; THAI CHARACTER NO NEN
+ * 0xB4   &lt;U0E14&gt; THAI CHARACTER DO DEK
+ * 0xB5   &lt;U0E15&gt; THAI CHARACTER TO TAO
+ * 0xB6   &lt;U0E16&gt; THAI CHARACTER THO THUNG
+ * 0xB7   &lt;U0E17&gt; THAI CHARACTER THO THAHAN
+ * 0xB8   &lt;U0E18&gt; THAI CHARACTER THO THONG
+ * 0xB9   &lt;U0E19&gt; THAI CHARACTER NO NU
+ * 0xBA   &lt;U0E1A&gt; THAI CHARACTER BO BAIMAI
+ * 0xBB   &lt;U0E1B&gt; THAI CHARACTER PO PLA
+ * 0xBC   &lt;U0E1C&gt; THAI CHARACTER PHO PHUNG
+ * 0xBD   &lt;U0E1D&gt; THAI CHARACTER FO FA
+ * 0xBE   &lt;U0E1E&gt; THAI CHARACTER PHO PHAN
+ * 0xBF   &lt;U0E1F&gt; THAI CHARACTER FO FAN
+ * 0xC0   &lt;U0E20&gt; THAI CHARACTER PHO SAMPHAO
+ * 0xC1   &lt;U0E21&gt; THAI CHARACTER MO MA
+ * 0xC2   &lt;U0E22&gt; THAI CHARACTER YO YAK
+ * 0xC3   &lt;U0E23&gt; THAI CHARACTER RO RUA
+ * 0xC4   &lt;U0E24&gt; THAI CHARACTER RU
+ * 0xC5   &lt;U0E25&gt; THAI CHARACTER LO LING
+ * 0xC6   &lt;U0E26&gt; THAI CHARACTER LU
+ * 0xC7   &lt;U0E27&gt; THAI CHARACTER WO WAEN
+ * 0xC8   &lt;U0E28&gt; THAI CHARACTER SO SALA
+ * 0xC9   &lt;U0E29&gt; THAI CHARACTER SO RUSI
+ * 0xCA   &lt;U0E2A&gt; THAI CHARACTER SO SUA
+ * 0xCB   &lt;U0E2B&gt; THAI CHARACTER HO HIP
+ * 0xCC   &lt;U0E2C&gt; THAI CHARACTER LO CHULA
+ * 0xCD   &lt;U0E2D&gt; THAI CHARACTER O ANG
+ * 0xCE   &lt;U0E2E&gt; THAI CHARACTER HO NOKHUK
+ * 0xCF   &lt;U0E2F&gt; THAI CHARACTER PAIYANNOI
+ * 0xD0   &lt;U0E30&gt; THAI CHARACTER SARA A
+ * 0xD1   &lt;U0E31&gt; THAI CHARACTER MAI HAN-AKAT
+ * 0xD2   &lt;U0E32&gt; THAI CHARACTER SARA AA
+ * 0xD3   &lt;U0E33&gt; THAI CHARACTER SARA AM
+ * 0xD4   &lt;U0E34&gt; THAI CHARACTER SARA I
+ * 0xD5   &lt;U0E35&gt; THAI CHARACTER SARA II
+ * 0xD6   &lt;U0E36&gt; THAI CHARACTER SARA UE
+ * 0xD7   &lt;U0E37&gt; THAI CHARACTER SARA UEE
+ * 0xD8   &lt;U0E38&gt; THAI CHARACTER SARA U
+ * 0xD9   &lt;U0E39&gt; THAI CHARACTER SARA UU
+ * 0xDA   &lt;U0E3A&gt; THAI CHARACTER PHINTHU
+ * 0xDF   &lt;U0E3F&gt; THAI CHARACTER SYMBOL BAHT
+ * 0xE0   &lt;U0E40&gt; THAI CHARACTER SARA E
+ * 0xE1   &lt;U0E41&gt; THAI CHARACTER SARA AE
+ * 0xE2   &lt;U0E42&gt; THAI CHARACTER SARA O
+ * 0xE3   &lt;U0E43&gt; THAI CHARACTER SARA AI MAIMUAN
+ * 0xE4   &lt;U0E44&gt; THAI CHARACTER SARA AI MAIMALAI
+ * 0xE5   &lt;U0E45&gt; THAI CHARACTER LAKKHANGYAO
+ * 0xE6   &lt;U0E46&gt; THAI CHARACTER MAIYAMOK
+ * 0xE7   &lt;U0E47&gt; THAI CHARACTER MAITAIKHU
+ * 0xE8   &lt;U0E48&gt; THAI CHARACTER MAI EK
+ * 0xE9   &lt;U0E49&gt; THAI CHARACTER MAI THO
+ * 0xEA   &lt;U0E4A&gt; THAI CHARACTER MAI TRI
+ * 0xEB   &lt;U0E4B&gt; THAI CHARACTER MAI CHATTAWA
+ * 0xEC   &lt;U0E4C&gt; THAI CHARACTER THANTHAKHAT
+ * 0xED   &lt;U0E4D&gt; THAI CHARACTER NIKHAHIT
+ * 0xEE   &lt;U0E4E&gt; THAI CHARACTER YAMAKKAN
+ * 0xEF   &lt;U0E4F&gt; THAI CHARACTER FONGMAN
+ * 0xF0   &lt;U0E50&gt; THAI DIGIT ZERO
+ * 0xF1   &lt;U0E51&gt; THAI DIGIT ONE
+ * 0xF2   &lt;U0E52&gt; THAI DIGIT TWO
+ * 0xF3   &lt;U0E53&gt; THAI DIGIT THREE
+ * 0xF4   &lt;U0E54&gt; THAI DIGIT FOUR
+ * 0xF5   &lt;U0E55&gt; THAI DIGIT FIVE
+ * 0xF6   &lt;U0E56&gt; THAI DIGIT SIX
+ * 0xF7   &lt;U0E57&gt; THAI DIGIT SEVEN
+ * 0xF8   &lt;U0E58&gt; THAI DIGIT EIGHT
+ * 0xF9   &lt;U0E59&gt; THAI DIGIT NINE
+ * 0xFA   &lt;U0E5A&gt; THAI CHARACTER ANGKHANKHU
+ * 0xFB   &lt;U0E5B&gt; THAI CHARACTER KHOMUT
  * </pre>
  *
  * Thai characters consist of 44 consonants, vowels, tonemarks, diacritics and 
@@ -248,9 +248,7 @@ BEGIN_CDECL
  * tonemarks whose position is above a consonant. Diacritics are divided into 
  * 2 groups, Above Diacritics (AD) and Below Diacritics (BD).
  *
- * @subsection CharLevel Character Level
- *
- * Libthai has defined 4 levels for the posotion of a character.
+ * Libthai has defined 4 levels for the position of a character.
  *
  *   @li  Below level: a character is placed below the consonant. 
  *        th_chlevel() will return the value -1 for these characters. 
