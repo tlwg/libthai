@@ -1,5 +1,5 @@
 /*
- * $Id: wtt.h,v 1.2 2001-08-22 04:41:28 thep Exp $
+ * $Id: wtt.h,v 1.3 2006-08-01 11:38:21 thep Exp $
  * wtt.h - WTT I/O implementation
  * Created: 2001-08-04
  */
@@ -7,40 +7,108 @@
 #ifndef THAI_WTT_H
 #define THAI_WTT_H
 
+/**
+ * @file   wtt.h
+ * @brief  WTT I/O implementation
+ *
+ * WTT stands for Wing Tuk Tee (in Thai, Runs everywhere). It was defined by 
+ * TACTIS (Thai API Consortium/Thai Industrial Standard) in the NECTEC Thai 
+ * Software Standard Project (1989-1991), and later endorsed by Thai 
+ * Industrial Standard Institute (TISI) as TIS 1566-2541 in 1998.
+ *
+ * WTT classifies Thai chracter(TIS-620) into 17 types below.
+ *
+ * <pre>
+ * <b>ITYPE  VALUE SHORT_DESCRIPTION</b>
+ * CTRL    0    control characters
+ * NON     1    non composible characters
+ * CONS    2    consonants
+ * LV      3    leading vowels
+ * FV1     4    following vowels 1
+ * FV2     5    following vowels 2
+ * FV3     6    following vowels 3
+ * BV1     7    below vowels 1
+ * BV2     8    below vowels 2
+ * BD      9    below diacritics
+ * TONE    10   tonemarks
+ * AD1     11   above diacritics 1
+ * AD2     12   above diacritics 2
+ * AD3     13   above diacritics 3
+ * AV1     14   above vowels 1
+ * AV2     15   above vowels 2
+ * AV3     16   above vowels 3
+ * </pre>
+ *
+ * Functions in thctype.h do basic character classifications while 
+ * wtt.h classifies a chracter in detail. Please refer to the reference.
+ *
+ * TACio_op() checks how to compose two given chracters. The possiblities are 
+ * Composible (CP), Non-display (XC), Accept (AC), Reject (RJ) and Strict 
+ * Reject (SR). The values of CP, XC, AC, RJ and SR are difined in wtt.h. 
+ * And their meanings are:
+ *
+ *   @li  CP : second character is displayed in the same cell as the first, 
+ *             also implies an acceptance. 
+ *   @li  XC : Do nothing.
+ *   @li  AC : Display second character in the next cell.
+ *   @li  RJ : Discard second character.
+ *   @li  SR : Reject second character only in strict mode.
+ *
+ */
+
 #include <thai/thailib.h>
 
 BEGIN_CDECL
 
-/* Classification of characters in TIS620 according to WTT */
+/**
+ * @brief  Classification of characters in TIS620 according to WTT
+ */
+typedef enum {
+    CTRL    = 0,   /**< control chars */
+    NON     = 1,   /**< non composibles */
+    CONS    = 2,   /**< consonants */
+    LV      = 3,   /**< leading vowels */
+    FV1     = 4,   /**< following vowels 1 */
+    FV2     = 5,   /**< following vowels 2 */
+    FV3     = 6,   /**< following vowels 3 */
+    BV1     = 7,   /**< below vowels 1 */
+    BV2     = 8,   /**< below vowels 2 */
+    BD      = 9,   /**< below diacritics */
+    TONE    = 10,  /**< tonemarks */
+    AD1     = 11,  /**< above diacritics 1 */
+    AD2     = 12,  /**< above diacritics 2 */
+    AD3     = 13,  /**< above diacritics 3 */
+    AV1     = 14,  /**< above vowels 1 */
+    AV2     = 15,  /**< above vowels 2 */
+    AV3     = 16   /**< above vowels 3 */
+} WTTClass;
 
-#define CTRL    0   /* control chars */
-#define NON     1   /* non composibles */
-#define CONS    2   /* consonants */
-#define LV      3   /* leading vowels */
-#define FV1     4   /* following vowels */
-#define FV2     5
-#define FV3     6
-#define BV1     7   /* below vowels */
-#define BV2     8
-#define BD      9   /* below diacritics */
-#define TONE    10  /* tonemarks */
-#define AD1     11  /* above diacritics */
-#define AD2     12
-#define AD3     13
-#define AV1     14  /* above vowels */
-#define AV2     15
-#define AV3     16
+/**
+ * @brief  Composibility checking tables
+ */
+typedef enum {
+    CP  = 1,  /**< COMPOSIBLE - following char is displayed in the same cell
+                              as leading char, also implies ACCEPT */
+    XC  = 2,  /**< Non-display */
+    AC  = 3,  /**< ACCEPT - display the following char in the next cell */
+    RJ  = 4,  /**< REJECT - discard that following char, ignore it */
+    SR  = 5   /**< STRICT REJECT - REJECT only if in strict mode */
+} WTTOp;
 
-/* Composibility checking tables */
-#define CP  1   /* COMPOSIBLE - following char is displayed in the same cell
-                                as leading char, also implies ACCEPT */
-#define XC  2   /* Non-display */
-#define AC  3   /* ACCEPT - display the following char in the next cell */
-#define RJ  4   /* REJECT - discard that following char, ignore it */
-#define SR  5   /* STRICT REJECT - REJECT only if in strict mode */
+/**
+ * @brief  WTT character class
+ * @param  c : the character
+ * @return  WTT character class { CTRL, ..., AV3 }
+ */
+extern WTTClass TACchtype(thchar_t c);
 
-extern int TACchtype(thchar_t c);
-extern int TACio_op(thchar_t c1, thchar_t c2);
+/**
+ * @brief  WTT I/O operation
+ * @param  c1 : previous character
+ * @param  c2 : next character
+ * @return  WTT I/O operation { CP, XC, AC, RJ, SR }
+ */
+extern WTTOp    TACio_op(thchar_t c1, thchar_t c2);
 
 /*
  * implementation parts
