@@ -1,5 +1,5 @@
 /*
- * $Id: wtt.c,v 1.3 2003-03-23 13:26:55 thep Exp $
+ * $Id: wtt.c,v 1.4 2006-08-01 11:38:21 thep Exp $
  * wtt.h - WTT I/O implementation
  * Created: 2001-08-04
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -69,12 +69,12 @@ short TACio_op_[17][17] = {
 #undef TACchtype
 #undef TACio_op
 
-int TACchtype(thchar_t c)
+WTTClass TACchtype(thchar_t c)
 {
     return TACchtype_[c];
 }
 
-int TACio_op(thchar_t c1, thchar_t c2)
+WTTOp    TACio_op(thchar_t c1, thchar_t c2)
 {
     return TACio_op_[TACchtype_[c1]][TACchtype_[c2]];
 }
