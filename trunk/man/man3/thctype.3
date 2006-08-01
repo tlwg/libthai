@@ -19,7 +19,7 @@
 .\" Formatted or processed versions of this manual, if unaccompanied by
 .\" the source, must acknowledge the copyright and authors of this work.
 .\" License.
-.\" $Id: thctype.3,v 1.2 2003-09-10 05:29:45 thep Exp $
+.\" $Id: thctype.3,v 1.3 2006-08-01 06:26:32 thep Exp $
 .TH thctype 3 "Sep 14, 2001" "Thai Linux Working Group" "libthai's Manual"
 .SH NAME
 .B thctype related functions
@@ -90,7 +90,7 @@ int \fBth_isthpunct\fR(\fIthchar_t c);
 int \fBth_chlevel\fR(\fIthchar_t c);
 int \fBth_iscombchar\fR(\fIthchar_t c);
 .SH DESCRIPTION
-The Thai Standard Industrial Standards Institute(TIS) defined the Thai character set for using with computer named TIS-620. This character set is 8-bit encoded including both English and Thai characters. Aliases of TIS-620 are TIS620, TIS620-0, TIS620.2529-1, TIS620.2533-0 and ISO-IR-166.
+The Thai Standard Industrial Standards Institute (TIS) defined the Thai character set for using with computer named TIS-620. This character set is 8-bit encoded including both English and Thai characters. Aliases of TIS-620 are TIS620, TIS620-0, TIS620.2529-1, TIS620.2533-0 and ISO-IR-166.
 .PP 
 The followings are the enconding values in hexadecimal, unicode values and their names.
 .sp
@@ -524,23 +524,25 @@ The followings are the enconding values in hexadecimal, unicode values and their
 .br
 0xFB   <U0E5B> THAI CHARACTER KHOMUT
 .sp
-Thai characters consisted of 44 consonants, vowels, tonemarks, diacritics and Thai digits. Thai vowels are divided into 4 groups, Leading Vowels(LV), Following Vowels(FV), Below Vowels(BV) and Above Vowels(AV). There are 4 tonemarks whose posotion is above a consonant. Diacritics are divided into 2 groups, Above Diacritics(AD) and Below Diacritics(BD).
+Thai characters consist of 44 consonants, vowels, tonemarks, diacritics and Thai digits. Thai vowels are divided into 4 groups, Leading Vowels (LV), Following Vowels (FV), Below Vowels (BV) and Above Vowels (AV). There are 4 tonemarks whose position is above a consonant. Diacritics are divided into 2 groups, Above Diacritics (AD) and Below Diacritics (BD).
 .sp
 .B Character Level 
 .sp
 Libthai has defined 4 levels for the posotion of a character.
 .br
-- Below level: a character is written/displayed below the final consonant. 
-\fBth_chlevel\fR will return the value -1 for this character. 
+- Below level: a character is placed below the consonant. 
+\fBth_chlevel\fR will return the value -1 for these characters.
 .br
-- Base level: this includes consonants, FV and LV. A character is written/displayed on baseline. 
-\fBth_chlevel\fR will reuturn the values 0 for this character.
+- Base level: this includes consonants, FV and LV. A character is placed on baseline. 
+\fBth_chlevel\fR will return the value 0 for these characters.
 .br
-- Above level: a character is written/displayed just below the final consonant.
+- Above level: a character is placed just above the final consonant.
+\fBth_chlevel\fR will return the value 1 for these characters.
 .br
-- Top level: this includes tonemarks and diacritics. Sometimes, a character in top level can be located in above level for the sake of beauty.
+- Top level: this includes tonemarks and diacritics. Sometimes, a character in top level can be placed in above level if no character is there, for better looking.
+\fBth_chlevel\fR will return the value 2 for these characters.
 .sp
-The following shows an example of Thai word and characters' level.
+The following figure illustrates a Thai word and characters' level.
 .sp
 --------------------------- Top(2) 
 .br
@@ -588,7 +590,7 @@ The following shows an example of Thai word and characters' level.
 .br
 --------------------------- Below(-1)
 .sp
-A character located at below, above or top level is also called dead character. It is usually composed with a consonant, after a dead character is typed, the cursor will not be advanced to the next character. BV, BD, TONE, AD and AV are classified as dead character.
+A character placed at below, above or top level is also called dead character. It is usually combined with a consonant, after a dead character is typed, the cursor will not be advanced to the next display cell. BV, BD, TONE, AD and AV are classified as dead character.
 
 
 
