@@ -1,5 +1,19 @@
 2006-08-02  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* configure.in: Enable doxygen by default.
+
+	* configure.in, doc/Makefile.am: Use htmldocdir variable instead of
+	pkgdocdir/docdir. Let default behavior install html under html/ subdir.
+
+	* configure.in, Makefile.am: Exclude man/ subdir, and use
+	doxygen-generated man pages instead.
+
+	* doc/Doxyfile.in: Disable SHOW_INCLUDE_FILES, as showing include
+	files included from the documented file just confuses readers in the 
+	man pages.
+
+2006-08-02  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* include/thai/thctype.h, man/man3/thctype.3: Clarify character level
 	2 and 3 in the document.
 
@@ -910,13 +924,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.93 2006-08-02 05:10:05 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.94 2006-08-02 09:10:18 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.93 2006-08-02 05:10:05 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.94 2006-08-02 09:10:18 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
