@@ -1,7 +1,5 @@
 if ENABLE_DOXYGEN_DOC
 
-pkgdocdir = $(docdir)
-
 man_MANS = \
 	$(top_builddir)/doc/man/man3/thailib.h.3	\
 	$(top_builddir)/doc/man/man3/th_brk.3	\
@@ -98,11 +96,11 @@ doxygen.stamp: $(top_srcdir)/include/thai/*.h
 install-data-local: install-html
 
 install-html:
-	$(INSTALL) -d $(DESTDIR)$(pkgdocdir)
-	$(INSTALL_DATA) html/* $(DESTDIR)$(pkgdocdir)
+	$(INSTALL) -d $(DESTDIR)$(htmldocdir)
+	$(INSTALL_DATA) html/* $(DESTDIR)$(htmldocdir)
 
 uninstall-local:
-	rm -rf $(DESTDIR)$(pkgdocdir)
+	rm -rf $(DESTDIR)$(htmldocdir)
 
 clean-local:
 	rm -rf html man
