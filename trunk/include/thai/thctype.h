@@ -1,5 +1,5 @@
 /*
- * $Id: thctype.h,v 1.12 2006-08-01 11:46:57 thep Exp $
+ * $Id: thctype.h,v 1.13 2006-08-02 05:10:07 thep Exp $
  * thctype.h - Thai character classifications
  * Created: 2001-05-17
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -260,10 +260,21 @@ BEGIN_CDECL
  *   @li  Above level: a character is placed just above the consonant.
  *        th_chlevel() will return the value 1 for these characters.
  *
- *   @li  Top level: this includes tonemarks and diacritics. Sometimes, a 
- *        character in top level can be placed in above level if no character 
- *        is there, for better looking.
+ *   @li  Top level: this includes tone marks and diacritics. For plain 
+ *        character cell rendering, it is safe to put these characters at 
+ *        top-most level. However, some rendering engines may lower them down 
+ *        on absence of character at Above level, for typographical quality.
  *        th_chlevel() will return the value 2 for these characters.
+ *
+ * There is an extra level value 3 for certain characters which are usually 
+ * classified as characters at Above level, but are also allowed to be placed 
+ * at Top level for some rare cases. Two characters fall in this category, 
+ * namely MAITAIKHU and NIKHAHIT.
+ *
+ * MAITAIKHU can be placed at Top level when writing some minority languages 
+ * such as Kuy, to shorten some syllables with compound vowels, such as Sara 
+ * Ia and Sara Uea. NIKHAHIT can be placed at Top level in Pali/Sanskrit words, 
+ * to represent -ng final sound above SARA I.
  *
  * The following figure illustrates a Thai word and characters' level.
  *
