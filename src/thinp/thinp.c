@@ -1,5 +1,5 @@
 /*
- * $Id: thinp.c,v 1.10 2006-07-03 04:43:56 thep Exp $
+ * $Id: thinp.c,v 1.11 2006-08-02 04:03:00 thep Exp $
  * thinp.c - Thai string input sequence filtering
  * Created: 2001-08-04
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -23,7 +23,7 @@ int th_isaccept(thchar_t c1, thchar_t c2, thstrict_t s)
 
     case ISC_STRICT:
         {
-            int op = TACio_op(c1, c2);
+            WTTOp op = TACio_op(c1, c2);
             return op != RJ && op != SR;
         }
 
