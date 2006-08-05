@@ -2,6 +2,11 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.6 (5 August 2006):
+* Documentation with doxygen.
+* Add missing APIs.
+* Fix compiler warnings.
+
 LibThai 0.1.5 (13 March 2006):
 * Improved word breaking. Space is now also considered a breakable point.
 * More PUA support for Mac fonts rendering.
