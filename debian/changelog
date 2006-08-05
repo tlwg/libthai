@@ -1,11 +1,20 @@
-libthai (0.1.5-4) UNRELEASED; urgency=low
+libthai (0.1.6-1) unstable; urgency=low
 
-  * debian/control: Provided more informative short description.
-    (Closes: #360621)
+  * New upstream release.
+  * Provided more informative short description.  Also added details about 
+    individual packages, as well as upstream homepage. (Closes: #360621)
+  * Added libthai-doc package, installing HTML document available in new
+    upstream release, with doc-base control file.
+  * Used individual package.docs files, so they get installed in all packages.
+  * Removed useless README.Debian.
+  * Add back config.sub and config.guess replacements.
+  * Used dh_install instead of the old dh_movefiles.
+  * Removed unneeded debhelper commands: dh_installexamples, dh_installmenu,
+    dh_installcron, dh_installman, dh_installinfo.
   * Bumped standard version to 3.7.2, no changes needed.
-  * debian/watch: Added.
+  * Added watch file.
 
- -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon,  3 Jul 2006 15:41:51 +0700
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat,  5 Aug 2006 22:00:08 +0700
 
 libthai (0.1.5-3) unstable; urgency=low
 
