@@ -56,6 +56,12 @@ clean:
 
 	# Add here commands to clean up after the build process.
 	-$(MAKE) distclean
+ifneq "$(wildcard /usr/share/misc/config.sub)" ""
+	cp -f /usr/share/misc/config.sub config.sub
+endif
+ifneq "$(wildcard /usr/share/misc/config.guess)" ""
+	cp -f /usr/share/misc/config.guess config.guess
+endif
 
 	dh_clean
 
@@ -66,7 +72,7 @@ install: build
 	dh_installdirs
 
 	# Add here commands to install the package into debian/tmp
-	$(MAKE) install prefix=$(CURDIR)/debian/tmp/usr
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 
 
 # Build architecture-independent files here.
@@ -77,15 +83,9 @@ binary-indep: build install
 binary-arch: build install
 	dh_testdir
 	dh_testroot
-	dh_movefiles
-
-	dh_installdocs
-	dh_installexamples
-	dh_installmenu
-	dh_installcron
-	dh_installman
-	dh_installinfo
 	dh_installchangelogs ChangeLog
+	dh_installdocs
+	dh_install --sourcedir=debian/tmp
 	dh_link
 	dh_strip
 	dh_compress
