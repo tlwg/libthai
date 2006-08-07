@@ -3,7 +3,7 @@ Priority: optional
 Section: libs
 Maintainer: Theppitak Karoonboonyanan <thep@linux.thai.net>
 Uploaders:  Pattara Kiatisevi <ott@linux.thai.net>
-Build-Depends: debhelper (>> 3.0.0)
+Build-Depends: debhelper (>> 3.0.0), doxygen
 Standards-Version: 3.7.2
 
 Package: libthai-dev
