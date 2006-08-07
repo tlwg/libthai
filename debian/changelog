@@ -1,10 +1,11 @@
 libthai (0.1.6-1) unstable; urgency=low
 
   * New upstream release.
-  * Provided more informative short description.  Also added details about 
+  * Provided more informative short description.  Also added details about
     individual packages, as well as upstream homepage. (Closes: #360621)
   * Added libthai-doc package, installing HTML document available in new
     upstream release, with doc-base control file.
+  * Build-depends on doxygen.
   * Used individual package.docs files, so they get installed in all packages.
   * Removed useless README.Debian.
   * Add back config.sub and config.guess replacements.
@@ -14,7 +15,7 @@ libthai (0.1.6-1) unstable; urgency=low
   * Bumped standard version to 3.7.2, no changes needed.
   * Added watch file.
 
- -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat,  5 Aug 2006 22:00:08 +0700
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sun,  6 Aug 2006 23:00:52 +0700
 
 libthai (0.1.5-3) unstable; urgency=low
 
