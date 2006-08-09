@@ -1,3 +1,9 @@
+libthai (0.1.6-2) UNRELEASED; urgency=low
+
+  * Split build rules into build-indep and build-arch.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed,  9 Aug 2006 23:08:37 +0700
+
 libthai (0.1.6-1) unstable; urgency=low
 
   * New upstream release.
