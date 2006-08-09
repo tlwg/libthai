@@ -40,19 +40,29 @@ config.status: configure
 	./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info --enable-shared
 
 
-build: build-stamp
-build-stamp:  config.status
+build-indep: build-indep-stamp
+build-indep-stamp:  config.status
+	dh_testdir
+
+	cd doc; $(MAKE)
+
+	touch build-indep-stamp
+
+build-arch: build-arch-stamp
+build-arch-stamp:  config.status
 	dh_testdir
 
 	# Add here commands to compile the package.
 	$(MAKE)
 
-	touch build-stamp
+	touch build-arch-stamp
+
+build: build-indep build-arch
 
 clean:
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp 
+	rm -f build-arch-stamp build-indep-stamp
 
 	# Add here commands to clean up after the build process.
 	-$(MAKE) distclean
@@ -65,37 +75,57 @@ endif
 
 	dh_clean
 
-install: build
+install-indep: build-indep
 	dh_testdir
 	dh_testroot
 	dh_clean -k
-	dh_installdirs
+	dh_installdirs --indep
+
+	# Add here commands to install the package into debian/tmp
+	cd doc; $(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+
+install-arch: build-arch
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs --arch
 
 	# Add here commands to install the package into debian/tmp
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 
 
 # Build architecture-independent files here.
-binary-indep: build install
-# We have nothing to do by default.
-
-# Build architecture-dependent files here.
-binary-arch: build install
+binary-indep: build-indep install-indep
 	dh_testdir
 	dh_testroot
-	dh_installchangelogs ChangeLog
-	dh_installdocs
-	dh_install --sourcedir=debian/tmp
-	dh_link
-	dh_strip
-	dh_compress
-	dh_fixperms
-	dh_makeshlibs
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
+	dh_installchangelogs --indep ChangeLog
+	dh_installdocs --indep
+	dh_install --indep --sourcedir=debian/tmp
+	dh_link --indep
+	dh_compress --indep
+	dh_fixperms --indep
+	dh_installdeb --indep
+	dh_gencontrol --indep
+	dh_md5sums --indep
+	dh_builddeb --indep
+
+# Build architecture-dependent files here.
+binary-arch: build-arch install-arch
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs --arch ChangeLog
+	dh_installdocs --arch
+	dh_install --arch --sourcedir=debian/tmp
+	dh_link --arch
+	dh_strip --arch
+	dh_compress --arch
+	dh_fixperms --arch
+	dh_makeshlibs --arch
+	dh_installdeb --arch
+	dh_shlibdeps --arch
+	dh_gencontrol --arch
+	dh_md5sums --arch
+	dh_builddeb --arch
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install 
