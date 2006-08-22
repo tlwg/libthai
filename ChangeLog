@@ -1,3 +1,7 @@
+2006-08-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Post-release version bump.
+
 2006-08-05  Theppitak Karoonboonyanan <thep@linux.thai.net>
 
 	* NEWS, configure.in:
@@ -938,13 +942,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.97 2006-08-05 02:56:21 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.98 2006-08-22 11:51:32 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.97 2006-08-05 02:56:21 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.98 2006-08-22 11:51:32 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
