@@ -1,3 +1,19 @@
+2006-08-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* libthai.pc.in: Added datrie to Requires.
+
+	* src/thbrk/Makefile.am: Removed old dict before rebuilding.
+
+	* src/thbrk/thbrk.c (th_brk_line): Added implementation.
+
+	* src/thbrk/thbrk.c (brk_do): Be satisfied with terminal state only if
+	the following character can begin a word.
+
+	* src/thbrk/thbrk.c (BrkShot, BestBrk, brk_root_pool, brk_do,
+	brk_shot_copy, best_brk_new, best_brk_contest): Added penulty
+	on crash recovery, and considered it when contesting shots. This can
+	prevent long crash shots from showing up as maximally matched.
+
 2006-08-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	=== begin of datrie_wbrk-branch ===
@@ -950,13 +966,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.98.2.1 2006-08-22 15:32:48 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.98.2.2 2006-08-23 16:31:53 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.98.2.1 2006-08-22 15:32:48 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.98.2.2 2006-08-23 16:31:53 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
