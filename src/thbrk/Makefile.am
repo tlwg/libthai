@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.8.2.1 2006-08-22 15:32:49 thep Exp $
+# $Id: Makefile.am,v 1.8.2.2 2006-08-23 16:31:53 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 CLEANFILES = thbrk.br thbrk.tl
 
@@ -19,5 +19,6 @@ thbrk.br thbrk.tl: tdict.txt
 	if test ! -e thbrk.sbm; then \
 	  ln -s $(top_srcdir)/src/thbrk/thbrk.sbm . ; \
 	fi
+	rm -f thbrk.br thbrk.tl
 	$(TRIETOOL) thbrk add-list $(top_srcdir)/src/thbrk/tdict.txt
 

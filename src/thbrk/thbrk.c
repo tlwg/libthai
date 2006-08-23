@@ -5,6 +5,7 @@
  * Author:  Theppitak Karoonboonyanan <thep@linux.thai.net>
  */
 
+#include <string.h>
 #include <stdlib.h>
 #include <limits.h>
 #include <datrie/sb-trie.h>
@@ -22,6 +23,7 @@ typedef struct _BrkShot {
     int            *brk_pos;
     int             n_brk_pos;
     int             cur_brk_pos;
+    int             penulty;
 } BrkShot;
 
 static void         brk_shot_copy (BrkShot *dst, const BrkShot *src);
@@ -54,6 +56,7 @@ typedef struct {
     int     n_brk_pos;
     int     cur_brk_pos;
     int     str_pos;
+    int     penulty;
 } BestBrk;
 
 static BestBrk *    best_brk_new (int n_brk_pos);
@@ -70,6 +73,45 @@ static BrkPool *    brk_root_pool (int pos_size);
 static int          brk_do (const thchar_t *s, int pos[], size_t n,
                             int do_recover);
 static int          brk_recover (const thchar_t *text, int pos);
+
+#define th_isleadable(c) \
+    (th_isthcons(c)||th_isldvowel(c)||th_isthdigit(c))
+
+int
+th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
+{
+    int        *brk_pos;
+    int         n_brk_pos, i, j;
+    int         delim_len;
+    thchar_t   *p_out;
+
+    n_brk_pos = strlen ((const char *) in);
+    brk_pos = (int *) malloc (n_brk_pos * sizeof (int));
+
+    n_brk_pos = th_brk (in, brk_pos, n_brk_pos);
+    
+    delim_len = strlen (delim);
+    for (i = j = 0, p_out = out; n > 1 && i < n_brk_pos; i++) {
+        while (n > 1 && j < brk_pos[i]) {
+            *p_out++ = in [j++];
+            --n;
+        }
+        if (n > delim_len + 1) {
+            strcpy ((char *) p_out, delim);
+            p_out += delim_len;
+            n -= delim_len;
+        }
+    }
+    while (n > 1 && in [j]) {
+        *p_out++ = in [j++];
+        --n;
+    }
+    *p_out = '\0';
+
+    free (brk_pos);
+
+    return p_out - out;
+}
 
 int
 th_brk (const thchar_t *s, int pos[], size_t n)
@@ -90,6 +132,7 @@ brk_root_pool (int pos_size)
     root_shot.brk_pos = (int *) malloc (pos_size * sizeof (int));
     root_shot.n_brk_pos = pos_size;
     root_shot.str_pos = root_shot.cur_brk_pos = 0;
+    root_shot.penulty = 0;
 
     node = brk_pool_node_new (&root_shot);
     pool = brk_pool_add (pool, node);
@@ -125,6 +168,7 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
                 if (do_recover &&
                     (recovered = brk_recover (s, shot->str_pos)) != -1)
                 {
+                    shot->penulty += recovered - shot->str_pos;
                     shot->str_pos = recovered;
                     sb_trie_state_rewind (shot->dict_state);
                     if (s[shot->str_pos]) {
@@ -142,7 +186,8 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
                 }
             }
         } while (keep_on && s[shot->str_pos]
-                 && !sb_trie_state_is_terminal (shot->dict_state));
+                 && !(sb_trie_state_is_terminal (shot->dict_state)
+                      && th_isleadable (s[shot->str_pos])));
 
         if (!keep_on)
             continue;
@@ -164,7 +209,9 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
             BrkPool *del_node;
 
             /* break pos matches another node, contest and keep better one */
-            del_node = (match->shot.cur_brk_pos < node->shot.cur_brk_pos)
+            del_node = (match->shot.penulty < node->shot.penulty ||
+                        (match->shot.penulty == node->shot.penulty &&
+                         match->shot.cur_brk_pos < node->shot.cur_brk_pos))
                        ? node : match;
             pool = brk_pool_delete (pool, del_node);
         }
@@ -179,8 +226,6 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
 }
 
 #define RECOVERED_WORDS 2
-#define th_isleadable(c) \
-    (th_isthcons(c)||th_isldvowel(c)||th_isthdigit(c))
 
 static int
 brk_recover (const thchar_t *text, int pos)
@@ -223,6 +268,7 @@ brk_shot_copy (BrkShot *dst, const BrkShot *src)
         dst->brk_pos[i] = src->brk_pos[i];
     dst->n_brk_pos = src->n_brk_pos;
     dst->cur_brk_pos = src->cur_brk_pos;
+    dst->penulty = src->penulty;
 }
 
 static void
@@ -357,6 +403,7 @@ best_brk_new (int n_brk_pos)
         goto exit1;
     best_brk->n_brk_pos = n_brk_pos;
     best_brk->cur_brk_pos = best_brk->str_pos = 0;
+    best_brk->penulty = 0;
 
     return best_brk;
 
@@ -377,7 +424,9 @@ best_brk_contest (BestBrk *best_brk, const BrkShot *shot)
 {
     if (shot->str_pos > best_brk->str_pos ||
         (shot->str_pos == best_brk->str_pos &&
-         shot->cur_brk_pos < best_brk->cur_brk_pos))
+         shot->penulty < best_brk->penulty ||
+         (shot->penulty == best_brk->penulty &&
+          shot->cur_brk_pos < best_brk->cur_brk_pos)))
     {
         int i;
 
@@ -385,6 +434,7 @@ best_brk_contest (BestBrk *best_brk, const BrkShot *shot)
             best_brk->brk_pos[i] = shot->brk_pos[i];
         best_brk->cur_brk_pos = shot->cur_brk_pos;
         best_brk->str_pos = shot->str_pos;
+        best_brk->penulty = shot->penulty;
 
         return 1;
     }

@@ -6,6 +6,6 @@ includedir=@includedir@
 Name: libthai
 Description: Thai support library
 Version: @VERSION@
-Requires: 
+Requires: datrie
 Libs: -L${libdir} -lthai
 Cflags: -I${includedir}
