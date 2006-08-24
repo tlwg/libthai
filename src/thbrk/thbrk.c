@@ -164,11 +164,20 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
             if (!sb_trie_state_walk (shot->dict_state, s[shot->str_pos++])) {
                 int recovered;
 
-                /* try to recover from error first */
-                if (do_recover &&
-                    (recovered = brk_recover (s, shot->str_pos)) != -1)
-                {
-                    shot->penulty += recovered - shot->str_pos;
+                if (!do_recover) {
+                    best_brk_contest (best_brk, shot);
+                    pool = brk_pool_delete (pool, node);
+                    keep_on = 0;
+                    continue;
+                }
+
+                /* try to recover from error */
+                if (-1 != (recovered = brk_recover (s, shot->str_pos))) {
+                    /* add penulty by recovered - recent break pos */
+                    shot->penulty += recovered;
+                    if (shot->cur_brk_pos > 0)
+                        shot->penulty -= shot->brk_pos[shot->cur_brk_pos - 1];
+
                     shot->str_pos = recovered;
                     sb_trie_state_rewind (shot->dict_state);
                     if (s[shot->str_pos]) {
@@ -180,6 +189,11 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
                         }
                     }
                 } else {
+                    /* add penulty with string len - recent break pos */
+                    shot->penulty += strlen ((const char *) s);
+                    if (shot->cur_brk_pos > 0)
+                        shot->penulty -= shot->brk_pos[shot->cur_brk_pos - 1];
+
                     best_brk_contest (best_brk, shot);
                     pool = brk_pool_delete (pool, node);
                     keep_on = 0;
@@ -424,9 +438,9 @@ best_brk_contest (BestBrk *best_brk, const BrkShot *shot)
 {
     if (shot->str_pos > best_brk->str_pos ||
         (shot->str_pos == best_brk->str_pos &&
-         shot->penulty < best_brk->penulty ||
-         (shot->penulty == best_brk->penulty &&
-          shot->cur_brk_pos < best_brk->cur_brk_pos)))
+         (shot->penulty < best_brk->penulty ||
+          (shot->penulty == best_brk->penulty &&
+           shot->cur_brk_pos < best_brk->cur_brk_pos))))
     {
         int i;
 
