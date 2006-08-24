@@ -23,7 +23,7 @@ typedef struct _BrkShot {
     int            *brk_pos;
     int             n_brk_pos;
     int             cur_brk_pos;
-    int             penulty;
+    int             penalty;
 } BrkShot;
 
 static void         brk_shot_copy (BrkShot *dst, const BrkShot *src);
@@ -56,7 +56,7 @@ typedef struct {
     int     n_brk_pos;
     int     cur_brk_pos;
     int     str_pos;
-    int     penulty;
+    int     penalty;
 } BestBrk;
 
 static BestBrk *    best_brk_new (int n_brk_pos);
@@ -132,7 +132,7 @@ brk_root_pool (int pos_size)
     root_shot.brk_pos = (int *) malloc (pos_size * sizeof (int));
     root_shot.n_brk_pos = pos_size;
     root_shot.str_pos = root_shot.cur_brk_pos = 0;
-    root_shot.penulty = 0;
+    root_shot.penalty = 0;
 
     node = brk_pool_node_new (&root_shot);
     pool = brk_pool_add (pool, node);
@@ -173,10 +173,10 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
 
                 /* try to recover from error */
                 if (-1 != (recovered = brk_recover (s, shot->str_pos))) {
-                    /* add penulty by recovered - recent break pos */
-                    shot->penulty += recovered;
+                    /* add penalty by recovered - recent break pos */
+                    shot->penalty += recovered;
                     if (shot->cur_brk_pos > 0)
-                        shot->penulty -= shot->brk_pos[shot->cur_brk_pos - 1];
+                        shot->penalty -= shot->brk_pos[shot->cur_brk_pos - 1];
 
                     shot->str_pos = recovered;
                     sb_trie_state_rewind (shot->dict_state);
@@ -189,10 +189,10 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
                         }
                     }
                 } else {
-                    /* add penulty with string len - recent break pos */
-                    shot->penulty += strlen ((const char *) s);
+                    /* add penalty with string len - recent break pos */
+                    shot->penalty += strlen ((const char *) s);
                     if (shot->cur_brk_pos > 0)
-                        shot->penulty -= shot->brk_pos[shot->cur_brk_pos - 1];
+                        shot->penalty -= shot->brk_pos[shot->cur_brk_pos - 1];
 
                     best_brk_contest (best_brk, shot);
                     pool = brk_pool_delete (pool, node);
@@ -223,8 +223,8 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
             BrkPool *del_node;
 
             /* break pos matches another node, contest and keep better one */
-            del_node = (match->shot.penulty < node->shot.penulty ||
-                        (match->shot.penulty == node->shot.penulty &&
+            del_node = (match->shot.penalty < node->shot.penalty ||
+                        (match->shot.penalty == node->shot.penalty &&
                          match->shot.cur_brk_pos < node->shot.cur_brk_pos))
                        ? node : match;
             pool = brk_pool_delete (pool, del_node);
@@ -282,7 +282,7 @@ brk_shot_copy (BrkShot *dst, const BrkShot *src)
         dst->brk_pos[i] = src->brk_pos[i];
     dst->n_brk_pos = src->n_brk_pos;
     dst->cur_brk_pos = src->cur_brk_pos;
-    dst->penulty = src->penulty;
+    dst->penalty = src->penalty;
 }
 
 static void
@@ -417,7 +417,7 @@ best_brk_new (int n_brk_pos)
         goto exit1;
     best_brk->n_brk_pos = n_brk_pos;
     best_brk->cur_brk_pos = best_brk->str_pos = 0;
-    best_brk->penulty = 0;
+    best_brk->penalty = 0;
 
     return best_brk;
 
@@ -438,8 +438,8 @@ best_brk_contest (BestBrk *best_brk, const BrkShot *shot)
 {
     if (shot->str_pos > best_brk->str_pos ||
         (shot->str_pos == best_brk->str_pos &&
-         (shot->penulty < best_brk->penulty ||
-          (shot->penulty == best_brk->penulty &&
+         (shot->penalty < best_brk->penalty ||
+          (shot->penalty == best_brk->penalty &&
            shot->cur_brk_pos < best_brk->cur_brk_pos))))
     {
         int i;
@@ -448,7 +448,7 @@ best_brk_contest (BestBrk *best_brk, const BrkShot *shot)
             best_brk->brk_pos[i] = shot->brk_pos[i];
         best_brk->cur_brk_pos = shot->cur_brk_pos;
         best_brk->str_pos = shot->str_pos;
-        best_brk->penulty = shot->penulty;
+        best_brk->penalty = shot->penalty;
 
         return 1;
     }
