@@ -389,15 +389,16 @@ brk_pool_add (BrkPool *pool, BrkPool *node)
 static BrkPool *
 brk_pool_delete (BrkPool *pool, BrkPool *node)
 {
-    BrkPool *p, *q;
-
-    for (p = pool, q = NULL; p && p != node; p = p->next)
-        q = p;
-
-    if (q)
-        q->next = node->next;
-    else if (pool)
+    if (pool == node) {
         pool = pool->next;
+    } else {
+        BrkPool *p;
+
+        for (p = pool; p && p->next != node; p = p->next)
+            ;
+        if (p)
+            p->next = node->next;
+    }
     brk_pool_free_node (node);
 
     return pool;
