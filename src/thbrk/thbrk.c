@@ -70,9 +70,9 @@ static int          best_brk_contest (BestBrk *best_brk, const BrkShot *shot);
 static SBTrie *     brk_get_dict ();
 
 static BrkPool *    brk_root_pool (int pos_size);
-static int          brk_do (const thchar_t *s, int pos[], size_t n,
+static int          brk_do (const thchar_t *s, int len, int pos[], size_t n,
                             int do_recover);
-static int          brk_recover (const thchar_t *text, int pos);
+static int          brk_recover (const thchar_t *text, int len, int pos);
 
 #define th_isleadable(c) \
     (th_isthcons(c)||th_isldvowel(c)||th_isthdigit(c))
@@ -116,7 +116,80 @@ th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
 int
 th_brk (const thchar_t *s, int pos[], size_t n)
 {
-    return brk_do (s, pos, n, 1);
+    const thchar_t *chunk;
+    int             cur_pos;
+
+    chunk = s;
+    cur_pos = 0;
+
+    while (*chunk && cur_pos < n) {
+        const thchar_t *str_end;
+        int             n_brk, i;
+
+        while (*chunk &&
+               (!th_isthai (*chunk) ||
+                th_isthpunct (*chunk) ||
+                th_isthdigit (*chunk)))
+        {
+            thchar_t cur_char, next_char;
+
+            /* peek next char and mark break pos if character type changes 
+             * without space in between
+             */
+            cur_char = *chunk;
+            next_char = *(chunk + 1);
+            if (next_char && !isspace (next_char) &&
+                (isspace (cur_char) ||
+                 th_isthpunct (cur_char) ||
+                 (!th_isthai (cur_char) && th_isthai (next_char)) ||
+                 (th_isthdigit (cur_char) && !th_isthdigit (next_char)) ||
+                 (isdigit (cur_char) && !isdigit (next_char))))
+            {
+                pos [cur_pos++] = (chunk - s) + 1;
+                if (cur_pos >= n)
+                    break;
+            }
+
+            ++chunk;
+        }
+        if (!*chunk || cur_pos >= n)
+            break;
+
+        str_end = chunk;
+        while (*str_end &&
+               (th_isthai (*str_end)
+                && !th_isthpunct (*str_end)
+                && !th_isthdigit (*str_end)))
+        {
+            ++str_end;
+        }
+
+        /* do string break within Thai chunk */
+        n_brk = brk_do (chunk, str_end - chunk, pos + cur_pos, n - cur_pos, 1);
+        for (i = 0; i < n_brk; i++)
+            pos [cur_pos + i] += chunk - s;
+        cur_pos += n_brk;
+        chunk = str_end;
+
+        /* if next character is Thai punct (e.g. Mai Yamok, Paiyan Noi)
+         * or white space, don't break
+         */
+        if (*chunk && (th_isthpunct (*chunk) || isspace (*chunk)) &&
+            cur_pos > 0 && pos [cur_pos - 1] == chunk -s)
+        {
+            --cur_pos;
+        }
+        /* otherwise, mark break pos at boundary if character type changes
+         * without space in between and not currently marked
+         */
+        else if (cur_pos < n && *chunk && !isspace (*chunk) &&
+                 cur_pos > 0 && pos [cur_pos - 1] != chunk - s)
+        {
+            pos [cur_pos++] = chunk - s;
+        }
+    }
+
+    return cur_pos;
 }
 
 static BrkPool *
@@ -143,7 +216,7 @@ brk_root_pool (int pos_size)
 }
 
 static int
-brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
+brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
 {
     BrkPool     *pool;
     BrkPool     *node;
@@ -172,7 +245,7 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
                 }
 
                 /* try to recover from error */
-                if (-1 != (recovered = brk_recover (s, shot->str_pos))) {
+                if (-1 != (recovered = brk_recover (s, len, shot->str_pos))) {
                     /* add penalty by recovered - recent break pos */
                     shot->penalty += recovered;
                     if (shot->cur_brk_pos > 0)
@@ -180,7 +253,7 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
 
                     shot->str_pos = recovered;
                     sb_trie_state_rewind (shot->dict_state);
-                    if (s[shot->str_pos]) {
+                    if (shot->str_pos < len) {
                         shot->brk_pos [shot->cur_brk_pos++] = shot->str_pos;
                         if (shot->cur_brk_pos >= n) {
                             best_brk_contest (best_brk, shot);
@@ -199,14 +272,14 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
                     keep_on = 0;
                 }
             }
-        } while (keep_on && s[shot->str_pos]
+        } while (keep_on && shot->str_pos < len
                  && !(sb_trie_state_is_terminal (shot->dict_state)
                       && th_isleadable (s[shot->str_pos])));
 
         if (!keep_on)
             continue;
 
-        if (s[shot->str_pos] && !sb_trie_state_is_leaf (shot->dict_state)) {
+        if (shot->str_pos < len && !sb_trie_state_is_leaf (shot->dict_state)) {
             /* add node to mark break position instead of current */
             node = brk_pool_node_new (shot);
             pool = brk_pool_add (pool, node);
@@ -215,7 +288,7 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
         sb_trie_state_rewind (node->shot.dict_state);
         node->shot.brk_pos [node->shot.cur_brk_pos++] = node->shot.str_pos;
 
-        if ('\0' == s[node->shot.str_pos] || node->shot.cur_brk_pos >= n) {
+        if (node->shot.str_pos == len || node->shot.cur_brk_pos >= n) {
             /* path is done; contest and remove */
             best_brk_contest (best_brk, &node->shot);
             pool = brk_pool_delete (pool, node);
@@ -242,14 +315,14 @@ brk_do (const thchar_t *s, int pos[], size_t n, int do_recover)
 #define RECOVERED_WORDS 2
 
 static int
-brk_recover (const thchar_t *text, int pos)
+brk_recover (const thchar_t *text, int len, int pos)
 {
     int brk_pos[RECOVERED_WORDS];
     int n;
 
-    while (text[pos]) {
+    while (pos < len) {
         if (th_isleadable (text[pos])) {
-            n = brk_do (text + pos, brk_pos, RECOVERED_WORDS, 0);
+            n = brk_do (text + pos, len - pos, brk_pos, RECOVERED_WORDS, 0);
             if (n == RECOVERED_WORDS || (n > 0 && '\0' == text[brk_pos[n-1]]))
                 return pos;
         }
