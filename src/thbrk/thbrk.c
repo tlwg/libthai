@@ -238,10 +238,9 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
                 int recovered;
 
                 if (!do_recover) {
-                    best_brk_contest (best_brk, shot);
                     pool = brk_pool_delete (pool, node);
                     keep_on = 0;
-                    continue;
+                    break;
                 }
 
                 /* try to recover from error */
@@ -259,6 +258,7 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
                             best_brk_contest (best_brk, shot);
                             pool = brk_pool_delete (pool, node);
                             keep_on = 0;
+                            break;
                         }
                     }
                 } else {
@@ -270,9 +270,10 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
                     best_brk_contest (best_brk, shot);
                     pool = brk_pool_delete (pool, node);
                     keep_on = 0;
+                    break;
                 }
             }
-        } while (keep_on && shot->str_pos < len
+        } while (shot->str_pos < len
                  && !(sb_trie_state_is_terminal (shot->dict_state)
                       && th_isleadable (s[shot->str_pos])));
 
