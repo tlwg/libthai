@@ -40,6 +40,7 @@ struct _BrkPool {
     BrkShot         shot;
 };
 
+static void         brk_pool_allocator_use ();
 static void         brk_pool_allocator_clear ();
 
 static BrkPool *    brk_pool_node_new (const BrkShot *shot);
@@ -123,6 +124,8 @@ th_brk (const thchar_t *s, int pos[], size_t n)
 
     chunk = s;
     cur_pos = 0;
+
+    brk_pool_allocator_use ();
 
     while (*chunk && cur_pos < n) {
         const thchar_t *str_end;
@@ -375,10 +378,20 @@ brk_shot_destruct (BrkShot *shot)
 }
 
 static BrkPool *brk_pool_free_list = NULL;
+static int      brk_pool_allocator_refcnt = 0;
+
+static void
+brk_pool_allocator_use ()
+{
+    ++brk_pool_allocator_refcnt;
+}
 
 static void
 brk_pool_allocator_clear ()
 {
+    if (--brk_pool_allocator_refcnt > 0)
+        return;
+
     while (brk_pool_free_list) {
         BrkPool *next;
 
