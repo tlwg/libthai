@@ -321,7 +321,9 @@ brk_recover (const thchar_t *text, int len, int pos)
     int n;
 
     while (pos < len) {
-        if (th_isleadable (text[pos])) {
+        if (th_isleadable (text[pos]) &&
+            (0 == pos || !th_isldvowel (text[pos - 1])))
+        {
             n = brk_do (text + pos, len - pos, brk_pos, RECOVERED_WORDS, 0);
             if (n == RECOVERED_WORDS || (n > 0 && '\0' == text[brk_pos[n-1]]))
                 return pos;
