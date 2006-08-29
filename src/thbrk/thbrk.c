@@ -263,7 +263,7 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
                     }
                 } else {
                     /* add penalty with string len - recent break pos */
-                    shot->penalty += strlen ((const char *) s);
+                    shot->penalty += len;
                     if (shot->cur_brk_pos > 0)
                         shot->penalty -= shot->brk_pos[shot->cur_brk_pos - 1];
 
