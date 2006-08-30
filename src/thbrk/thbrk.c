@@ -259,15 +259,13 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
 
                     shot->str_pos = recovered;
                     sb_trie_state_rewind (shot->dict_state);
-                    if (shot->str_pos < len) {
-                        shot->brk_pos [shot->cur_brk_pos++] = shot->str_pos;
-                        if (shot->cur_brk_pos >= n) {
-                            best_brk_contest (best_brk, shot);
-                            pool = brk_pool_delete (pool, node);
-                            keep_on = 0;
-                            break;
-                        }
+                    shot->brk_pos [shot->cur_brk_pos++] = shot->str_pos;
+                    if (shot->cur_brk_pos >= n) {
+                        best_brk_contest (best_brk, shot);
+                        pool = brk_pool_delete (pool, node);
                     }
+                    keep_on = 0;
+                    break;
                 } else {
                     /* add penalty with string len - recent break pos */
                     shot->penalty += len;
