@@ -298,15 +298,19 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
             /* path is done; contest and remove */
             best_brk_contest (best_brk, &node->shot);
             pool = brk_pool_delete (pool, node);
-        } else if (NULL != (match = brk_pool_match (pool, node))) {
-            BrkPool *del_node;
+        } else {
+            /* find matched nodes, contest and keep the best one */
+            while (NULL != (match = brk_pool_match (pool, node))) {
+                BrkPool *del_node;
 
-            /* break pos matches another node, contest and keep better one */
-            del_node = (match->shot.penalty < node->shot.penalty ||
-                        (match->shot.penalty == node->shot.penalty &&
-                         match->shot.cur_brk_pos < node->shot.cur_brk_pos))
-                       ? node : match;
-            pool = brk_pool_delete (pool, del_node);
+                del_node = (match->shot.penalty < node->shot.penalty ||
+                            (match->shot.penalty == node->shot.penalty &&
+                            match->shot.cur_brk_pos < node->shot.cur_brk_pos))
+                        ? node : match;
+                if (del_node == node)
+                    node = match;
+                pool = brk_pool_delete (pool, del_node);
+            }
         }
     }
 
