@@ -236,17 +236,16 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
     while (NULL != (node = brk_pool_get_node (pool, s))) {
         BrkShot *shot = &node->shot;
         BrkPool *match;
-        int      keep_on;
+        int      is_keep_node, is_terminal;
 
         /* walk dictionary character-wise till a word is matched */
-        keep_on = 1;
+        is_keep_node = is_terminal = 1;
         do {
             if (!sb_trie_state_walk (shot->dict_state, s[shot->str_pos++])) {
                 int recovered;
 
                 if (!do_recover) {
-                    pool = brk_pool_delete (pool, node);
-                    keep_on = 0;
+                    is_keep_node = 0;
                     break;
                 }
 
@@ -258,43 +257,43 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
                         shot->penalty -= shot->brk_pos[shot->cur_brk_pos - 1];
 
                     shot->str_pos = recovered;
-                    sb_trie_state_rewind (shot->dict_state);
-                    shot->brk_pos [shot->cur_brk_pos++] = shot->str_pos;
-                    if (shot->cur_brk_pos >= n) {
-                        best_brk_contest (best_brk, shot);
-                        pool = brk_pool_delete (pool, node);
-                    }
-                    keep_on = 0;
-                    break;
+                    is_terminal = 0;
                 } else {
                     /* add penalty with string len - recent break pos */
                     shot->penalty += len;
                     if (shot->cur_brk_pos > 0)
                         shot->penalty -= shot->brk_pos[shot->cur_brk_pos - 1];
 
-                    best_brk_contest (best_brk, shot);
-                    pool = brk_pool_delete (pool, node);
-                    keep_on = 0;
-                    break;
+                    is_keep_node = 0;
                 }
+                break;
             }
         } while (shot->str_pos < len
                  && !(sb_trie_state_is_terminal (shot->dict_state)
                       && th_isleadable (s[shot->str_pos])));
 
-        if (!keep_on)
+        if (!is_keep_node && !do_recover) {
+            pool = brk_pool_delete (pool, node);
             continue;
-
-        if (shot->str_pos < len && !sb_trie_state_is_leaf (shot->dict_state)) {
-            /* add node to mark break position instead of current */
-            node = brk_pool_node_new (shot);
-            pool = brk_pool_add (pool, node);
         }
 
-        sb_trie_state_rewind (node->shot.dict_state);
-        node->shot.brk_pos [node->shot.cur_brk_pos++] = node->shot.str_pos;
+        /* if node still kept, mark break position and rewind dictionary */
+        if (is_keep_node) {
+            if (shot->str_pos < len && is_terminal &&
+                !sb_trie_state_is_leaf (shot->dict_state))
+            {
+                /* add node to mark break position instead of current */
+                node = brk_pool_node_new (shot);
+                pool = brk_pool_add (pool, node);
+            }
 
-        if (node->shot.str_pos == len || node->shot.cur_brk_pos >= n) {
+            sb_trie_state_rewind (node->shot.dict_state);
+            node->shot.brk_pos [node->shot.cur_brk_pos++] = node->shot.str_pos;
+        }
+
+        if (!is_keep_node ||
+            node->shot.str_pos == len || node->shot.cur_brk_pos >= n)
+        {
             /* path is done; contest and remove */
             best_brk_contest (best_brk, &node->shot);
             pool = brk_pool_delete (pool, node);
