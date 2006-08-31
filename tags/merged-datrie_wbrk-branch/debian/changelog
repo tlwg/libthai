@@ -1,0 +1,104 @@
+libthai (0.1.6-2) UNRELEASED; urgency=low
+
+  * Split build rules into build-indep and build-arch.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed,  9 Aug 2006 23:08:37 +0700
+
+libthai (0.1.6-1) unstable; urgency=low
+
+  * New upstream release.
+  * Provided more informative short description.  Also added details about
+    individual packages, as well as upstream homepage. (Closes: #360621)
+  * Added libthai-doc package, installing HTML document available in new
+    upstream release, with doc-base control file.
+  * Build-depends on doxygen.
+  * Used individual package.docs files, so they get installed in all packages.
+  * Removed useless README.Debian.
+  * Add back config.sub and config.guess replacements.
+  * Used dh_install instead of the old dh_movefiles.
+  * Removed unneeded debhelper commands: dh_installexamples, dh_installmenu,
+    dh_installcron, dh_installman, dh_installinfo.
+  * Bumped standard version to 3.7.2, no changes needed.
+  * Added watch file.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sun,  6 Aug 2006 23:00:52 +0700
+
+libthai (0.1.5-3) unstable; urgency=low
+
+  * actually closed ITP bug (Closes: #358539)
+  * debian/control:
+    - took over the packaging from Pattara Kiatisevi with his consent.
+      thanks for your initial works! (he's still an uploader, anyway)
+  * debian/rules:
+    - removed commented debhelper instructions
+  * debian/copyright:
+    - more info on current maintainer
+    - added missing copyright years
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Tue, 28 Mar 2006 09:14:55 +0700
+
+libthai (0.1.5-2) unstable; urgency=low
+
+  * initial debian version
+  * debian/rules:
+    - removed replacement of upstream's config.guess and config.sub
+  * debian/copyright:
+    - updated e-mail addresses and urls
+    - mentioned system file for LGPL-2
+  * debian/control:
+    - added myself as an uploader
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Tue, 21 Mar 2006 16:54:12 +0700
+
+libthai (0.1.5-1ubuntu1) dapper; urgency=low
+
+  * initial ubuntu version
+  * removed the CVS dirs from the source (repacked it)
+  * debian/control: 
+    - added "libs" to Source section 
+    - changed standard version to 3.6.2.2
+  
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Tue, 14 Mar 2006 11:49:48 +0000
+
+libthai (0.1.5-1) unstable; urgency=low 
+
+  * upstream version 1.5 
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Tue,  14 Mar 2006 00:54:00 +0700
+
+libthai (0.1.4-1) unstable; urgency=low 
+
+  * upstream version 1.4 (since 16 October 2004, see the NEWS file)
+  * add a check value of array size in th_brk
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sun,  12 Dec 2004 15:43:00 +0900
+
+libthai (0.1.3-2) unstable; urgency=low 
+
+  * set the mode of cttex to firstmode=1 (we want it fast)
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sat,  15 May 2004 00:20:00 +0900
+
+libthai (0.1.3-1) unstable; urgency=low 
+
+  * Define blank base glyph for floating upper/lower vowels rendering.
+  * (Minor modified version as required by pango-libthai binding).
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Mon,  23 February 2004 13:10:00 +0900
+
+libthai (0.1.2-1) unstable; urgency=low
+
+  * It's still alive!
+  * Bug fix & code furnishing
+  * conversion functions for Win & Mac extension
+  * Some document (man pages)
+  * Experiment with GTK+ 2 plug-ins (in separate packages)
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sun,  14 Sep 2003 02:16:00 +0900
+
+libthai (0.1.1-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sun,  2 Feb 2003 16:37:08 +0900
+
