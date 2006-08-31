@@ -1,978 +1,578 @@
-/* Thai Word Break Library
- * based on cttex by Vuthichai A. (vuthi@[crtl.titech.ac.jp|linux.thai.net])
-
- * Created 2001-07-15
- * $Id: thbrk.c,v 1.12 2005-03-01 15:57:15 ott Exp $ 
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+/*
+ * thbrk.c - Thai word break routine
+ * Created: 2006-08-20
+ * Author:  Theppitak Karoonboonyanan <thep@linux.thai.net>
  */
 
-/* Maximum length of input line */
-#define                 MAXLINELENGTH           1000
-#define                 MAXARRAYLENGTH           10000
-
-/* Characters to be skipped */
-#define                 SKIPWORD(x)             \
-                        (((x)<128) || (((x)<=0xF9)&&((x)>=0xF0)))
-
-/* HIGH Chars */
-#define                 HIGHWORD(x)             \
-                        ((x)>=128)
-
-/* Check level of a character */
-#define                 NOTMIDDLE(x)            \
-                        (th_chlevel(x)!=0)
-
-#define                 GETLENGTH(x)            \
-                        ((x)<-100?-(x)-100:((x)<0?-(x):(x)))
-
-/* Never change this value. If you do, make sure it's below 255. */
-#define			CUTCODE			254
-
-/* Set this one will reduce output size with new TeX */
-#define                 HIGHBIT                 1 
-
-#define                 LISTSTACKDEPTH          100
-#define                 CUTLISTSIZE             100
-#define                 DIFLISTSIZE             100
-
-#include <stdio.h>
 #include <string.h>
-#include <memory.h>
 #include <stdlib.h>
-
-/* Load Dictionary : wordptr & numword */
-#include "map.h"
-
-#include <thai/thailib.h>
+#include <limits.h>
+#include <datrie/sb-trie.h>
 #include <thai/thctype.h>
-#include <thai/thstr.h>
+#include <thai/thbrk.h>
 
+#define DICT_NAME   "thbrk"
 
-int dooneline2(unsigned char *,unsigned char *);
-int dooneline2sub(unsigned char *in, int *cutlist, int cutpoint, int,int);
-int docut(unsigned char *in,unsigned char *out, int *);
-void adj(unsigned char *);
-#if 0
-void fixline(unsigned char *);
-#endif
-int findword(unsigned char *, int *);
-int moveleft(int);
+/**
+ * @brief Break shot
+ */
+typedef struct _BrkShot {
+    SBTrieState    *dict_state;
+    int             str_pos;
+    int            *brk_pos;
+    int             n_brk_pos;
+    int             cur_brk_pos;
+    int             penalty;
+} BrkShot;
 
-void push_stack(int *,int,int);
-void show_stack(unsigned char *);
-void clear_stack();
-void check_dif(int *base, int *list, unsigned char *str);
-void clear_dif();
-void show_dif(unsigned char *);
-void insert_dif(int, int);
+static void         brk_shot_copy (BrkShot *dst, const BrkShot *src);
+static void         brk_shot_destruct (BrkShot *shot);
 
-void th_brk_init();
+/**
+ * @brief Break pool
+ */
 
-/* Table Look-Up for level of a character */
-/* only those in the range D0-FF */
-#if 0
-int levtable[]={
-                0,2,0,0,2,2,2,2,1,1,1,0,0,0,0,0,
-                0,0,0,0,0,0,0,2,3,3,3,3,3,2,3,0,
-                0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0 };
-#endif
+typedef struct _BrkPool BrkPool;
 
-/* Global variable, hmmmm :-p */
+struct _BrkPool {
+    BrkPool        *next;
+    BrkShot         shot;
+};
 
-int cutcode;
-int bShowAll,debugmode,reportmode,firstmode;
-int bIndexMode,bMinWords;
-unsigned char *mystr;
-int minerr,minword;
-int *bestcutlist;
-int bStopNow;
-int iLineNumber;
-int ListStack[LISTSTACKDEPTH][CUTLISTSIZE];
-int iListStackPointer;
-int piDifList[2*DIFLISTSIZE];
-int iDifPtr;
+static void         brk_pool_allocator_use ();
+static void         brk_pool_allocator_clear ();
 
-void th_brk_init() {
-  /* Constructor */
+static BrkPool *    brk_pool_node_new (const BrkShot *shot);
 
-  /* Init global Variables...Yikes!! */
-  cutcode = CUTCODE;
-  bShowAll = 0;  
-  bIndexMode = 0;
-  debugmode = 0;
-  reportmode = 0;
-  firstmode = 1;  
-}
+static void         brk_pool_free (BrkPool *pool);
+static BrkPool *    brk_pool_get_node (BrkPool *pool, const thchar_t *s);
+static BrkPool *    brk_pool_match (BrkPool *pool, BrkPool *node);
+static BrkPool *    brk_pool_add (BrkPool *pool, BrkPool *node);
+static BrkPool *    brk_pool_delete (BrkPool *pool, BrkPool *node);
 
-int th_brk(const thchar_t *_s, int pos[], size_t n) {
-  unsigned char *out;
-  int *myPos;
-  unsigned int inputLength, outputLength, numFound, numSpace;
-  unsigned int i, minValue;
-  unsigned char* s;
+/**
+ * @brief Best break solution
+ */
+typedef struct {
+    int    *brk_pos;
+    int     n_brk_pos;
+    int     cur_brk_pos;
+    int     str_pos;
+    int     penalty;
+} BestBrk;
 
-  /*
-  FILE *fp;
-  fp = fopen("/tmp/libthai-debug.txt", "a");
-  fprintf(fp, "%s\t%x\t%d\n", _s, pos, n);
-  fprintf(fp, "%x\t%d\n", pos, n);
-  fclose(fp);
-  */
+static BestBrk *    best_brk_new (int n_brk_pos);
+static void         best_brk_free (BestBrk *best_brk);
+static int          best_brk_contest (BestBrk *best_brk, const BrkShot *shot);
 
-  if ( n > MAXARRAYLENGTH ) {
-	  fprintf(stderr,"th_brk: n is too large (%d)\n",n);
-	  return 0;
-  }
+/*----------------------------------*
+ *   PRIVATE METHODS DECLARATIONS   *
+ *----------------------------------*/
 
-  /* Call the constructor */
-  th_brk_init();
+static SBTrie *     brk_get_dict ();
 
-  /* Init Variables */
-  numFound = 0;
-  numSpace = 0;
+static BrkPool *    brk_root_pool (int pos_size);
+static int          brk_do (const thchar_t *s, int len, int pos[], size_t n,
+                            int do_recover);
+static int          brk_recover (const thchar_t *text, int len, int pos);
 
-  /* get the input line length */
-  inputLength=strlen( (char*) _s);
+#define th_isleadable(c) \
+    (th_isthcons(c)||th_isldvowel(c)||th_isthdigit(c))
 
-  /* Make local s */
-  s = malloc(inputLength+1);
-  th_normalize(s, _s, inputLength+1);
-#if 0
-  strcpy(s,_s);
-#endif
-
-  /* Memeory allocation */
-  out = (unsigned char*) malloc(2*inputLength+1);
-  myPos = (int *) malloc(sizeof(int)*inputLength);
-
-#if 0
-  /* fix the order of characters */
-  fixline(s);
-#endif
-
-  /* do cut! */
-  dooneline2(s, out);
-
-  /* get the output line length */
-  outputLength=strlen( (char*) out);
-
-  /* find the position of cutcode */
-  for ( i = 0 ; i < outputLength ; i++) {
-    if ( out[i] == cutcode || out[i] == 32 ) { /* ok now we found the cut point or SPACE */
-      /* save the position (related to the input string, not this out [so "- numFound"] is added */
-      myPos[numFound+numSpace] = i - numFound;
-    }
-    if ( out[i] == cutcode ) { 
-      numFound++;
-    } else if ( out[i] == 32 ) { 
-      numSpace++;
-    }
-  };
-  numFound += numSpace;
-  
-  /* now copy value to pos[] */
-  if ( n < numFound ) {
-    minValue = n ;
-  } else {
-    minValue = numFound;
-  };
-  for ( i = 0; i < minValue ; i++ ) {
-    pos[i] = myPos[i];
-  }
-
-  /* Memory deallocation */
-  free(myPos);
-  free(out);
-  free(s);
-
-  /* return numFound */
-  return numFound;
-
-}
-
-int th_brk_line(const thchar_t *_in, thchar_t* _out, size_t n, const char* _cutCode) {
-  unsigned char *in, *out, *outFromCttex;
-  unsigned int inputLength, outputLength, outputFromCttexLength, cutCodeLength;
-  unsigned int i, minValue;
-
-
-  /* call the constructor */
-  th_brk_init();
-
-  /* check the length of cutCode */
-  cutCodeLength=strlen (_cutCode);
-
-  /* get the input line length */
-  inputLength=strlen( (char*) _in);
-
-  /* Make local in */
-  in = malloc(inputLength+1); 
-  th_normalize(in, _in, inputLength+1);
-#if 0
-  strcpy(in, _in);
-#endif
-
-  /* memeory allocation (worst case) */
-  out = (unsigned char*) malloc( ( 1 + cutCodeLength ) * inputLength+1);
-  outFromCttex = (unsigned char*) malloc( 2 * inputLength+1);
-
-  /* init value */
-  strcpy ((char*) out, "\x00");
-  strcpy ((char*) outFromCttex, "\x00");
-  
-#if 0
-  /* fix the order of characters */
-  fixline(in);
-#endif
-
-  /* do cut! */
-  dooneline2(in, outFromCttex);
-
-  /* get the output line length */
-  outputFromCttexLength=strlen( (char*) outFromCttex);
-
-  /* create the real output  */
-  for ( i = 0 ; i < outputFromCttexLength; i++) {
-    if ( outFromCttex[i] == cutcode || outFromCttex[i] == 32 ) { /* ok now we found the cut point OR SPACE*/
-      /* change to user supplied cutcode */
-      strcat( (char *) out, _cutCode);
-    } else {
-      /* copy to output */
-      strncat( (char *) out, (char *) (outFromCttex + i), 1 );
-    }
-  };
-  /* now copy to the real _out that will be returned to caller */
-
-  /* get the output line length */
-  outputLength=strlen((char *) out);
-
-  /* choose the less value */
-  if (  n < outputLength ) {
-    minValue = n;
-  } else {
-    minValue = outputLength;
-  };
-
-  strncpy( (char*) _out, (char*) out, minValue);
-
-  /* Memory deallocation */
-  free(outFromCttex);
-  free(out);
-  free(in);
-
-  /* return the size of output string */
-  return outputLength;
-} 
-
-/* Private part begins -- original from cttex with few small  */
-/* code beautifying/compiler warning suppression */
-
-/********************************************************/
-/* Find list of words which match  head of given string */
-/********************************************************/
-
-int findword(unsigned char *str, int *matchlist)
+int
+th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
 {
-  int curstate,i,c,j,ns;
+    int        *brk_pos;
+    int         n_brk_pos, i, j;
+    int         delim_len;
+    thchar_t   *p_out;
 
-  curstate=i=j=0;
-  while( (c=str[i]) ) {
-    if(c>=state_min[curstate] && c<=state_max[curstate]) {
-      if((ns=map[state_offset[curstate]+c-state_min[curstate]])>0) {
-	curstate = ns;
-	if(state[curstate])
-	  matchlist[j++] = i+1;
-      }
-      else
-	break;
-    }
-    else 
-      break;
-    i++;
-  }
-  ns = j;
-  j = 0;
+    n_brk_pos = strlen ((const char *) in);
+    brk_pos = (int *) malloc (n_brk_pos * sizeof (int));
 
-  /* Remove words which are not followed by a middle alphabet.
-     This can reduce the number of recursive calls in dooneline2sub()
-     by half. */
-  for(i=0;i<ns;i++)
-    if(!NOTMIDDLE(str[matchlist[i]]))
-      matchlist[j++]=matchlist[i];
-  return j;
-}
-
-/************************************************************/
-/* Fix alphabet/vowel order, remove redundant vowels/toners */
-/************************************************************/
-
-#if 0
-void fixline(line)
-unsigned char *line;
-{
-  unsigned char top,up,middle,low;
-  unsigned char *out;
-  int i,j,c;
-
-  i=j=0;
-
-  out = line; /* Overwrite itself */
-  top=up=middle=low=0;
-  while( (c=out[i++]) ) {
-    switch((c>0xD0)?levtable[c-0xD0]:0) {
-    case 0 : 
-      if(middle) {
-	line[j++]=middle;
-	if(low) line[j++]=low;
-	if(up)  line[j++]=up;
-	if(top) line[j++]=top;
-      }
-      top=up=middle=low=0;
-     middle=c; break;
-    case 1 : 
-      low=c; break;
-    case 2 : 
-      up=c; break;
-    case 3 : 
-      top=c; break;
-    }
-  }
-  if(middle) {
-    line[j++]=middle;
-    if(low) line[j++]=low;
-    if(up)  line[j++]=up;
-    if(top) line[j++]=top;
-  }
-  line[j]=0;
-}
-#endif
-
-int docut(unsigned char *in,unsigned char *out, int *cutlist)
-{
-  int i,j,k,l;
-
-  /*
-  printf("%s\n", in);
-  for(i=0;i<4;i++)
-    printf("cut at %d\n", cutlist[i]);
-    */
-  if(reportmode) {  /* Print Unknown Words */
-    i=k=0;
-    while(in[i]) {
-      l=cutlist[k];
-      if(l<0) {
-	if(k && (j=cutlist[k-1])>0) {
-	  fprintf(stderr,"%d: ",iLineNumber);
-	  while(j) {
-	    fputc(in[i-j],stderr);
-	    j--;
-	  }
-	}
-	if(l<-100) l=-l-100; else l=-l;
-	while(l--)
-	  fputc(in[i++],stderr);
-      }
-      else {
-	i+=l;
-	if(k && (j=cutlist[k-1])<0)
-	  fputc('\n',stderr);
-      }
-      k++;
-    } /* while */
-    if(cutlist[k-1]<0)
-      fputc('\n',stderr);
-  }
-
-  i=j=k=0;
-  while(in[i]) {
-    l=cutlist[k];
-    if(l<0) {
-      if(k)     /* Remove prev break */
-	j--;
-      if(l<-100) l=-l-100; else l=-l;
-    }
-
-    if(in[i]==230 && j) {  /* Must not break before Mai-Ya-Mok */
-      j--;
-    }
-    while(l--)
-      out[j++]=in[i++];
-    if(in[i])
-      out[j++]=cutcode;
-    k++;
-  }
-  out[j]=0;
-  /* printf("%s\n", out); */
-  return j;
-}
-
-/* Old one by Fong (Completely Removed)
-   New one by Hui */
-
-#if 0
-void adj(unsigned char *line)
-{
-  unsigned char top[MAXLINELENGTH];
-  unsigned char up[MAXLINELENGTH];
-  unsigned char middle[MAXLINELENGTH];
-  unsigned char low[MAXLINELENGTH];
-
-  int i, k, c;
-
-  /* Split string into 4 levels */
-  /* Clear Buffer */
-  for(i=0;i<MAXLINELENGTH;i++)
-    top[i]=up[i]=middle[i]=low[i]=0;
-
-  i=0; k=-1;
-  while((c=line[i++])!=0) {
-    switch((c>0xD0)?levtable[c-0xD0]:0){
-    case 0 : /*Middle*/
-      /* Special Case for Sara-Am */
-      if(c==0xD3) {
-	if(k>=0) {
-	  up[k]=0xED;
-	}
-	k++;
-	middle[k]=0xD2;      /* Put Sara-Ar */
-      }
-      else {
-	k++;
-	middle[k]=c; 
-      }
-      break;
-    case 1 : /*Low*/
-      low[k]=c; break;
-    case 2 : /*Up*/
-      up[k]=c; break;
-    case 3 : /*Top*/
-      top[k]=c; break;
-    }
-  }
-
-  /* Beauty Part Begins */
-
-  for(i=0; i<=k; i++) {
-    /* Move down from Top -> Up */
-    if((top[i]) && (up[i]==0)) {
-      up[i] = top[i] - 96;
-      top[i] = 0;
-    }
-
-    /* Avoid characters with long tail */
-    if( middle[i] == 0xBB ||           /* Por Pla */
-	middle[i] == 0xBD ||           /* For Far */
-	middle[i] == 0xBF ) {          /* For Fun */
-      if(up[i]) 
-	up[i] = moveleft(up[i]);
-      if(top[i]) 
-	top[i] = moveleft(top[i]);
-    }
-
-    /* Remove lower part of TorSanTan and YorPhuYing
-       if necessary */
-    if(middle[i] == 0xB0 && low[i])    /* TorSanTan */
-      middle[i] = 0x9F;
-    if(middle[i] == 0xAD && low[i])    /* YorPhuYing */
-      middle[i] = 0x90;
-
-    /* Move lower sara down , for DorChaDa, TorPaTak */
-    if(middle[i] == 0xAE ||
-       middle[i] == 0xAF ) {
-      if(low[i]) 
-	low[i] = low[i] + 36;
-    }
-  }
+    n_brk_pos = th_brk (in, brk_pos, n_brk_pos);
     
-  /* Pack Back To A Line */
-  i=0; k=0;
-  while(middle[i]){
-    line[k++]=middle[i];
-    if(low[i]) line[k++]=low[i];
-    if(up[i])  line[k++]=up[i];
-    if(top[i]) line[k++]=top[i];
-    i++;
-  }
+    delim_len = strlen (delim);
+    for (i = j = 0, p_out = out; n > 1 && i < n_brk_pos; i++) {
+        while (n > 1 && j < brk_pos[i]) {
+            *p_out++ = in [j++];
+            --n;
+        }
+        if (n > delim_len + 1) {
+            strcpy ((char *) p_out, delim);
+            p_out += delim_len;
+            n -= delim_len;
+        }
+    }
+    while (n > 1 && in [j]) {
+        *p_out++ = in [j++];
+        --n;
+    }
+    *p_out = '\0';
 
-  /* Numbef of Bytes might change */
-  line[k]=0;
-}
-#endif
+    free (brk_pos);
 
-int lefttab[]={   136, 131,        /* Meaning : change 136 to 131, ... */
-		  137, 132,        /* Up Level Mai Ek, To, Ti ... */
-		  138, 133,
-		  139, 134,
-		  140, 135,
-		 0xED, 0x8F,       /* Circle */
-                 0xE8, 0x98,       /* Top Level Mai Ek, To, Ti, ... */
-                 0xE9, 0x99,
-                 0xEA, 0x9A,
-                 0xEB, 0x9B,
-                 0xEC, 0x9C,
-                 0xD4, 0x94,       /* Sara I, EE, ... */
-                 0xD5, 0x95, 
-                 0xD6, 0x96, 
-                 0xD7, 0x97, 
-                 0xD1, 0x92,
-                 0xE7, 0x93 };
-
-int moveleft(int c)
-{
-  int i;
-
-  for(i=0;i<34; i+=2) {
-    if(lefttab[i] == c)
-      return lefttab[i+1];
-  }
-  return c;
+    return p_out - out;
 }
 
-/* New Recursive Version */
-int dooneline2(unsigned char *in, unsigned char *out)
+int
+th_brk (const thchar_t *s, int pos[], size_t n)
 {
-  int l,i,j,jt,freetemp;
-  int *cutlist;
-  unsigned char *temp;
-  unsigned char stemp[MAXLINELENGTH];
-  int scutlist[MAXLINELENGTH];
-  int sbestcutlist[MAXLINELENGTH];
+    const thchar_t *chunk;
+    int             cur_pos;
 
-  i=j=freetemp=0;
-  temp = stemp;
-  cutlist = scutlist;
-  bestcutlist = sbestcutlist;
-  l = strlen((char *)in);
-  /* Allocate from Heap if the line is too long */
-  if(l>MAXLINELENGTH) {
-    temp = malloc(l+1);
-    cutlist = malloc(sizeof(int)*l);
-    bestcutlist = malloc(sizeof(int)*l);
-    freetemp=1;
-  }
+    chunk = s;
+    cur_pos = 0;
 
-  jt=0;
-  while(in[i]) {
-    if(SKIPWORD(in[i])) {
-      if(jt) {
-	temp[jt]=0;
-	if(debugmode)
-	  printf("->%s\n",temp);
-	mystr=temp;
-	minerr=minword=9999;
-	bStopNow=0;
-	dooneline2sub(temp,cutlist,0,0,0);
-	if(bShowAll || bIndexMode) 
-	  show_stack(temp);
-	j+=docut(temp,out+j,bestcutlist);
-	jt=0;
-      }
-      out[j++] = in[i++];
+    brk_pool_allocator_use ();
+
+    while (*chunk && cur_pos < n) {
+        const thchar_t *str_end;
+        int             n_brk, i;
+
+        while (*chunk &&
+               (!th_isthai (*chunk) ||
+                th_isthpunct (*chunk) ||
+                th_isthdigit (*chunk)))
+        {
+            thchar_t cur_char, next_char;
+
+            /* peek next char and mark break pos if character type changes 
+             * without space in between
+             */
+            cur_char = *chunk;
+            next_char = *(chunk + 1);
+            if (next_char && !isspace (next_char) &&
+                (isspace (cur_char) ||
+                 th_isthpunct (cur_char) ||
+                 (!th_isthai (cur_char) && th_isthai (next_char)) ||
+                 (th_isthdigit (cur_char) && !th_isthdigit (next_char)) ||
+                 (isdigit (cur_char) && !isdigit (next_char))))
+            {
+                pos [cur_pos++] = (chunk - s) + 1;
+                if (cur_pos >= n)
+                    break;
+            }
+
+            ++chunk;
+        }
+        if (!*chunk || cur_pos >= n)
+            break;
+
+        str_end = chunk;
+        while (*str_end &&
+               (th_isthai (*str_end)
+                && !th_isthpunct (*str_end)
+                && !th_isthdigit (*str_end)))
+        {
+            ++str_end;
+        }
+
+        /* do string break within Thai chunk */
+        n_brk = brk_do (chunk, str_end - chunk, pos + cur_pos, n - cur_pos, 1);
+        for (i = 0; i < n_brk; i++)
+            pos [cur_pos + i] += chunk - s;
+        cur_pos += n_brk;
+        chunk = str_end;
+
+        /* if next character is Thai punct (e.g. Mai Yamok, Paiyan Noi)
+         * or white space, don't break
+         */
+        if (*chunk && (th_isthpunct (*chunk) || isspace (*chunk)) &&
+            cur_pos > 0 && pos [cur_pos - 1] == chunk -s)
+        {
+            --cur_pos;
+        }
+        /* otherwise, mark break pos at boundary if character type changes
+         * without space in between and not currently marked
+         */
+        else if (cur_pos < n && *chunk && !isspace (*chunk) &&
+                 cur_pos > 0 && pos [cur_pos - 1] != chunk - s)
+        {
+            pos [cur_pos++] = chunk - s;
+        }
     }
-    else {
-      temp[jt++] = in[i++];
-    }
-  }
-  if(jt) {
-    temp[jt]=0;
-    if(debugmode)
-      printf("->%s\n",temp);
-    mystr=temp;
-    minerr=minword=9999;
-    bStopNow=0;
-    dooneline2sub(temp,cutlist,0,0,0);
-    if(bShowAll || bIndexMode) 
-      show_stack(temp);
-    j+=docut(temp,out+j,bestcutlist);
-  }
-  out[j]=0;
-  if(freetemp) {
-    free(temp);
-    free(cutlist);
-    free(bestcutlist);
-  }
-  return 0;
+
+    brk_pool_allocator_clear ();
+
+    return cur_pos;
 }
 
-/****************************************************/
-/* Cut a string which contains only Thai characters */
-/****************************************************/
-
-int dooneline2sub(unsigned char *in, int *cutlist, int cutpoint, int curerr,
-		  int flags)
+static BrkPool *
+brk_root_pool (int pos_size)
 {
-  int i,j,k,ii;
-  int matchoff;
-  int l, count;
-  int matchlist[MAXLINELENGTH];
+    BrkPool    *pool;
+    BrkPool    *node;
+    BrkShot     root_shot;
 
-  matchoff = 0;
+    pool = NULL;
 
-  /* 
-     printf("> %s\n", in); 
-  */
-  i=j=0;
-  if(in[0]) {
-    if((k=findword(in,matchlist))!=0) { /* Found in dict */
-      while(k--) {
-	matchoff = matchlist[k];
-	/* Record Match Length */
-	cutlist[cutpoint] = matchoff;
-	dooneline2sub(in+matchoff,cutlist,cutpoint+1,curerr,0);
-	if(bStopNow)
-	  return 0;
-      }
-      if(!flags) {
-	i=1;
-	ii=0;
-	while(i<matchoff) {
-	  if(!NOTMIDDLE(in[i])) {
-	    ii++;
-	    if(curerr+ii <= minerr) {
-	      cutlist[cutpoint] = -i;
-	      dooneline2sub(in+i,cutlist,cutpoint+1,curerr+ii,1);
-	      if(bStopNow)
-		return 0;
-	    }
-	  }
-	  i++;
-	}
-      }
+    root_shot.dict_state = sb_trie_root (brk_get_dict());
+    root_shot.brk_pos = (int *) malloc (pos_size * sizeof (int));
+    root_shot.n_brk_pos = pos_size;
+    root_shot.str_pos = root_shot.cur_brk_pos = 0;
+    root_shot.penalty = 0;
+
+    node = brk_pool_node_new (&root_shot);
+    pool = brk_pool_add (pool, node);
+
+    brk_shot_destruct (&root_shot);
+
+    return pool;
+}
+
+static int
+brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
+{
+    BrkPool     *pool;
+    BrkPool     *node;
+    BestBrk     *best_brk;
+    int          i;
+
+    pool = brk_root_pool (n);
+    best_brk = best_brk_new (n);
+
+    while (NULL != (node = brk_pool_get_node (pool, s))) {
+        BrkShot *shot = &node->shot;
+        BrkPool *match;
+        int      is_keep_node, is_terminal;
+
+        /* walk dictionary character-wise till a word is matched */
+        is_keep_node = is_terminal = 1;
+        do {
+            if (!sb_trie_state_walk (shot->dict_state, s[shot->str_pos++])) {
+                int recovered;
+
+                if (!do_recover) {
+                    is_keep_node = 0;
+                    break;
+                }
+
+                /* try to recover from error */
+                if (-1 != (recovered = brk_recover (s, len, shot->str_pos))) {
+                    /* add penalty by recovered - recent break pos */
+                    shot->penalty += recovered;
+                    if (shot->cur_brk_pos > 0)
+                        shot->penalty -= shot->brk_pos[shot->cur_brk_pos - 1];
+
+                    shot->str_pos = recovered;
+                    is_terminal = 0;
+                } else {
+                    /* add penalty with string len - recent break pos */
+                    shot->penalty += len;
+                    if (shot->cur_brk_pos > 0)
+                        shot->penalty -= shot->brk_pos[shot->cur_brk_pos - 1];
+
+                    is_keep_node = 0;
+                }
+                break;
+            }
+        } while (shot->str_pos < len
+                 && !(sb_trie_state_is_terminal (shot->dict_state)
+                      && th_isleadable (s[shot->str_pos])));
+
+        if (!is_keep_node && !do_recover) {
+            pool = brk_pool_delete (pool, node);
+            continue;
+        }
+
+        /* if node still kept, mark break position and rewind dictionary */
+        if (is_keep_node) {
+            if (shot->str_pos < len && is_terminal &&
+                !sb_trie_state_is_leaf (shot->dict_state))
+            {
+                /* add node to mark break position instead of current */
+                node = brk_pool_node_new (shot);
+                pool = brk_pool_add (pool, node);
+            }
+
+            sb_trie_state_rewind (node->shot.dict_state);
+            node->shot.brk_pos [node->shot.cur_brk_pos++] = node->shot.str_pos;
+        }
+
+        if (!is_keep_node ||
+            node->shot.str_pos == len || node->shot.cur_brk_pos >= n)
+        {
+            /* path is done; contest and remove */
+            best_brk_contest (best_brk, &node->shot);
+            pool = brk_pool_delete (pool, node);
+        } else {
+            /* find matched nodes, contest and keep the best one */
+            while (NULL != (match = brk_pool_match (pool, node))) {
+                BrkPool *del_node;
+
+                del_node = (match->shot.penalty < node->shot.penalty ||
+                            (match->shot.penalty == node->shot.penalty &&
+                            match->shot.cur_brk_pos < node->shot.cur_brk_pos))
+                        ? node : match;
+                if (del_node == node)
+                    node = match;
+                pool = brk_pool_delete (pool, del_node);
+            }
+        }
     }
-    else { /* Not in dict */
-      if(!flags)
-	if(curerr < minerr) {
-	  i=1;
-	  while(in[i] && NOTMIDDLE(in[i]))
-	    i++;
-	  cutlist[cutpoint] = -100-i;  /* Negative indicates unknown word */
-	  dooneline2sub(in+i,cutlist,cutpoint+1,curerr+1,0);
-	  if(bStopNow)
-	    return 0;
-	}
-    }
-    return curerr;
-  }
-  else { /* Got a NULL string */
-    k=0;
-    if(curerr<minerr) { 
-      minword = 9999;
-      minerr=curerr;
-      clear_stack();
-    }
-    count=cutpoint;
 
-    if(debugmode) { /* Debug Mode */
-      putchar('=');
-      for(i=0;i<cutpoint;i++) {
-	l=cutlist[i];
-	if(l<-100) { 
-	  putchar('*');
-	  l=-l-100; count--;
-	}
-	if(l<0) {
-	  putchar('#');
-	  l=-l; count--;
-	}
-	for(j=0;j<l;j++)
-	  putchar(mystr[k++]);
-	putchar(' ');
-      }
-    } /* Debug Mode */
-    else { /* Not Debug Mode */
-      for(i=0;i<cutpoint;i++) {
-	if(cutlist[i]<0) 
-	  count--;
-      }
-    } /* Not Debug Mode */
+    for (i = 0; i < best_brk->cur_brk_pos; i++)
+        pos[i] = best_brk->brk_pos[i];
 
+    brk_pool_free (pool);
+    best_brk_free (best_brk);
+    return i;
+}
 
-    if(bShowAll || bIndexMode) {
-      if(bMinWords) { 
-	if(count < minword)
-	  clear_stack();
-	if(count <= minword)
-	  push_stack(cutlist, cutpoint, count);
-      }
-      else
-	push_stack(cutlist, cutpoint, count);
+#define RECOVERED_WORDS 2
+
+static int
+brk_recover (const thchar_t *text, int len, int pos)
+{
+    int brk_pos[RECOVERED_WORDS];
+    int n;
+
+    while (pos < len) {
+        if (th_isleadable (text[pos]) &&
+            (0 == pos || !th_isldvowel (text[pos - 1])))
+        {
+            n = brk_do (text + pos, len - pos, brk_pos, RECOVERED_WORDS, 0);
+            if (n == RECOVERED_WORDS || (n > 0 && '\0' == text[brk_pos[n-1]]))
+                return pos;
+        }
+        ++pos;
     }
 
-    if(count <= minword) {
-      minword = count;
-      for(i=0;i<cutpoint;i++) 
-	bestcutlist[i]=cutlist[i];
+    return -1;
+}
+
+static SBTrie *
+brk_get_dict ()
+{
+    static SBTrie *brk_dict = 0;
+
+    if (!brk_dict)
+        brk_dict = sb_trie_open (DICT_DIR, DICT_NAME, TRIE_IO_READ);
+
+    return brk_dict;
+}
+
+static void
+brk_shot_copy (BrkShot *dst, const BrkShot *src)
+{
+    int i;
+
+    dst->dict_state = sb_trie_state_clone (src->dict_state);
+    dst->str_pos = src->str_pos;
+    dst->brk_pos = (int *) malloc (src->n_brk_pos * sizeof (int));
+    for (i = 0; i < src->cur_brk_pos; i++)
+        dst->brk_pos[i] = src->brk_pos[i];
+    dst->n_brk_pos = src->n_brk_pos;
+    dst->cur_brk_pos = src->cur_brk_pos;
+    dst->penalty = src->penalty;
+}
+
+static void
+brk_shot_destruct (BrkShot *shot)
+{
+    if (shot->dict_state)
+        sb_trie_state_free (shot->dict_state);
+    if (shot->brk_pos)
+        free (shot->brk_pos);
+}
+
+static BrkPool *brk_pool_free_list = NULL;
+static int      brk_pool_allocator_refcnt = 0;
+
+static void
+brk_pool_allocator_use ()
+{
+    ++brk_pool_allocator_refcnt;
+}
+
+static void
+brk_pool_allocator_clear ()
+{
+    if (--brk_pool_allocator_refcnt > 0)
+        return;
+
+    while (brk_pool_free_list) {
+        BrkPool *next;
+
+        next = brk_pool_free_list->next;
+        free (brk_pool_free_list);
+        brk_pool_free_list = next;
+    }
+}
+
+static BrkPool *
+brk_pool_node_new (const BrkShot *shot)
+{
+    BrkPool *node;
+
+    if (brk_pool_free_list) {
+        /* reuse old node if possible */
+        node = brk_pool_free_list;
+        brk_pool_free_list = brk_pool_free_list->next;
+    } else {
+        node = (BrkPool *) malloc (sizeof (BrkPool));
+        if (!node)
+            return NULL;
     }
 
-    if(debugmode)
-      printf("Err(%d) Word(%d)\n",minerr,count);
+    node->next = NULL;
+    brk_shot_copy (&node->shot, shot);
 
-    /* Stop at first perfect match */
-    if(curerr==0 && firstmode)
-      bStopNow = 1;
+    return node;
+}
+
+static void
+brk_pool_free_node (BrkPool *pool)
+{
+    brk_shot_destruct (&pool->shot);
+
+    /* put it in free list for further reuse */
+    pool->next = brk_pool_free_list;
+    brk_pool_free_list = pool;
+}
+
+static void
+brk_pool_free (BrkPool *pool)
+{
+    while (pool) {
+        BrkPool *next;
+
+        next = pool->next;
+        brk_pool_free_node (pool);
+        pool = next;
+    }
+}
+
+static BrkPool *
+brk_pool_get_node (BrkPool *pool, const thchar_t *s)
+{
+    int      min_pos;
+    BrkPool *chosen;
+
+    /* find node with least progress */
+    chosen = NULL;
+    min_pos = INT_MAX;
+    while (pool) {
+        int pos;
+
+        if (0 == pool->shot.cur_brk_pos)
+            return pool;
+
+        pos = pool->shot.brk_pos[pool->shot.cur_brk_pos - 1];
+        if (pos < min_pos) {
+            min_pos = pos;
+            chosen = pool;
+        }
+        pool = pool->next;
+    }
+
+    return chosen;
+}
+
+static BrkPool *
+brk_pool_match (BrkPool *pool, BrkPool *node)
+{
+    int node_cur_pos;
+
+    node_cur_pos = node->shot.cur_brk_pos;
+    while (pool) {
+        if (pool != node) {
+            if (node_cur_pos == 0) {
+                if (pool->shot.cur_brk_pos == 0)
+                    break;
+            } else {
+                if (pool->shot.cur_brk_pos > 0 &&
+                    pool->shot.brk_pos[pool->shot.cur_brk_pos - 1]
+                        == node->shot.brk_pos[node_cur_pos - 1])
+                {
+                    break;
+                }
+            }
+        }
+        pool = pool->next;
+    }
+    return pool;
+}
+
+static BrkPool *
+brk_pool_add (BrkPool *pool, BrkPool *node)
+{
+    node->next = pool;
+    return node;
+}
+
+static BrkPool *
+brk_pool_delete (BrkPool *pool, BrkPool *node)
+{
+    if (pool == node) {
+        pool = pool->next;
+    } else {
+        BrkPool *p;
+
+        for (p = pool; p && p->next != node; p = p->next)
+            ;
+        if (p)
+            p->next = node->next;
+    }
+    brk_pool_free_node (node);
+
+    return pool;
+}
+
+static BestBrk *
+best_brk_new (int n_brk_pos)
+{
+    BestBrk *best_brk;
+
+    best_brk = (BestBrk *) malloc (sizeof (BestBrk));
+    if (!best_brk)
+        return NULL;
+
+    best_brk->brk_pos = (int *) malloc (n_brk_pos * sizeof (int));
+    if (!best_brk->brk_pos)
+        goto exit1;
+    best_brk->n_brk_pos = n_brk_pos;
+    best_brk->cur_brk_pos = best_brk->str_pos = 0;
+    best_brk->penalty = 0;
+
+    return best_brk;
+
+exit1:
+    free (best_brk);
+    return NULL;
+}
+
+static void
+best_brk_free (BestBrk *best_brk)
+{
+    free (best_brk->brk_pos);
+    free (best_brk);
+}
+
+static int
+best_brk_contest (BestBrk *best_brk, const BrkShot *shot)
+{
+    if (shot->str_pos > best_brk->str_pos ||
+        (shot->str_pos == best_brk->str_pos &&
+         (shot->penalty < best_brk->penalty ||
+          (shot->penalty == best_brk->penalty &&
+           shot->cur_brk_pos < best_brk->cur_brk_pos))))
+    {
+        int i;
+
+        for (i = 0; i < shot->cur_brk_pos; i++)
+            best_brk->brk_pos[i] = shot->brk_pos[i];
+        best_brk->cur_brk_pos = shot->cur_brk_pos;
+        best_brk->str_pos = shot->str_pos;
+        best_brk->penalty = shot->penalty;
+
+        return 1;
+    }
     return 0;
-  }
-}
-
-void push_stack(int *cutlist, int cutcount, int wordcount)
-{
-  int i;
-
-  if(iListStackPointer<LISTSTACKDEPTH) {
-    for(i=0;i<cutcount;i++) {
-      ListStack[iListStackPointer][i]=cutlist[i];
-    }
-    ListStack[iListStackPointer][CUTLISTSIZE-1] = wordcount;
-    iListStackPointer++;
-  }
-  else { /* Stack Full */
-    fprintf(stderr,"Warning: Cutlist Stack Full\n");
-  }
-}
-
-void show_stack(unsigned char *str)
-{
-  int i,j;
-  unsigned char *temp;
-
-  temp=malloc(strlen((char *)str)*2);
-  if(bIndexMode)
-    clear_dif();
-  for(i=0;i<iListStackPointer;i++) {
-    docut(str,temp,ListStack[i]);
-    j=0;
-    while(temp[j]) {
-      if(temp[j]==cutcode)
-	temp[j]=32;
-      j++;
-    }
-    if(bShowAll)
-      printf("%d[%d]: %s\n",i,
-	     ListStack[i][CUTLISTSIZE-1],temp);
-    if(bIndexMode)
-      check_dif(bestcutlist,ListStack[i],str);
-  }
-  if(bIndexMode)
-    show_dif(str);
-  free(temp);
-}
-
-/* Display only part of 'list' which does not match 'base' */
-void check_dif(int *base, int *list, unsigned char *str)
-{
-  int iBaseItem, iListItem;
-  int iBasePtr, iBaseLength;
-  int iListPtr, iListLength;
-  int start;
-
-  iBaseItem = iListItem = 0;
-  iBasePtr = iListPtr = 0;
-
-  while(str[iBasePtr]) {
-    iBaseLength = base[iBaseItem];
-    iBaseLength = GETLENGTH(iBaseLength);
-
-    iListLength = list[iListItem];
-    iListLength = GETLENGTH(iListLength);
-
-    if(iListLength != iBaseLength) { /* Found ! */
-      start = iBasePtr;
-      iBasePtr += iBaseLength;
-      iListPtr += iListLength;
-      insert_dif(start,iListPtr);
-      start = iListPtr;
-      while(iBasePtr != iListPtr) {
-	if(iBasePtr > iListPtr) {
-	  iListItem++;
-	  iListPtr += GETLENGTH(list[iListItem]);
-	  insert_dif(start,iListPtr);
-	  start = iListPtr;
-	}
-	else if(iBasePtr < iListPtr) {
-	  iBaseItem++;
-	  iBasePtr += GETLENGTH(base[iBaseItem]);
-	}
-      }
-    }
-    else {
-      iBasePtr += iBaseLength;
-      iListPtr += iListLength;
-    }
-    iBaseItem++;
-    iListItem++;
-  }
-}
-
-void clear_dif()
-{
-  iDifPtr=0;
-}
-
-void show_dif(unsigned char *str)
-{
-  int i, start;
-  i=0;
-  while(i<iDifPtr) {
-    start = piDifList[i];
-    while(start < piDifList[i+1])
-      fputc(str[start++], stdout);
-    fputc(':',stdout);
-    i+=2;
-  }
-  /*
-  if(iDifPtr)
-    fputc('\n',stdout);
-  */
-}
-
-/* Never insert a pair already exists */
-void insert_dif(int start, int stop)
-{
-  int i;
-  i=0;
-  while(i<iDifPtr) {
-    if(start == piDifList[i] &&
-       stop  == piDifList[i+1])
-      return;
-    i+=2;
-  }
-  piDifList[i] = start;
-  piDifList[i+1] = stop;
-  iDifPtr+=2;
-  if(iDifPtr >= DIFLISTSIZE) {
-    fprintf(stderr,"Not Enough DifList\n");
-    exit(1);
-  }
-}
-
-void clear_stack()
-{
-  iListStackPointer = 0;
 }
 
 /*
- * $Log: not supported by cvs2svn $
- * Revision 1.11  2005/01/13 09:23:13  ott
- * -space is considered and returned as a breakable point
- *
- * Revision 1.10  2004/12/12 06:40:49  ott
- * -check the array size value not to be too large
- *
- * Revision 1.9  2004/05/16 14:11:56  ott
- * -cttex: firstmode=1 for faster operation
- *
- * Revision 1.8  2001/08/04 14:59:21  ott
- * -fix missing casting between char * and unsigned char *
- *
- * Revision 1.7  2001/08/04 14:45:50  ott
- * -change comments to C-style :(
- *
- * Revision 1.6  2001/08/03 11:20:45  thep
- * Make thbrk and cttex use thstr instead of fixline() and adj().
- * Fix a memory leak.
- *
- * Revision 1.5  2001/07/31 22:20:59  ott
- * -fix const casting problem
- *
- * Revision 1.4  2001/07/24 21:31:14  ott
- * -modified the th_brk_line to accept cutCode as char* instead of int.
- * -modified according to the changed interface the test program.
- *
- * Revision 1.3  2001/07/22 21:32:07  ott
- * -fix the segfault in char* stuff
- *
- * Revision 1.2  2001/07/16 10:54:05  thep
- * Add automake files for building thbrk.
- *
- * Revision 1.1  2001/07/15 16:31:54  ott
- * -first version.
- * -wrapper for P'Hui's cttex.
- *
- * Revision 1.22  2001/02/28 12:48:16  chanop
- * Import cttex.c (GPL version) into new cvs tree.
- * Add -W option for babel thailatex pacakge.
- *
- * Revision 1.21  1999/05/19 13:23:13  vuthi
- * Add -i and -m
- * use unsigned short for map[]
- *
- * Revision 1.20  1999/05/13 13:33:44  vuthi
- * New findword() algorithm using DFA.
- * Code cleanup.
- * See README.th for more info.
- *
- * Revision 1.19  1999/03/16 12:04:05  vuthi
- * >> - Add "fixline()" to correct the typos
- * >> - New "dooneline2()" recursive algorithm capable of finding
- * >>   all possible cut patterns
- * >> - Command line options
- *
- * Revision 1.18  1997/12/09 19:17:34  vuthi
- * Add highlight mode (cutcode = 1)
- * highlight mode = to be used with Thai-L spell check
- *
- * Revision 1.17  1997/01/04 15:15:08  vuthi
- * - Always uses cutcode = 254 in the real word-sep routine
- *   Given cutcode is applied after that.
- *   This is to avoid cutcode+1 falls into other character
- * - In test mode (cutcode <> 0), also report unknown words
- *   on stderr. -> Simple spelling checker
- *
- * Revision 1.16  1996/09/01 13:34:49  vuthi
- * In HTML mode :
- *   Surround Thai Text with <NOBR> tags, to allow use of <WBR>
- *   in Microsoft Internet Explorer 3.0
- *   Without <NOBR>, <WBR> has no meaning in IE 3.0
- *
- * Revision 1.15  1995/10/06  13:09:52  vuthi
- * BUG FIXED : HTML mode worked only on the first line.
- *
- * Revision 1.14  1995/08/07  15:26:36  vuthi
- * HTML mode added
- *
- * Revision 1.13  1995/08/03  06:05:11  vuthi
- * Change "TEST MODE" to "FILTER MODE"
- *
- * Revision 1.12  1995/08/03  05:37:00  vuthi
- * Built-In dictionary (via .h file)
- * Perl script created
- * remove readdictfile()
- * remove -d option
- * dooneline() can be used alone (as a word-sep library).
- *
- * Revision 1.11  1995/08/03  04:47:22  vuthi
- * Fix bug in filter().. add if(SKIPWORD(c)) to reset 'a'
- *
- * Revision 1.10  1995/08/02  11:23:20  vuthi
- * Little bug fixed
- *
- * Revision 1.9  1995/08/02  11:19:21  vuthi
- * Add filter() to prevent word break before unknown words
- * Always break after unknown words
- *
- * Revision 1.8  1995/08/02  09:44:05  vuthi
- * New ADJ() algorithm.. Sara Am problem fixed.
- * moveleft() added.
- *
- * Revision 1.7  1995/07/22  17:43:50  vuthi
- * No breaking char at end of Thai word
- *
- * Revision 1.6  1995/04/25  12:11:28  vuthi
- * Use memcmp instead of strcmp to fix bug on some Japanized machine
- *
- * Revision 1.52  1995/4/24  23:26:00
- * 8-Bit version and use \tb instead of #254
- *
- * Revision 1.5  1994/12/23  08:45:06  vuthi
- * Bug of newline disappear at the end of Thai line
- *
- * Revision 1.4  1994/12/14  10:50:18  vuthi
- * Command Line Option, use "%" to terminate Thai lines
- *
- * Revision 1.3  1994/12/14  10:12:22  vuthi
- * Add Header Revision and Log
- *
- */
-
-/* Limit # of Error
-   No double #
-   */
+vi:ts=4:ai:expandtab
+*/
