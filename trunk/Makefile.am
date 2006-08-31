@@ -1,5 +1,5 @@
-# $Id: Makefile.am,v 1.6 2006-08-02 09:10:18 thep Exp $
-SUBDIRS = include src tests doc
+# $Id: Makefile.am,v 1.7 2006-08-31 14:50:00 thep Exp $
+SUBDIRS = include src data tests doc
 
 MAINTAINERCLEANFILES = Makefile.in
 
