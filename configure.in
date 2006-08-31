@@ -1,4 +1,4 @@
-# $Id: configure.in,v 1.32 2006-08-31 09:01:59 thep Exp $
+# $Id: configure.in,v 1.33 2006-08-31 14:50:00 thep Exp $
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
@@ -130,6 +130,7 @@ AC_OUTPUT(
   src/thwctype/Makefile
   src/thwstr/Makefile
   src/thwbrk/Makefile
+  data/Makefile
   tests/Makefile
   doc/Makefile
   doc/Doxyfile
