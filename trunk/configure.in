@@ -1,4 +1,4 @@
-# $Id: configure.in,v 1.31 2006-08-22 11:51:32 thep Exp $
+# $Id: configure.in,v 1.32 2006-08-31 09:01:59 thep Exp $
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
@@ -13,7 +13,7 @@ AC_SUBST(VERSION)
 # Interfaces added:              CURRENT++  REVISION=0  AGE++
 # Interfaces changed/removed:    CURRENT++  REVISION=0  AGE=0
 LT_CURRENT=1
-LT_REVISION=0
+LT_REVISION=1
 LT_AGE=1
 AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION)
@@ -97,6 +97,11 @@ AC_SUBST(htmldocdir)
 AM_CONDITIONAL(ENABLE_DOXYGEN_DOC,test "x$enable_doxygen_doc" = "xyes")
 
 dnl Checks for libraries.
+PKG_CHECK_MODULES(DATRIE,datrie)
+AC_CHECK_PROGS(TRIETOOL,trietool,no)
+if test "x$TRIETOOL" = "xno"; then
+  AC_MSG_ERROR([You need trietool (from datrie package)])
+fi
 
 dnl Checks for header files.
 AC_CHECK_HEADERS([stddef.h stdlib.h string.h wchar.h])
