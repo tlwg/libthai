@@ -11,6 +11,7 @@
 #include <datrie/sb-trie.h>
 #include <thai/thctype.h>
 #include <thai/thbrk.h>
+#include <thai/tis.h>
 
 #define DICT_NAME   "thbrk"
 
@@ -78,7 +79,7 @@ static int          brk_do (const thchar_t *s, int len, int pos[], size_t n,
 static int          brk_recover (const thchar_t *text, int len, int pos);
 
 #define th_isleadable(c) \
-    (th_isthcons(c)||th_isldvowel(c)||th_isthdigit(c))
+    (th_isthcons(c)||th_isldvowel(c)||(c)==RU||(c)==LU)
 
 int
 th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
@@ -236,13 +237,16 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
     while (NULL != (node = brk_pool_get_node (pool, s))) {
         BrkShot *shot = &node->shot;
         BrkPool *match;
-        int      is_keep_node, is_terminal;
+        int      is_keep_node, is_terminal, is_recovered;
 
         /* walk dictionary character-wise till a word is matched */
-        is_keep_node = is_terminal = 1;
+        is_keep_node = 1;
+        is_recovered = 0;
         do {
             if (!sb_trie_state_walk (shot->dict_state, s[shot->str_pos++])) {
                 int recovered;
+
+                is_terminal = 0;
 
                 if (!do_recover) {
                     is_keep_node = 0;
@@ -257,7 +261,7 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
                         shot->penalty -= shot->brk_pos[shot->cur_brk_pos - 1];
 
                     shot->str_pos = recovered;
-                    is_terminal = 0;
+                    is_recovered = 1;
                 } else {
                     /* add penalty with string len - recent break pos */
                     shot->penalty += len;
@@ -268,9 +272,20 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
                 }
                 break;
             }
-        } while (shot->str_pos < len
-                 && !(sb_trie_state_is_terminal (shot->dict_state)
-                      && th_isleadable (s[shot->str_pos])));
+
+            is_terminal = sb_trie_state_is_terminal (shot->dict_state);
+            if (shot->str_pos >= len) {
+                if (!is_terminal) {
+                    /* add penalty with string len - recent break pos */
+                    shot->penalty += len;
+                    if (shot->cur_brk_pos > 0)
+                        shot->penalty -= shot->brk_pos[shot->cur_brk_pos - 1];
+
+                    is_keep_node = 0;
+                }
+                break;
+            }
+        } while (!(is_terminal && th_isleadable (s[shot->str_pos])));
 
         if (!is_keep_node && !do_recover) {
             pool = brk_pool_delete (pool, node);
@@ -278,7 +293,7 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
         }
 
         /* if node still kept, mark break position and rewind dictionary */
-        if (is_keep_node) {
+        if (is_keep_node && (is_terminal || is_recovered)) {
             if (shot->str_pos < len && is_terminal &&
                 !sb_trie_state_is_leaf (shot->dict_state))
             {
