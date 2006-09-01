@@ -573,7 +573,7 @@ best_brk_contest (BestBrk *best_brk, const BrkShot *shot)
         (shot->str_pos == best_brk->str_pos &&
          (shot->penalty < best_brk->penalty ||
           (shot->penalty == best_brk->penalty &&
-           shot->cur_brk_pos < best_brk->cur_brk_pos))))
+           shot->cur_brk_pos <= best_brk->cur_brk_pos))))
     {
         int i;
 
