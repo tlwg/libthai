@@ -1,5 +1,16 @@
 2006-09-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thbrk/thbrk.c (th_isleadable): RU and LU are also leadable.
+	And don't bother checking for Thai digits. They are never passed.
+
+	* src/thbrk/thbrk.c (brk_do): Fixed wrong choosing of nodes with error
+	at end of string. Added penalty for such cases, and made sure the
+	break position is not marked.
+
+	* data/tdict-{std,science,ict,common}.txt: Added & removed entries.
+
+2006-09-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/Makefile.am, +data/tdict-collection.txt, data/tdict-common.txt:
 	Split collection sets into tdict-collection.
 
@@ -1085,13 +1096,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.102 2006-09-01 09:24:27 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.103 2006-09-01 12:24:51 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.102 2006-09-01 09:24:27 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.103 2006-09-01 12:24:51 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
