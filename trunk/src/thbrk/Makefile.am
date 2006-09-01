@@ -1,5 +1,7 @@
-# $Id: Makefile.am,v 1.10 2006-08-31 14:50:11 thep Exp $
+# $Id: Makefile.am,v 1.11 2006-09-01 02:08:04 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
+
+dictdatadir = $(datadir)/libthai
 
 INCLUDES = -I. -I$(top_srcdir)/include $(DATRIE_CFLAGS)
 DEFS = -DDICT_DIR=\"$(dictdatadir)\"
