@@ -67,6 +67,14 @@ static BestBrk *    best_brk_new (int n_brk_pos);
 static void         best_brk_free (BestBrk *best_brk);
 static int          best_brk_contest (BestBrk *best_brk, const BrkShot *shot);
 
+/**
+ * @brief Recover history
+ */
+typedef struct {
+    int     pos;
+    int     recov;
+} RecovHist;
+
 /*----------------------------------*
  *   PRIVATE METHODS DECLARATIONS   *
  *----------------------------------*/
@@ -76,7 +84,8 @@ static SBTrie *     brk_get_dict ();
 static BrkPool *    brk_root_pool (int pos_size);
 static int          brk_do (const thchar_t *s, int len, int pos[], size_t n,
                             int do_recover);
-static int          brk_recover (const thchar_t *text, int len, int pos);
+static int          brk_recover (const thchar_t *text, int len, int pos,
+                                 RecovHist *rh);
 
 #define th_isleadable(c) \
     (th_isthcons(c)||th_isldvowel(c)||(c)==RU||(c)==LU)
@@ -229,10 +238,12 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
     BrkPool     *pool;
     BrkPool     *node;
     BestBrk     *best_brk;
+    RecovHist    recov_hist;
     int          i;
 
     pool = brk_root_pool (n);
     best_brk = best_brk_new (n);
+    recov_hist.pos = recov_hist.recov = -1;
 
     while (NULL != (node = brk_pool_get_node (pool, s))) {
         BrkShot *shot = &node->shot;
@@ -254,7 +265,8 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
                 }
 
                 /* try to recover from error */
-                if (-1 != (recovered = brk_recover (s, len, shot->str_pos))) {
+                recovered = brk_recover (s, len, shot->str_pos, &recov_hist);
+                if (-1 != recovered) {
                     /* add penalty by recovered - recent break pos */
                     shot->penalty += recovered;
                     if (shot->cur_brk_pos > 0)
@@ -339,20 +351,30 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
 #define RECOVERED_WORDS 2
 
 static int
-brk_recover (const thchar_t *text, int len, int pos)
+brk_recover (const thchar_t *text, int len, int pos, RecovHist *rh)
 {
     int brk_pos[RECOVERED_WORDS];
-    int n;
+    int n, p;
 
-    while (pos < len) {
-        if (th_isleadable (text[pos]) &&
-            (0 == pos || !th_isldvowel (text[pos - 1])))
-        {
-            n = brk_do (text + pos, len - pos, brk_pos, RECOVERED_WORDS, 0);
-            if (n == RECOVERED_WORDS || (n > 0 && '\0' == text[brk_pos[n-1]]))
-                return pos;
-        }
+    while (!th_isleadable (text[pos]) &&
+           (0 == pos || !th_isldvowel (text[pos - 1])))
+    {
         ++pos;
+    }
+    if (rh->pos == pos)
+        return rh->recov;
+
+    for (p = pos; p < len; ++p) {
+        if (th_isleadable (text[p]) &&
+            (0 == p || !th_isldvowel (text[p - 1])))
+        {
+            n = brk_do (text + p, len - p, brk_pos, RECOVERED_WORDS, 0);
+            if (n == RECOVERED_WORDS || (n > 0 && '\0' == text[brk_pos[n-1]])) {
+                rh->pos = pos;
+                rh->recov = p;
+                return p;
+            }
+        }
     }
 
     return -1;
