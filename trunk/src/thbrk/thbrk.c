@@ -321,12 +321,13 @@ brk_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
         if (!is_keep_node ||
             node->shot.str_pos == len || node->shot.cur_brk_pos >= n)
         {
-            /* path is done; contest and remove
-             * if in recovery mode, stop as soon as first solution is found
-             */
-            if (best_brk_contest (best_brk, &node->shot) && !do_recover)
-                break;
+            /* path is done; contest and remove */
+            best_brk_contest (best_brk, &node->shot);
             pool = brk_pool_delete (pool, node);
+
+            /* if in recovery mode, stop as soon as first solution is found */
+            if (!do_recover)
+                break;
         } else {
             /* find matched nodes, contest and keep the best one */
             while (NULL != (match = brk_pool_match (pool, node))) {
