@@ -360,7 +360,7 @@ brk_recover (const thchar_t *text, int len, int pos, RecovHist *rh)
     int brk_pos[RECOVERED_WORDS];
     int n, p;
 
-    while (!th_isleadable (text[pos]) &&
+    while (pos < len && !th_isleadable (text[pos]) &&
            (0 == pos || !th_isldvowel (text[pos - 1])))
     {
         ++pos;
