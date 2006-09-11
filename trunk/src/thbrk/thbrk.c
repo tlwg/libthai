@@ -217,10 +217,14 @@ is_breakable (thchar_t c1, thchar_t c2)
 {
     if (strchr ("\"`'~([{</@ï", c1))
         return 0;
+    if (strchr ("\"`'~)]}>/@Ïæû", c2))
+        return 0;
     if (PAIYANNOI == c1)
         return (LOLING != c2 && PHOPHAN != c2);
     if (PAIYANNOI == c2)
         return (LOLING != c1 && NONEN != c1);
+    if (' ' == c1 && MAIYAMOK == c2)
+        return 0;
 
     return 1;
 }
