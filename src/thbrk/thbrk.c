@@ -89,6 +89,7 @@ static int          brk_recover (const thchar_t *text, int len, int pos,
 
 #define th_isleadable(c) \
     (th_isthcons(c)||th_isldvowel(c)||(c)==RU||(c)==LU)
+static int          is_breakable (thchar_t c1, thchar_t c2);
 
 int
 th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
@@ -141,6 +142,7 @@ th_brk (const thchar_t *s, int pos[], size_t n)
         const thchar_t *str_end;
         int             n_brk, i;
 
+        /* process non-Thai-text chunk */
         while (*chunk &&
                (!th_isthai (*chunk) ||
                 th_isthpunct (*chunk) ||
@@ -158,7 +160,8 @@ th_brk (const thchar_t *s, int pos[], size_t n)
                  th_isthpunct (cur_char) ||
                  (!th_isthai (cur_char) && th_isthai (next_char)) ||
                  (th_isthdigit (cur_char) && !th_isthdigit (next_char)) ||
-                 (isdigit (cur_char) && !isdigit (next_char))))
+                 (isdigit (cur_char) && !isdigit (next_char))) &&
+                is_breakable (cur_char, next_char))
             {
                 pos [cur_pos++] = (chunk - s) + 1;
                 if (cur_pos >= n)
@@ -207,6 +210,19 @@ th_brk (const thchar_t *s, int pos[], size_t n)
     brk_pool_allocator_clear ();
 
     return cur_pos;
+}
+
+static int
+is_breakable (thchar_t c1, thchar_t c2)
+{
+    if (strchr ("\"`'~([{</@ï", c1))
+        return 0;
+    if (PAIYANNOI == c1)
+        return (LOLING != c2 && PHOPHAN != c2);
+    if (PAIYANNOI == c2)
+        return (LOLING != c1 && NONEN != c1);
+
+    return 1;
 }
 
 static BrkPool *
