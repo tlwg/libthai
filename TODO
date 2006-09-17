@@ -1,15 +1,5 @@
 TODO
 ====
 
- * Consider using normalization rules as described in
-   http://linux.thai.net/thep/th-xim/#Correction
-
- * Decompose cttex codes into libthai features;
-   adjust the coding styles
-
- * Replace map.c in cttex with trie
-
- * Add unicode wrappers
-
- * Revise API
+ * Adjust API for Thai word break, so dictionary can be closed gracefully.
 
