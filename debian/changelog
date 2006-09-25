@@ -1,8 +1,11 @@
 libthai (0.1.6-2) UNRELEASED; urgency=low
 
   * Split build rules into build-indep and build-arch.
+  * Make the package binNMU-safe by using ${binary:Version} instead of
+    ${Source-Version} for libthai-dev dependency on libthai0.
+  * Suggests: libthai-doc in libthai-dev.
 
- -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed,  9 Aug 2006 23:08:37 +0700
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon, 25 Sep 2006 17:49:43 +0700
 
 libthai (0.1.6-1) unstable; urgency=low
 
