@@ -1,11 +1,16 @@
 libthai (0.1.6-2) UNRELEASED; urgency=low
 
-  * Split build rules into build-indep and build-arch.
   * Make the package binNMU-safe by using ${binary:Version} instead of
     ${Source-Version} for libthai-dev dependency on libthai0.
   * Suggests: libthai-doc in libthai-dev.
+  * Add autotools-dev build-dep. 
+  * debian/rules:
+    - Split build rules into build-indep and build-arch.
+    - Remove nostrip checking, as it is already done in dh_strip.
+    - Update shared library version.
+    - Add CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs" to ./configure options.
 
- -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon, 25 Sep 2006 17:49:43 +0700
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 11 Oct 2006 22:18:39 +0700
 
 libthai (0.1.6-1) unstable; urgency=low
 
