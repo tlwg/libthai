@@ -1,6 +1,6 @@
 /* Test driver for thwbrk 
  *
- * $Id: test_thwbrk.c,v 1.7 2006-03-13 15:58:28 thep Exp $
+ * $Id: test_thwbrk.c,v 1.8 2006-10-13 16:58:47 thep Exp $
  */
 
 #define MAXLINELENGTH 1000
@@ -60,8 +60,8 @@ int main (int argc, char* argv[]) {
 
   printf("Return value from th_wbrk_line is %d\n", outputLength);
   printf("Output string length is %d\n", wcslen(uout));
-  if ( outputLength != 71 ) {
-    printf("Error! Output string length != 71. Test th_wbrk_line() failed...\n");
+  if ( outputLength != 72 ) {
+    printf("Error! Output string length != 72. Test th_wbrk_line() failed...\n");
     exit (-1);
   }
 
