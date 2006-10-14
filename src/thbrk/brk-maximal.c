@@ -280,6 +280,15 @@ brk_get_dict ()
 {
     static SBTrie *brk_dict = 0;
 
+    /* Try LIBTHAI_DICTDIR env first */
+    if (!brk_dict) {
+        const char *dict_dir;
+
+        if (NULL != (dict_dir = getenv ("LIBTHAI_DICTDIR")))
+            brk_dict = sb_trie_open (dict_dir, DICT_NAME, TRIE_IO_READ);
+    }
+
+    /* Then, fall back to default DICT_DIR macro */
     if (!brk_dict)
         brk_dict = sb_trie_open (DICT_DIR, DICT_NAME, TRIE_IO_READ);
 
