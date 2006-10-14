@@ -38,7 +38,7 @@ major=0
 config.status: configure
 	dh_testdir
 	# Add here commands to configure the package.
-	./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
+	./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info --enable-shared
 
 
 build-indep: build-indep-stamp
@@ -46,6 +46,7 @@ build-indep-stamp:  config.status
 	dh_testdir
 
 	# Add here commands to compile the package.
+	cd data; $(MAKE)
 	cd doc; $(MAKE)
 
 	touch $@
@@ -84,6 +85,7 @@ install-indep: build-indep
 	dh_installdirs --indep
 
 	# Add here commands to install the package into debian/tmp
+	cd data; $(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 	cd doc; $(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 
 install-arch: build-arch
