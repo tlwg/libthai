@@ -1,5 +1,9 @@
 2006-10-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/Makefile.am: Specify LC_ALL=C to make sure 'sort' always works.
+
+2006-10-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	Fix 'make distcheck', plus a little enhancement on dict location.
 
 	* src/thbrk/brk-maximal.c (brk_get_dict): Try openning dict at
@@ -1251,13 +1255,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.125 2006-10-14 10:03:16 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.126 2006-10-14 11:09:48 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.125 2006-10-14 10:03:16 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.126 2006-10-14 11:09:48 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
