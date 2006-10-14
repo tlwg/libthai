@@ -1,16 +1,25 @@
-libthai (0.1.6-2) UNRELEASED; urgency=low
+libthai (0.1.7-1) unstable; urgency=low
 
   * Make the package binNMU-safe by using ${binary:Version} instead of
     ${Source-Version} for libthai-dev dependency on libthai0.
   * Suggests: libthai-doc in libthai-dev.
-  * Add autotools-dev build-dep. 
+  * Add autotools-dev build-dep.
   * debian/rules:
     - Split build rules into build-indep and build-arch.
     - Remove nostrip checking, as it is already done in dh_strip.
     - Update shared library version.
-    - Add CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs" to ./configure options.
+  * New upstream release
+    + Rewritten word break routines:
+      - Split dictionary from source, thus new dependency on libdatrie
+      - New word break routine from scratch, for maintainability
+    + Improved dictionary for word segmentation:
+      - New word list preparation process from multiple categories
+      - New contemporary words not included in Royal Institute dictionary,
+        as well as some proper names for countries and locations, etc.
+      - Fine-tuned dictionary to get rid of some potential ambiguities
+  * Add libthai-data package.
 
- -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 11 Oct 2006 22:18:39 +0700
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat, 14 Oct 2006 18:40:37 +0700
 
 libthai (0.1.6-1) unstable; urgency=low
 
