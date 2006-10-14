@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.2 2006-09-01 09:24:27 thep Exp $
+# $Id: Makefile.am,v 1.3 2006-10-14 10:03:16 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 CLEANFILES = thbrk.br thbrk.tl tdict.txt
 
@@ -15,7 +15,7 @@ TDICT_SRC = 				\
 	$(srcdir)/tdict-spell.txt	\
 	$(srcdir)/tdict-std.txt
 
-EXTRA_DIST = tdict.txt thbrk.sbm $(TDICT_SRC)
+EXTRA_DIST = thbrk.sbm $(TDICT_SRC)
 
 tdict.txt: $(TDICT_SRC)
 	cat $(TDICT_SRC) | sort -u > tdict.txt

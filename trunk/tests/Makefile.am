@@ -1,9 +1,9 @@
-# $Id: Makefile.am,v 1.10 2001-08-10 11:07:30 thep Exp $
+# $Id: Makefile.am,v 1.11 2006-10-14 10:03:17 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 
 INCLUDES = -I$(top_srcdir)/include
 
-EXTRA_DIST = sorttest.txt sorted.txt test-thcoll.sh
+EXTRA_DIST = sorttest.txt sorted.txt test-thcoll.sh test-thbrk.sh test-thwbrk.sh
 
 TESTS_ENVIRONMENT = top_builddir=$(top_builddir)
 
@@ -14,12 +14,14 @@ TESTS = \
 	test_thrend \
 	test_thstr \
 	test-thcoll.sh \
-	test_thbrk \
+	test-thbrk.sh \
 	test_thwchar \
-	test_thwbrk
+	test-thwbrk.sh
 
 check_SCRIPTS = \
-	test-thcoll.sh
+	test-thcoll.sh \
+	test-thbrk.sh \
+	test-thwbrk.sh
 
 check_PROGRAMS = \
 	test_thctype \
