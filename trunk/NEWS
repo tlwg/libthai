@@ -2,6 +2,16 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.6 (14 October 2006):
+* Rewritten word break routines:
+  - Split dictionary from source, thus new dependency on libdatrie
+  - New word break routine from scratch, for maintainability
+* Improved dictionary for word segmentation:
+  - New word list preparation process from multiple categories
+  - New contemporary words not included in Royal Institute dictionary,
+    as well as some proper names for countries and locations, etc.
+  - Fine-tuned dictionary to get rid of some potential ambiguities
+
 LibThai 0.1.6 (5 August 2006):
 * Documentation with doxygen.
 * Add missing APIs.
