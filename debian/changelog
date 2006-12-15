@@ -1,3 +1,10 @@
+libthai (0.1.7-2) unstable; urgency=low
+
+  * debian/control: Add Build-Depends: libdatrie-bin, according to new
+    libdatrie upload.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Fri, 15 Dec 2006 11:40:31 +0700
+
 libthai (0.1.7-1) unstable; urgency=low
 
   * Make the package binNMU-safe by using ${binary:Version} instead of

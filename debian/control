@@ -3,7 +3,7 @@ Priority: optional
 Section: libs
 Maintainer: Theppitak Karoonboonyanan <thep@linux.thai.net>
 Uploaders:  Pattara Kiatisevi <ott@linux.thai.net>
-Build-Depends: dpkg-dev (>= 1.13.19), debhelper (>> 3.0.0), autotools-dev, doxygen, libdatrie-dev
+Build-Depends: dpkg-dev (>= 1.13.19), debhelper (>> 3.0.0), autotools-dev, doxygen, libdatrie-dev, libdatrie-bin
 Standards-Version: 3.7.2.2
 
 Package: libthai-dev
