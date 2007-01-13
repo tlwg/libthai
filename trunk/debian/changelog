@@ -1,3 +1,9 @@
+libthai (0.1.7-4) unstable; urgency=low
+
+  * Provide libthai-dev and libthai-doc transitional packages.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat, 13 Jan 2007 18:04:17 +0700
+
 libthai (0.1.7-3) unstable; urgency=low
 
   * Rename libthai-{dev,doc} to libthai0-{dev,doc}.
