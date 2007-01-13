@@ -1,3 +1,24 @@
+libthai (0.1.7-3) unstable; urgency=low
+
+  * Rename libthai-{dev,doc} to libthai0-{dev,doc}.
+    - debian/control: rename corresponding packages.
+    - debian/libthai-{dev,doc}.*: rename to libthai0-{dev,doc}.*.
+    - debian/libthai0-doc.install, debian/libthai0-doc.doc-base:
+      install and point to docs in /usr/share/doc/libthai0-doc.
+  * Bump debhelper compatibility to V5:
+    - debian/compat: added with version 5 compatibility.
+    - debian/control: Build-Depends: debhelper (>= 5).
+    - debian/rules: remove DH_COMPAT overriding.
+    - debian/*.dirs: removed, not needed.
+  * debian/rules adjustments
+    - Remove unused shared library version info assignment.
+    - Pass --host=$(DEB_HOST_GNU_TYPE) to configure only when cross compiling.
+    - Revert separate arch and indep builds, as they're not actually split
+      right now.
+  * debian/copyright: change the download place to match that in watch file.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 20 Dec 2006 14:17:42 +0700
+
 libthai (0.1.7-2) unstable; urgency=low
 
   * debian/control: Add Build-Depends: libdatrie-bin, according to new
