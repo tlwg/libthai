@@ -3,14 +3,16 @@ Priority: optional
 Section: libs
 Maintainer: Theppitak Karoonboonyanan <thep@linux.thai.net>
 Uploaders:  Pattara Kiatisevi <ott@linux.thai.net>
-Build-Depends: dpkg-dev (>= 1.13.19), debhelper (>> 3.0.0), autotools-dev, doxygen, libdatrie-dev, libdatrie-bin
+Build-Depends: dpkg-dev (>= 1.13.19), debhelper (>= 5), autotools-dev, doxygen, libdatrie-dev, libdatrie-bin
 Standards-Version: 3.7.2.2
 
-Package: libthai-dev
-Section: devel
+Package: libthai0-dev
+Section: libdevel
 Architecture: any
 Depends: libthai0 (= ${binary:Version})
-Suggests: libthai-doc (= ${source:Version})
+Suggests: libthai0-doc (= ${source:Version})
+Provides: libthai-dev
+Conflicts: libthai-dev
 Description: Development files for Thai language support library
  LibThai is a set of Thai language support routines aimed to ease
  developers' tasks to incorporate Thai language support in their applications.
@@ -50,10 +52,12 @@ Description: Data files for Thai language support library
  .
  Homepage: http://libthai.sourceforge.net/
 
-Package: libthai-doc
+Package: libthai0-doc
 Section: doc
 Architecture: all
 Depends: lynx | www-browser
+Provides: libthai-doc
+Conflicts: libthai-doc
 Description: Documentation files for Thai language support library
  LibThai is a set of Thai language support routines aimed to ease
  developers' tasks to incorporate Thai language support in their applications.
