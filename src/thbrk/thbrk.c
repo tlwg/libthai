@@ -113,8 +113,8 @@ th_brk (const thchar_t *s, int pos[], size_t n)
         cur_pos += n_brk;
         chunk = str_end;
 
-        /* if next character is Thai punct (e.g. Mai Yamok, Paiyan Noi)
-         * or white space, don't break
+        /* if next character is Thai punct (e.g. Mai Yamok, Paiyan Noi),
+         * don't break
          */
         if (*chunk && !is_breakable (*(chunk - 1), *chunk) &&
             cur_pos > 0 && pos [cur_pos - 1] == chunk -s)
@@ -148,8 +148,6 @@ is_breakable (thchar_t c1, thchar_t c2)
     if (PAIYANNOI == c2)
         return (LOLING != c1 && NONEN != c1);
     if (' ' == c1 && MAIYAMOK == c2)
-        return 0;
-    if (isspace (c2))
         return 0;
 
     return 1;
