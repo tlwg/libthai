@@ -1,3 +1,13 @@
+libthai (0.1.7-5) unstable; urgency=low
+
+  * Backported patch from upstream CVS
+    - Improved word break routine: allow break before white space, fixing 
+      wrong treatment of whitespaces in HTML in mozlibthai component, which 
+      caused glitches in webpages.
+    - Some more words added to dictionary.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Fri,  2 Feb 2007 22:29:14 +0700
+
 libthai (0.1.7-4) unstable; urgency=low
 
   * Provide libthai-dev and libthai-doc transitional packages.
