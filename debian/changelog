@@ -1,3 +1,12 @@
+libthai (0.1.7-6) unstable; urgency=low
+
+  * Backported patch from upstream CVS
+    - Yet another fix to white space bug in th_brk(), as spotted by
+      Suppachoke Santiwitchaya. This is just temporary fix for use while the
+      planned redesign does not happen.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sun,  4 Feb 2007 15:11:10 +0700
+
 libthai (0.1.7-5) unstable; urgency=low
 
   * Backported patch from upstream CVS
