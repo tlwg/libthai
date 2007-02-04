@@ -78,8 +78,9 @@ th_brk (const thchar_t *s, int pos[], size_t n)
              */
             cur_char = *chunk;
             next_char = *(chunk + 1);
-            if (next_char && !isspace (next_char) &&
-                (isspace (cur_char) ||
+            if (next_char &&
+                (((isspace (cur_char) || isspace (next_char)) &&
+                  !(isspace (cur_char) && isspace (next_char))) ||
                  th_isthpunct (cur_char) ||
                  (!th_isthai (cur_char) && th_isthai (next_char)) ||
                  (th_isthdigit (cur_char) && !th_isthdigit (next_char)) ||
@@ -140,15 +141,13 @@ static int
 is_breakable (thchar_t c1, thchar_t c2)
 {
     if (strchr ("\"`'~([{<.,;/@ï", c1))
-        return 0;
+        return isspace (c2);
     if (strchr ("\"`'~)]}>.,;/@Ïæúû", c2))
-        return 0;
+        return isspace (c1);
     if (PAIYANNOI == c1)
         return (LOLING != c2 && PHOPHAN != c2);
     if (PAIYANNOI == c2)
         return (LOLING != c1 && NONEN != c1);
-    if (' ' == c1 && MAIYAMOK == c2)
-        return 0;
 
     return 1;
 }
