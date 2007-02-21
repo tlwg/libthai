@@ -1,3 +1,12 @@
+libthai (0.1.7-7) unstable; urgency=low
+
+  * Add missing Depends: libdatrie0-dev in libthai0-dev, found by
+    Neutron Soutmun.
+  * Add missing Build-Depends: pkg-config, thanks pbuilder.
+  * Explicitly Build-Depends: libdatrie0-dev instead of libdatrie-dev.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 21 Feb 2007 09:45:27 +0700
+
 libthai (0.1.7-6) unstable; urgency=low
 
   * Backported patch from upstream CVS
