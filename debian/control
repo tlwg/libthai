@@ -3,7 +3,7 @@ Priority: optional
 Section: libs
 Maintainer: Theppitak Karoonboonyanan <thep@linux.thai.net>
 Uploaders:  Pattara Kiatisevi <ott@linux.thai.net>
-Build-Depends: dpkg-dev (>= 1.13.19), debhelper (>= 5), autotools-dev, doxygen, libdatrie-dev, libdatrie-bin
+Build-Depends: dpkg-dev (>= 1.13.19), debhelper (>= 5), autotools-dev, doxygen, pkg-config, libdatrie0-dev, libdatrie-bin
 Standards-Version: 3.7.2.2
 
 Package: libthai-dev
@@ -25,7 +25,7 @@ Description: transitional package for libthai0-doc
 Package: libthai0-dev
 Section: libdevel
 Architecture: any
-Depends: libthai0 (= ${binary:Version})
+Depends: libthai0 (= ${binary:Version}), libdatrie0-dev
 Suggests: libthai0-doc (= ${source:Version})
 Provides: libthai-dev
 Conflicts: libthai-dev (<< 0.1.7-3)
