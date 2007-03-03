@@ -1,6 +1,6 @@
 /* Test driver for thwbrk 
  *
- * $Id: test_thwbrk.c,v 1.9 2006-10-14 07:50:33 thep Exp $
+ * $Id: test_thwbrk.c,v 1.10 2007-03-03 10:40:19 thep Exp $
  */
 
 #define MAXLINELENGTH 1000
@@ -41,8 +41,8 @@ int main (int argc, char* argv[])
     }
   }
   printf ("\n");
-  if (numCut != 8) { 
-    printf ("Error! Should have 8 cut points.\n Test th_wbrk() failed...\n");
+  if (numCut != 9) { 
+    printf ("Error! Should have 9 cut points.\n Test th_wbrk() failed...\n");
     exit (-1);
   }
 	
@@ -55,8 +55,8 @@ int main (int argc, char* argv[])
 
   printf ("Return value from th_wbrk_line is %d\n", outputLength);
   printf ("Output string length is %d\n", wcslen(uout));
-  if (outputLength != 72) {
-    printf ("Error! Output string length != 72. "
+  if (outputLength != 77) {
+    printf ("Error! Output string length != 77. "
             "Test th_wbrk_line() failed...\n");
     exit (-1);
   }

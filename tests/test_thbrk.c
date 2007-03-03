@@ -1,6 +1,6 @@
 /* Test driver for thbrk 
  *
- * $Id: test_thbrk.c,v 1.10 2006-10-14 07:50:33 thep Exp $
+ * $Id: test_thbrk.c,v 1.11 2007-03-03 10:40:19 thep Exp $
  */
 
 #define MAXLINELENGTH 1000
@@ -52,8 +52,8 @@ int main (int argc, char* argv[])
     printf ("Testing with string: %s\n", str);
     numCut = th_brk (str, pos, MAXLINELENGTH);
     printf ("Total %d cut points.", numCut);
-    if (numCut != 8) { 
-      printf("Error! should be 8.. test th_brk() failed...\n");
+    if (numCut != 9) { 
+      printf("Error! should be 9.. test th_brk() failed...\n");
       exit (-1);
     }
 	
@@ -65,8 +65,8 @@ int main (int argc, char* argv[])
     outputLength = th_brk_line (str, out, sizeof out, "<WBR>");
     printf ("Output string is %s\n", out);
     printf ("Output string length is %d\n", outputLength);
-    if (outputLength != 72) {
-      printf ("Error! should be 72.. test th_brk_line() failed...\n");
+    if (outputLength != 77) {
+      printf ("Error! should be 77.. test th_brk_line() failed...\n");
       exit (-1);
     }
     printf ("*** End of thbrk self test ******\n");
