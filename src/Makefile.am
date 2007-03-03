@@ -1,16 +1,10 @@
-# $Id: Makefile.am,v 1.16 2007-03-03 05:45:52 thep Exp $
+# $Id: Makefile.am,v 1.17 2007-03-03 08:30:36 thep Exp $
 SUBDIRS = thctype thstr thcell thinp thrend thcoll thbrk thwchar thwctype \
 	thwstr thwbrk
 
 MAINTAINERCLEANFILES = Makefile.in
 
 EXTRA_DIST = libthai.def
-
-if OS_WIN32
-no_undefined = -no-undefined
-else
-no_undefined =
-endif
 
 lib_LTLIBRARIES = libthai.la
 
@@ -27,7 +21,7 @@ libthai_la_LIBADD = \
 	$(top_builddir)/src/thwctype/libthwctype.la \
 	$(top_builddir)/src/thwstr/libthwstr.la \
 	$(top_builddir)/src/thwbrk/libthwbrk.la 
-libthai_la_LDFLAGS = $(no_undefined) \
+libthai_la_LDFLAGS = -no-undefined \
 	-version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) \
 	-export-symbols $(srcdir)/libthai.def
 
