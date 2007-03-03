@@ -1,4 +1,15 @@
-libthai (0.1.7-7) unstable; urgency=low
+libthai (0.1.8-1) experimental; urgency=low
+
+  * New upstream release
+    - Improved handling of white spaces in word break routine, for better
+      quality of line wrapping in Gecko libthai component.
+    - More words in word break dictionary.
+    - Excessive exported symbols are eliminated from library.
+  * Drop all patches previously stolen from upstream CVS.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat,  3 Mar 2007 17:47:10 +0700
+
+libthai (0.1.7-7) experimental; urgency=low
 
   * Add missing Depends: libdatrie0-dev in libthai0-dev, found by
     Neutron Soutmun.
@@ -7,7 +18,7 @@ libthai (0.1.7-7) unstable; urgency=low
 
  -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 21 Feb 2007 09:45:27 +0700
 
-libthai (0.1.7-6) unstable; urgency=low
+libthai (0.1.7-6) experimental; urgency=low
 
   * Backported patch from upstream CVS
     - Yet another fix to white space bug in th_brk(), as spotted by
@@ -16,7 +27,7 @@ libthai (0.1.7-6) unstable; urgency=low
 
  -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sun,  4 Feb 2007 15:11:10 +0700
 
-libthai (0.1.7-5) unstable; urgency=low
+libthai (0.1.7-5) experimental; urgency=low
 
   * Backported patch from upstream CVS
     - Improved word break routine: allow break before white space, fixing 
@@ -26,13 +37,13 @@ libthai (0.1.7-5) unstable; urgency=low
 
  -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Fri,  2 Feb 2007 22:29:14 +0700
 
-libthai (0.1.7-4) unstable; urgency=low
+libthai (0.1.7-4) experimental; urgency=low
 
   * Provide libthai-dev and libthai-doc transitional packages.
 
  -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat, 13 Jan 2007 18:04:17 +0700
 
-libthai (0.1.7-3) unstable; urgency=low
+libthai (0.1.7-3) experimental; urgency=low
 
   * Rename libthai-{dev,doc} to libthai0-{dev,doc}.
     - debian/control: rename corresponding packages.
@@ -53,14 +64,14 @@ libthai (0.1.7-3) unstable; urgency=low
 
  -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 20 Dec 2006 14:17:42 +0700
 
-libthai (0.1.7-2) unstable; urgency=low
+libthai (0.1.7-2) experimental; urgency=low
 
   * debian/control: Add Build-Depends: libdatrie-bin, according to new
     libdatrie upload.
 
  -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Fri, 15 Dec 2006 11:40:31 +0700
 
-libthai (0.1.7-1) unstable; urgency=low
+libthai (0.1.7-1) experimental; urgency=low
 
   * Make the package binNMU-safe by using ${binary:Version} instead of
     ${Source-Version} for libthai-dev dependency on libthai0.
