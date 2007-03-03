@@ -1,5 +1,12 @@
 2007-03-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* configure.in: Add AC_LIBTOOL_WIN32_DLL as required for Win32.
+
+	* src/Makefile.am (libthai_la_LDFLAGS): Always pass -no-undefined to 
+	enforce all resolved symbols. Thanks Loïc Minier.
+
+2007-03-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/Makefile.am (EXTRA_DIST, libthai_la_LDFLAGS), +src/libthai.def:
 	Add -export-symbols flag to limit exported symbols. Thanks Loïc Minier
 	for suggestion.
@@ -1306,13 +1313,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.133 2007-03-03 05:45:48 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.134 2007-03-03 08:30:35 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.133 2007-03-03 05:45:48 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.134 2007-03-03 08:30:35 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
