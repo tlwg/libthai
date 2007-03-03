@@ -1,0 +1,194 @@
+libthai (0.1.8-1) experimental; urgency=low
+
+  * New upstream release
+    - Improved handling of white spaces in word break routine, for better
+      quality of line wrapping in Gecko libthai component.
+    - More words in word break dictionary.
+    - Excessive exported symbols are eliminated from library.
+  * Drop all patches previously stolen from upstream CVS.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat,  3 Mar 2007 17:47:10 +0700
+
+libthai (0.1.7-7) experimental; urgency=low
+
+  * Add missing Depends: libdatrie0-dev in libthai0-dev, found by
+    Neutron Soutmun.
+  * Add missing Build-Depends: pkg-config, thanks pbuilder.
+  * Explicitly Build-Depends: libdatrie0-dev instead of libdatrie-dev.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 21 Feb 2007 09:45:27 +0700
+
+libthai (0.1.7-6) experimental; urgency=low
+
+  * Backported patch from upstream CVS
+    - Yet another fix to white space bug in th_brk(), as spotted by
+      Suppachoke Santiwitchaya. This is just temporary fix for use while the
+      planned redesign does not happen.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sun,  4 Feb 2007 15:11:10 +0700
+
+libthai (0.1.7-5) experimental; urgency=low
+
+  * Backported patch from upstream CVS
+    - Improved word break routine: allow break before white space, fixing 
+      wrong treatment of whitespaces in HTML in mozlibthai component, which 
+      caused glitches in webpages.
+    - Some more words added to dictionary.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Fri,  2 Feb 2007 22:29:14 +0700
+
+libthai (0.1.7-4) experimental; urgency=low
+
+  * Provide libthai-dev and libthai-doc transitional packages.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat, 13 Jan 2007 18:04:17 +0700
+
+libthai (0.1.7-3) experimental; urgency=low
+
+  * Rename libthai-{dev,doc} to libthai0-{dev,doc}.
+    - debian/control: rename corresponding packages.
+    - debian/libthai-{dev,doc}.*: rename to libthai0-{dev,doc}.*.
+    - debian/libthai0-doc.install, debian/libthai0-doc.doc-base:
+      install and point to docs in /usr/share/doc/libthai0-doc.
+  * Bump debhelper compatibility to V5:
+    - debian/compat: added with version 5 compatibility.
+    - debian/control: Build-Depends: debhelper (>= 5).
+    - debian/rules: remove DH_COMPAT overriding.
+    - debian/*.dirs: removed, not needed.
+  * debian/rules adjustments
+    - Remove unused shared library version info assignment.
+    - Pass --host=$(DEB_HOST_GNU_TYPE) to configure only when cross compiling.
+    - Revert separate arch and indep builds, as they're not actually split
+      right now.
+  * debian/copyright: change the download place to match that in watch file.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 20 Dec 2006 14:17:42 +0700
+
+libthai (0.1.7-2) experimental; urgency=low
+
+  * debian/control: Add Build-Depends: libdatrie-bin, according to new
+    libdatrie upload.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Fri, 15 Dec 2006 11:40:31 +0700
+
+libthai (0.1.7-1) experimental; urgency=low
+
+  * Make the package binNMU-safe by using ${binary:Version} instead of
+    ${Source-Version} for libthai-dev dependency on libthai0.
+  * Suggests: libthai-doc in libthai-dev.
+  * Add autotools-dev build-dep.
+  * debian/rules:
+    - Split build rules into build-indep and build-arch.
+    - Remove nostrip checking, as it is already done in dh_strip.
+    - Update shared library version.
+  * New upstream release
+    + Rewritten word break routines:
+      - Split dictionary from source, thus new dependency on libdatrie
+      - New word break routine from scratch, for maintainability
+    + Improved dictionary for word segmentation:
+      - New word list preparation process from multiple categories
+      - New contemporary words not included in Royal Institute dictionary,
+        as well as some proper names for countries and locations, etc.
+      - Fine-tuned dictionary to get rid of some potential ambiguities
+  * Add libthai-data package.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat, 14 Oct 2006 18:40:37 +0700
+
+libthai (0.1.6-1) unstable; urgency=low
+
+  * New upstream release.
+  * Provided more informative short description.  Also added details about
+    individual packages, as well as upstream homepage. (Closes: #360621)
+  * Added libthai-doc package, installing HTML document available in new
+    upstream release, with doc-base control file.
+  * Build-depends on doxygen.
+  * Used individual package.docs files, so they get installed in all packages.
+  * Removed useless README.Debian.
+  * Add back config.sub and config.guess replacements.
+  * Used dh_install instead of the old dh_movefiles.
+  * Removed unneeded debhelper commands: dh_installexamples, dh_installmenu,
+    dh_installcron, dh_installman, dh_installinfo.
+  * Bumped standard version to 3.7.2, no changes needed.
+  * Added watch file.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sun,  6 Aug 2006 23:00:52 +0700
+
+libthai (0.1.5-3) unstable; urgency=low
+
+  * actually closed ITP bug (Closes: #358539)
+  * debian/control:
+    - took over the packaging from Pattara Kiatisevi with his consent.
+      thanks for your initial works! (he's still an uploader, anyway)
+  * debian/rules:
+    - removed commented debhelper instructions
+  * debian/copyright:
+    - more info on current maintainer
+    - added missing copyright years
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Tue, 28 Mar 2006 09:14:55 +0700
+
+libthai (0.1.5-2) unstable; urgency=low
+
+  * initial debian version
+  * debian/rules:
+    - removed replacement of upstream's config.guess and config.sub
+  * debian/copyright:
+    - updated e-mail addresses and urls
+    - mentioned system file for LGPL-2
+  * debian/control:
+    - added myself as an uploader
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Tue, 21 Mar 2006 16:54:12 +0700
+
+libthai (0.1.5-1ubuntu1) dapper; urgency=low
+
+  * initial ubuntu version
+  * removed the CVS dirs from the source (repacked it)
+  * debian/control: 
+    - added "libs" to Source section 
+    - changed standard version to 3.6.2.2
+  
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Tue, 14 Mar 2006 11:49:48 +0000
+
+libthai (0.1.5-1) unstable; urgency=low 
+
+  * upstream version 1.5 
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Tue,  14 Mar 2006 00:54:00 +0700
+
+libthai (0.1.4-1) unstable; urgency=low 
+
+  * upstream version 1.4 (since 16 October 2004, see the NEWS file)
+  * add a check value of array size in th_brk
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sun,  12 Dec 2004 15:43:00 +0900
+
+libthai (0.1.3-2) unstable; urgency=low 
+
+  * set the mode of cttex to firstmode=1 (we want it fast)
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sat,  15 May 2004 00:20:00 +0900
+
+libthai (0.1.3-1) unstable; urgency=low 
+
+  * Define blank base glyph for floating upper/lower vowels rendering.
+  * (Minor modified version as required by pango-libthai binding).
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Mon,  23 February 2004 13:10:00 +0900
+
+libthai (0.1.2-1) unstable; urgency=low
+
+  * It's still alive!
+  * Bug fix & code furnishing
+  * conversion functions for Win & Mac extension
+  * Some document (man pages)
+  * Experiment with GTK+ 2 plug-ins (in separate packages)
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sun,  14 Sep 2003 02:16:00 +0900
+
+libthai (0.1.1-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sun,  2 Feb 2003 16:37:08 +0900
+

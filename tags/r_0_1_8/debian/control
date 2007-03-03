@@ -1,0 +1,85 @@
+Source: libthai
+Priority: optional
+Section: libs
+Maintainer: Theppitak Karoonboonyanan <thep@linux.thai.net>
+Uploaders:  Pattara Kiatisevi <ott@linux.thai.net>
+Build-Depends: dpkg-dev (>= 1.13.19), debhelper (>= 5), autotools-dev, doxygen, pkg-config, libdatrie0-dev, libdatrie-bin
+Standards-Version: 3.7.2.2
+
+Package: libthai-dev
+Section: libdevel
+Architecture: all
+Depends: libthai0-dev
+Description: transitional package for libthai0-dev
+ This package provides transition to version-named package, and can be 
+ safely removed after it has been installed.
+
+Package: libthai-doc
+Section: doc
+Architecture: all
+Depends: libthai0-doc
+Description: transitional package for libthai0-doc
+ This package provides transition to version-named package, and can be 
+ safely removed after it has been installed.
+
+Package: libthai0-dev
+Section: libdevel
+Architecture: any
+Depends: libthai0 (= ${binary:Version}), libdatrie0-dev
+Suggests: libthai0-doc (= ${source:Version})
+Provides: libthai-dev
+Conflicts: libthai-dev (<< 0.1.7-3)
+Description: Development files for Thai language support library
+ LibThai is a set of Thai language support routines aimed to ease
+ developers' tasks to incorporate Thai language support in their applications.
+ It includes important Thai-specific functions e.g. word breaking, input and
+ output methods as well as basic character and string supports.
+ .
+ This package contains the development libraries, header files and manpages
+ you need to develop your programs using the LibThai library.
+ .
+ Homepage: http://libthai.sourceforge.net/
+
+Package: libthai0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, libthai-data
+Description: Thai language support library
+ LibThai is a set of Thai language support routines aimed to ease
+ developers' tasks to incorporate Thai language support in their applications.
+ It includes important Thai-specific functions e.g. word breaking, input and
+ output methods as well as basic character and string supports.
+ .
+ This package contains the shared libraries needed to run programs that use
+ the LibThai library.
+ .
+ Homepage: http://libthai.sourceforge.net/
+
+Package: libthai-data
+Section: libs
+Architecture: all
+Description: Data files for Thai language support library
+ LibThai is a set of Thai language support routines aimed to ease
+ developers' tasks to incorporate Thai language support in their applications.
+ It includes important Thai-specific functions e.g. word breaking, input and
+ output methods as well as basic character and string supports.
+ .
+ This package contains the data needed by LibThai library.
+ .
+ Homepage: http://libthai.sourceforge.net/
+
+Package: libthai0-doc
+Section: doc
+Architecture: all
+Depends: lynx | www-browser
+Provides: libthai-doc
+Conflicts: libthai-doc (<< 0.1.7-3)
+Description: Documentation files for Thai language support library
+ LibThai is a set of Thai language support routines aimed to ease
+ developers' tasks to incorporate Thai language support in their applications.
+ It includes important Thai-specific functions e.g. word breaking, input and
+ output methods as well as basic character and string supports.
+ .
+ This package contains some documents about the LibThai library.
+ .
+ Homepage: http://libthai.sourceforge.net/

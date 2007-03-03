@@ -1,0 +1,239 @@
+.\" (c) 2001 by Poonlap Veerathanabutr (Poonlap.Veerathanabutr@sun.co.jp)
+.\"
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
+.\"
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one
+.\" 
+.\" The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\" 
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
+.\" License.
+.\" $Id: libthai.3,v 1.3 2006-07-31 13:55:51 thep Exp $
+.\" Standard preamble:
+.\" ======================================================================
+.de Sh \" Subsection heading
+.br
+.if t .Sp
+.ne 5
+.PP
+\fB\\$1\fR
+.PP
+..
+.de Sp \" Vertical space (when we can't use .PP)
+.if t .sp .5v
+.if n .sp
+..
+.de Ip \" List item
+.br
+.ie \\n(.$>=3 .ne \\$3
+.el .ne 3
+.IP "\\$1" \\$2
+..
+.de Vb \" Begin verbatim text
+.ft CW
+.nf
+.ne \\$1
+..
+.de Ve \" End verbatim text
+.ft R
+
+.fi
+..
+.\" Set up some character translations and predefined strings.  \*(-- will
+.\" give an unbreakable dash, \*(PI will give pi, \*(L" will give a left
+.\" double quote, and \*(R" will give a right double quote.  | will give a
+.\" real vertical bar.  \*(C+ will give a nicer C++.  Capital omega is used
+.\" to do unbreakable dashes and therefore won't be available.  \*(C` and
+.\" \*(C' expand to `' in nroff, nothing in troff, for use with C<>
+.tr \(*W-|\(bv\*(Tr
+.ds C+ C\v'-.1v'\h'-1p'\s-2+\h'-1p'+\s0\v'.1v'\h'-1p'
+.ie n \{\
+.    ds -- \(*W-
+.    ds PI pi
+.    if (\n(.H=4u)&(1m=24u) .ds -- \(*W\h'-12u'\(*W\h'-12u'-\" diablo 10 pitch
+.    if (\n(.H=4u)&(1m=20u) .ds -- \(*W\h'-12u'\(*W\h'-8u'-\"  diablo 12 pitch
+.    ds L" ""
+.    ds R" ""
+.    ds C` `
+.    ds C' '
+'br\}
+.el\{\
+.    ds -- \|\(em\|
+.    ds PI \(*p
+.    ds L" ``
+.    ds R" ''
+'br\}
+.\"
+.\" If the F register is turned on, we'll generate index entries on stderr
+.\" for titles (.TH), headers (.SH), subsections (.Sh), items (.Ip), and
+.\" index entries marked with X<> in POD.  Of course, you'll have to process
+.\" the output yourself in some meaningful fashion.
+.if \nF \{\
+.    de IX
+.    tm Index:\\$1\t\\n%\t"\\$2"
+.    .
+.    nr % 0
+.    rr F
+.\}
+.\"
+.\" For nroff, turn off justification.  Always turn off hyphenation; it
+.\" makes way too many mistakes in technical documents.
+.hy 0
+.if n .na
+.\"
+.\" Accent mark definitions (@(#)ms.acc 1.5 88/02/08 SMI; from UCB 4.2).
+.\" Fear.  Run.  Save yourself.  No user-serviceable parts.
+.bd B 3
+.    \" fudge factors for nroff and troff
+.if n \{\
+.    ds #H 0
+.    ds #V .8m
+.    ds #F .3m
+.    ds #[ \f1
+.    ds #] \fP
+.\}
+.if t \{\
+.    ds #H ((1u-(\\\\n(.fu%2u))*.13m)
+.    ds #V .6m
+.    ds #F 0
+.    ds #[ \&
+.    ds #] \&
+.\}
+.    \" simple accents for nroff and troff
+.if n \{\
+.    ds ' \&
+.    ds ` \&
+.    ds ^ \&
+.    ds , \&
+.    ds ~ ~
+.    ds /
+.\}
+.if t \{\
+.    ds ' \\k:\h'-(\\n(.wu*8/10-\*(#H)'\'\h"|\\n:u"
+.    ds ` \\k:\h'-(\\n(.wu*8/10-\*(#H)'\`\h'|\\n:u'
+.    ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'^\h'|\\n:u'
+.    ds , \\k:\h'-(\\n(.wu*8/10)',\h'|\\n:u'
+.    ds ~ \\k:\h'-(\\n(.wu-\*(#H-.1m)'~\h'|\\n:u'
+.    ds / \\k:\h'-(\\n(.wu*8/10-\*(#H)'\z\(sl\h'|\\n:u'
+.\}
+.    \" troff and (daisy-wheel) nroff accents
+.ds : \\k:\h'-(\\n(.wu*8/10-\*(#H+.1m+\*(#F)'\v'-\*(#V'\z.\h'.2m+\*(#F'.\h'|\\n:u'\v'\*(#V'
+.ds 8 \h'\*(#H'\(*b\h'-\*(#H'
+.ds o \\k:\h'-(\\n(.wu+\w'\(de'u-\*(#H)/2u'\v'-.3n'\*(#[\z\(de\v'.3n'\h'|\\n:u'\*(#]
+.ds d- \h'\*(#H'\(pd\h'-\w'~'u'\v'-.25m'\f2\(hy\fP\v'.25m'\h'-\*(#H'
+.ds D- D\\k:\h'-\w'D'u'\v'-.11m'\z\(hy\v'.11m'\h'|\\n:u'
+.ds th \*(#[\v'.3m'\s+1I\s-1\v'-.3m'\h'-(\w'I'u*2/3)'\s-1o\s+1\*(#]
+.ds Th \*(#[\s+2I\s-2\h'-\w'I'u*3/5'\v'-.3m'o\v'.3m'\*(#]
+.ds ae a\h'-(\w'a'u*4/10)'e
+.ds Ae A\h'-(\w'A'u*4/10)'E
+.    \" corrections for vroff
+.if v .ds ~ \\k:\h'-(\\n(.wu*9/10-\*(#H)'\s-2\u~\d\s+2\h'|\\n:u'
+.if v .ds ^ \\k:\h'-(\\n(.wu*10/11-\*(#H)'\v'-.4m'^\v'.4m'\h'|\\n:u'
+.    \" for low resolution devices (crt and lpr)
+.if \n(.H>23 .if \n(.V>19 \
+\{\
+.    ds : e
+.    ds 8 ss
+.    ds o a
+.    ds d- d\h'-1'\(ga
+.    ds D- D\h'-1'\(hy
+.    ds th \o'bp'
+.    ds Th \o'LP'
+.    ds ae ae
+.    ds Ae AE
+.\}
+.rm #[ #] #H #V #F C
+.\" ======================================================================
+.\"
+.TH libthai 3  "Oct 2, 2001" "Thai Linux Working Group" "libthai's Manual"
+.SH NAME
+libthai \- Thai language support routines, version 0.1.1
+.SH "DESCRIPTION"
+LibThai is a set of Thai language support routines aimed to ease
+developers' tasks to incorporate Thai language support in their
+applications. It includes important Thai\-specific functions e.g. word
+breaking, input and output methods as well as basic character and
+string supports. LibThai is an Open Source and collaborative effort
+initiated by Thai Linux Working Group and opened for all contributors.
+.Sh "LibThai Functions by Category"
+.IX Subsection "LibThai Functions by Category"
+LibThai provides functions to handle both tis-620 character
+set (single-byte) and unicode (multi-byte). A function name which
+includes \&\f(CW\*(C`w\*(C'\fR, such as \fBth_wbrk\fR is unicode
+version of \fBth_brk\fR function. 
+.Ip "Functions for classifying characters" 4
+.IX Item "Functions for classifying characters"
+th_istis, th_isthai, th_iseng, th_isthcons, th_isthvowel, th_isthtone,
+th_isthdiac, th_isthdigit, th_isthpunct, th_istaillesscons,
+th_isovershootcons, th_isundershootcons, th_isundersplitcons,
+th_isldvowel, th_isflvowel, th_isupvowel, th_isblvowel, th_chlevel,
+th_iscombchar, th_wcistis, th_wcisthai, th_wciseng, th_wcisthcons,
+th_wcisthvowel, th_wcisthtone, th_wcisthdiac, th_wcisthdigit,
+th_wcisthpunct, th_wcistaillesscons, th_wcisovershootcons, 
+th_wcisundershootcons, th_wcisundersplitcons, th_wcisldvowel, th_wcisflvowel, 
+th_wcisupvowel, th_wcisblvowel, th_wcchlevel, th_wciscombchar
+.Ip "Functions for word segmentation" 4
+.IX Item "Functions for word segmentation"
+th_brk, th_brk_line, th_wbrk, th_wbrk_line
+.Ip "Functions for Thai string collation" 4
+.IX Item "Functions for Thai string collation"
+th_strcoll, th_strxfrm, th_wcstrcoll, th_wcstrxfrm
+.Ip "Functions for correct the sequence of Thai string" 4
+.IX Item "Functions for correct the sequence of Thai string"
+th_normalize, th_wnormalize
+.Ip "Functions for Thai string cell operation" 4
+.IX Item "Functions for Thai string cell clustering"
+th_next_cell, th_prev_cell, th_make_cells
+.Ip "Functions for Thai characters input" 4
+.IX Item "Functions for Thai characters input"
+th_isaccept, th_validate
+.Ip "Functions for Thai string rendering" 4
+.IX Item "Functions for Thai string rendering"
+th_render_cell_tis, th_render_cell_win, th_render_cell_mac,
+th_render_text_tis, th_render_text_win, th_render_text_mac
+.Ip "Functions for converting between unicode and tis-620" 4
+.IX Item "Functions for converting between unicode and tis-620"
+th_tis2uni, th_tis2uni_line, th_winthai2uni, th_macthai2uni,
+th_uni2tis, th_uni2tis_line, th_uni2winthai, th_uni2macthai
+.Sh "Brief explanation"
+.IX Subsection "Brief explanation"
+.Ip "th_brk" 8
+.IX Item "th_brk"
+Find word break positions in Thai string. 
+.sp
+\fIint\fR \fBth_brk\fR(\fIconst thchar_t *\fRs, \fIint\fR pos[], \fIsize_t\fR n);
+.sp
+\fIs\fR \- input string to be processed
+.br
+\fIpos\fR \- an array to keep breaking positions
+.br
+\fIn\fR \- size of \fIpos[]\fR
+.br
+On return \- At most \fIn\fR breaking positions stored in \fIpos[]\fR from left to
+right.
+.br Returns \- the actual number of breaking positions occurred
+.SH AUTHORS
+\fBProject Leader\fR
+.br
+Theppitak Karoonboonyanan <thep@linux.thai.net>
+.br
+\fBMembers\fR
+.br
+Chanop Silpa-Anan <chanop@syseng.anu.edu.au>
+.br
+Pattara Kiatisevi <ott@linux.thai.net>
+.br
+Vuthichai Ampornaramveth <vuthi@nii.ac.jp>
+.br
+Poonlap Veerathanabutr <Poonlap.Veerathanabutr@sun.co.jp>
