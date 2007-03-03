@@ -1,5 +1,5 @@
 /*
- * $Id: thwstr.c,v 1.1 2001-09-30 14:03:26 thep Exp $
+ * $Id: thwstr.c,v 1.2 2007-03-03 05:45:53 thep Exp $
  * thwstr.c - Thai string manipulators (Unicode wrapper)
  * Created: 2001-09-30
  * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-int th_wthaichunk(thchar_t dest[], const thwchar_t *wsrc, size_t n)
+static int th_wthaichunk(thchar_t dest[], const thwchar_t *wsrc, size_t n)
 {
     if (*wsrc == 0) { return 0; }
 
