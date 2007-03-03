@@ -2,7 +2,13 @@
 RELEASES INFORMATION
 =======================================================================
 
-LibThai 0.1.6 (14 October 2006):
+LibThai 0.1.8 (3 March 2007):
+* Improved handling of white spaces in word break routine, for better quality
+  line wrapping in Gecko libthai component.
+* More words in word break dictionary.
+* Excessive exported symbols are eliminated from library.
+
+LibThai 0.1.7 (14 October 2006):
 * Rewritten word break routines:
   - Split dictionary from source, thus new dependency on libdatrie
   - New word break routine from scratch, for maintainability
