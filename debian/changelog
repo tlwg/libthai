@@ -1,5 +1,6 @@
 libthai (0.1.8-1) experimental; urgency=low
 
+  [ Theppitak Karoonboonyanan ]
   * New upstream release
     - Improved handling of white spaces in word break routine, for better
       quality of line wrapping in Gecko libthai component.
@@ -7,7 +8,15 @@ libthai (0.1.8-1) experimental; urgency=low
     - Excessive exported symbols are eliminated from library.
   * Drop all patches previously stolen from upstream CVS.
 
- -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat,  3 Mar 2007 17:47:10 +0700
+  [ Loic Minier ]
+  * Add myself as uploader.
+  * Revert the package renamings back to libthai-dev and libthai-doc as this
+    is too much overhead; cleanup corresponding Conflicts/Provides.
+  * Drop version in Suggests.
+  * Set shlibs to >= 0.1.7.
+  * Add ${misc:Depends}.
+
+ -- Loic Minier <lool@dooz.org>  Sun,  4 Mar 2007 15:26:46 +0100
 
 libthai (0.1.7-7) experimental; urgency=low
 

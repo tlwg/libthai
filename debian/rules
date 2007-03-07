@@ -29,6 +29,9 @@ else
 	CFLAGS += -O2
 endif
 
+SHARED_PKG := libthai0
+SHLIB_VER := 0.1.7
+
 config.status: configure
 	dh_testdir
 	# Add here commands to configure the package.
@@ -85,7 +88,7 @@ binary-arch: build install
 	dh_strip
 	dh_compress
 	dh_fixperms
-	dh_makeshlibs
+	dh_makeshlibs -p$(SHARED_PKG) -V '$(SHARED_PKG) (>= $(SHLIB_VER))'
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol
