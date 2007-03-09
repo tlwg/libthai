@@ -1,3 +1,9 @@
+libthai (0.1.8-2) experimental; urgency=high
+
+  * Fix major screwup with the debhelper files; doh!
+
+ -- Loic Minier <lool@dooz.org>  Wed,  7 Mar 2007 12:27:36 +0100
+
 libthai (0.1.8-1) experimental; urgency=low
 
   [ Theppitak Karoonboonyanan ]
