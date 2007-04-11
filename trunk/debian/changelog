@@ -1,3 +1,9 @@
+libthai (0.1.8-3) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 11 Apr 2007 09:02:10 +0700
+
 libthai (0.1.8-2) experimental; urgency=high
 
   * Fix major screwup with the debhelper files; doh!
