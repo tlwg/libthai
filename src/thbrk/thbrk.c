@@ -10,9 +10,8 @@
 #include <thai/tis.h>
 #include <thai/thctype.h>
 #include <thai/thbrk.h>
+#include "brk-ctype.h"
 #include "brk-maximal.h"
-
-static int          is_breakable (thchar_t c1, thchar_t c2);
 
 int
 th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
@@ -53,83 +52,78 @@ th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
 int
 th_brk (const thchar_t *s, int pos[], size_t n)
 {
-    const thchar_t *chunk;
+    brk_class_t     prev_class, effective_class;
+    const thchar_t *thai_chunk, *p;
     int             cur_pos;
 
-    chunk = s;
-    cur_pos = 0;
+    if (!*s)
+        return 0;
 
     brk_maximal_init ();
 
-    while (*chunk && cur_pos < n) {
-        const thchar_t *str_end;
-        int             n_brk, i;
+    p = thai_chunk = s;
+    prev_class = effective_class = brk_class (*p);
+    cur_pos = 0;
 
-        /* process non-Thai-text chunk */
-        while (*chunk &&
-               (!th_isthai (*chunk) ||
-                th_isthpunct (*chunk) ||
-                th_isthdigit (*chunk)))
-        {
-            thchar_t cur_char, next_char;
+    while (*++p && cur_pos < n) {
+        brk_class_t  new_class;
+        brk_op_t     op;
 
-            /* peek next char and mark break pos if character type changes 
-             * without space in between
-             */
-            cur_char = *chunk;
-            next_char = *(chunk + 1);
-            if (next_char &&
-                (((isspace (cur_char) || isspace (next_char)) &&
-                  !(isspace (cur_char) && isspace (next_char))) ||
-                 th_isthpunct (cur_char) ||
-                 (!th_isthai (cur_char) && th_isthai (next_char)) ||
-                 (th_isthdigit (cur_char) && !th_isthdigit (next_char)) ||
-                 (isdigit (cur_char) && !isdigit (next_char))) &&
-                is_breakable (cur_char, next_char))
-            {
-                pos [cur_pos++] = (chunk - s) + 1;
+        new_class = brk_class (*p);
+        op = brk_op (effective_class, new_class);
+
+        if (BRK_CLASS_THAI == prev_class) {
+            /* break chunk if leaving Thai chunk */
+            if (BRK_CLASS_THAI != new_class) {
+                int n_brk, i;
+
+                n_brk = brk_maximal_do (thai_chunk, p - thai_chunk,
+                                        pos + cur_pos, n - cur_pos, 1);
+                for (i = 0; i < n_brk; i++)
+                    pos [cur_pos + i] += thai_chunk - s;
+                cur_pos += n_brk;
+
+                /* remove last break if at string end
+                 * note that even if it's allowed, the table-lookup
+                 * operation below will take care of it anyway
+                 */
+                if (pos[cur_pos - 1] == p - s)
+                    --cur_pos;
+
                 if (cur_pos >= n)
                     break;
             }
-
-            ++chunk;
+        } else {
+            /* set chunk if entering Thai chunk */
+            if (BRK_CLASS_THAI == new_class)
+                thai_chunk = p;
         }
-        if (!*chunk || cur_pos >= n)
+
+        switch (op) {
+        case BRK_OP_ALLOWED:
+            pos [cur_pos++] = p - s;
             break;
-
-        str_end = chunk;
-        while (*str_end &&
-               (th_isthai (*str_end)
-                && !th_isthpunct (*str_end)
-                && !th_isthdigit (*str_end)))
-        {
-            ++str_end;
+        case BRK_OP_INDIRECT:
+            /* assert (BRK_CLASS_SPACE != new_class); */
+            if (BRK_CLASS_SPACE == prev_class)
+                pos [cur_pos++] = p - s;
+            break;
         }
 
-        /* do string break within Thai chunk */
-        n_brk = brk_maximal_do (chunk, str_end - chunk,
+        prev_class = new_class;
+        if (BRK_OP_ALLOWED == op || BRK_CLASS_SPACE != new_class)
+            effective_class = new_class;
+    }
+
+    /* break last Thai chunk */
+    if (BRK_CLASS_THAI == prev_class && cur_pos < n) {
+        int n_brk, i;
+
+        n_brk = brk_maximal_do (thai_chunk, p - thai_chunk,
                                 pos + cur_pos, n - cur_pos, 1);
         for (i = 0; i < n_brk; i++)
-            pos [cur_pos + i] += chunk - s;
+            pos [cur_pos + i] += thai_chunk - s;
         cur_pos += n_brk;
-        chunk = str_end;
-
-        /* if next character is Thai punct (e.g. Mai Yamok, Paiyan Noi),
-         * don't break
-         */
-        if (*chunk && !is_breakable (*(chunk - 1), *chunk) &&
-            cur_pos > 0 && pos [cur_pos - 1] == chunk -s)
-        {
-            --cur_pos;
-        }
-        /* otherwise, mark break pos at boundary if character type changes
-         * without space in between and not currently marked
-         */
-        else if (cur_pos < n && *chunk && !isspace (*chunk) &&
-                 cur_pos > 0 && pos [cur_pos - 1] != chunk - s)
-        {
-            pos [cur_pos++] = chunk - s;
-        }
     }
 
     brk_maximal_quit ();
@@ -137,20 +131,6 @@ th_brk (const thchar_t *s, int pos[], size_t n)
     return cur_pos;
 }
 
-static int
-is_breakable (thchar_t c1, thchar_t c2)
-{
-    if (strchr ("\"`'~([{<.,;/@ï", c1))
-        return isspace (c2);
-    if (strchr ("\"`'~)]}>.,;/@Ïæúû", c2))
-        return isspace (c1);
-    if (PAIYANNOI == c1)
-        return (LOLING != c2 && PHOPHAN != c2);
-    if (PAIYANNOI == c2)
-        return (LOLING != c1 && NONEN != c1);
-
-    return 1;
-}
 
 /*
 vi:ts=4:ai:expandtab
