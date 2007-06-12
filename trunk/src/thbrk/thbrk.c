@@ -101,12 +101,17 @@ th_brk (const thchar_t *s, int pos[], size_t n)
 
         switch (op) {
         case BRK_OP_ALLOWED:
+            if ('\n' == *p && '\r' == *(p - 1))
+                break;
+
             pos [cur_pos++] = p - s;
             break;
         case BRK_OP_INDIRECT:
             /* assert (BRK_CLASS_SPACE != new_class); */
             if (BRK_CLASS_SPACE == prev_class)
                 pos [cur_pos++] = p - s;
+            break;
+        default:
             break;
         }
 
@@ -124,6 +129,10 @@ th_brk (const thchar_t *s, int pos[], size_t n)
         for (i = 0; i < n_brk; i++)
             pos [cur_pos + i] += thai_chunk - s;
         cur_pos += n_brk;
+
+        /* remove last break if at string end */
+        if (pos[cur_pos - 1] == p - s)
+            --cur_pos;
     }
 
     brk_maximal_quit ();
