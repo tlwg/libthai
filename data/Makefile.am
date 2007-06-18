@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.4 2006-10-14 11:09:48 thep Exp $
+# $Id: Makefile.am,v 1.5 2007-06-18 16:24:56 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 CLEANFILES = thbrk.br thbrk.tl tdict.txt
 
@@ -13,7 +13,8 @@ TDICT_SRC = 				\
 	$(srcdir)/tdict-ict.txt		\
 	$(srcdir)/tdict-science.txt	\
 	$(srcdir)/tdict-spell.txt	\
-	$(srcdir)/tdict-std.txt
+	$(srcdir)/tdict-std.txt		\
+	$(srcdir)/tdict-std-compound.txt
 
 EXTRA_DIST = thbrk.sbm $(TDICT_SRC)
 
