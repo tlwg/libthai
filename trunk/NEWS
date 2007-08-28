@@ -2,6 +2,10 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.9 (28 August 2007):
+* Rewritten itemization for line breaker, for conformance to UAX#14.
+* Revised dictionary for compound words support.
+
 LibThai 0.1.8 (3 March 2007):
 * Improved handling of white spaces in word break routine, for better quality
   line wrapping in Gecko libthai component.
