@@ -1,0 +1,10 @@
+Document: libthai-reference
+Title: libthai Reference Manual
+Author: Theppitak Karoonboonyanan <thep@linux.thai.net>
+Abstract: This reference describes libthai API
+Section: Apps/Programming
+
+Format: HTML
+Index: /usr/share/doc/libthai0-doc/html/index.html
+Files: /usr/share/doc/libthai0-doc/html/*.html
+
