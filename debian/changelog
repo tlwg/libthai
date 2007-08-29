@@ -1,3 +1,16 @@
+libthai (0.1.9-1) unstable; urgency=low
+
+  * New upstream version
+    - Rewritten itemization for line breaker, for conformance to UAX#14.
+    - Revised dictionary for compound words support.
+  * Add XS-Vcs-Cvs and XS-Vcs-Browser info.
+  * Remove Pattara Kiatisevi from Uploaders, with his agreement. Thanks for
+    his initial packaging.
+  * Do not ignore 'make clean' error.
+  * Do not ship *.la.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Tue, 28 Aug 2007 16:40:41 +0700
+
 libthai (0.1.8-3) unstable; urgency=low
 
   * Upload to unstable.
