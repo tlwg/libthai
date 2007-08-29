@@ -2,9 +2,11 @@ Source: libthai
 Priority: optional
 Section: libs
 Maintainer: Theppitak Karoonboonyanan <thep@linux.thai.net>
-Uploaders:  Pattara Kiatisevi <ott@linux.thai.net>, Loic Minier <lool@dooz.org>
+Uploaders:  Loic Minier <lool@dooz.org>
 Build-Depends: dpkg-dev (>= 1.13.19), debhelper (>= 5), autotools-dev, doxygen, pkg-config, libdatrie0-dev, libdatrie-bin
 Standards-Version: 3.7.2.2
+XS-Vcs-Cvs: pserver:anonymous@linux.thai.net:/home/cvs software/libthai
+XS-Vcs-Browser: http://linux.thai.net/viewvc/viewvc.cgi/software/libthai/
 
 Package: libthai-dev
 Section: libdevel
