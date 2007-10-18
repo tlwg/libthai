@@ -1,8 +1,8 @@
 /*
- * $Id: wtt.c,v 1.4 2006-08-01 11:38:21 thep Exp $
+ * $Id: wtt.c,v 1.5 2007-10-18 14:52:29 thep Exp $
  * wtt.h - WTT I/O implementation
  * Created: 2001-08-04
- * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+ * Author:  Theppitak Karoonboonyanan <thep@linux.thai.net>
  */
 
 #include <thai/wtt.h>

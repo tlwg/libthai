@@ -1,8 +1,8 @@
 /*
- * $Id: thctype.h,v 1.13 2006-08-02 05:10:07 thep Exp $
+ * $Id: thctype.h,v 1.14 2007-10-18 14:52:29 thep Exp $
  * thctype.h - Thai character classifications
  * Created: 2001-05-17
- * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+ * Author:  Theppitak Karoonboonyanan <thep@linux.thai.net>
  */
 
 #ifndef THAI_THCTYPE_H

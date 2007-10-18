@@ -19,16 +19,16 @@
    Boston, MA  02111-1307, USA.
 
    Any licensing or usage questions should be directed to Theppitak
-   Karoonboonyanan <thep@links.nectec.or.th>.
+   Karoonboonyanan <thep@linux.thai.net>.
 
 */
 
 
 /*
- * $Id: cweight.c,v 1.4 2006-07-03 04:53:23 thep Exp $
+ * $Id: cweight.c,v 1.5 2007-10-18 14:52:29 thep Exp $
  * cweight.c - Thai Character Weight Table for TIS-620/2533 Collating
  * Created: 9 Nov 1998
- * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+ * Author:  Theppitak Karoonboonyanan <thep@linux.thai.net>
  */
 
 /*
