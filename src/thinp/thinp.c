@@ -1,8 +1,8 @@
 /*
- * $Id: thinp.c,v 1.11 2006-08-02 04:03:00 thep Exp $
+ * $Id: thinp.c,v 1.12 2007-10-18 14:52:29 thep Exp $
  * thinp.c - Thai string input sequence filtering
  * Created: 2001-08-04
- * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+ * Author:  Theppitak Karoonboonyanan <thep@linux.thai.net>
  */
 
 #include <string.h>

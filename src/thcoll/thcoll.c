@@ -19,16 +19,16 @@
    Boston, MA  02111-1307, USA.
 
    Any licensing or usage questions should be directed to Theppitak
-   Karoonboonyanan <thep@links.nectec.or.th>.
+   Karoonboonyanan <thep@linux.thai.net>.
 
 */
 
 
 /*
- * $Id: thcoll.c,v 1.3 2001-07-31 11:14:51 thep Exp $
+ * $Id: thcoll.c,v 1.4 2007-10-18 14:52:29 thep Exp $
  * thcoll.c - Thai string collating function definition
  * Created: 12 Nov 1998
- * Author: Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+ * Author: Theppitak Karoonboonyanan <thep@linux.thai.net>
  */
 
 /*

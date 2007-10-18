@@ -1,8 +1,8 @@
 /*
- * $Id: thrend.c,v 1.13 2006-07-03 04:43:56 thep Exp $
+ * $Id: thrend.c,v 1.14 2007-10-18 14:52:29 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-08-06
- * Author:  Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+ * Author:  Theppitak Karoonboonyanan <thep@linux.thai.net>
  */
 
 #include <string.h>

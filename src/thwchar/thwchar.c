@@ -1,9 +1,9 @@
 /*
- * $Id: thwchar.c,v 1.8 2006-07-03 04:53:23 thep Exp $
+ * $Id: thwchar.c,v 1.9 2007-10-18 14:52:29 thep Exp $
  * thwchar.c - wide char support for Thai
  * Created: 2001-07-27
  * Author:  Pattara Kiatisevi <ott@linux.thai.net>,
- *          Theppitak Karoonboonyanan <thep@links.nectec.or.th>
+ *          Theppitak Karoonboonyanan <thep@linux.thai.net>
  */
 
 #include <thai/thwchar.h>
