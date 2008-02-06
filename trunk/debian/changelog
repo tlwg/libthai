@@ -1,3 +1,45 @@
+libthai (0.1.9-2) unstable; urgency=low
+
+  * Add back *.la, as it still remotely enhances kdelibs via KLibLoader, which
+    weirdly requires *.la to dlopen(). This is temporary support for Thai KDE
+    users, until Bug #444284 is fixed, or KDE 4 enters unstable.
+  * Declare libthai-dev as Enhances: kdelibs. This declaration should be moved
+    to libthai0 once kdelibs 4 is fixed to load libthai.so.0 instead; or be
+    removed if kdelibs is eventually built with libthai dependency.
+  * debian/copyright: Rewrite in machine-interpretable format.
+  * Remove XS- prefix from XS-Vcs-* fields.
+  * Move Homepage info from description to control field.
+  * Bump Standards-Version to 3.7.3, no changes needed.
+  * Add symbols file to provide fine-grained shlib dependency tracking
+    - debian/libthai0.symbols: Added.
+    - debian/control: Build-dep on debhelper (>= 5.0.61) and dpkg-dev (>=
+      1.14.13) for the required dh_makeshlibs version.
+  * Do not install Doxygen-generated man pages, as they aren't parsable by
+    man-db. (lintian) For documentation, we already have HTML docs in
+    libthai-doc.
+  * debian/rules: Split build target into build-indep and build-arch.
+  * debian/control: Split Build-Depends-Indep out of Build-Depends
+    accordingly.
+  * Fix CVSROOT in Vcs-Cvs, so it really works with debcheckout.
+  * Don't ship upstream TODO (not much useful info yet).
+  * Don't mention manpages in libthai-dev description, as they have been
+    dropped.
+  * Corrections by Paul Wise's sponsorship:
+    + Do not install docs for libthai0, libthai-data.
+    + Use short description for libthai-data, and add that it's usually
+      auto-installed.
+    + debian/libthai-doc.install, debian/libthai-doc.doc-base: Install docs
+      under /usr/share/doc/libthai-doc, not libthai0-doc.
+    + debian/copyright: Don't refer to file in License field.
+    + debian/libthai0.symbols: Bump all symbols' minver to 0.1.7, so safer
+      version is preferred, as already suggested by shlibs.
+    + debian/rules:
+      - Adjust config.guess, config.sub handling so the change is not included
+        in .diff.gz.
+      - Pass CFLAGS to configure.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 06 Feb 2008 18:20:09 +0700
+
 libthai (0.1.9-1) unstable; urgency=low
 
   * New upstream version

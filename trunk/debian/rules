@@ -34,18 +34,38 @@ SHLIB_VER := 0.1.7
 
 config.status: configure
 	dh_testdir
+
+ifneq "$(wildcard /usr/share/misc/config.sub)" ""
+	cp -f /usr/share/misc/config.sub config.sub
+endif
+ifneq "$(wildcard /usr/share/misc/config.guess)" ""
+	cp -f /usr/share/misc/config.guess config.guess
+endif
+
 	# Add here commands to configure the package.
-	./configure $(build_flags) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info --enable-shared
+	./configure $(build_flags) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info --enable-shared CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
 
 
-build: build-stamp
-build-stamp:  config.status
+build-indep: build-indep-stamp
+build-indep-stamp:  config.status
 	dh_testdir
 
 	# Add here commands to compile the package.
-	$(MAKE)
+	cd data; $(MAKE)
+	cd doc;  $(MAKE)
 
 	touch $@
+
+build-arch: build-arch-stamp
+build-arch-stamp:  config.status
+	dh_testdir
+
+	# Add here commands to compile the package.
+	cd src; $(MAKE)
+
+	touch $@
+
+build: build-indep build-arch
 
 clean:
 	dh_testdir
@@ -54,46 +74,69 @@ clean:
 
 	# Add here commands to clean up after the build process.
 	[ ! -f Makefile ] || $(MAKE) distclean
+
 ifneq "$(wildcard /usr/share/misc/config.sub)" ""
-	cp -f /usr/share/misc/config.sub config.sub
+	rm -f config.sub
 endif
 ifneq "$(wildcard /usr/share/misc/config.guess)" ""
-	cp -f /usr/share/misc/config.guess config.guess
+	rm -f config.sub
 endif
 
 	dh_clean
 
-install: build
+install-indep: build-indep
 	dh_testdir
 	dh_testroot
 	dh_clean -k
-	dh_installdirs
+	dh_installdirs -i
 
 	# Add here commands to install the package into debian/tmp
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+	cd data; $(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+	cd doc;  $(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 
-
-# Build architecture-independent files here.
-binary-indep: build install
-# We have nothing to do.
-
-# Build architecture-dependent files here.
-binary-arch: build install
+install-arch: build-arch
 	dh_testdir
 	dh_testroot
-	dh_installchangelogs ChangeLog
-	dh_installdocs
-	dh_install --sourcedir=debian/tmp
-	dh_link
-	dh_strip
-	dh_compress
-	dh_fixperms
-	dh_makeshlibs -p$(SHARED_PKG) -V '$(SHARED_PKG) (>= $(SHLIB_VER))'
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
+	dh_clean -k
+	dh_installdirs -s
+
+	# Add here commands to install the package into debian/tmp
+	cd include; $(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+	cd src;     $(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) install-am DESTDIR=$(CURDIR)/debian/tmp
+
+# Build architecture-independent files here.
+binary-indep: build-indep install-indep
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs -i ChangeLog
+	dh_installdocs -i
+	dh_install -i --sourcedir=debian/tmp
+	dh_link -i
+	dh_compress -i
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: build-arch install-arch
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs -s ChangeLog
+	dh_installdocs -s
+	dh_install -s --sourcedir=debian/tmp
+	dh_link -s
+	dh_strip -s
+	dh_compress -s
+	dh_fixperms -s
+	dh_makeshlibs -s -p$(SHARED_PKG) -V '$(SHARED_PKG) (>= $(SHLIB_VER))'
+	dh_installdeb -s
+	dh_shlibdeps -s
+	dh_gencontrol -s
+	dh_md5sums -s
+	dh_builddeb -s
 
 binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install
+.PHONY: build build-indep build-arch clean binary-indep binary-arch binary install
