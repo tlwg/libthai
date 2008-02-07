@@ -1,3 +1,10 @@
+libthai (0.1.9-3) unstable; urgency=low
+
+  * Move libdatrie-bin from Build-Depends-Indp to Build-Depends, as it's still
+    needed by the configure script even for arch builds.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Thu, 07 Feb 2008 20:11:50 +0700
+
 libthai (0.1.9-2) unstable; urgency=low
 
   * Add back *.la, as it still remotely enhances kdelibs via KLibLoader, which

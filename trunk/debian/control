@@ -3,8 +3,9 @@ Priority: optional
 Section: libs
 Maintainer: Theppitak Karoonboonyanan <thep@linux.thai.net>
 Uploaders:  Loic Minier <lool@dooz.org>
-Build-Depends: dpkg-dev (>= 1.14.13), debhelper (>= 5.0.61), autotools-dev, pkg-config, libdatrie0-dev
-Build-Depends-Indep: doxygen, libdatrie-bin
+Build-Depends: dpkg-dev (>= 1.14.13), debhelper (>= 5.0.61), autotools-dev,
+ pkg-config, libdatrie0-dev, libdatrie-bin
+Build-Depends-Indep: doxygen
 Standards-Version: 3.7.3
 Vcs-Cvs: :pserver:anonymous@linux.thai.net:/home/cvs software/libthai
 Vcs-Browser: http://linux.thai.net/viewvc/viewvc.cgi/software/libthai/
