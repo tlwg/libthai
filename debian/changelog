@@ -1,3 +1,16 @@
+libthai (0.1.9-4) unstable; urgency=low
+
+  * debian/libthai-doc.doc-base: Correct doc-base section (Programming).
+  * debian/copyright: Update format to recent proposal.
+  * debian/watch: Fix watch pattern so that only *.tar.gz is matched, not
+    *.tar.gz.md5sum.
+  * debian/rules: Use 'make -C $dir' instead of 'cd $dir; make'.
+  * debian/control:
+    - Add DM-Upload-Allowed
+    - Bump Standards-Version to 3.8.0 (no changes needed)
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat, 21 Jun 2008 11:16:43 +0700
+
 libthai (0.1.9-3) unstable; urgency=low
 
   * Move libdatrie-bin from Build-Depends-Indp to Build-Depends, as it's still
