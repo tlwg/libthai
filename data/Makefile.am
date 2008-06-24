@@ -1,9 +1,14 @@
-# $Id: Makefile.am,v 1.5 2007-06-18 16:24:56 thep Exp $
+# $Id: Makefile.am,v 1.6 2008-06-24 14:51:13 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 CLEANFILES = thbrk.br thbrk.tl tdict.txt
 
 dictdatadir = $(datadir)/libthai
+
+if ENABLE_DICT
 dictdata_DATA = thbrk.sbm thbrk.br thbrk.tl
+else
+dictdata_DATA =
+endif
 
 TDICT_SRC = 				\
 	$(srcdir)/tdict-common.txt	\
