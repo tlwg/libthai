@@ -1,4 +1,13 @@
-It was downloaded from ftp://linux.thai.net/pub/thailinux/software/libthai/
+Format-Specification: http://wiki.debian.org/Proposals/CopyrightFormat
+Upstream-Author:
+ Theppitak Karoonboonyanan <thep@linux.thai.net>
+ Pattara Kiatisevi <ott@linux.thai.net>
+ Vuthichai Ampornaramveth <vuthi@nii.ac.jp>
+ Poonlap Veerathanabutr <poonlap@linux.thai.net>
+ Chanop Silpa-Anan <chanop@debian.org>
+Packaged-By: Theppitak Karoonboonyanan <thep@linux.thai.net>
+Packaged-Date: Sun,  2 Feb 2003 16:37:08 +0900
+Original-Source-Location: ftp://linux.thai.net/pub/thailinux/software/libthai/
 
 Files: debian/*
 Copyright: © 2003-2006 Pattara Kiatisevi <ott@linux.thai.net>
