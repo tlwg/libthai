@@ -1,3 +1,30 @@
+2008-12-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Switch to libdatrie 0.2. (Requires libdatrie >= 0.1.99.2)
+
+	* configure.in:
+	  - Check for 'trietool-0.2' binary instead of 'trietool'
+	  - Check for 'datrie-0.2' pkg-config instead of 'datrie'
+
+	* src/thbrk/brk-maximal.c:
+	  - Replace 'SBTrie' with 'Trie'
+	  - Replace 'SBTrieState' with 'TrieState'
+	  - Replace 'sb_trie_*' function calls with corresponding 'trie_*'
+	  - For 'sb_trie_state_walk()', also convert TIS-620 char to UCS-4
+	    before actually walking
+	  - For 'sb_trie_open()', replace with 'trie_new_from_file()', plus
+	    dir + path combined
+
+	* data/Makefile.am:
+	  - Replace '*.br' and '*.tl' targets with '*.tri'
+	  - Add '-e tis-620' command-line argument to trietool
+	* data/Makefile.am, data/thbrk.sbm -> data/thbrk.abm:
+	  - Replace 'thbrk.sbm' (TIS-620) with 'thbrk.abm' (Unicode)
+
+	* tests/Makefile.am:
+	  - Add 'libthwchar.la' where 'libthbrk.la' is used, as th_tis2uni()
+	    is required there
+
 2008-06-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in, Makefile.am: Add --disable-dict option to prevent
@@ -1476,13 +1503,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.156 2008-06-24 14:51:12 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.157 2008-12-15 07:44:23 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.156 2008-06-24 14:51:12 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.157 2008-12-15 07:44:23 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 

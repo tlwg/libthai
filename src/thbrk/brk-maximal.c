@@ -7,10 +7,12 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <limits.h>
-#include <datrie/sb-trie.h>
+#include <datrie/trie.h>
 #include <thai/tis.h>
 #include <thai/thctype.h>
+#include <thai/thwchar.h>
 #include "brk-maximal.h"
 
 #define DICT_NAME   "thbrk"
@@ -19,7 +21,7 @@
  * @brief Break shot
  */
 typedef struct _BrkShot {
-    SBTrieState    *dict_state;
+    TrieState      *dict_state;
     int             str_pos;
     int            *brk_pos;
     int             n_brk_pos;
@@ -79,7 +81,7 @@ typedef struct {
  *   PRIVATE METHODS DECLARATIONS   *
  *----------------------------------*/
 
-static SBTrie *     brk_get_dict ();
+static Trie *       brk_get_dict ();
 
 static BrkPool *    brk_root_pool (int pos_size);
 static int          brk_recover (const thchar_t *text, int len, int pos,
@@ -122,7 +124,9 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
         is_keep_node = 1;
         is_recovered = 0;
         do {
-            if (!sb_trie_state_walk (shot->dict_state, s[shot->str_pos++])) {
+            if (!trie_state_walk (shot->dict_state,
+                                  th_tis2uni (s[shot->str_pos++])))
+            {
                 int recovered;
 
                 is_terminal = 0;
@@ -153,7 +157,7 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
                 break;
             }
 
-            is_terminal = sb_trie_state_is_terminal (shot->dict_state);
+            is_terminal = trie_state_is_terminal (shot->dict_state);
             if (shot->str_pos >= len) {
                 if (!is_terminal) {
                     /* add penalty with string len - recent break pos */
@@ -175,14 +179,14 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
         /* if node still kept, mark break position and rewind dictionary */
         if (is_keep_node && (is_terminal || is_recovered)) {
             if (shot->str_pos < len && is_terminal &&
-                !sb_trie_state_is_leaf (shot->dict_state))
+                !trie_state_is_leaf (shot->dict_state))
             {
                 /* add node to mark break position instead of current */
                 node = brk_pool_node_new (shot);
                 pool = brk_pool_add (pool, node);
             }
 
-            sb_trie_state_rewind (node->shot.dict_state);
+            trie_state_rewind (node->shot.dict_state);
             node->shot.brk_pos [node->shot.cur_brk_pos++] = node->shot.str_pos;
         }
 
@@ -229,7 +233,7 @@ brk_root_pool (int pos_size)
 
     pool = NULL;
 
-    root_shot.dict_state = sb_trie_root (brk_get_dict());
+    root_shot.dict_state = trie_root (brk_get_dict());
     root_shot.brk_pos = (int *) malloc (pos_size * sizeof (int));
     root_shot.n_brk_pos = pos_size;
     root_shot.str_pos = root_shot.cur_brk_pos = 0;
@@ -275,22 +279,26 @@ brk_recover (const thchar_t *text, int len, int pos, RecovHist *rh)
     return -1;
 }
 
-static SBTrie *
+static Trie *
 brk_get_dict ()
 {
-    static SBTrie *brk_dict = 0;
+    static Trie *brk_dict = 0;
+    char   path[512];
 
     /* Try LIBTHAI_DICTDIR env first */
     if (!brk_dict) {
         const char *dict_dir;
 
-        if (NULL != (dict_dir = getenv ("LIBTHAI_DICTDIR")))
-            brk_dict = sb_trie_open (dict_dir, DICT_NAME, TRIE_IO_READ);
+        if (NULL != (dict_dir = getenv ("LIBTHAI_DICTDIR"))) {
+            snprintf (path, sizeof path, "%s/%s.tri", dict_dir, DICT_NAME);
+            brk_dict = trie_new_from_file (path);
+        }
     }
 
     /* Then, fall back to default DICT_DIR macro */
-    if (!brk_dict)
-        brk_dict = sb_trie_open (DICT_DIR, DICT_NAME, TRIE_IO_READ);
+    if (!brk_dict) {
+        brk_dict = trie_new_from_file (DICT_DIR "/" DICT_NAME ".tri");
+    }
 
     return brk_dict;
 }
@@ -300,7 +308,7 @@ brk_shot_copy (BrkShot *dst, const BrkShot *src)
 {
     int i;
 
-    dst->dict_state = sb_trie_state_clone (src->dict_state);
+    dst->dict_state = trie_state_clone (src->dict_state);
     dst->str_pos = src->str_pos;
     dst->brk_pos = (int *) malloc (src->n_brk_pos * sizeof (int));
     for (i = 0; i < src->cur_brk_pos; i++)
@@ -314,7 +322,7 @@ static void
 brk_shot_destruct (BrkShot *shot)
 {
     if (shot->dict_state)
-        sb_trie_state_free (shot->dict_state);
+        trie_state_free (shot->dict_state);
     if (shot->brk_pos)
         free (shot->brk_pos);
 }

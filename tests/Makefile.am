@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.11 2006-10-14 10:03:17 thep Exp $
+# $Id: Makefile.am,v 1.12 2008-12-15 07:44:25 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 
 INCLUDES = -I$(top_srcdir)/include
@@ -67,6 +67,7 @@ thsort_LDADD = \
 test_thbrk_SOURCES = test_thbrk.c
 test_thbrk_LDADD = \
 	$(top_builddir)/src/thbrk/libthbrk.la \
+	$(top_builddir)/src/thwchar/libthwchar.la \
 	$(top_builddir)/src/thstr/libthstr.la \
 	$(top_builddir)/src/thctype/libthctype.la
 
@@ -78,6 +79,7 @@ test_thwbrk_LDADD = \
  	$(top_builddir)/src/thwbrk/libthwbrk.la \
 	$(top_builddir)/src/thwchar/libthwchar.la \
 	$(top_builddir)/src/thbrk/libthbrk.la \
+	$(top_builddir)/src/thwchar/libthwchar.la \
 	$(top_builddir)/src/thstr/libthstr.la \
 	$(top_builddir)/src/thctype/libthctype.la
 
