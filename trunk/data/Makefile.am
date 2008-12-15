@@ -1,11 +1,11 @@
-# $Id: Makefile.am,v 1.6 2008-06-24 14:51:13 thep Exp $
+# $Id: Makefile.am,v 1.7 2008-12-15 07:44:24 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
-CLEANFILES = thbrk.br thbrk.tl tdict.txt
+CLEANFILES = thbrk.tri tdict.txt
 
 dictdatadir = $(datadir)/libthai
 
 if ENABLE_DICT
-dictdata_DATA = thbrk.sbm thbrk.br thbrk.tl
+dictdata_DATA = thbrk.abm thbrk.tri
 else
 dictdata_DATA =
 endif
@@ -21,15 +21,15 @@ TDICT_SRC = 				\
 	$(srcdir)/tdict-std.txt		\
 	$(srcdir)/tdict-std-compound.txt
 
-EXTRA_DIST = thbrk.sbm $(TDICT_SRC)
+EXTRA_DIST = thbrk.abm $(TDICT_SRC)
 
 tdict.txt: $(TDICT_SRC)
 	cat $(TDICT_SRC) | LC_ALL=C sort -u > tdict.txt
 
-thbrk.br thbrk.tl: tdict.txt
-	if test ! -e thbrk.sbm; then \
-	  ln -s $(top_srcdir)/data/thbrk.sbm . ; \
+thbrk.tri: tdict.txt
+	if test ! -e thbrk.abm; then \
+	  ln -s $(top_srcdir)/data/thbrk.abm . ; \
 	fi
-	rm -f thbrk.br thbrk.tl
-	$(TRIETOOL) thbrk add-list tdict.txt
+	rm -f thbrk.tri
+	$(TRIETOOL) thbrk add-list -e tis-620 tdict.txt
 
