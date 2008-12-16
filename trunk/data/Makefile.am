@@ -1,11 +1,11 @@
-# $Id: Makefile.am,v 1.7 2008-12-15 07:44:24 thep Exp $
+# $Id: Makefile.am,v 1.8 2008-12-16 05:26:05 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 CLEANFILES = thbrk.tri tdict.txt
 
 dictdatadir = $(datadir)/libthai
 
 if ENABLE_DICT
-dictdata_DATA = thbrk.abm thbrk.tri
+dictdata_DATA = thbrk.tri
 else
 dictdata_DATA =
 endif
