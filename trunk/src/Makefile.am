@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.18 2007-10-17 05:24:18 thep Exp $
+# $Id: Makefile.am,v 1.19 2008-12-23 10:16:57 thep Exp $
 SUBDIRS = thctype thstr thcell thinp thrend thcoll thbrk thwchar thwctype \
 	thwstr thwbrk
 
@@ -8,7 +8,7 @@ EXTRA_DIST = libthai.def
 
 lib_LTLIBRARIES = libthai.la
 
-libthai_la_SOURCES = dummy.c
+libthai_la_SOURCES = libthai.c
 libthai_la_LIBADD = \
 	$(top_builddir)/src/thctype/libthctype.la \
 	$(top_builddir)/src/thstr/libthstr.la \

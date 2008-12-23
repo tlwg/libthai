@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.13 2007-06-11 05:13:55 thep Exp $
+# $Id: Makefile.am,v 1.14 2008-12-23 10:16:58 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 
 dictdatadir = $(datadir)/libthai
@@ -10,6 +10,7 @@ noinst_LTLIBRARIES = libthbrk.la
 
 libthbrk_la_SOURCES =	\
 	thbrk.c		\
+	thbrk-private.h	\
 	brk-ctype.c	\
 	brk-ctype.h	\
 	brk-maximal.c	\

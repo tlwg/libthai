@@ -10,8 +10,15 @@
 #include <thai/tis.h>
 #include <thai/thctype.h>
 #include <thai/thbrk.h>
+#include "thbrk-private.h"
 #include "brk-ctype.h"
 #include "brk-maximal.h"
+
+void
+thbrk_on_unload ()
+{
+    brk_maximal_on_unload ();
+}
 
 int
 th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
