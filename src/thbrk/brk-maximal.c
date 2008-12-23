@@ -90,6 +90,19 @@ static int          brk_recover (const thchar_t *text, int len, int pos,
 #define th_isleadable(c) \
     (th_isthcons(c)||th_isldvowel(c)||(c)==RU||(c)==LU)
 
+/*---------------------*
+ *   PRIVATE GLOBALS   *
+ *---------------------*/
+static Trie *brk_dict = 0;
+
+void
+brk_maximal_on_unload ()
+{
+    if (brk_dict) {
+        trie_free (brk_dict);
+    }
+}
+
 void
 brk_maximal_init ()
 {
@@ -285,7 +298,6 @@ brk_recover (const thchar_t *text, int len, int pos, RecovHist *rh)
 static Trie *
 brk_get_dict ()
 {
-    static Trie *brk_dict = 0;
     char   path[512];
 
     /* Try LIBTHAI_DICTDIR env first */
