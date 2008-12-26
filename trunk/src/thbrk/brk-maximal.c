@@ -29,7 +29,8 @@ typedef struct _BrkShot {
     int             penalty;
 } BrkShot;
 
-static void         brk_shot_copy (BrkShot *dst, const BrkShot *src);
+static void         brk_shot_init (BrkShot *dst, const BrkShot *src);
+static void         brk_shot_reuse (BrkShot *dst, const BrkShot *src);
 static void         brk_shot_destruct (BrkShot *shot);
 
 /**
@@ -250,7 +251,7 @@ brk_root_pool (int pos_size)
     pool = NULL;
 
     root_shot.dict_state = trie_root (brk_get_dict());
-    root_shot.brk_pos = (int *) malloc (pos_size * sizeof (int));
+    root_shot.brk_pos = NULL; /* it's not used anyway */
     root_shot.n_brk_pos = pos_size;
     root_shot.str_pos = root_shot.cur_brk_pos = 0;
     root_shot.penalty = 0;
@@ -319,13 +320,31 @@ brk_get_dict ()
 }
 
 static void
-brk_shot_copy (BrkShot *dst, const BrkShot *src)
+brk_shot_init (BrkShot *dst, const BrkShot *src)
 {
     int i;
 
     dst->dict_state = trie_state_clone (src->dict_state);
     dst->str_pos = src->str_pos;
     dst->brk_pos = (int *) malloc (src->n_brk_pos * sizeof (int));
+    for (i = 0; i < src->cur_brk_pos; i++)
+        dst->brk_pos[i] = src->brk_pos[i];
+    dst->n_brk_pos = src->n_brk_pos;
+    dst->cur_brk_pos = src->cur_brk_pos;
+    dst->penalty = src->penalty;
+}
+
+static void
+brk_shot_reuse (BrkShot *dst, const BrkShot *src)
+{
+    int i;
+
+    trie_state_copy (dst->dict_state, src->dict_state);
+    dst->str_pos = src->str_pos;
+    if (dst->n_brk_pos != src->n_brk_pos) {
+        dst->brk_pos = (int *) realloc (dst->brk_pos,
+                                        src->n_brk_pos * sizeof (int));
+    }
     for (i = 0; i < src->cur_brk_pos; i++)
         dst->brk_pos[i] = src->brk_pos[i];
     dst->n_brk_pos = src->n_brk_pos;
@@ -361,6 +380,7 @@ brk_pool_allocator_clear ()
         BrkPool *next;
 
         next = brk_pool_free_list->next;
+        brk_shot_destruct (&brk_pool_free_list->shot);
         free (brk_pool_free_list);
         brk_pool_free_list = next;
     }
@@ -375,14 +395,15 @@ brk_pool_node_new (const BrkShot *shot)
         /* reuse old node if possible */
         node = brk_pool_free_list;
         brk_pool_free_list = brk_pool_free_list->next;
+        brk_shot_reuse (&node->shot, shot);
     } else {
         node = (BrkPool *) malloc (sizeof (BrkPool));
         if (!node)
             return NULL;
+        brk_shot_init (&node->shot, shot);
     }
 
     node->next = NULL;
-    brk_shot_copy (&node->shot, shot);
 
     return node;
 }
@@ -390,8 +411,6 @@ brk_pool_node_new (const BrkShot *shot)
 static void
 brk_pool_free_node (BrkPool *pool)
 {
-    brk_shot_destruct (&pool->shot);
-
     /* put it in free list for further reuse */
     pool->next = brk_pool_free_list;
     brk_pool_free_list = pool;
