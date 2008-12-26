@@ -49,7 +49,7 @@ static void         brk_pool_allocator_clear ();
 static BrkPool *    brk_pool_node_new (const BrkShot *shot);
 
 static void         brk_pool_free (BrkPool *pool);
-static BrkPool *    brk_pool_get_node (BrkPool *pool, const thchar_t *s);
+static BrkPool *    brk_pool_get_node (BrkPool *pool);
 static BrkPool *    brk_pool_match (BrkPool *pool, BrkPool *node);
 static BrkPool *    brk_pool_add (BrkPool *pool, BrkPool *node);
 static BrkPool *    brk_pool_delete (BrkPool *pool, BrkPool *node);
@@ -128,7 +128,7 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
     best_brk = best_brk_new (n);
     recov_hist.pos = recov_hist.recov = -1;
 
-    while (NULL != (node = brk_pool_get_node (pool, s))) {
+    while (NULL != (node = brk_pool_get_node (pool))) {
         BrkShot *shot = &node->shot;
         BrkPool *match;
         int      is_keep_node, is_terminal, is_recovered;
@@ -410,7 +410,7 @@ brk_pool_free (BrkPool *pool)
 }
 
 static BrkPool *
-brk_pool_get_node (BrkPool *pool, const thchar_t *s)
+brk_pool_get_node (BrkPool *pool)
 {
     int      min_pos;
     BrkPool *chosen;
