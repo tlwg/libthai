@@ -1,3 +1,14 @@
+2008-12-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c
+	(brk_shot_init, brk_shot_reuse, best_brk_contest):
+	Use memcpy() to copy arrays, rather than iteration via array index.
+	Yet another minor performance improvement.
+
+	* src/thbrk/brk-maximal.c (brk_shot_reuse):
+	Re-allocate 'brk_pos' array only when growing, and never bother
+	shrinking it.
+
 2008-12-26  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	Reuse break pool nodes more deeply, improving performance a little bit.
@@ -1571,13 +1582,13 @@
 	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
 	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
 	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
-	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.166 2008-12-26 10:25:02 thep Exp $
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.167 2008-12-27 01:01:49 thep Exp $
 
 2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
 	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
-	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.166 2008-12-26 10:25:02 thep Exp $
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.167 2008-12-27 01:01:49 thep Exp $
 
 2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
