@@ -322,13 +322,10 @@ brk_get_dict ()
 static void
 brk_shot_init (BrkShot *dst, const BrkShot *src)
 {
-    int i;
-
     dst->dict_state = trie_state_clone (src->dict_state);
     dst->str_pos = src->str_pos;
     dst->brk_pos = (int *) malloc (src->n_brk_pos * sizeof (int));
-    for (i = 0; i < src->cur_brk_pos; i++)
-        dst->brk_pos[i] = src->brk_pos[i];
+    memcpy (dst->brk_pos, src->brk_pos, src->cur_brk_pos * sizeof (int));
     dst->n_brk_pos = src->n_brk_pos;
     dst->cur_brk_pos = src->cur_brk_pos;
     dst->penalty = src->penalty;
@@ -337,16 +334,13 @@ brk_shot_init (BrkShot *dst, const BrkShot *src)
 static void
 brk_shot_reuse (BrkShot *dst, const BrkShot *src)
 {
-    int i;
-
     trie_state_copy (dst->dict_state, src->dict_state);
     dst->str_pos = src->str_pos;
-    if (dst->n_brk_pos != src->n_brk_pos) {
+    if (dst->n_brk_pos < src->n_brk_pos) {
         dst->brk_pos = (int *) realloc (dst->brk_pos,
                                         src->n_brk_pos * sizeof (int));
     }
-    for (i = 0; i < src->cur_brk_pos; i++)
-        dst->brk_pos[i] = src->brk_pos[i];
+    memcpy (dst->brk_pos, src->brk_pos, src->cur_brk_pos * sizeof (int));
     dst->n_brk_pos = src->n_brk_pos;
     dst->cur_brk_pos = src->cur_brk_pos;
     dst->penalty = src->penalty;
@@ -543,10 +537,8 @@ best_brk_contest (BestBrk *best_brk, const BrkShot *shot)
           (shot->penalty == best_brk->penalty &&
            shot->cur_brk_pos <= best_brk->cur_brk_pos))))
     {
-        int i;
-
-        for (i = 0; i < shot->cur_brk_pos; i++)
-            best_brk->brk_pos[i] = shot->brk_pos[i];
+        memcpy (best_brk->brk_pos, shot->brk_pos,
+                shot->cur_brk_pos * sizeof (int));
         best_brk->cur_brk_pos = shot->cur_brk_pos;
         best_brk->str_pos = shot->str_pos;
         best_brk->penalty = shot->penalty;
