@@ -301,10 +301,10 @@ brk_get_dict ()
 {
     char   path[512];
 
-    /* Try LIBTHAI_DICTDIR env first */
     if (!brk_dict) {
         const char *dict_dir;
 
+        /* Try LIBTHAI_DICTDIR env first */
         if (NULL != (dict_dir = getenv ("LIBTHAI_DICTDIR"))) {
             snprintf (path, sizeof path, "%s/%s.tri", dict_dir, DICT_NAME);
             brk_dict = trie_new_from_file (path);
