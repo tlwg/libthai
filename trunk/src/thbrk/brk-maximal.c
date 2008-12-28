@@ -193,7 +193,7 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
         /* if node still kept, mark break position and rewind dictionary */
         if (is_keep_node && (is_terminal || is_recovered)) {
             if (shot->str_pos < len && is_terminal &&
-                !trie_state_is_leaf (shot->dict_state))
+                !trie_state_is_single (shot->dict_state))
             {
                 /* add node to mark break position instead of current */
                 node = brk_pool_node_new (shot);
