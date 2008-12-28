@@ -309,11 +309,11 @@ brk_get_dict ()
             snprintf (path, sizeof path, "%s/%s.tri", dict_dir, DICT_NAME);
             brk_dict = trie_new_from_file (path);
         }
-    }
 
-    /* Then, fall back to default DICT_DIR macro */
-    if (!brk_dict) {
-        brk_dict = trie_new_from_file (DICT_DIR "/" DICT_NAME ".tri");
+        /* Then, fall back to default DICT_DIR macro */
+        if (!brk_dict) {
+            brk_dict = trie_new_from_file (DICT_DIR "/" DICT_NAME ".tri");
+        }
     }
 
     return brk_dict;
