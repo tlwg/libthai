@@ -1,3 +1,8 @@
+2009-03-12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{common,geo,ict,spell}.txt: Add words. Move word from
+	  -common to -spell as appropriate.
+
 2009-01-21  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	First SVN commit.
