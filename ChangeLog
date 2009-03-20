@@ -1,3 +1,8 @@
+2009-03-20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std-compound.txt: Removed potentially ambiguous word.
+	* data/tdict-{ict,district,science}.txt: Add words.
+
 2009-03-12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-{common,geo,ict,spell}.txt: Add words. Move word from
