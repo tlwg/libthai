@@ -1,5 +1,13 @@
 2009-03-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* libthai.pc.in: Requires datrie-0.2 instead of datrie.
+	* configure.in: Bump library revision.
+
+	* configure.in, NEWS:
+	=== Version 0.1.10 ===
+
+2009-03-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* tdict-{common,district,ict,proper}.txt: Add words.
 	* tdict-std.txt: Remove 2 potentially ambiguous words.
 
