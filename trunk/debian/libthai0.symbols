@@ -1,5 +1,6 @@
 libthai.so.0 libthai0 #MINVER#
 * Build-Depends-Package: libthai-dev
+ _libthai_on_unload@Base 0.1.10
  TACchtype@Base 0.1.7
  TACchtype_@Base 0.1.7
  TACio_op@Base 0.1.7
