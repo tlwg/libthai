@@ -1,0 +1,31 @@
+Format-Specification: http://wiki.debian.org/Proposals/CopyrightFormat
+Upstream-Author:
+ Theppitak Karoonboonyanan <thep@linux.thai.net>
+ Pattara Kiatisevi <ott@linux.thai.net>
+ Vuthichai Ampornaramveth <vuthi@nii.ac.jp>
+ Poonlap Veerathanabutr <poonlap@linux.thai.net>
+ Chanop Silpa-Anan <chanop@debian.org>
+Packaged-By: Theppitak Karoonboonyanan <thep@linux.thai.net>
+Packaged-Date: Sun,  2 Feb 2003 16:37:08 +0900
+Original-Source-Location: ftp://linux.thai.net/pub/thailinux/software/libthai/
+
+Files: debian/*
+Copyright: © 2003-2006 Pattara Kiatisevi <ott@linux.thai.net>
+           © 2006-2008 Theppitak Karoonboonyanan <thep@linux.thai.net> 
+License: GPL-2+
+ This package was debianized by Pattara Kiatisevi <ott@linux.thai.net> on
+ Sun,  2 Feb 2003 16:37:08 +0900.
+ .
+ The current Debian maintainer is Theppitak Karoonboonyanan 
+ <thep@linux.thai.net>.
+
+Files: *
+Copyright: © 2001-2008 Theppitak Karoonboonyanan <thep@linux.thai.net>,
+                       Pattara Kiatisevi <ott@linux.thai.net>, 
+                       Vuthichai Ampornaramveth <vuthi@nii.ac.jp>,
+                       Poonlap Veerathanabutr <poonlap@linux.thai.net>,
+                       Chanop Silpa-Anan <chanop@debian.org>
+License: LGPL-2+
+
+On Debian systems, the complete text of the GNU Lesser General Public
+License, version 2, can be found in /usr/share/common-licenses/LGPL-2.
