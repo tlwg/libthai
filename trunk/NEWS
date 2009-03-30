@@ -2,6 +2,12 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.10 (30 March 2009):
+* More dictionary capacity with libdatrie 0.2.
+* Dictionary clean-up on unload.
+* Some performance fine-tuning.
+* More words in word break dictionary.
+
 LibThai 0.1.9 (28 August 2007):
 * Rewritten itemization for line breaker, for conformance to UAX#14.
 * Revised dictionary for compound words support.
