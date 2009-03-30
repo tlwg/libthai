@@ -1,3 +1,8 @@
+2009-03-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* tdict-{district,proper,common,geo}.txt: Add words.
+	* tdict-collection.txt: Add another variant of "x" transcription.
+
 2009-03-20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-std-compound.txt: Removed potentially ambiguous word.
