@@ -1,3 +1,32 @@
+libthai (0.1.10-1) experimental; urgency=low
+
+  * New upstream release, with updated dependency and data format change
+    - Build-dep on libdatrie-dev (>= 0.2.0) instead of libdatrie0-dev
+    - Build-dep on libdatrie1-bin instead of libdatrie-bin
+    - libthai-dev depends on libdatrie-dev instead of libdatrie0-dev
+    - libthai0 depends on libthai-data (>= 0.1.10)
+    - libthai-data conflicts with libthai0 (<< 0.1.10)
+  * VCS moved from CVS to SVN; update Vcs-* fields accordingly.
+  * debian/libdatrie0.symbols: Add new export symbol '_libthai_on_unload';
+    No shlibs version bump, because the new symbol is just for housekeeping
+  * Bump debhelper compat to level 7
+    - Bump debian/compat to 7
+    - Build-dep on debhelper (>= 7)
+    - debian/rules:
+      + Replace obsoleted 'dh_clean -k' with 'dh_prep'
+      + Remove *-stamp clean-ups in clean target, as dh_clean now does it
+  * Update debian/copyright to proposal rev 454:
+    - Add Upstream-Name:
+    - Use Upstream-Maintainer: instead of Upstream-Author:
+    - Use Upstream-Source: instead of Original-Source-Location:
+    - Drop Packaged-By: and Packaged-Date:
+    - Move 'Files: *' section to top
+    - Replace GPL-2+ and LGPL-2+ license message with 'On Debian ...'
+  * debian/copyright: Update copyright years
+  * Bump Standards-Version to 3.8.1 (no changes needed)
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon, 30 Mar 2009 17:28:52 +0700
+
 libthai (0.1.9-4) unstable; urgency=low
 
   * debian/libthai-doc.doc-base: Correct doc-base section (Programming).
