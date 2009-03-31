@@ -1,3 +1,14 @@
+2009-03-31  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Post-release version suffix added.
+
+	* libthai.pc.in: Require datrie-0.2 privately, to avoid exposing it
+	  unnecessarily to applications. This had even caused upgrading problem
+	  when libdatrie with different soname versions are loaded
+	  simultaneously, one from the application, and the other from libthai.
+	  And with libdatrie poor symbols handling, this had caused name clash.
+	  Thanks Loic Minier for pointing out the cause.
+
 2009-03-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* libthai.pc.in: Requires datrie-0.2 instead of datrie.
