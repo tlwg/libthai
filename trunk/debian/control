@@ -31,6 +31,7 @@ Package: libthai0
 Section: libs
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, libthai-data (>= 0.1.10)
+Conflicts: libdatrie0 (<< 0.1.4)
 Description: Thai language support library
  LibThai is a set of Thai language support routines aimed to ease
  developers' tasks to incorporate Thai language support in their applications.
