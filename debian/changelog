@@ -1,9 +1,10 @@
-libthai (0.1.10-2) UNRELEASED; urgency=low
+libthai (0.1.11-1) experimental; urgency=low
 
   * Versioned Conflicts on libdatrie0 (<< 0.1.4), i.e. lenny version, which
     lacked symbol versioning and caused symbol clashes.
+  * New upstream release.
 
- -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Fri, 03 Apr 2009 15:29:58 +0700
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon, 06 Apr 2009 13:54:19 +0700
 
 libthai (0.1.10-1) experimental; urgency=low
 
