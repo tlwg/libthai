@@ -1,3 +1,10 @@
+2009-04-06  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Bump library revision.
+
+	* configure.in, NEWS:
+	=== Version 0.1.11 ===
+
 2009-04-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-{ict,district,proper,common,science,geo}.txt: Add words.

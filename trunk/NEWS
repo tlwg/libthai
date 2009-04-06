@@ -2,6 +2,10 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.11 (6 April 2009):
+* Diminished link flags in pkg-config info, for less dependency for clients.
+* More words in word break dictionary.
+
 LibThai 0.1.10 (30 March 2009):
 * More dictionary capacity with libdatrie 0.2.
 * Dictionary clean-up on unload.
