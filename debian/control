@@ -4,8 +4,8 @@ Section: libs
 Maintainer: Theppitak Karoonboonyanan <thep@linux.thai.net>
 Uploaders:  Loic Minier <lool@dooz.org>
 DM-Upload-Allowed: yes
-Build-Depends: dpkg-dev (>= 1.14.13), debhelper (>= 7), autotools-dev,
- pkg-config, libdatrie-dev, libdatrie1-bin
+Build-Depends: debhelper (>= 7), autotools-dev, pkg-config,
+ libdatrie-dev (>= 0.2.0), libdatrie1-bin
 Build-Depends-Indep: doxygen
 Standards-Version: 3.8.1
 Vcs-Svn: http://linux.thai.net/svn/software/libthai

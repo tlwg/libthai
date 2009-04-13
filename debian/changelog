@@ -1,3 +1,11 @@
+libthai (0.1.11-2) unstable; urgency=low
+
+  * Version b-dep on libdatrie-dev (>= 0.2.0).
+  * Drop versioned b-dep on dpkg-dev, as Vcs-Cvs: is no more needed.
+  * Upload to unstable.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon, 13 Apr 2009 11:01:07 +0700
+
 libthai (0.1.11-1) experimental; urgency=low
 
   * Versioned Conflicts on libdatrie0 (<< 0.1.4), i.e. lenny version, which
