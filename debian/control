@@ -15,7 +15,8 @@ Homepage: http://libthai.sourceforge.net/
 Package: libthai-dev
 Section: libdevel
 Architecture: any
-Depends: ${misc:Depends}, libthai0 (= ${binary:Version}), libdatrie-dev
+Depends: ${misc:Depends}, libthai0 (= ${binary:Version}),
+ libdatrie-dev (>= 0.2.0)
 Enhances: kdelibs
 Suggests: libthai-doc
 Description: Development files for Thai language support library
