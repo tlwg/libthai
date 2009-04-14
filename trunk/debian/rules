@@ -29,6 +29,8 @@ else
 	CFLAGS += -O2
 endif
 
+LDFLAGS = -Wl,-z,defs
+
 SHARED_PKG := libthai0
 SHLIB_VER := 0.1.7
 
@@ -43,7 +45,9 @@ ifneq "$(wildcard /usr/share/misc/config.guess)" ""
 endif
 
 	# Add here commands to configure the package.
-	./configure $(build_flags) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info --enable-shared CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
+	./configure $(build_flags) --prefix=/usr \
+	  --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info \
+	  --enable-shared CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)"
 
 
 build-indep: build-indep-stamp
@@ -103,6 +107,10 @@ install-arch: build-arch
 	$(MAKE) -C include install DESTDIR=$(CURDIR)/debian/tmp
 	$(MAKE) -C src     install DESTDIR=$(CURDIR)/debian/tmp
 	$(MAKE) install-am DESTDIR=$(CURDIR)/debian/tmp
+
+	# Empty the dependency_libs in the *.la files
+	sed -i "/dependency_libs/ s/'.*'/''/" \
+	  $(CURDIR)/debian/tmp/usr/lib/libthai.la
 
 # Build architecture-independent files here.
 binary-indep: build-indep install-indep
