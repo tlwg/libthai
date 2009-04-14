@@ -1,3 +1,9 @@
+libthai (0.1.11-3) UNRELEASED; urgency=low
+
+  * Version libthai-dev dep on libdatrie-dev (>= 0.2.0).
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Tue, 14 Apr 2009 15:16:48 +0700
+
 libthai (0.1.11-2) unstable; urgency=low
 
   * Version b-dep on libdatrie-dev (>= 0.2.0).
