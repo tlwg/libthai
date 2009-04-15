@@ -1,11 +1,11 @@
-libthai (0.1.11-3) UNRELEASED; urgency=low
+libthai (0.1.11-3) unstable; urgency=low
 
   * Version libthai-dev dep on libdatrie-dev (>= 0.2.0).
   * debian/rules:
     - Empty the dependency_libs in the *.la files
     - Define LDFLAGS outside the configure line, for easy adjustment
 
- -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Tue, 14 Apr 2009 15:58:48 +0700
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 15 Apr 2009 11:15:20 +0700
 
 libthai (0.1.11-2) unstable; urgency=low
 
