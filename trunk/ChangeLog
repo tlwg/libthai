@@ -1,3 +1,11 @@
+2009-04-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Post-release version prefix added.
+
+	* data/tdict-{ict,district,proper,common,geo}.txt: Add words.
+	* data/tdict-{common,collection}.txt: Move some collection of words
+	to appropriate category.
+
 2009-04-06  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in: Bump library revision.
