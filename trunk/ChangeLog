@@ -1,5 +1,10 @@
 2009-05-13  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/Makefile.am, data/tdict-*.txt: Convert wordlists from TIS-620
+	to UTF-8, for easy management with modern tools.
+
+2009-05-13  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-std-compound.txt: Remove some loose compounds.
 	* data/tdict-{ict,spell,district,proper,common,science,geo}.txt:
 	Add words.
