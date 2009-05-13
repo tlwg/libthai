@@ -32,5 +32,5 @@ thbrk.tri: tdict.txt
 	  ln -s $(top_srcdir)/data/thbrk.abm . ; \
 	fi
 	rm -f thbrk.tri
-	$(TRIETOOL) thbrk add-list -e tis-620 tdict.txt
+	$(TRIETOOL) thbrk add-list -e utf-8 tdict.txt
 
