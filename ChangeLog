@@ -1,3 +1,7 @@
+2009-05-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{ict,proper,common,science,geo}.txt: Add words.
+
 2009-05-13  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/Makefile.am, data/tdict-*.txt: Convert wordlists from TIS-620
