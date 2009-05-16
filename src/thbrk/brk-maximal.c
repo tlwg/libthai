@@ -88,8 +88,14 @@ static BrkPool *    brk_root_pool (int pos_size);
 static int          brk_recover (const thchar_t *text, int len, int pos,
                                  RecovHist *rh);
 
-#define th_isleadable(c) \
-    (th_isthcons(c)||th_isldvowel(c)||(c)==RU||(c)==LU)
+static int
+th_isleadable (const thchar_t *str)
+{
+    if (th_isthcons (str[0]))
+        return str[1] != THANTHAKHAT && (!str[1] || str[2] != THANTHAKHAT);
+
+    return th_isldvowel (str[0]) || str[0] == RU || str[0] == LU;
+}
 
 /*---------------------*
  *   PRIVATE GLOBALS   *
@@ -183,7 +189,7 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
                 }
                 break;
             }
-        } while (!(is_terminal && th_isleadable (s[shot->str_pos])));
+        } while (!(is_terminal && th_isleadable (&s[shot->str_pos])));
 
         if (!is_keep_node && !do_recover) {
             pool = brk_pool_delete (pool, node);
@@ -272,7 +278,7 @@ brk_recover (const thchar_t *text, int len, int pos, RecovHist *rh)
     int brk_pos[RECOVERED_WORDS];
     int n, p;
 
-    while (pos < len && !th_isleadable (text[pos]) &&
+    while (pos < len && !th_isleadable (&text[pos]) &&
            (0 == pos || !th_isldvowel (text[pos - 1])))
     {
         ++pos;
@@ -281,7 +287,7 @@ brk_recover (const thchar_t *text, int len, int pos, RecovHist *rh)
         return rh->recov;
 
     for (p = pos; p < len; ++p) {
-        if (th_isleadable (text[p]) &&
+        if (th_isleadable (&text[p]) &&
             (0 == p || !th_isldvowel (text[p - 1])))
         {
             n = brk_maximal_do (text + p, len - p, brk_pos, RECOVERED_WORDS, 0);
