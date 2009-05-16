@@ -1,3 +1,11 @@
+2009-05-16  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (th_isleadable): Prohibit consonants with
+	THANTHAKHAT from being leadable.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do, brk_recover): Adjust
+	th_isleadable() calls according to prototype change.
+
 2009-05-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-{ict,proper,common,science,geo}.txt: Add words.
