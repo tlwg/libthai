@@ -1,3 +1,12 @@
+2009-05-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (th_isleadable): Also check for certain
+	vowels like MAITAIKHU, MAIHUNAKAT, SARA UEE in previous cell for
+	non-leadable consonants.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do, brk_recover): Adjust
+	th_isleadable() calls according to prototype change.
+
 2009-05-16  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thbrk/brk-maximal.c (th_isleadable): Prohibit consonants with

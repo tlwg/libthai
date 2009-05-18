@@ -89,12 +89,30 @@ static int          brk_recover (const thchar_t *text, int len, int pos,
                                  RecovHist *rh);
 
 static int
-th_isleadable (const thchar_t *str)
+th_isleadable (const thchar_t *str, int idx)
 {
-    if (th_isthcons (str[0]))
-        return str[1] != THANTHAKHAT && (!str[1] || str[2] != THANTHAKHAT);
+    if (th_isthcons (str[idx])) {
+        /* consonant not leadable if THANTHAKHAT is found within next 2 chars */
+        if (str[idx+1] == THANTHAKHAT
+            || (str[idx+1] && str[idx+2] == THANTHAKHAT))
+        {
+            return 0;
+        }
+        /* consonant not leadable if certain vowels are found in prev cell */
+        if (idx > 0) {
+            if (str[idx-1] == MAITAIKHU
+                || str[idx-1] == MAIHUNAKAT
+                || str[idx-1] == SARA_UEE
+                || (idx > 1 && th_isthtone(str[idx-1])
+                    && (str[idx-2] == MAIHUNAKAT || str[idx-2] == SARA_UEE)))
+            {
+                return 0;
+            }
+        }
+        return 1;
+    }
 
-    return th_isldvowel (str[0]) || str[0] == RU || str[0] == LU;
+    return th_isldvowel (str[idx]) || str[idx] == RU || str[idx] == LU;
 }
 
 /*---------------------*
@@ -189,7 +207,7 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
                 }
                 break;
             }
-        } while (!(is_terminal && th_isleadable (&s[shot->str_pos])));
+        } while (!(is_terminal && th_isleadable (s, shot->str_pos)));
 
         if (!is_keep_node && !do_recover) {
             pool = brk_pool_delete (pool, node);
@@ -278,7 +296,7 @@ brk_recover (const thchar_t *text, int len, int pos, RecovHist *rh)
     int brk_pos[RECOVERED_WORDS];
     int n, p;
 
-    while (pos < len && !th_isleadable (&text[pos]) &&
+    while (pos < len && !th_isleadable (text, pos) &&
            (0 == pos || !th_isldvowel (text[pos - 1])))
     {
         ++pos;
@@ -287,7 +305,7 @@ brk_recover (const thchar_t *text, int len, int pos, RecovHist *rh)
         return rh->recov;
 
     for (p = pos; p < len; ++p) {
-        if (th_isleadable (&text[p]) &&
+        if (th_isleadable (text, p) &&
             (0 == p || !th_isldvowel (text[p - 1])))
         {
             n = brk_maximal_do (text + p, len - p, brk_pos, RECOVERED_WORDS, 0);
