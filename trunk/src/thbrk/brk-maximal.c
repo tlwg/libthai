@@ -100,9 +100,7 @@ th_isleadable (const thchar_t *str, int idx)
         }
         /* consonant not leadable if certain vowels are found in prev cell */
         if (idx > 0) {
-            if (str[idx-1] == MAITAIKHU
-                || str[idx-1] == MAIHUNAKAT
-                || str[idx-1] == SARA_UEE
+            if (str[idx-1] == MAIHUNAKAT || str[idx-1] == SARA_UEE
                 || (idx > 1 && th_isthtone(str[idx-1])
                     && (str[idx-2] == MAIHUNAKAT || str[idx-2] == SARA_UEE)))
             {

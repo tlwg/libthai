@@ -1,3 +1,9 @@
+2009-05-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (th_isleadable): Consonant following
+	MAITAIKHU is not always unleadable, such as after "ก็". So, drop the
+	case.
+
 2009-05-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thbrk/brk-maximal.c (th_isleadable): Also check for certain
