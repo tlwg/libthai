@@ -8,8 +8,7 @@ EXTRA_DIST = libthai.def
 
 lib_LTLIBRARIES = libthai.la
 
-libthai_la_SOURCES = libthai.c
-libthai_la_LIBADD = \
+libthai_sublibs = \
 	$(top_builddir)/src/thctype/libthctype.la \
 	$(top_builddir)/src/thstr/libthstr.la \
 	$(top_builddir)/src/thcell/libthcell.la \
@@ -21,8 +20,11 @@ libthai_la_LIBADD = \
 	$(top_builddir)/src/thwctype/libthwctype.la \
 	$(top_builddir)/src/thwstr/libthwstr.la \
 	$(top_builddir)/src/thwbrk/libthwbrk.la 
+
+libthai_la_SOURCES = libthai.c
+libthai_la_LIBADD = $(libthai_sublibs)
 libthai_la_LDFLAGS = -no-undefined \
 	-version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) \
 	-export-symbols $(srcdir)/libthai.def
-libthai_la_DEPENDENCIES = libthai.def
+libthai_la_DEPENDENCIES = libthai.def $(libthai_sublibs)
 
