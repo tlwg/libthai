@@ -1,3 +1,9 @@
+2009-05-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{std-compound,common}.txt: Remove some loose compounds.
+	* data/tdict-common.txt: Reorder some words.
+	* data/tdict-{ict,proper,common,science,geo}.txt: Add words.
+
 2009-05-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/Makefile.am: Refactor and add sublibs to libthai.la dependencies,
