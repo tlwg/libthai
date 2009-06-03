@@ -1,3 +1,7 @@
+2009-06-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{ict,proper,common,science,geo}.txt: Add words.
+
 2009-05-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-{std-compound,common}.txt: Remove some loose compounds.
