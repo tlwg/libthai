@@ -1,3 +1,22 @@
+2009-06-04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (th_isleadable -> th_brkpos_hints):
+	  - Turn simple leadable check into a pre-processed break position
+	    hinting. Instead of doing the complicated checks on every loop,
+	    now the clients just check the prepared boolean array.
+	  - Add more complicated cases, such as Thai composite vowels.
+
+	* src/thbrk/brk-maximal.c (brk_recover):
+	  - Change prototype to accept brk pos hints, so it doesn't need to be
+	    recalculated.
+	  - Drop additional checks of preceeding ldvowel, as it's already
+	    covered by the brk pos hints.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do):
+	  - Pre-calculate brk pos hints on entry, and free it on exit.
+	  - Check the hints instead of calling the obsolete th_isleadable().
+	  - Pass the hints to brk_recover().
+
 2009-06-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-{ict,proper,common,science,geo}.txt: Add words.
