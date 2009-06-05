@@ -82,9 +82,15 @@ typedef struct {
  *   PRIVATE METHODS DECLARATIONS   *
  *----------------------------------*/
 
+static void         th_brkpos_hints (const thchar_t *str, int len, char *hints);
+
 static Trie *       brk_get_dict ();
 
 static BrkPool *    brk_root_pool (int pos_size);
+static int          brk_maximal_do_impl (const thchar_t *s, int len,
+                                         const char *brkpos_hints,
+                                         int pos[], size_t n,
+                                         int do_recover);
 static int          brk_recover (const thchar_t *text, int len, int pos,
                                  const char *brkpos_hints, RecovHist *rh);
 
@@ -165,21 +171,36 @@ brk_maximal_quit ()
 }
 
 int
-brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
+brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n)
+{
+    char        *brkpos_hints;
+    int          ret;
+
+    brkpos_hints = (char *) malloc (len);
+    th_brkpos_hints (s, len, brkpos_hints);
+
+    ret = brk_maximal_do_impl (s, len, brkpos_hints, pos, n, 1);
+
+    free (brkpos_hints);
+
+    return ret;
+}
+
+static int
+brk_maximal_do_impl (const thchar_t *s, int len,
+                     const char *brkpos_hints,
+                     int pos[], size_t n,
+                     int do_recover)
 {
     BrkPool     *pool;
     BrkPool     *node;
     BestBrk     *best_brk;
     RecovHist    recov_hist;
     int          i;
-    char        *brkpos_hints;
 
     pool = brk_root_pool (n);
     best_brk = best_brk_new (n);
     recov_hist.pos = recov_hist.recov = -1;
-
-    brkpos_hints = (char *) malloc (len);
-    th_brkpos_hints (s, len, brkpos_hints);
 
     while (NULL != (node = brk_pool_get_node (pool))) {
         BrkShot *shot = &node->shot;
@@ -286,8 +307,6 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n, int do_recover)
         }
     }
 
-    free (brkpos_hints);
-
     for (i = 0; i < best_brk->cur_brk_pos; i++)
         pos[i] = best_brk->brk_pos[i];
 
@@ -337,7 +356,8 @@ brk_recover (const thchar_t *text, int len, int pos,
 
     for (p = pos; p < len; ++p) {
         if (brkpos_hints[p]) {
-            n = brk_maximal_do (text + p, len - p, brk_pos, RECOVERED_WORDS, 0);
+            n = brk_maximal_do_impl (text + p, len - p, brkpos_hints + p,
+                                     brk_pos, RECOVERED_WORDS, 0);
             if (n == RECOVERED_WORDS || (n > 0 && '\0' == text[brk_pos[n-1]])) {
                 rh->pos = pos;
                 rh->recov = p;
