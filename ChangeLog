@@ -1,3 +1,22 @@
+2009-06-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Refactor so brk hints is prepared only once per brk_maximal_do() call.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do, +brk_maximal_do_impl):
+	Split implementation code into _impl() function, and let the
+	original brk_maximal_do() be a wrapper doing necessary preparations.
+
+	* src/thbrk/brk-maximal.c (brk_recover):
+	Call brk_maximal_do_impl() instead of brk_maximal_do(), passing the
+	appropriate brk hints subarray to it.
+
+	* src/thbrk/brk-maximal.{c,h} (brk_maximal_do):
+	* src/thbrk/thbrk.c (th_brk):
+	Drop the do_recover arg from brk_maximal_do(), as it's now a wrapper
+	which can seed initial condition for the mutual recursion.
+
+	* src/thbrk/brk-maximal.c (th_brkpos_hints): Add prototype.
+
 2009-06-04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thbrk/brk-maximal.c (th_isleadable -> th_brkpos_hints):

@@ -85,7 +85,7 @@ th_brk (const thchar_t *s, int pos[], size_t n)
                 int n_brk, i;
 
                 n_brk = brk_maximal_do (thai_chunk, p - thai_chunk,
-                                        pos + cur_pos, n - cur_pos, 1);
+                                        pos + cur_pos, n - cur_pos);
                 for (i = 0; i < n_brk; i++)
                     pos [cur_pos + i] += thai_chunk - s;
                 cur_pos += n_brk;
@@ -132,7 +132,7 @@ th_brk (const thchar_t *s, int pos[], size_t n)
         int n_brk, i;
 
         n_brk = brk_maximal_do (thai_chunk, p - thai_chunk,
-                                pos + cur_pos, n - cur_pos, 1);
+                                pos + cur_pos, n - cur_pos);
         for (i = 0; i < n_brk; i++)
             pos [cur_pos + i] += thai_chunk - s;
         cur_pos += n_brk;

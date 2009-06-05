@@ -20,8 +20,7 @@ void
 brk_maximal_quit ();
 
 int
-brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n,
-                int do_recover);
+brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n);
 
 #endif /* __BRK_MAXIMAL_H */
 
