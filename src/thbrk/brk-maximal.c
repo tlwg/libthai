@@ -110,6 +110,11 @@ th_brkpos_hints (const thchar_t *str, int len, char *hints)
                 i += 2; // the cons + THANTHAKHAT
             } else if (i+2 < len && str[i+2] == THANTHAKHAT) {
                 i += 3; // the cons + intermediate char + THANTHAKHAT
+            } else if (i+2 < len && str[i] != KOKAI && str[i+1] == MAITAIKHU
+                       && (str[i+2] == OANG || str[i+2] == WOWAEN))
+            {
+                hints[i] = 1;
+                i += 4; // the cons + MAITAIKHU + OANG/WOWAEN + cons
             } else if ((i > 0
                         && (str[i-1] == MAIHUNAKAT || str[i-1] == SARA_UEE))
                        || (i > 1 && th_isthtone (str[i-1])
@@ -131,7 +136,9 @@ th_brkpos_hints (const thchar_t *str, int len, char *hints)
                if (i < len && th_isthtone (str[i]))
                    i++;
                i++; // the supposedly cons
-            } else if (i+1 < len && str[i] != KOKAI && str[i+1] == MAITAIKHU) {
+            } else if (i+2 < len && str[i] != KOKAI && str[i+1] == MAITAIKHU
+                       && str[i+2] != OANG && str[i+2] != WOWAEN)
+            {
                i += 3; // 2nd cons + MAITAIKHU + final cons
             }
         } else if (th_isldvowel (str[i])) {
