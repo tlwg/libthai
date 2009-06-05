@@ -1,5 +1,10 @@
 2009-06-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thbrk/brk-maximal.c (th_brkpos_hints):
+	Fix comment style to C, not C++.
+
+2009-06-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	Fix wrong case of syllable like 'ช็อก'.
 
 	* src/thbrk/brk-maximal.c (th_brkpos_hints):
