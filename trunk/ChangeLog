@@ -1,5 +1,9 @@
 2009-06-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* configure.in: Remove obsolete Win32 checking stuffs.
+
+2009-06-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	Add symbol versioning.
 
 	* configure.in: Check for -version-script support in linker.
