@@ -1,3 +1,16 @@
+2009-06-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Add symbol versioning.
+
+	* configure.in: Check for -version-script support in linker.
+	* +src/libthai.map: Add symbol map.
+	* src/Makefile.am:
+	  - Conditionally supply -version-script, if supported, or
+	    -export-symbols otherwise, to linker.
+	  - Conditionally specify libthai.map or libthai.def as libthai.la
+	    dependency, according to corresponding linker option applied.
+	  - Include libthai.map in EXTRA_DISTS.
+
 2009-06-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thbrk/brk-maximal.c (th_brkpos_hints):

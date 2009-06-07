@@ -27,6 +27,16 @@ AC_PROG_MAKE_SET
 AC_LIBTOOL_WIN32_DLL
 AM_PROG_LIBTOOL
 
+# Whether linker support --version-script option
+echo '{global:hello; local:*;};' > conftest.ver
+AC_LIBTOOL_LINKER_OPTION(
+  [whether linker supports -version-script],
+  libthai_cv_have_version_script,
+  [-Wl,-version-script -Wl,conftest.ver])
+
+AM_CONDITIONAL(LD_HAS_VERSION_SCRIPT,
+               test "$libthai_cv_have_version_script" = "yes")
+
 AC_MSG_CHECKING([for Win32])
 case "$host" in
   *-*-mingw*|*-*-cygwin*)
