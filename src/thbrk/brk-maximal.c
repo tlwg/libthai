@@ -130,20 +130,20 @@ th_brkpos_hints (const thchar_t *str, int len, char *hints)
             if (i >= len)
                 break;
             if (str[i] == MAITAIKHU) {
-               i += 2; /* MAITAIKHU + the supposedly cons */
+                i += 2; /* MAITAIKHU + the supposedly cons */
             } else if (th_isupvowel (str[i])) {
-               i++; /* the upper vowel, as part of composite vowel */
-               if (i < len && th_isthtone (str[i]))
-                   i++;
-               i++; /* the supposedly cons */
+                i++; /* the upper vowel, as part of composite vowel */
+                if (i < len && th_isthtone (str[i]))
+                    i++;
+                i++; /* the supposedly cons */
             } else if (i+2 < len
                        && ((str[i+1] == SARA_AA && str[i+2] == SARA_A)
                             || (str[i] != KOKAI && str[i+1] == MAITAIKHU
                                 && str[i+2] != OANG && str[i+2] != WOWAEN)))
             {
-               i += 3; /* 2nd cons + SARA_AA + SARA_A, or
-                        * 2nd cons + MAITAIKHU + final cons
-                        */
+                i += 3; /* 2nd cons + SARA_AA + SARA_A, or
+                         * 2nd cons + MAITAIKHU + final cons
+                         */
             }
         } else if (th_isldvowel (str[i])) {
             hints[i] = 1; /* the ldvowel */
@@ -358,8 +358,7 @@ brk_recover (const thchar_t *text, int len, int pos,
     int brk_pos[RECOVERED_WORDS];
     int n, p;
 
-    while (pos < len && !brkpos_hints[pos])
-    {
+    while (pos < len && !brkpos_hints[pos]) {
         ++pos;
     }
     if (rh->pos == pos)
