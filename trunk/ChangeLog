@@ -1,3 +1,8 @@
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (th_brkpos_hints): Add check for cases like
+	'เฉพาะ'.
+
 2009-06-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in: Remove obsolete Win32 checking stuffs.
