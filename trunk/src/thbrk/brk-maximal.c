@@ -287,7 +287,7 @@ brk_maximal_do_impl (const thchar_t *s, int len,
             }
 
             trie_state_rewind (shot->dict_state);
-            node->shot.brk_pos [shot->cur_brk_pos++] = shot->str_pos;
+            shot->brk_pos [shot->cur_brk_pos++] = shot->str_pos;
         }
 
         if (!is_keep_node || shot->str_pos == len || shot->cur_brk_pos >= n) {
