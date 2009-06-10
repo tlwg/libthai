@@ -218,20 +218,21 @@ brk_maximal_do_impl (const thchar_t *s, int len,
         BrkShot *shot = &node->shot;
         BrkPool *match;
         int      is_keep_node, is_terminal, is_recovered;
+        int      str_pos;
 
         /* walk dictionary character-wise till a word is matched */
         is_keep_node = 1;
         is_recovered = 0;
+        str_pos = shot->str_pos;
         do {
-            if (!trie_state_walk (shot->dict_state,
-                                  th_tis2uni (s[shot->str_pos++])))
+            if (!trie_state_walk (shot->dict_state, th_tis2uni (s[str_pos++])))
             {
                 int recovered;
 
                 is_terminal = 0;
 
                 /* try to recover from error */
-                recovered = brk_recover (s, len, shot->str_pos,
+                recovered = brk_recover (s, len, shot->str_pos + 1,
                                          brkpos_hints, &recov_hist);
                 if (-1 != recovered) {
                     /* add penalty by recovered - recent break pos */
@@ -239,7 +240,7 @@ brk_maximal_do_impl (const thchar_t *s, int len,
                     if (shot->cur_brk_pos > 0)
                         shot->penalty -= shot->brk_pos[shot->cur_brk_pos - 1];
 
-                    shot->str_pos = recovered;
+                    str_pos = recovered;
                     is_recovered = 1;
                 } else {
                     /* add penalty with string len - recent break pos */
@@ -253,7 +254,7 @@ brk_maximal_do_impl (const thchar_t *s, int len,
             }
 
             is_terminal = trie_state_is_terminal (shot->dict_state);
-            if (shot->str_pos >= len) {
+            if (str_pos >= len) {
                 if (!is_terminal) {
                     /* add penalty with string len - recent break pos */
                     shot->penalty += len;
@@ -264,7 +265,9 @@ brk_maximal_do_impl (const thchar_t *s, int len,
                 }
                 break;
             }
-        } while (!(is_terminal && brkpos_hints[shot->str_pos]));
+        } while (!(is_terminal && brkpos_hints[str_pos]));
+
+        shot->str_pos = str_pos;
 
         /* if node still kept, mark break position and rewind dictionary */
         if (is_keep_node && (is_terminal || is_recovered)) {
