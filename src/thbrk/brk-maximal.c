@@ -86,6 +86,7 @@ static void         th_brkpos_hints (const thchar_t *str, int len, char *hints);
 
 static Trie *       brk_get_dict ();
 
+static int          brk_score (int penalty, int num_words);
 static BrkPool *    brk_root_pool (int pos_size);
 static int          brk_maximal_do_impl (const thchar_t *s, int len,
                                          const char *brkpos_hints,
@@ -200,6 +201,18 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n)
 }
 
 static int
+brk_score (int penalty, int num_words)
+{
+    /* This is negative scoring, lower is better.
+     *
+     * Given that average length of accidental words in random strings is about
+     * 2-3 characters, we assume that num_words times that average length can
+     * weigh out the penalty caused by unknown words.
+     */
+    return penalty + num_words * 2;
+}
+
+static int
 brk_maximal_do_impl (const thchar_t *s, int len,
                      const char *brkpos_hints,
                      int pos[], size_t n)
@@ -293,9 +306,8 @@ brk_maximal_do_impl (const thchar_t *s, int len,
             while (NULL != (match = brk_pool_match (pool, node))) {
                 BrkPool *del_node;
 
-                if (match->shot.penalty < node->shot.penalty ||
-                    (match->shot.penalty == node->shot.penalty &&
-                     match->shot.cur_brk_pos < node->shot.cur_brk_pos))
+                if (brk_score (match->shot.penalty, match->shot.cur_brk_pos)
+                    < brk_score (node->shot.penalty, node->shot.cur_brk_pos))
                 {
                     del_node = node;
                     node = match;
@@ -686,9 +698,8 @@ best_brk_contest (BestBrk *best_brk, const BrkShot *shot)
 {
     if (shot->str_pos > best_brk->str_pos ||
         (shot->str_pos == best_brk->str_pos &&
-         (shot->penalty < best_brk->penalty ||
-          (shot->penalty == best_brk->penalty &&
-           shot->cur_brk_pos <= best_brk->cur_brk_pos))))
+         (brk_score (shot->penalty, shot->cur_brk_pos)
+          < brk_score (best_brk->penalty, best_brk->cur_brk_pos))))
     {
         memcpy (best_brk->brk_pos, shot->brk_pos,
                 shot->cur_brk_pos * sizeof (int));
