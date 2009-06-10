@@ -1,5 +1,20 @@
 2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	Split normal word break and recovery routines apart.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, +brk_recover_try):
+	  - Split brk_maximal_do_impl() into itself with (do_recover == 1) and
+	    brk_recover_try() with (do_recover == 0), for logic simplification.
+	  - Strip unnecessary tasks like best break contests and penalties from
+	    brk_recover_try(). All it needs is existence of a solution,
+	    regardless of its quality.
+	  - Use memcpy() to copy brk pos arrays instead of for loop.
+	* src/thbrk/brk-maximal.c (brk_maximal_do, brk_recover):
+	  - Adjust calls to brk_maximal_do_impl() and brk_recover_try()
+	    according to the changed prototypes.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/thbrk/brk-maximal.c (brk_maximal_do_impl): Add one missing change
 	for last commit.
 
