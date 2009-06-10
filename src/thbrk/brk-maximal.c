@@ -283,17 +283,16 @@ brk_maximal_do_impl (const thchar_t *s, int len,
                 /* add node to mark break position instead of current */
                 node = brk_pool_node_new (shot);
                 pool = brk_pool_add (pool, node);
+                shot = &node->shot;
             }
 
-            trie_state_rewind (node->shot.dict_state);
-            node->shot.brk_pos [node->shot.cur_brk_pos++] = node->shot.str_pos;
+            trie_state_rewind (shot->dict_state);
+            node->shot.brk_pos [shot->cur_brk_pos++] = shot->str_pos;
         }
 
-        if (!is_keep_node ||
-            node->shot.str_pos == len || node->shot.cur_brk_pos >= n)
-        {
+        if (!is_keep_node || shot->str_pos == len || shot->cur_brk_pos >= n) {
             /* path is done; contest and remove */
-            best_brk_contest (best_brk, &node->shot);
+            best_brk_contest (best_brk, shot);
             pool = brk_pool_delete (pool, node);
 
             /* if in recovery mode, stop as soon as first solution is found */
