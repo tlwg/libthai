@@ -1,5 +1,11 @@
 2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl): Update 'shot' after
+	'node' is changed, instead of referencing through the possibly new
+	'node' value, for code readability.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	Beautify code.
 
 	* src/thbrk/brk-maximal.c (th_brkpos_hints): Adjust indents.
