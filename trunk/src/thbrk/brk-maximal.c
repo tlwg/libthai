@@ -433,7 +433,9 @@ brk_recover (const thchar_t *text, int len, int pos,
         if (brkpos_hints[p]) {
             n = brk_recover_try (text + p, len - p, brkpos_hints + p,
                                  brk_pos, RECOVERED_WORDS);
-            if (n == RECOVERED_WORDS || (n > 0 && '\0' == text[brk_pos[n-1]])) {
+            if (n == RECOVERED_WORDS
+                || (n > 0 && '\0' == text[p + brk_pos[n-1]]))
+            {
                 rh->pos = pos;
                 rh->recov = p;
                 return p;
