@@ -1,5 +1,12 @@
 2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-std-compound.txt: Remove loose compounds.
+	* data/tdict-{common,proper}.txt: Move a proper noun to tdict-proper.
+	* data/tdict-{ict,spell,district,proper,common,science,geo}.txt:
+	Add words.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, best_brk_contest): 
 	Use weighted scoring, rather than parameters prioritization, to choose
 	better solution.
