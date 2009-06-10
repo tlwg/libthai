@@ -1,5 +1,12 @@
 2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl): When recovering from
+	error, try to recover from the position next to the last break,
+	rather than right at the crash position. We care the input string,
+	not what it's being partially matched against.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/thbrk/brk-maximal.c (brk_recover): When checking a character in
 	text, brk pos returned from brk_recover_try() are relative to
 	'text + p', not 'text'.
