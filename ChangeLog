@@ -1,5 +1,11 @@
 2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thbrk/brk-maximal.c (brk_recover): When checking a character in
+	text, brk pos returned from brk_recover_try() are relative to
+	'text + p', not 'text'.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	Split normal word break and recovery routines apart.
 
 	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, +brk_recover_try):
