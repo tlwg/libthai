@@ -699,7 +699,7 @@ best_brk_contest (BestBrk *best_brk, const BrkShot *shot)
     if (shot->str_pos > best_brk->str_pos ||
         (shot->str_pos == best_brk->str_pos &&
          (brk_score (shot->penalty, shot->cur_brk_pos)
-          < brk_score (best_brk->penalty, best_brk->cur_brk_pos))))
+          <= brk_score (best_brk->penalty, best_brk->cur_brk_pos))))
     {
         memcpy (best_brk->brk_pos, shot->brk_pos,
                 shot->cur_brk_pos * sizeof (int));
