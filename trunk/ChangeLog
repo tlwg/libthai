@@ -1,3 +1,9 @@
+2009-06-13  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (best_brk_contest): Compare penalties with
+	'<=' like in previous code, instead of '<', to retain longest-matching
+	effect in case of equal scores.
+
 2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-std-compound.txt: Remove loose compounds.
