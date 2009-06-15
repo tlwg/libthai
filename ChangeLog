@@ -1,3 +1,12 @@
+2009-06-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/Makefile.am, +data/tdict-lang-ethnic.txt: Add a new category.
+	* data/tdict-{common,geo}.txt, data/tdict-lang-ethnic.txt:
+	Move some words to the new category.
+	* data/tdict-{lang-ethnic,ict,spell,proper,common,science,geo}.txt:
+	Add words.
+	* data/tdict-std.txt: Remove a duplicated compound.
+
 2009-06-13  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thbrk/brk-maximal.c (best_brk_contest): Compare penalties with
