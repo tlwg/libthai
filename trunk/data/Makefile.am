@@ -16,6 +16,7 @@ TDICT_SRC = 				\
 	$(srcdir)/tdict-district.txt	\
 	$(srcdir)/tdict-geo.txt		\
 	$(srcdir)/tdict-ict.txt		\
+	$(srcdir)/tdict-lang-ethnic.txt	\
 	$(srcdir)/tdict-proper.txt	\
 	$(srcdir)/tdict-science.txt	\
 	$(srcdir)/tdict-spell.txt	\
