@@ -429,7 +429,7 @@ brk_root_pool (int pos_size)
     return pool;
 }
 
-#define RECOVERED_WORDS 2
+#define RECOVERED_WORDS 3
 
 static int
 brk_recover (const thchar_t *text, int len, int pos,
