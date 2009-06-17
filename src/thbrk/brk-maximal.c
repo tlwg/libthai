@@ -261,7 +261,7 @@ brk_maximal_do_impl (const thchar_t *s, int len,
                     if (shot->cur_brk_pos > 0)
                         shot->penalty -= shot->brk_pos[shot->cur_brk_pos - 1];
 
-                    str_pos = shot->str_pos;
+                    shot->brk_pos [shot->cur_brk_pos++] = str_pos = len;
                     is_keep_node = 0;
                 }
                 break;
@@ -275,7 +275,7 @@ brk_maximal_do_impl (const thchar_t *s, int len,
                     if (shot->cur_brk_pos > 0)
                         shot->penalty -= shot->brk_pos[shot->cur_brk_pos - 1];
 
-                    str_pos = shot->str_pos;
+                    shot->brk_pos [shot->cur_brk_pos++] = len;
                     is_keep_node = 0;
                 }
                 break;
