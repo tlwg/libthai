@@ -1,5 +1,11 @@
 2009-06-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl): Set str_pos for cases
+	that fail at string end back to the last progress position, to prevent
+	it from wrongly winning the contest over some good candidates.
+
+2009-06-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/tkbrk/brk-maximal.c (RECOVERED_WORDS): Increase recovery
 	threshold, 2 is too few and can trigger wrong recovery position too
 	easily.
