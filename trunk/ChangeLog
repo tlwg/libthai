@@ -1,5 +1,14 @@
 2009-06-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, best_brk_contest): 
+	Back out weighted scoring for solution contest, as it sometimes tries
+	too hard to minimize word count, even though another solution with more
+	known words can match more text and results in smaller unknown zone.
+	Accidental words problem, which this scheme tried to address, has
+	already been alleviated with increased recovery threshold.
+
+2009-06-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/thbrk/brk-maximal.c (brk_maximal_do_impl): Add break pos at
 	string end and let it enter the contest, instead of backing it out by
 	moving back str_pos as done in previous commit. That commit just
