@@ -1,6 +1,10 @@
 2009-06-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-std-compound.txt: Remove loose compounds.
+
+2009-06-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std-compound.txt: Remove loose compounds.
 	* data/tdict-{ict,district,proper,common,science,geo}.txt: Add words.
 
 2009-06-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
