@@ -1,3 +1,12 @@
+libthai (0.1.12-1) UNRELEASED; urgency=low
+
+  * New upstream release.
+  * debian/control: Drop duplicated "section" fields for libthai0 and
+    libthai-data [lintian].
+  * Declare libthai0 as Enhances: kdelibs5.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Fri, 19 Jun 2009 16:29:28 +0700
+
 libthai (0.1.11-3) unstable; urgency=low
 
   * Version libthai-dev dep on libdatrie-dev (>= 0.2.0).
