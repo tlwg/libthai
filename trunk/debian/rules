@@ -32,7 +32,7 @@ endif
 LDFLAGS = -Wl,-z,defs
 
 SHARED_PKG := libthai0
-SHLIB_VER := 0.1.7
+SHLIB_VER := 0.1.12
 
 config.status: configure
 	dh_testdir
