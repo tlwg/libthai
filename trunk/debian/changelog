@@ -4,8 +4,13 @@ libthai (0.1.12-1) UNRELEASED; urgency=low
   * debian/control: Drop duplicated "section" fields for libthai0 and
     libthai-data [lintian].
   * Declare libthai0 as Enhances: kdelibs5.
+  * Drop libthai.la, as kdelibs5 has now replaced substantial parts of KDE,
+    obsoleting the last package set that requires it:
+    - debian/libthai-dev.install: Remove *.la
+    - debian/rules: Remove libthai.la dependency emptying code
+    - debian/control: Remove Enhances: kdelibs declaration from libthai-dev
 
- -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Fri, 19 Jun 2009 16:29:28 +0700
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sun, 21 Jun 2009 08:12:04 +0700
 
 libthai (0.1.11-3) unstable; urgency=low
 
