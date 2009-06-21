@@ -17,7 +17,6 @@ Section: libdevel
 Architecture: any
 Depends: ${misc:Depends}, libthai0 (= ${binary:Version}),
  libdatrie-dev (>= 0.2.0)
-Enhances: kdelibs
 Suggests: libthai-doc
 Description: Development files for Thai language support library
  LibThai is a set of Thai language support routines aimed to ease
