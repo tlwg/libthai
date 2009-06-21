@@ -9,8 +9,13 @@ libthai (0.1.12-1) UNRELEASED; urgency=low
     - debian/libthai-dev.install: Remove *.la
     - debian/rules: Remove libthai.la dependency emptying code
     - debian/control: Remove Enhances: kdelibs declaration from libthai-dev
+  * Shared lib updates due to symbol versioning:
+    - debian/rules:
+      + Bump shlib dep to 0.1.12
+    - debian/libthai0.symbols:
+      + Update symbols, setting minver to 0.1.12 for all symbols
 
- -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sun, 21 Jun 2009 08:12:04 +0700
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sun, 21 Jun 2009 08:24:40 +0700
 
 libthai (0.1.11-3) unstable; urgency=low
 
