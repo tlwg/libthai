@@ -1,3 +1,11 @@
+2009-08-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Post-release version suffix added.
+
+	* data/tdict-std-compound.txt: Remove loose compounds.
+	* data/tdict-{ict,district,proper,common,science,lang-ethnic,geo}.txt:
+	Add words.
+
 2009-06-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in: Bump library revision.
