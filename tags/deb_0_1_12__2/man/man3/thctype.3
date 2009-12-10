@@ -1,0 +1,621 @@
+.\" (c) 2001 by Poonlap Veerathanbutr (Poonlap.Veerathanabutr@sun.co.jp)
+.\"
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
+.\"
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one
+.\" 
+.\" The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\" 
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
+.\" License.
+.\" $Id: thctype.3,v 1.5 2006-08-02 05:10:08 thep Exp $
+.TH thctype 3 "Sep 14, 2001" "Thai Linux Working Group" "libthai's Manual"
+.SH NAME
+.B thctype related functions
+.sp
+.B th_istis 
+\- Determines if a character is TIS-620 encoding.
+.br
+.B th_isthai 
+\- Determines if a character is Thai character.
+.br
+.B th_iseng 
+\- Determines if a character is English character.
+.sp
+.B Thai letter classification related functions
+.sp
+.B th_isthcons 
+\- Determines if a character is Thai consonant.
+.br
+.B th_isthvowel 
+\- Determines if a character is Thai vowel.
+.br
+.B th_isthtone 
+\- Determines if a character is Thai tonemark.
+.br 
+.B th_isthdiac 
+\- Determines if a character is Thai diacritic.
+.br
+.B th_isthdigit 
+\- Determines if a character is Thai digit.
+.br
+.B th_isthpunct 
+\- Determines if a character is punctuation. 
+.sp
+.B Thai vowel classification related function
+.sp
+.B th_isldvowel 
+\- Determines if a character is leading vowel.
+.br
+.B th_isflvowel 
+\- Determines if a character is following vowel.
+.br
+.B th_isupvowel 
+\- Determines if a character is above(upper) vowel.
+.br
+.B th_isblvowel 
+\- Determines if a character is below vowel.
+.sp
+.B Misc
+.sp
+.B th_chlevel 
+\- Determines the position(level) of a Thai character for rendering.
+.br
+.B th_iscombchar 
+\- Determines if a character is combination character.
+.SH SYNOPSIS
+.nf
+\fB#include <thai/thctype.h>\fR
+.br
+\fIint\fR \fBth_istis\fR(\fIthchar_t c);
+int \fBth_isthai\fR(\fIthchar_t c);
+int \fBth_iseng\fR(\fIthchar_t c);
+int \fBth_isthcons\fR(\fIthchar_t c);
+int \fBth_isthvowel\fR(\fIthchar_t c);
+int \fBth_isthtone\fR(\fIthchar_t c);
+int \fBth_isthdiac\fR(\fIthchar_t c);
+int \fBth_isthdigit\fR(\fIthchar_t c);
+int \fBth_isthpunct\fR(\fIthchar_t c);
+int \fBth_chlevel\fR(\fIthchar_t c);
+int \fBth_iscombchar\fR(\fIthchar_t c);
+.SH DESCRIPTION
+The Thai Standard Industrial Standards Institute (TIS) defined the Thai character set for using with computer named TIS-620. This character set is 8-bit encoded including both English and Thai characters. Aliases of TIS-620 are TIS620, TIS620-0, TIS620.2529-1, TIS620.2533-0 and ISO-IR-166.
+.PP 
+The followings are the enconding values in hexadecimal, unicode values and their names.
+.sp
+0x00   <U0000> NULL (NUL)                                       
+.br
+0x01   <U0001> START OF HEADING (SOH)                           
+.br
+0x02   <U0002> START OF TEXT (STX)                              
+.br
+0x03   <U0003> END OF TEXT (ETX)                                
+.br
+0x04   <U0004> END OF TRANSMISSION (EOT)                        
+.br
+0x05   <U0005> ENQUIRY (ENQ)                                    
+.br
+0x06   <U0006> ACKNOWLEDGE (ACK)                                
+.br
+0x07   <U0007> BELL (BEL)                                       
+.br
+0x08   <U0008> BACKSPACE (BS)                                   
+.br
+0x09   <U0009> CHARACTER TABULATION (HT)                        
+.br
+0x0A   <U000A> LINE FEED (LF)                                   
+.br
+0x0B   <U000B> LINE TABULATION (VT)                             
+.br
+0x0C   <U000C> FORM FEED (FF)                                   
+.br
+0x0D   <U000D> CARRIAGE RETURN (CR)                             
+.br
+0x0E   <U000E> SHIFT OUT (SO)                                   
+.br
+0x0F   <U000F> SHIFT IN (SI)                                    
+.br
+0x10   <U0010> DATALINK ESCAPE (DLE)                            
+.br
+0x11   <U0011> DEVICE CONTROL ONE (DC1)                         
+.br
+0x12   <U0012> DEVICE CONTROL TWO (DC2)                         
+.br
+0x13   <U0013> DEVICE CONTROL THREE (DC3)                       
+.br
+0x14   <U0014> DEVICE CONTROL FOUR (DC4)                        
+.br
+0x15   <U0015> NEGATIVE ACKNOWLEDGE (NAK)                       
+.br
+0x16   <U0016> SYNCHRONOUS IDLE (SYN)                           
+.br
+0x17   <U0017> END OF TRANSMISSION BLOCK (ETB)                  
+.br
+0x18   <U0018> CANCEL (CAN)                                     
+.br
+0x19   <U0019> END OF MEDIUM (EM)                               
+.br
+0x1A   <U001A> SUBSTITUTE (SUB)                                 
+.br
+0x1B   <U001B> ESCAPE (ESC)                                     
+.br
+0x1C   <U001C> FILE SEPARATOR (IS4)                             
+.br
+0x1D   <U001D> GROUP SEPARATOR (IS3)                            
+.br
+0x1E   <U001E> RECORD SEPARATOR (IS2)                           
+.br
+0x1F   <U001F> UNIT SEPARATOR (IS1)                             
+.br
+0x20   <U0020> SPACE                                            
+.br
+0x21   <U0021> EXCLAMATION MARK                                 
+.br
+0x22   <U0022> QUOTATION MARK                                   
+.br
+0x23   <U0023> NUMBER SIGN                                      
+.br
+0x24   <U0024> DOLLAR SIGN                                      
+.br
+0x25   <U0025> PERCENT SIGN                                     
+.br
+0x26   <U0026> AMPERSAND                                        
+.br
+0x27   <U0027> APOSTROPHE                                       
+.br
+0x28   <U0028> LEFT PARENTHESIS                                 
+.br
+0x29   <U0029> RIGHT PARENTHESIS                                
+.br
+0x2A   <U002A> ASTERISK                                         
+.br
+0x2B   <U002B> PLUS SIGN                                        
+.br
+0x2C   <U002C> COMMA                                            
+.br
+0x2D   <U002D> HYPHEN-MINUS                                     
+.br
+0x2E   <U002E> FULL STOP                                        
+.br
+0x2F   <U002F> SOLIDUS                                          
+.br
+0x30   <U0030> DIGIT ZERO                                       
+.br
+0x31   <U0031> DIGIT ONE                                        
+.br
+0x32   <U0032> DIGIT TWO                                        
+.br
+0x33   <U0033> DIGIT THREE                                      
+.br
+0x34   <U0034> DIGIT FOUR                                       
+.br
+0x35   <U0035> DIGIT FIVE                                       
+.br
+0x36   <U0036> DIGIT SIX                                        
+.br
+0x37   <U0037> DIGIT SEVEN                                      
+.br
+0x38   <U0038> DIGIT EIGHT                                      
+.br
+0x39   <U0039> DIGIT NINE                                       
+.br
+0x3A   <U003A> COLON                                            
+.br
+0x3B   <U003B> SEMICOLON                                        
+.br
+0x3C   <U003C> LESS-THAN SIGN                                   
+.br
+0x3D   <U003D> EQUALS SIGN                                      
+.br
+0x3E   <U003E> GREATER-THAN SIGN                                
+.br
+0x3F   <U003F> QUESTION MARK                                    
+.br
+0x40   <U0040> COMMERCIAL AT                                    
+.br
+0x41   <U0041> LATIN CAPITAL LETTER A                           
+.br
+0x42   <U0042> LATIN CAPITAL LETTER B                           
+.br
+0x43   <U0043> LATIN CAPITAL LETTER C                           
+.br
+0x44   <U0044> LATIN CAPITAL LETTER D                           
+.br
+0x45   <U0045> LATIN CAPITAL LETTER E                           
+.br
+0x46   <U0046> LATIN CAPITAL LETTER F                           
+.br
+0x47   <U0047> LATIN CAPITAL LETTER G                           
+.br
+0x48   <U0048> LATIN CAPITAL LETTER H                           
+.br
+0x49   <U0049> LATIN CAPITAL LETTER I                           
+.br
+0x4A   <U004A> LATIN CAPITAL LETTER J                           
+.br
+0x4B   <U004B> LATIN CAPITAL LETTER K                           
+.br
+0x4C   <U004C> LATIN CAPITAL LETTER L                           
+.br
+0x4D   <U004D> LATIN CAPITAL LETTER M                           
+.br
+0x4E   <U004E> LATIN CAPITAL LETTER N                           
+.br
+0x4F   <U004F> LATIN CAPITAL LETTER O                           
+.br
+0x50   <U0050> LATIN CAPITAL LETTER P                           
+.br
+0x51   <U0051> LATIN CAPITAL LETTER Q                           
+.br
+0x52   <U0052> LATIN CAPITAL LETTER R                           
+.br
+0x53   <U0053> LATIN CAPITAL LETTER S                           
+.br
+0x54   <U0054> LATIN CAPITAL LETTER T                           
+.br
+0x55   <U0055> LATIN CAPITAL LETTER U                           
+.br
+0x56   <U0056> LATIN CAPITAL LETTER V                           
+.br
+0x57   <U0057> LATIN CAPITAL LETTER W                           
+.br
+0x58   <U0058> LATIN CAPITAL LETTER X                           
+.br
+0x59   <U0059> LATIN CAPITAL LETTER Y                           
+.br
+0x5A   <U005A> LATIN CAPITAL LETTER Z                           
+.br
+0x5B   <U005B> LEFT SQUARE BRACKET                              
+.br
+0x5C   <U005C> REVERSE SOLIDUS                                  
+.br
+0x5D   <U005D> RIGHT SQUARE BRACKET                             
+.br
+0x5E   <U005E> CIRCUMFLEX ACCENT                                
+.br
+0x5F   <U005F> LOW LINE                                         
+.br
+0x60   <U0060> GRAVE ACCENT                                     
+.br
+0x61   <U0061> LATIN SMALL LETTER A                             
+.br
+0x62   <U0062> LATIN SMALL LETTER B                             
+.br
+0x63   <U0063> LATIN SMALL LETTER C                             
+.br
+0x64   <U0064> LATIN SMALL LETTER D                             
+.br
+0x65   <U0065> LATIN SMALL LETTER E                             
+.br
+0x66   <U0066> LATIN SMALL LETTER F                             
+.br
+0x67   <U0067> LATIN SMALL LETTER G                             
+.br
+0x68   <U0068> LATIN SMALL LETTER H                             
+.br
+0x69   <U0069> LATIN SMALL LETTER I                             
+.br
+0x6A   <U006A> LATIN SMALL LETTER J                             
+.br
+0x6B   <U006B> LATIN SMALL LETTER K                             
+.br
+0x6C   <U006C> LATIN SMALL LETTER L                             
+.br
+0x6D   <U006D> LATIN SMALL LETTER M                             
+.br
+0x6E   <U006E> LATIN SMALL LETTER N                             
+.br
+0x6F   <U006F> LATIN SMALL LETTER O                             
+.br
+0x70   <U0070> LATIN SMALL LETTER P                             
+.br
+0x71   <U0071> LATIN SMALL LETTER Q                             
+.br
+0x72   <U0072> LATIN SMALL LETTER R                             
+.br
+0x73   <U0073> LATIN SMALL LETTER S                             
+.br
+0x74   <U0074> LATIN SMALL LETTER T                             
+.br
+0x75   <U0075> LATIN SMALL LETTER U                             
+.br
+0x76   <U0076> LATIN SMALL LETTER V                             
+.br
+0x77   <U0077> LATIN SMALL LETTER W                             
+.br
+0x78   <U0078> LATIN SMALL LETTER X                             
+.br
+0x79   <U0079> LATIN SMALL LETTER Y                             
+.br
+0x7A   <U007A> LATIN SMALL LETTER Z                             
+.br
+0x7B   <U007B> LEFT CURLY BRACKET                               
+.br
+0x7C   <U007C> VERTICAL LINE                                    
+.br
+0x7D   <U007D> RIGHT CURLY BRACKET                              
+.br
+0x7E   <U007E> TILDE                                            
+.br
+0x7F   <U007F> DELETE (DEL)                                     
+.br
+0xA1   <U0E01> THAI CHARACTER KO KAI                            
+.br
+0xA2   <U0E02> THAI CHARACTER KHO KHAI                          
+.br
+0xA3   <U0E03> THAI CHARACTER KHO KHUAT                         
+.br
+0xA4   <U0E04> THAI CHARACTER KHO KHWAI                         
+.br
+0xA5   <U0E05> THAI CHARACTER KHO KHON                          
+.br
+0xA6   <U0E06> THAI CHARACTER KHO RAKHANG                       
+.br
+0xA7   <U0E07> THAI CHARACTER NGO NGU                           
+.br
+0xA8   <U0E08> THAI CHARACTER CHO CHAN                          
+.br
+0xA9   <U0E09> THAI CHARACTER CHO CHING                         
+.br
+0xAA   <U0E0A> THAI CHARACTER CHO CHANG                         
+.br
+0xAB   <U0E0B> THAI CHARACTER SO SO                             
+.br
+0xAC   <U0E0C> THAI CHARACTER CHO CHOE                          
+.br
+0xAD   <U0E0D> THAI CHARACTER YO YING                           
+.br
+0xAE   <U0E0E> THAI CHARACTER DO CHADA                          
+.br
+0xAF   <U0E0F> THAI CHARACTER TO PATAK                          
+.br
+0xB0   <U0E10> THAI CHARACTER THO THAN                          
+.br
+0xB1   <U0E11> THAI CHARACTER THO NANGMONTHO                    
+.br
+0xB2   <U0E12> THAI CHARACTER THO PHUTHAO                       
+.br
+0xB3   <U0E13> THAI CHARACTER NO NEN                            
+.br
+0xB4   <U0E14> THAI CHARACTER DO DEK                            
+.br
+0xB5   <U0E15> THAI CHARACTER TO TAO                            
+.br
+0xB6   <U0E16> THAI CHARACTER THO THUNG                         
+.br
+0xB7   <U0E17> THAI CHARACTER THO THAHAN                        
+.br
+0xB8   <U0E18> THAI CHARACTER THO THONG                         
+.br
+0xB9   <U0E19> THAI CHARACTER NO NU                             
+.br
+0xBA   <U0E1A> THAI CHARACTER BO BAIMAI                         
+.br
+0xBB   <U0E1B> THAI CHARACTER PO PLA                            
+.br
+0xBC   <U0E1C> THAI CHARACTER PHO PHUNG                         
+.br
+0xBD   <U0E1D> THAI CHARACTER FO FA                             
+.br
+0xBE   <U0E1E> THAI CHARACTER PHO PHAN                          
+.br
+0xBF   <U0E1F> THAI CHARACTER FO FAN                            
+.br
+0xC0   <U0E20> THAI CHARACTER PHO SAMPHAO                       
+.br
+0xC1   <U0E21> THAI CHARACTER MO MA                             
+.br
+0xC2   <U0E22> THAI CHARACTER YO YAK                            
+.br
+0xC3   <U0E23> THAI CHARACTER RO RUA                            
+.br
+0xC4   <U0E24> THAI CHARACTER RU                                
+.br
+0xC5   <U0E25> THAI CHARACTER LO LING                           
+.br
+0xC6   <U0E26> THAI CHARACTER LU                                
+.br
+0xC7   <U0E27> THAI CHARACTER WO WAEN                           
+.br
+0xC8   <U0E28> THAI CHARACTER SO SALA                           
+.br
+0xC9   <U0E29> THAI CHARACTER SO RUSI                           
+.br
+0xCA   <U0E2A> THAI CHARACTER SO SUA                            
+.br
+0xCB   <U0E2B> THAI CHARACTER HO HIP                            
+.br
+0xCC   <U0E2C> THAI CHARACTER LO CHULA                          
+.br
+0xCD   <U0E2D> THAI CHARACTER O ANG                             
+.br
+0xCE   <U0E2E> THAI CHARACTER HO NOKHUK                         
+.br
+0xCF   <U0E2F> THAI CHARACTER PAIYANNOI                         
+.br
+0xD0   <U0E30> THAI CHARACTER SARA A                            
+.br
+0xD1   <U0E31> THAI CHARACTER MAI HAN-AKAT                      
+.br
+0xD2   <U0E32> THAI CHARACTER SARA AA                           
+.br
+0xD3   <U0E33> THAI CHARACTER SARA AM                           
+.br
+0xD4   <U0E34> THAI CHARACTER SARA I                            
+.br
+0xD5   <U0E35> THAI CHARACTER SARA II                           
+.br
+0xD6   <U0E36> THAI CHARACTER SARA UE                           
+.br
+0xD7   <U0E37> THAI CHARACTER SARA UEE                          
+.br
+0xD8   <U0E38> THAI CHARACTER SARA U                            
+.br
+0xD9   <U0E39> THAI CHARACTER SARA UU                           
+.br
+0xDA   <U0E3A> THAI CHARACTER PHINTHU                           
+.br
+0xDF   <U0E3F> THAI CHARACTER SYMBOL BAHT                       
+.br
+0xE0   <U0E40> THAI CHARACTER SARA E                            
+.br
+0xE1   <U0E41> THAI CHARACTER SARA AE                           
+.br
+0xE2   <U0E42> THAI CHARACTER SARA O                            
+.br
+0xE3   <U0E43> THAI CHARACTER SARA AI MAIMUAN                   
+.br
+0xE4   <U0E44> THAI CHARACTER SARA AI MAIMALAI                  
+.br
+0xE5   <U0E45> THAI CHARACTER LAKKHANGYAO                       
+.br
+0xE6   <U0E46> THAI CHARACTER MAIYAMOK                          
+.br
+0xE7   <U0E47> THAI CHARACTER MAITAIKHU                         
+.br
+0xE8   <U0E48> THAI CHARACTER MAI EK                            
+.br
+0xE9   <U0E49> THAI CHARACTER MAI THO                           
+.br
+0xEA   <U0E4A> THAI CHARACTER MAI TRI                           
+.br
+0xEB   <U0E4B> THAI CHARACTER MAI CHATTAWA                      
+.br
+0xEC   <U0E4C> THAI CHARACTER THANTHAKHAT                       
+.br
+0xED   <U0E4D> THAI CHARACTER NIKHAHIT                          
+.br
+0xEE   <U0E4E> THAI CHARACTER YAMAKKAN                          
+.br
+0xEF   <U0E4F> THAI CHARACTER FONGMAN                           
+.br
+0xF0   <U0E50> THAI DIGIT ZERO                                  
+.br
+0xF1   <U0E51> THAI DIGIT ONE                                   
+.br
+0xF2   <U0E52> THAI DIGIT TWO                                   
+.br
+0xF3   <U0E53> THAI DIGIT THREE                                 
+.br
+0xF4   <U0E54> THAI DIGIT FOUR                                  
+.br
+0xF5   <U0E55> THAI DIGIT FIVE                                  
+.br
+0xF6   <U0E56> THAI DIGIT SIX                                   
+.br
+0xF7   <U0E57> THAI DIGIT SEVEN                                 
+.br
+0xF8   <U0E58> THAI DIGIT EIGHT                                 
+.br
+0xF9   <U0E59> THAI DIGIT NINE                                  
+.br
+0xFA   <U0E5A> THAI CHARACTER ANGKHANKHU                        
+.br
+0xFB   <U0E5B> THAI CHARACTER KHOMUT
+.sp
+Thai characters consist of 44 consonants, vowels, tonemarks, diacritics and Thai digits. Thai vowels are divided into 4 groups, Leading Vowels (LV), Following Vowels (FV), Below Vowels (BV) and Above Vowels (AV). There are 4 tonemarks whose position is above a consonant. Diacritics are divided into 2 groups, Above Diacritics (AD) and Below Diacritics (BD).
+.sp
+.B Character Level 
+.sp
+Libthai has defined 4 levels for the position of a character.
+.br
+- Below level: a character is placed below the consonant. 
+\fBth_chlevel\fR will return the value -1 for these characters.
+.br
+- Base level: this includes consonants, FV and LV. A character is placed on baseline. 
+\fBth_chlevel\fR will return the value 0 for these characters.
+.br
+- Above level: a character is placed just above the final consonant.
+\fBth_chlevel\fR will return the value 1 for these characters.
+.br
+- Top level: this includes tone marks and diacritics. Sometimes, a character in top level can be placed in above level if no character is there, for better looking.
+-Top level: this includes tone marks and diacritics. For plain character cell rendering, it is safe to put these characters at top-most level. However, some rendering engines may lower them down on absence of character at Above level, for typographical quality.
+\fBth_chlevel\fR will return the value 2 for these characters.
+.sp
+There is an extra level value 3 for certain characters which are usually classified as characters at Above level, but are also allowed to be placed at Top level for some rare cases. Two characters fall in this category, namely MAITAIKHU and NIKHAHIT.
+.sp
+MAITAIKHU can be placed at Top level when writing some minority languages such as Kuy, to shorten some syllables with compound vowels, such as Sara Ia and Sara Uea. NIKHAHIT can be placed at Top level in Pali/Sanskrit words, to represent -ng final sound above SARA I.
+.sp
+The following figure illustrates a Thai word and characters' level.
+.sp
+--------------------------- Top(2) 
+.br
+------*-------------------- Top(2) 
+.br
+------*-------------------- Top(2) 
+.br
+.B ---------------------------
+.br
+--------------------------- Above(1)
+.br
+------*---------------*---- Above(1)
+.br
+---****---------------*---- Above(1)
+.br
+--------------------------- Above(1)
+.br
+.B ---------------------------
+.br
+--------------------------- Base(0) 
+.br
+--*---*----***-----*--*---- Base(0) 
+.br
+-*-*-*-*--*---*---*-*-*---- Base(0) 
+.br
+--**-*-*------*---**--*---- Base(0) 
+.br
+---**--*---*--*---*---*---- Base(0) 
+.br
+---**--*--*-*-*----*--*---- Base(0) 
+.br
+---*---*--**--*---*---*---- Base(0) 
+.br
+---*---*--*---*---*---*---- Base(0) 
+.br
+---*---*--*****---*****---- Base(0) 
+.br
+.B --------------------------- Baseline 
+.br
+--------------------------- Below(-1)
+.br
+-------------------**-*---- Below(-1)
+.br
+--------------------***---- Below(-1)
+.br
+--------------------------- Below(-1)
+.sp
+A character placed at below, above or top level is also called dead character. It is usually combined with a consonant, after a dead character is typed, the cursor will not be advanced to the next display cell. BV, BD, TONE, AD and AV are classified as dead character.
+
+
+
+
+.SH "RETURN VALUE"
+All functions return 1 if it is true and return 0 if it is flase. \fBth_chlevel\fR returns -1 if the character is in the below level, 0 if the character is in the base level, 1 if the character is in the above level and 2 if the chracter is in the top level.
+.SH "SEE ALSO"
+libthai(3)
+.SH "AUTHORS"
+\fBProject Leader\fR
+.br
+Theppitak Karoonboonyanan <thep@linux.thai.net>
+.br
+\fBMembers\fR
+.br
+Chanop Silpa-Anan <chanop@syseng.anu.edu.au>
+.br
+Pattara Kiatisevi <ott@linux.thai.net>
+.br
+Vuthichai Ampornaramveth <vuthi@nii.ac.jp>
+.br
+Poonlap Veerathanabutr <Poonlap.Veerathanabutr@sun.co.jp>
+
