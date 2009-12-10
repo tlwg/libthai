@@ -1,13 +1,12 @@
 Source: libthai
 Priority: optional
 Section: libs
-Maintainer: Theppitak Karoonboonyanan <thep@linux.thai.net>
+Maintainer: Theppitak Karoonboonyanan <thep@debian.org>
 Uploaders:  Loic Minier <lool@dooz.org>
-DM-Upload-Allowed: yes
-Build-Depends: debhelper (>= 7), autotools-dev, pkg-config,
+Build-Depends: debhelper (>= 7), libtool, automake, autoconf, pkg-config,
  libdatrie-dev (>= 0.2.0), libdatrie1-bin
 Build-Depends-Indep: doxygen
-Standards-Version: 3.8.2
+Standards-Version: 3.8.3
 Vcs-Svn: http://linux.thai.net/svn/software/libthai
 Vcs-Browser: http://linux.thai.net/websvn/wsvn/software.libthai/?sc=0
 Homepage: http://libthai.sourceforge.net/
