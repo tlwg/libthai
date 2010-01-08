@@ -1,5 +1,9 @@
 2010-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-{proper,common,geo}.txt: Add words.
+
+2010-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/thbrk/brk-maximal.c (brk_shot_init):
 	Return failure/success status.
 	* src/thbrk/brk-maximal.c (brk_pool_node_new):
