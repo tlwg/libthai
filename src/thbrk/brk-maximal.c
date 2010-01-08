@@ -7,6 +7,7 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <limits.h>
 #include <datrie/trie.h>
@@ -658,11 +659,14 @@ best_brk_new (int n_brk_pos)
 {
     BestBrk *best_brk;
 
+    if ((size_t) n_brk_pos > SIZE_MAX / sizeof (int))
+        return NULL;
+
     best_brk = (BestBrk *) malloc (sizeof (BestBrk));
     if (!best_brk)
         return NULL;
 
-    best_brk->brk_pos = (int *) malloc (n_brk_pos * sizeof (int));
+    best_brk->brk_pos = (int *) malloc ((size_t) n_brk_pos * sizeof (int));
     if (!best_brk->brk_pos)
         goto exit1;
     best_brk->n_brk_pos = n_brk_pos;

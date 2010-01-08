@@ -1,3 +1,13 @@
+2010-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Fix potential integer overflow vulnerabilities.
+	Thanks Tim Starling <tstarling@wikimedia.org> for pointing out.
+
+	* src/thbrk/thbrk.c (th_brk_line): Return zero if malloc size overflows
+	or malloc fails.
+	* src/thbrk/brk-maximal.c (best_brk_new): Return NULL if malloc size
+	overflows.
+
 2009-08-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in: Post-release version suffix added.
