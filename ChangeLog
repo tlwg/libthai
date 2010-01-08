@@ -1,5 +1,11 @@
 2010-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thwbrk/thwbrk.c (th_wbrk, th_wbrk_line):
+	Rewritten, for harmony with the rests of the source, plus potential
+	integer overflow vulnerability removed.
+
+2010-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	Fix potential integer overflow vulnerabilities.
 	Thanks Tim Starling <tstarling@wikimedia.org> for pointing out.
 
