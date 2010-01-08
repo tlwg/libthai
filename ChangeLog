@@ -1,5 +1,12 @@
 2010-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thbrk/brk-maximal.c (brk_shot_init):
+	Return failure/success status.
+	* src/thbrk/brk-maximal.c (brk_pool_node_new):
+	Check & handle return code from brk_shot_init().
+
+2010-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/thwbrk/thwbrk.c (th_wbrk, th_wbrk_line):
 	Rewritten, for harmony with the rests of the source, plus potential
 	integer overflow vulnerability removed.

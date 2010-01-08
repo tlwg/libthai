@@ -30,7 +30,7 @@ typedef struct _BrkShot {
     int             penalty;
 } BrkShot;
 
-static void         brk_shot_init (BrkShot *dst, const BrkShot *src);
+static int          brk_shot_init (BrkShot *dst, const BrkShot *src);
 static void         brk_shot_reuse (BrkShot *dst, const BrkShot *src);
 static void         brk_shot_destruct (BrkShot *shot);
 
@@ -475,16 +475,19 @@ brk_get_dict ()
     return brk_dict;
 }
 
-static void
+static int
 brk_shot_init (BrkShot *dst, const BrkShot *src)
 {
     dst->dict_state = trie_state_clone (src->dict_state);
     dst->str_pos = src->str_pos;
-    dst->brk_pos = (int *) malloc (src->n_brk_pos * sizeof (int));
+    if (!(dst->brk_pos = (int *) malloc (src->n_brk_pos * sizeof (int))))
+        return -1;
     memcpy (dst->brk_pos, src->brk_pos, src->cur_brk_pos * sizeof (int));
     dst->n_brk_pos = src->n_brk_pos;
     dst->cur_brk_pos = src->cur_brk_pos;
     dst->penalty = src->penalty;
+
+    return 0;
 }
 
 static void
@@ -550,7 +553,10 @@ brk_pool_node_new (const BrkShot *shot)
         node = (BrkPool *) malloc (sizeof (BrkPool));
         if (!node)
             return NULL;
-        brk_shot_init (&node->shot, shot);
+        if (brk_shot_init (&node->shot, shot) != 0) {
+            free (node);
+            return NULL;
+        }
     }
 
     node->next = NULL;
