@@ -35,6 +35,19 @@ static int th_wthaichunk(thchar_t dest[], const thwchar_t *wsrc, size_t n)
     }
 }
 
+/**
+ * @brief  Normalize character order and remove excessive characters
+ *
+ * @param  wdest : the destination wide-char string buffer
+ * @param  wsrc  : the wide-char string to normalize
+ * @param  n     : the size of @a dest buffer (as number of elements)
+ *
+ * @return  total number of elements written to @a wdest, excluding the 
+ *          terminating '\\0'.
+ *
+ * Corrects combining character order and remove excessive characters.
+ * At most @a n characters are put in @a wdest.
+ */
 size_t th_wnormalize(thwchar_t wdest[], const thwchar_t *wsrc, size_t n)
 {
     size_t left = n;

@@ -1,3 +1,11 @@
+2010-01-09  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Move documentation from *.h to *.c, so libthai developers have the doc
+	at hand. Users can still read the doxygen-generated doc BTW.
+
+	* include/thai/*.h, src/*/*.c: Move doc comments from *.h to *.c.
+	* doc/Doxyfile.in: Set INPUT to @top_srcdir@.
+
 2010-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-{proper,common,geo}.txt: Add words.

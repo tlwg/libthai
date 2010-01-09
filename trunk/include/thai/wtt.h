@@ -95,19 +95,8 @@ typedef enum {
     SR  = 5   /**< STRICT REJECT - REJECT only if in strict mode */
 } WTTOp;
 
-/**
- * @brief  WTT character class
- * @param  c : the character
- * @return  WTT character class { CTRL, ..., AV3 }
- */
 extern WTTClass TACchtype(thchar_t c);
 
-/**
- * @brief  WTT I/O operation
- * @param  c1 : previous character
- * @param  c2 : next character
- * @return  WTT I/O operation { CP, XC, AC, RJ, SR }
- */
 extern WTTOp    TACio_op(thchar_t c1, thchar_t c2);
 
 /*

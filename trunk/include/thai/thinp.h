@@ -26,18 +26,6 @@ typedef enum {
     ISC_STRICT      = 2         /**< Strict check */
 } thstrict_t;
 
-/**
- * @brief  Check for acceptance of input sequence
- *
- * @param  c1 : previous character
- * @param  c2 : the newly input character
- * @param  s  : strictness level
- *
- * @return  non-zero if accepted, 0 otherwise
- *
- * Checks if, according to WTT 2.0 strictness level @a s, @a c2 is allowed 
- * after @a c1.
- */
 extern int th_isaccept(thchar_t c1, thchar_t c2, thstrict_t s);
 
 /**
@@ -48,20 +36,6 @@ struct thinpconv_t {
     int      offset;   /**< offset (<=0) from cur pos where the conv begin */
 };
 
-/**
- * @brief  Check and try to correct input sequence
- *
- * @param  context : previous cell
- * @param  c       : the newly input character
- * @param  conv    : the storage for resulting correction info
- *
- * @returns  0 if the input is to be rejected
- *           non-zero otherwise.
- *
- * Given the previous cell as @a context, edit the input buffer using
- * the given input @a c, maintaining WTT canonical order, and do some
- * convenient correction in @a conv.
- */
 extern int th_validate(struct thcell_t context, thchar_t c,
                        struct thinpconv_t *conv);
 

@@ -21,6 +21,19 @@ thbrk_on_unload ()
     brk_maximal_on_unload ();
 }
 
+/**
+ * @brief  Insert word delimitors in given string
+ *
+ * @param  in  : the input string to be processed
+ * @param  out : the output buffer
+ * @param  n   : the size of @a out
+ * @param  delim : the word delimitor to insert
+ *
+ * @return  the actual size of the processed string
+ *
+ * Analyzes the input string and store the string in output buffer
+ * with the given word delimitor inserted at every word boundary.
+ */
 int
 th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
 {
@@ -61,6 +74,18 @@ th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
     return p_out - out;
 }
 
+/**
+ * @brief  Find word break positions in Thai string
+ *
+ * @param  s   : the input string to be processed
+ * @param  pos : array to keep breaking positions
+ * @param  n   : size of @a pos[]
+ *
+ * @return  the actual number of breaking positions occurred
+ *
+ * Finds word break positions in Thai string @a s and stores at most @a n 
+ * breaking positions in @a pos[], from left to right.
+ */
 int
 th_brk (const thchar_t *s, int pos[], size_t n)
 {

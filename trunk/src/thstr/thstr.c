@@ -8,12 +8,24 @@
 #include <thai/thstr.h>
 #include <thai/thctype.h>
 
-/* FIXME: should use WTT 2.0 instead? */
+/**
+ * @brief  Normalize character order and remove excessive characters
+ *
+ * @param  dest : the destination string buffer
+ * @param  src  : the string to normalize
+ * @param  n    : the size of @a dest buffer
+ *
+ * @return  total bytes written to @a dest, excluding the terminating '\\0'.
+ *
+ * Corrects combining character order and remove excessive characters.
+ * At most @a n characters are put in @a dest.
+ */
 size_t th_normalize(thchar_t dest[], const thchar_t *src, size_t n)
 {
     thchar_t top, up, middle, low;
     size_t   left = n;
 
+    /* FIXME: should use WTT 2.0 instead? */
     top = up = middle = low = 0;
     while (*src && left > 1) {
         switch (th_chlevel(*src)) {
