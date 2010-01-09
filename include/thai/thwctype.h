@@ -17,93 +17,31 @@ BEGIN_CDECL
  * @brief  Thai wide-char character classifications
  */
 
-/**
- * @brief  Is the wide character convertible to a valid TIS-620 code?
- *
- * TIS-620 here means US-ASCII plus TIS-620 extension.
- */
 extern int th_wcistis(thwchar_t wc);
 
-/**
- * @brief  Is the wide character a Thai character?
- */
 extern int th_wcisthai(thwchar_t wc);
-/**
- * @brief  Is the wide character an English character?
- */
 extern int th_wciseng(thwchar_t wc);
 
 /* Thai letter classification */
-/**
- * @brief  Is the wide character a Thai consonant?
- */
 extern int th_wcisthcons(thwchar_t wc);
-/**
- * @brief  Is the wide character a Thai vowel?
- */
 extern int th_wcisthvowel(thwchar_t wc);
-/**
- * @brief  Is the wide character a Thai tone mark?
- */
 extern int th_wcisthtone(thwchar_t wc);
-/**
- * @brief  Is the wide character a Thai diacritic?
- */
 extern int th_wcisthdiac(thwchar_t wc);
-/**
- * @brief  Is the character a Thai digit?
- */
 extern int th_wcisthdigit(thwchar_t wc);
-/**
- * @brief  Is the character a Thai punctuation?
- */
 extern int th_wcisthpunct(thwchar_t wc);
 
 /* Thai consonant shapes classification */
-/**
- * @brief  Is the wide character a Thai consonant that fits the x-height?
- */
 extern int th_wcistaillesscons(thwchar_t wc);
-/**
- * @brief  Is the wide character a Thai consonant with stem above ascender?
- */
 extern int th_wcisovershootcons(thwchar_t wc);
-/**
- * @brief  Is the wide character a Thai consonant with stem below baseline?
- */
 extern int th_wcisundershootcons(thwchar_t wc);
-/**
- * @brief  Is the wide character a Thai consonant with split part below 
- *         baseline?
- */
 extern int th_wcisundersplitcons(thwchar_t wc);
 
 /* Thai vowel classification */
-/**
- * @brief  Is the wide character a Thai leading vowel?
- */
 extern int th_wcisldvowel(thwchar_t wc);
-/**
- * @brief  Is the wide character a Thai following vowel?
- */
 extern int th_wcisflvowel(thwchar_t wc);
-/**
- * @brief  Is the wide character a Thai upper vowel?
- */
 extern int th_wcisupvowel(thwchar_t wc);
-/**
- * @brief  Is the wide character a Thai below vowel?
- */
 extern int th_wcisblvowel(thwchar_t wc);
 
-/**
- * @brief  Position for rendering:
- *   @li   3 = above/top
- *   @li   2 = top
- *   @li   1 = above
- *   @li   0 = base
- *   @li  -1 = below
- */
 extern int th_wcchlevel(thwchar_t wc);
 
 

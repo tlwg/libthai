@@ -569,47 +569,106 @@ const int _th_chlevel_tbl[] = {
 #undef th_chlevel
 #undef th_iscombchar
 
+/**
+ * @brief  Is the character a valid TIS-620 code?
+ *
+ * TIS-620 here means US-ASCII plus TIS-620 extension. Character codes
+ * in CR area (0x80-0x9f), non-breaking space (0xa0), code gap range
+ * (0xdb-0xde and 0xfc-0xff) are excluded.
+ */
 int th_istis(thchar_t c)      { return _th_isctype(c, _th_IStis); }
 
+/**
+ * @brief  Is the character a Thai character?
+ */
 int th_isthai(thchar_t c)     { return th_istis(c) && ((c) & 0x80); }
+/**
+ * @brief  Is the character an English character?
+ */
 int th_iseng(thchar_t c)      { return isascii(c); }
 
 /* Thai letter classification */
+/**
+ * @brief  Is the character a Thai consonant?
+ */
 int th_isthcons(thchar_t c)   { return _th_isctype(c, _th_IScons); }
+/**
+ * @brief  Is the character a Thai vowel?
+ */
 int th_isthvowel(thchar_t c)  { return _th_isctype(c, _th_ISvowel); }
+/**
+ * @brief  Is the character a Thai tone mark?
+ */
 int th_isthtone(thchar_t c)   { return _th_isctype(c, _th_IStone); }
+/**
+ * @brief  Is the character a Thai diacritic?
+ */
 int th_isthdiac(thchar_t c)   { return _th_isctype(c, _th_ISdiac); }
+/**
+ * @brief  Is the character a Thai digit?
+ */
 int th_isthdigit(thchar_t c)  { return _th_isctype(c, _th_ISdigit); }
+/**
+ * @brief  Is the character a Thai punctuation?
+ */
 int th_isthpunct(thchar_t c)  { return _th_isctype(c, _th_ISpunct); }
 
 /* Thai consonant shapes classification */
+/**
+ * @brief  Is the character a Thai consonant that fits the x-height?
+ */
 int th_istaillesscons(thchar_t c)
 { return _th_isbits(c, _th_CClassMsk, _th_CCtailless); }
+/**
+ * @brief  Is the character a Thai consonant with stem above ascender?
+ */
 int th_isovershootcons(thchar_t c)
 { return _th_isbits(c, _th_CClassMsk, _th_CCovershoot); }
+/**
+ * @brief  Is the character a Thai consonant with stem below baseline?
+ */
 int th_isundershootcons(thchar_t c)
 { return _th_isbits(c, _th_CClassMsk, _th_CCundershoot); }
+/**
+ * @brief  Is the character a Thai consonant with split part below baseline?
+ */
 int th_isundersplitcons(thchar_t c)
 { return _th_isbits(c, _th_CClassMsk, _th_CCundersplit); }
 
 /* Thai vowel classification */
+/**
+ * @brief  Is the character a Thai leading vowel?
+ */
 int th_isldvowel(thchar_t c)
 { return _th_isbits(c, _th_VClassMsk, _th_VCldvowel); }
+/**
+ * @brief  Is the character a Thai following vowel?
+ */
 int th_isflvowel(thchar_t c)
 { return _th_isbits(c, _th_VClassMsk, _th_VCflvowel); }
+/**
+ * @brief  Is the character a Thai upper vowel?
+ */
 int th_isupvowel(thchar_t c)
 { return _th_isbits(c, _th_VClassMsk, _th_VCupvowel); }
+/**
+ * @brief  Is the character a Thai below vowel?
+ */
 int th_isblvowel(thchar_t c)
 { return _th_isbits(c, _th_VClassMsk, _th_VCblvowel); }
 
-/*
- * For rendering :
- *   2 = top
- *   1 = above
- *   0 = base
- *  -1 = below
+/**
+ * @brief  Position for rendering:
+ *   @li   3 = above/top
+ *   @li   2 = top
+ *   @li   1 = above
+ *   @li   0 = base
+ *   @li  -1 = below
  */
 int th_chlevel(thchar_t c)    { return _th_chlevel_tbl[c]; }
 
+/**
+ * @brief  Is the character a combining character?
+ */
 int th_iscombchar(thchar_t c) { return _th_chlevel_tbl[c] != 0; }
 

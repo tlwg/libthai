@@ -83,11 +83,27 @@ static thwchar_t tis620_2_uni_map_[128] = {
     0x0e58, 0x0e59, 0x0e5a, 0x0e5b, 0xf718, 0xf719, 0xf71a, WC_ERR
 };
 
+/**
+ * @brief  Convert character code from TIS-620 to Unicode
+ *
+ * @param  c : TIS-620 character to convert
+ *
+ * @return  Corresponding Unicode code
+ */
 thwchar_t th_tis2uni(thchar_t c)
 {
     return (c < 0x80) ? (thwchar_t)c : tis620_0_uni_map_[c-0x80];
 }
 
+/**
+ * @brief  Convert string from TIS-620 to Unicode
+ *
+ * @param  s      : source TIS-620 string (null-terminated)
+ * @param  result : buffer for storing resulting Unicode string
+ * @param  n      : size of @a result buffer (as number of elements)
+ *
+ * @return  the length of the output Unicode string
+ */
 int th_tis2uni_line(const thchar_t *s, thwchar_t result[], size_t n)
 {
     int left = n;
@@ -99,31 +115,65 @@ int th_tis2uni_line(const thchar_t *s, thwchar_t result[], size_t n)
     return n - left;
 }
 
+/**
+ * @brief  Convert character code from Thai Windows extended code to Unicode
+ *
+ * @param  c : Thai Windows character/glyph to convert
+ *
+ * @return  Corresponding Unicode code
+ */
 thwchar_t th_winthai2uni(thchar_t c)
 {
     return (c < 0x80) ? (thwchar_t)c : tis620_2_uni_map_[c-0x80];
 }
 
+/**
+ * @brief  Convert character code from Mac Thai extended code to Unicode
+ *
+ * @param  c : Mac Thai character/glyph to convert
+ *
+ * @return  Corresponding Unicode code
+ */
 thwchar_t th_macthai2uni(thchar_t c)
 {
     return (c < 0x80) ? (thwchar_t)c : tis620_1_uni_map_[c-0x80];
 }
 
 
-thchar_t th_uni2tis(thwchar_t c)
+/**
+ * @brief  Convert character code from Unicode to TIS-620
+ *
+ * @param  wc : Unicode character to convert
+ *
+ * @return  Corresponding TIS-620 code,
+ *          or @c TH_ERR if conversion is impossible
+ */
+thchar_t th_uni2tis(thwchar_t wc)
 {
-    if (c < 0x0080) { 
+    if (wc < 0x0080) { 
         /* BASIC_LATIN range */
-        return (thchar_t) c ;
-    } else if (0x0e00 <= c && c <= 0x0e5f) {
+        return (thchar_t) wc ;
+    } else if (0x0e00 <= wc && wc <= 0x0e5f) {
         /* THAI range */
-        return uni_tis620_0_map_[c-0x0e00];
+        return uni_tis620_0_map_[wc-0x0e00];
     } else {
         /* out of range */
         return TH_ERR;
     }
 }
 
+/**
+ * @brief  Convert string from Unicode to TIS-620
+ *
+ * @param  s      : source Unicode string (null-terminated)
+ * @param  result : buffer for storing resulting TIS-620 string
+ * @param  n      : size of @a result buffer (as number of elements)
+ *
+ * @return  the length of the output TIS-620 string
+ *
+ * Note that, since the conversion is lossy, some characters in the 
+ * convesion result may be @c TH_ERR, indicating conversion error.
+ */
 int th_uni2tis_line(const thwchar_t *s, thchar_t result[], size_t n)
 {
     int left = n;
@@ -146,12 +196,28 @@ static thchar_t uni2thai_ext_(thwchar_t wc, const thwchar_t rev_map[])
     return TH_ERR;
 }
 
+/**
+ * @brief  Convert character code from Unicode to Thai Windows extended code
+ *
+ * @param  wc : Unicode code to convert
+ *
+ * @return  Corresponding Thai Windows extended code,
+ *          or @c TH_ERR if conversion is impossible
+ */
 thchar_t th_uni2winthai(thwchar_t wc)
 {
     thchar_t c = th_uni2tis(wc);
     return (c == TH_ERR) ? uni2thai_ext_(wc, tis620_2_uni_map_) : c;
 }
 
+/**
+ * @brief  Convert character code from Unicode to Mac Thai extended code
+ *
+ * @param  wc : Unicode code to convert
+ *
+ * @return  Corresponding Mac Thai extended code,
+ *          or @c TH_ERR if conversion is impossible
+ */
 thchar_t th_uni2macthai(thwchar_t wc)
 {
     thchar_t c = th_uni2tis(wc);

@@ -12,6 +12,18 @@
 #include <thai/wtt.h>
 
 
+/**
+ * @brief  Check for acceptance of input sequence
+ *
+ * @param  c1 : previous character
+ * @param  c2 : the newly input character
+ * @param  s  : strictness level
+ *
+ * @return  non-zero if accepted, 0 otherwise
+ *
+ * Checks if, according to WTT 2.0 strictness level @a s, @a c2 is allowed 
+ * after @a c1.
+ */
 int th_isaccept(thchar_t c1, thchar_t c2, thstrict_t s)
 {
     switch (s) {
@@ -53,6 +65,20 @@ static int correct_(thchar_t c_1, thchar_t c, thchar_t conv[3])
     return 0;
 }
 
+/**
+ * @brief  Check and try to correct input sequence
+ *
+ * @param  context : previous cell
+ * @param  c       : the newly input character
+ * @param  conv    : the storage for resulting correction info
+ *
+ * @returns  0 if the input is to be rejected
+ *           non-zero otherwise.
+ *
+ * Given the previous cell as @a context, edit the input buffer using
+ * the given input @a c, maintaining WTT canonical order, and do some
+ * convenient correction in @a conv.
+ */
 int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
 {
     thchar_t prev_c = context.top ?

@@ -50,6 +50,15 @@ static const thchar_t* th_non_ignore_(const thchar_t* p, int level)
     return p;
 }
 
+/**
+ * @brief  Compare two Thai strings for collation
+ *
+ * @param  s1 : first string (null-terminated)
+ * @param  s2 : second string (null-terminated)
+ *
+ * @return  < 0 if @a s1 precedes @a s2; 0 if @a s1 equals @a s2;
+ *          > 0 if @a s1 succeeds @a s2
+ */
 int th_strcoll(const thchar_t *s1, const thchar_t *s2)
 {
     const thchar_t *p1, *p2;
@@ -120,6 +129,21 @@ static int th_put_weight_(thchar_t *dst, size_t n, thchar_t w, int *d)
     return 0;
 }
 
+/**
+ * @brief  Transform string into collatable form
+ *
+ * @param  dest : the destination string buffer
+ * @param  src  : the string to transform
+ * @param  n    : the size of @a dest buffer
+ *
+ * @returns  the number of bytes required to store the result in @a dest,
+ *           excluding the terminating '\\0'.
+ *           If the return value >= @a n, @a dest is undefined.
+ *
+ * Transforms @a src into a form from which comparison using strcmp() yields
+ * the same result as that from th_strcoll(). At most @a n characters are
+ * put in @a dest.
+ */
 size_t th_strxfrm(thchar_t dest[], const thchar_t *src, size_t n)
 {
     const thchar_t *p;

@@ -310,99 +310,33 @@ BEGIN_CDECL
  * TONE, AD and AV are classified as dead character.
  */
 
-/**
- * @brief  Is the character a valid TIS-620 code?
- *
- * TIS-620 here means US-ASCII plus TIS-620 extension. Character codes
- * in CR area (0x80-0x9f), non-breaking space (0xa0), code gap range
- * (0xdb-0xde and 0xfc-0xff) are excluded.
- */
 extern int th_istis(thchar_t c);
 
-/**
- * @brief  Is the character a Thai character?
- */
 extern int th_isthai(thchar_t c);
-/**
- * @brief  Is the character an English character?
- */
 extern int th_iseng(thchar_t c);
 
 /* Thai letter classification */
-/**
- * @brief  Is the character a Thai consonant?
- */
 extern int th_isthcons(thchar_t c);
-/**
- * @brief  Is the character a Thai vowel?
- */
 extern int th_isthvowel(thchar_t c);
-/**
- * @brief  Is the character a Thai tone mark?
- */
 extern int th_isthtone(thchar_t c);
-/**
- * @brief  Is the character a Thai diacritic?
- */
 extern int th_isthdiac(thchar_t c);
-/**
- * @brief  Is the character a Thai digit?
- */
 extern int th_isthdigit(thchar_t c);
-/**
- * @brief  Is the character a Thai punctuation?
- */
 extern int th_isthpunct(thchar_t c);
 
 /* Thai consonant shapes classification */
-/**
- * @brief  Is the character a Thai consonant that fits the x-height?
- */
 extern int th_istaillesscons(thchar_t c);
-/**
- * @brief  Is the character a Thai consonant with stem above ascender?
- */
 extern int th_isovershootcons(thchar_t c);
-/**
- * @brief  Is the character a Thai consonant with stem below baseline?
- */
 extern int th_isundershootcons(thchar_t c);
-/**
- * @brief  Is the character a Thai consonant with split part below baseline?
- */
 extern int th_isundersplitcons(thchar_t c);
 
 /* Thai vowel classification */
-/**
- * @brief  Is the character a Thai leading vowel?
- */
 extern int th_isldvowel(thchar_t c);
-/**
- * @brief  Is the character a Thai following vowel?
- */
 extern int th_isflvowel(thchar_t c);
-/**
- * @brief  Is the character a Thai upper vowel?
- */
 extern int th_isupvowel(thchar_t c);
-/**
- * @brief  Is the character a Thai below vowel?
- */
 extern int th_isblvowel(thchar_t c);
 
-/**
- * @brief  Position for rendering:
- *   @li   3 = above/top
- *   @li   2 = top
- *   @li   1 = above
- *   @li   0 = base
- *   @li  -1 = below
- */
 extern int th_chlevel(thchar_t c);
 
-/**
- * @brief  Is the character a combining character?
- */
 extern int th_iscombchar(thchar_t c);
 
 /*

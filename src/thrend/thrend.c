@@ -116,6 +116,22 @@ int th_render_cell_(struct thcell_t cell,
     return res_sz - left;
 }
 
+/**
+ * @brief  Render the given cell using TIS-620 glyph set
+ *
+ * @param  cell   : the cell to render
+ * @param  res    : the buffer for storing output glyph string
+ * @param  res_sz : the size of @a res buffer
+ * @param  is_decomp_am : whether SARA AM is to be decomposed into 
+ *                        NIKHANIT and SARA AA and to be in separate cells
+ *
+ * @return  total number of glyphs written to @a res[]
+ *
+ * Calculates glyphs from TIS-620 glyph set for the given @a cell,
+ * and store the glyph string in @a res, terminated with '\\0'.
+ * If resulting glyphs are longer than the provided buffer, only
+ * the first @a res_sz glyphs are stored.
+ */
 int th_render_cell_tis(struct thcell_t cell,
                        thglyph_t res[], size_t res_sz,
                        int is_decomp_am)
@@ -138,6 +154,22 @@ int th_render_cell_tis(struct thcell_t cell,
     return res_sz - left;
 }
 
+/**
+ * @brief  Render the given cell using Thai Windows glyph set
+ *
+ * @param  cell   : the cell to render
+ * @param  res    : the buffer for storing output glyph string
+ * @param  res_sz : the size of @a res buffer
+ * @param  is_decomp_am : whether SARA AM is to be decomposed into 
+ *                        NIKHANIT and SARA AA and to be in separate cells
+ *
+ * @return  total number of glyphs written to @a res[]
+ *
+ * Calculates glyphs from Thai Windows glyph set for the given @a cell,
+ * and store the glyph string in @a res, terminated with '\\0'.
+ * If resulting glyphs are longer than the provided buffer, only
+ * the first @a res_sz glyphs are stored.
+ */
 int th_render_cell_win(struct thcell_t cell,
                        thglyph_t res[], size_t res_sz,
                        int is_decomp_am)
@@ -145,6 +177,22 @@ int th_render_cell_win(struct thcell_t cell,
     return th_render_cell_(cell, res, res_sz, is_decomp_am, &Win_shape_table_);
 }
 
+/**
+ * @brief  Render the given cell using Mac Thai glyph set
+ *
+ * @param  cell   : the cell to render
+ * @param  res    : the buffer for storing output glyph string
+ * @param  res_sz : the size of @a res buffer
+ * @param  is_decomp_am : whether SARA AM is to be decomposed into 
+ *                        NIKHANIT and SARA AA and to be in separate cells
+ *
+ * @return  total number of glyphs written to @a res[]
+ *
+ * Calculates glyphs from Mac Thai glyph set for the given @a cell,
+ * and store the glyph string in @a res, terminated with '\\0'.
+ * If resulting glyphs are longer than the provided buffer, only
+ * the first @a res_sz glyphs are stored.
+ */
 int th_render_cell_mac(struct thcell_t cell,
                        thglyph_t res[], size_t res_sz,
                        int is_decomp_am)
@@ -175,6 +223,22 @@ int th_render_text(const thchar_t *s,
     return res_sz - left;
 }
 
+/**
+ * @brief  Render the given text using TIS-620 glyph set
+ *
+ * @param  s      : the string to render
+ * @param  res    : the buffer for storing output glyph string
+ * @param  res_sz : the size of @a res buffer
+ * @param  is_decomp_am : whether SARA AM is to be decomposed into 
+ *                        NIKHANIT and SARA AA and to be in separate cells
+ *
+ * @return  total number of glyphs written to @a res[]
+ *
+ * Calculates glyphs from TIS-620 glyph set for the given string @a s,
+ * and store the glyph string in @a res, terminated with '\\0'.
+ * If resulting glyphs are longer than the provided buffer, only
+ * the first @a res_sz glyphs are stored.
+ */
 int th_render_text_tis(const thchar_t *s,
                        thglyph_t res[], size_t res_sz,
                        int is_decomp_am)
@@ -182,6 +246,22 @@ int th_render_text_tis(const thchar_t *s,
     return th_render_text(s, res, res_sz, is_decomp_am, th_render_cell_tis);
 }
 
+/**
+ * @brief  Render the given text using Thai Windows glyph set
+ *
+ * @param  s      : the string to render
+ * @param  res    : the buffer for storing output glyph string
+ * @param  res_sz : the size of @a res buffer
+ * @param  is_decomp_am : whether SARA AM is to be decomposed into 
+ *                        NIKHANIT and SARA AA and to be in separate cells
+ *
+ * @return  total number of glyphs written to @a res[]
+ *
+ * Calculates glyphs from Thai Windows glyph set for the given string @a s,
+ * and store the glyph string in @a res, terminated with '\\0'.
+ * If resulting glyphs are longer than the provided buffer, only
+ * the first @a res_sz glyphs are stored.
+ */
 int th_render_text_win(const thchar_t *s,
                        thglyph_t res[], size_t res_sz,
                        int is_decomp_am)
@@ -189,6 +269,22 @@ int th_render_text_win(const thchar_t *s,
     return th_render_text(s, res, res_sz, is_decomp_am, th_render_cell_win);
 }
 
+/**
+ * @brief  Render the given text using Mac Thai glyph set
+ *
+ * @param  s      : the string to render
+ * @param  res    : the buffer for storing output glyph string
+ * @param  res_sz : the size of @a res buffer
+ * @param  is_decomp_am : whether SARA AM is to be decomposed into 
+ *                        NIKHANIT and SARA AA and to be in separate cells
+ *
+ * @return  total number of glyphs written to @a res[]
+ *
+ * Calculates glyphs from Mac Thai glyph set for the given string @a s,
+ * and store the glyph string in @a res, terminated with '\\0'.
+ * If resulting glyphs are longer than the provided buffer, only
+ * the first @a res_sz glyphs are stored.
+ */
 int th_render_text_mac(const thchar_t *s,
                        thglyph_t res[], size_t res_sz,
                        int is_decomp_am)

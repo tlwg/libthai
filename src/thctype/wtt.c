@@ -69,11 +69,22 @@ short TACio_op_[17][17] = {
 #undef TACchtype
 #undef TACio_op
 
+/**
+ * @brief  WTT character class
+ * @param  c : the character
+ * @return  WTT character class { CTRL, ..., AV3 }
+ */
 WTTClass TACchtype(thchar_t c)
 {
     return TACchtype_[c];
 }
 
+/**
+ * @brief  WTT I/O operation
+ * @param  c1 : previous character
+ * @param  c2 : next character
+ * @return  WTT I/O operation { CP, XC, AC, RJ, SR }
+ */
 WTTOp    TACio_op(thchar_t c1, thchar_t c2)
 {
     return TACio_op_[TACchtype_[c1]][TACchtype_[c2]];
