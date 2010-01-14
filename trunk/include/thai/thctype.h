@@ -376,7 +376,7 @@ extern const unsigned short _th_ctype_tbl[];
 #define th_istis(c)         _th_isctype((c), _th_IStis)
 
 #define th_isthai(c)        (th_istis(c) && ((c) & 0x80))
-#define th_iseng(c)         isascii(c)
+#define th_iseng(c)         (!((c) & 0x80))
 
 /* Thai letter classification */
 #define th_isthcons(c)      _th_isctype((c), _th_IScons)
