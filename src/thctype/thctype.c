@@ -585,7 +585,7 @@ int th_isthai(thchar_t c)     { return th_istis(c) && ((c) & 0x80); }
 /**
  * @brief  Is the character an English character?
  */
-int th_iseng(thchar_t c)      { return isascii(c); }
+int th_iseng(thchar_t c)      { return !((c) & 0x80); }
 
 /* Thai letter classification */
 /**

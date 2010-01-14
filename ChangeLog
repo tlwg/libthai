@@ -1,5 +1,10 @@
 2010-01-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* include/thai/thctype.h, src/thctype/thctype.c: Replace non-portable
+	isascii() with most-significant bit check.
+
+2010-01-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-{common,geo}.txt: Add words.
 
 2010-01-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
