@@ -1,5 +1,9 @@
 2010-01-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-{common,geo}.txt: Add words.
+
+2010-01-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* include/thai/thailib.h, src/libthai.c: Move more doc comments.
 
 2010-01-09  Theppitak Karoonboonyanan  <thep@linux.thai.net>
