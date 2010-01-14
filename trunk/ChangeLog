@@ -1,3 +1,7 @@
+2010-01-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thailib.h, src/libthai.c: Move more doc comments.
+
 2010-01-09  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	Move documentation from *.h to *.c, so libthai developers have the doc
