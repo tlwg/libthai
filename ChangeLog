@@ -1,5 +1,12 @@
 2010-01-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* configure.in: Bump library revision.
+
+	* configure.in, NEWS:
+	=== Version 0.1.13 ===
+
+2010-01-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* configure.in: Add 'AC_CONFIG_MACRO_DIR([m4])' for the new libtool.
 
 2010-01-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
