@@ -1,5 +1,9 @@
 2010-01-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* configure.in: Add 'AC_CONFIG_MACRO_DIR([m4])' for the new libtool.
+
+2010-01-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/thwchar/thwchar.c (th_tis2uni_line, th_uni2tis_line):
 	Fix type of 'result' argument to match that in header file, so
 	doxygen recognizes and generates doc for it.
