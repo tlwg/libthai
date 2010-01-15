@@ -1,0 +1,112 @@
+.\" (c) 2001 by Poonlap Veerathanabutr (Poonlap.Veerathanabutr@sun.co.jp)
+.\"
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
+.\"
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one
+.\" 
+.\" The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\" 
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
+.\" License.
+.\" $Id: wtt.3,v 1.3 2006-08-01 11:38:21 thep Exp $
+.TH wtt 3  "Sep 16, 2001" "Thai Linux Working Group" "libthai's Manual"
+.SH NAME
+\fBwtt\fR \- WTT I/O implementation
+.sp
+\fBTAC_chtype\fR \- Determine type of a character defined by TACTIS.
+.br
+\fBTACio_op \- Check composibility of two chracters.
+.SH SYNOPSIS
+\fB#include <thai/wtt.h>\fR
+.br
+\fIint\fR \fBTACchtype\fR(\fIthchar_t c\fR);
+.br
+\fIint\fR \fBTACio_op\fR(\fIthchar_t c1\fR, \fIthchar_t c2\fR);
+.br
+.SH DESCRIPTION
+WTT stands for Wing Tuk Tee (in Thai, Runs everywhere). It was defined by TACTIS (Thai API Consortium/Thai Industrial Standard) in the NECTEC Thai Software Standard Project (1989-1991), and later endorsed by Thai Industrial Standard Institute (TISI) as TIS 1566-2541 in 1998.
+.PP
+WTT classifies Thai chracter(TIS-620) into 17 types below.
+.sp
+\fITYPE  VALUE SHORT_DESCRIPTION\fR
+.br
+CTRL    0    control characters
+.br
+NON     1    non composible characters
+.br
+CONS    2    consonants
+.br
+LV      3    leading vowels
+.br
+FV1     4    following vowels 1
+.br
+FV2     5    following vowels 2
+.br
+FV3     6    following vowels 3
+.br
+BV1     7    below vowels 1
+.br
+BV2     8    below vowels 2
+.br
+BD      9    below diacritics
+.br
+TONE    10   tonemarks
+.br
+AD1     11   above diacritics 1
+.br
+AD2     12   above diacritics 2
+.br
+AD3     13   above diacritics 3
+.br
+AV1     14   above vowels 1
+.br
+AV2     15   above vowels 2
+.br
+AV3     16   above vowels 3
+.sp
+Functions in \fBthctype\fR do basic character classifications while \fBwtt\fR classifies a chracter in detail. Please refer to the reference.
+.sp
+\fBTACio_op\fR checks how to compose two given chracters. The possiblities are Composible(CP), Non-display(XC), Accept(AC), Reject(RJ) and Strict Reject(SR). The values of CP, XC, AC, RJ and SR are difined in wtt.h. And their meanings are:
+.sp
+CP : second character is displayed in the same cell as the first, also implies an acceptance. 
+.br
+XC : Do nothing.
+.br
+AC : Display second character in the next cell.
+.br
+RJ : Discard second character.
+.br
+SR : Reject second character only in strict mode.
+.SH RETURN VALUE
+\fBTACchtype\fR returns an interger defined in the file wtt.h.
+.br
+\fBTACio_op\fR returns CP, XC, AC, RJ or SR.
+.SH "SEE ALSO"
+.B libthai(3), thctype(3)
+.br
+"Thai Input and Output Methods" by Dr.Thaweesak Koanantokool
+.SH AUTHORS
+\fBProject Leader\fR
+.br
+Theppitak Karoonboonyanan <thep@linux.thai.net>
+.br
+\fBMembers\fR
+.br
+Chanop Silpa-Anan <chanop@syseng.anu.edu.au>
+.br
+Pattara Kiatisevi <ott@linux.thai.net>
+.br
+Vuthichai Ampornaramveth <vuthi@nii.ac.jp>
+.br
+Poonlap Veerathanabutr <Poonlap.Veerathanabutr@sun.co.jp>
