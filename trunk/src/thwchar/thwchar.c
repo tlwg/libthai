@@ -104,7 +104,7 @@ thwchar_t th_tis2uni(thchar_t c)
  *
  * @return  the length of the output Unicode string
  */
-int th_tis2uni_line(const thchar_t *s, thwchar_t result[], size_t n)
+int th_tis2uni_line(const thchar_t *s, thwchar_t *result, size_t n)
 {
     int left = n;
     while (*s && left > 1) {
@@ -174,7 +174,7 @@ thchar_t th_uni2tis(thwchar_t wc)
  * Note that, since the conversion is lossy, some characters in the 
  * convesion result may be @c TH_ERR, indicating conversion error.
  */
-int th_uni2tis_line(const thwchar_t *s, thchar_t result[], size_t n)
+int th_uni2tis_line(const thwchar_t *s, thchar_t *result, size_t n)
 {
     int left = n;
     while (*s && left > 1) {
