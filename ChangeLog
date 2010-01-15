@@ -1,5 +1,11 @@
 2010-01-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thwchar/thwchar.c (th_tis2uni_line, th_uni2tis_line):
+	Fix type of 'result' argument to match that in header file, so
+	doxygen recognizes and generates doc for it.
+
+2010-01-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-{proper,common}.txt: Add words.
 
 2010-01-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
