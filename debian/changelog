@@ -1,3 +1,14 @@
+libthai (0.1.13-1) unstable; urgency=high
+
+  * New upstream security update release
+    - Fix integer overflow vulnerabilities (CVE-2009-4012).
+  * debian/rules: Fix failure to build twice in a row:
+    - Fix typo '$(MAKE) maintainerclan'
+    - Clean other changed files left over from 'make maintainer-clean'
+    - 'config.status' depends on 'configure.in' instead of 'configure'
+
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Fri, 15 Jan 2010 17:37:19 +0700
+
 libthai (0.1.12-2) unstable; urgency=low
 
   * debian/control:
