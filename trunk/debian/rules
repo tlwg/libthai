@@ -34,7 +34,7 @@ LDFLAGS = -Wl,-z,defs
 SHARED_PKG := libthai0
 SHLIB_VER := 0.1.12
 
-config.status: configure
+config.status: configure.in
 	dh_testdir
 
 	[ -d m4 ] || mkdir m4
@@ -72,7 +72,10 @@ clean:
 	dh_testroot
 
 	# Add here commands to clean up after the build process.
-	[ ! -f Makefile ] || $(MAKE) maintainerclean
+	[ ! -f Makefile ] || $(MAKE) maintainer-clean
+	rm -f aclocal.m4 configure ltmain.sh
+	find . -name Makefile.in -exec rm -f {} \;
+	rm -rf m4
 
 	dh_clean
 
