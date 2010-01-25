@@ -213,6 +213,8 @@ brk_maximal_do_impl (const thchar_t *s, int len,
 
     pool = brk_root_pool (n);
     best_brk = best_brk_new (n);
+    if (!best_brk)
+        return 0;
     recov_hist.pos = recov_hist.recov = -1;
 
     while (NULL != (node = brk_pool_get_node (pool))) {
@@ -413,7 +415,9 @@ brk_root_pool (int pos_size)
     root_shot.penalty = 0;
 
     node = brk_pool_node_new (&root_shot);
-    pool = brk_pool_add (pool, node);
+    if (node) {
+        pool = brk_pool_add (pool, node);
+    }
 
     brk_shot_destruct (&root_shot);
 
