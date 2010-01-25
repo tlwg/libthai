@@ -1,5 +1,12 @@
 2010-01-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/brk-maximal.c (brk_root_pool): Fail if brk_pool_node_new()
+	returns NULL.
+	* src/brk-maximal.c (brk_maximal_do_impl): Fail if best_brk_new()
+	returns NULL.
+
+2010-01-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* configure.in: Post-release version suffix added.
 
 2010-01-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
