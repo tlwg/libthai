@@ -1,5 +1,10 @@
 2010-02-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thbrk/brk-maximal.c (brk_root_pool): Fail if brk_get_dict()
+	returns NULL.
+
+2010-02-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-{ict,proper,common,science}.txt: Add words.
 
 2010-01-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>

@@ -402,13 +402,16 @@ brk_recover_try (const thchar_t *s, int len,
 static BrkPool *
 brk_root_pool (int pos_size)
 {
+    Trie       *dict;
     BrkPool    *pool;
     BrkPool    *node;
     BrkShot     root_shot;
 
     pool = NULL;
 
-    root_shot.dict_state = trie_root (brk_get_dict());
+    if (NULL == (dict = brk_get_dict()))
+        return NULL;
+    root_shot.dict_state = trie_root (dict);
     root_shot.brk_pos = NULL; /* it's not used anyway */
     root_shot.n_brk_pos = pos_size;
     root_shot.str_pos = root_shot.cur_brk_pos = 0;
