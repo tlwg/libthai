@@ -1,3 +1,8 @@
+2010-02-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* doc/Makefile.am: Add *.c to doxygen.stamp dependency, as the doc
+	comments have been moved there.
+
 2010-02-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thbrk/brk-maximal.c (brk_root_pool): Fail if brk_get_dict()
