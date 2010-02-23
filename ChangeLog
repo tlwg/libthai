@@ -1,5 +1,10 @@
 2010-02-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* doc/Makefile.am: The added *.c dependencies must be from src/*/*.c,
+	not include/thai/*.c. Silly copy-and-paste error.
+
+2010-02-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* doc/Makefile.am: Add *.c to doxygen.stamp dependency, as the doc
 	comments have been moved there.
 
