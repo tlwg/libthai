@@ -89,7 +89,7 @@ $(man_MANS): doxygen.stamp
 
 all-local: doxygen.stamp
 
-doxygen.stamp: $(top_srcdir)/include/thai/*.h $(top_srcdir)/include/thai/*.c
+doxygen.stamp: $(top_srcdir)/include/thai/*.h $(top_srcdir)/src/*/*.c
 	$(DOXYGEN)
 	touch doxygen.stamp
 
