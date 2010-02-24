@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * libthai - Thai Language Support Library
  * Copyright (C) 2001  Theppitak Karoonboonyanan
@@ -38,7 +39,8 @@
  * Corrects combining character order and remove excessive characters.
  * At most @a n characters are put in @a dest.
  */
-size_t th_normalize(thchar_t dest[], const thchar_t *src, size_t n)
+size_t
+th_normalize (thchar_t dest[], const thchar_t *src, size_t n)
 {
     thchar_t top, up, middle, low;
     size_t   left = n;
@@ -46,28 +48,43 @@ size_t th_normalize(thchar_t dest[], const thchar_t *src, size_t n)
     /* FIXME: should use WTT 2.0 instead? */
     top = up = middle = low = 0;
     while (*src && left > 1) {
-        switch (th_chlevel(*src)) {
-        case 0 : 
+        switch (th_chlevel (*src)) {
+        case 0: 
             if (middle) {
                 *dest++ = middle; --left;
                 if (left > 1) {
-                    if (low) { *dest++ = low; --left; }
-                    else if (up) { *dest++ = up; --left; }
+                    if (low) {
+                        *dest++ = low; --left;
+                    } else if (up) {
+                        *dest++ = up; --left;
+                    }
                 }
-                if (left > 1 && top) { *dest++ = top; --left; }
+                if (left > 1 && top) {
+                    *dest++ = top; --left;
+                }
             }
             top = up = low = 0;
-            middle = *src; break;
-        case -1 : 
-            low = *src; break;
-        case 1 : 
-            if (up && th_chlevel (up) == 3) { top = up; }
-            up = *src; break;
+            middle = *src;
+            break;
+        case -1: 
+            low = *src;
+            break;
+        case 1: 
+            if (up && th_chlevel (up) == 3) {
+                top = up;
+            }
+            up = *src;
+            break;
         case 2 : 
-            top = *src; break;
+            top = *src;
+            break;
         case 3 : 
-            if (!up) { up = *src; }
-            else { top = *src; }
+            if (!up) {
+                up = *src;
+            } else {
+                top = *src;
+            }
+            break;
         }
         ++src;
     }
@@ -75,13 +92,21 @@ size_t th_normalize(thchar_t dest[], const thchar_t *src, size_t n)
     if (left > 1 && middle) {
         *dest++ = middle; --left;
         if (left > 1) {
-            if (low) { *dest++ = low; --left; }
-            else if (up) { *dest++ = up; --left; }
+            if (low) {
+                *dest++ = low; --left;
+            } else if (up) {
+                *dest++ = up; --left;
+            }
         }
-        if (left > 1 && top) { *dest++ = top; --left; }
+        if (left > 1 && top) {
+            *dest++ = top; --left;
+        }
     }
     *dest = 0;
 
     return n - left;
 }
 
+/*
+vi:ts=4:ai:expandtab
+*/
