@@ -1,3 +1,8 @@
+2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/*.h, src/*.c, src/*/*.c: Add license header to every
+	source file.
+
 2010-02-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* doc/Makefile.am: The added *.c dependencies must be from src/*/*.c,
