@@ -1,5 +1,22 @@
 2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	Replace <thai/tis.h> with a rewritten one, so we can enforce the
+	license.
+
+	* include/thai/tis.h:
+	Rewritten based on Unicode names, with TIS_ prefix.
+
+	* src/thinp/thinp.c (corrections, th_validate),
+	* src/thrend/thrend.c (shiftdown_tone_ad, shiftdownleft_tone_ad,
+	  shiftleft_tone_ad, shiftdown_bv_bd, tailcutcons, th_render_cell_,
+	  th_render_cell_tis),
+	* src/thbrk/brk-maximal.c (th_brkpos_hints),
+	* src/thcell/thcell.c (th_next_cell, th_prev_cell),
+	* tests/test_thcell.c (test_ans_nodecomp_am, test_ans_decomp_am):
+	Update character names to the new TIS_* ones.
+
+2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* include/thai/*.h, src/*.c, src/*/*.c,
 	* Makefile.am, include/Makefile.am, include/thai/Makefile.am,
 	* src/Makefile.am, src/*/Makefile.am,
