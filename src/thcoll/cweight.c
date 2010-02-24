@@ -464,16 +464,16 @@ static thchar_t char_weight_tbl_[TOT_CHARS][TOT_LEVELS] = {
 };
 
 
-thchar_t th_char_weight_(thchar_t c, int level)
+thchar_t
+th_char_weight_(thchar_t c, int level)
 {
     if (0 <= level && level < TOT_LEVELS)
-    {
         return char_weight_tbl_[c][level];
-    }
     return IGNORE;
 }
 
-thchar_t th_char_weight_delim_(int level)
+thchar_t
+th_char_weight_delim_(int level)
 {
     assert(0 <= level && level < TOT_LEVELS);
     return (thchar_t)(TOT_LEVELS - level);

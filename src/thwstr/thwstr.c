@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * libthai - Thai Language Support Library
  * Copyright (C) 2001  Theppitak Karoonboonyanan
@@ -29,14 +30,16 @@
 #include <stdlib.h>
 #include <assert.h>
 
-static int th_wthaichunk(thchar_t dest[], const thwchar_t *wsrc, size_t n)
+static int
+th_wthaichunk (thchar_t dest[], const thwchar_t *wsrc, size_t n)
 {
-    if (*wsrc == 0) { return 0; }
+    if (*wsrc == 0)
+        return 0;
 
-    if (th_uni2tis(*wsrc) == THCHAR_ERR) {
+    if (th_uni2tis (*wsrc) == THCHAR_ERR) {
         /* skip THCHAR_ERR chunk */
         int len = 0;
-        while (*wsrc && th_uni2tis(*wsrc) == THCHAR_ERR) {
+        while (*wsrc && th_uni2tis (*wsrc) == THCHAR_ERR) {
             ++wsrc; ++len;
         }
         return -len; /* always non-positive */
@@ -45,7 +48,7 @@ static int th_wthaichunk(thchar_t dest[], const thwchar_t *wsrc, size_t n)
         thchar_t c;
 
         /* convert Thai chunk */
-        while (left > 1 && *wsrc && (c = th_uni2tis(*wsrc)) != THCHAR_ERR) {
+        while (left > 1 && *wsrc && (c = th_uni2tis (*wsrc)) != THCHAR_ERR) {
             *dest++ = c; ++wsrc; --left;
         }
         *dest = 0;
@@ -66,20 +69,21 @@ static int th_wthaichunk(thchar_t dest[], const thwchar_t *wsrc, size_t n)
  * Corrects combining character order and remove excessive characters.
  * At most @a n characters are put in @a wdest.
  */
-size_t th_wnormalize(thwchar_t wdest[], const thwchar_t *wsrc, size_t n)
+size_t
+th_wnormalize (thwchar_t wdest[], const thwchar_t *wsrc, size_t n)
 {
     size_t left = n;
     thchar_t *src8 = (thchar_t*) malloc(n * sizeof (thchar_t));
     thchar_t *norm8 = (thchar_t*) malloc(n * sizeof (thchar_t));
 
     while (left > 1 && *wsrc) {
-        int chunk_len = th_wthaichunk(src8, wsrc, n-1);
+        int chunk_len = th_wthaichunk (src8, wsrc, n-1);
         src8[n-1] = 0;  /* ensure null-termination */
-	if (chunk_len > 0) {
+        if (chunk_len > 0) {
             int i;
-            int norm_len = th_normalize(norm8, src8, n);
+            int norm_len = th_normalize (norm8, src8, n);
             for (i = 0; left > 1 && i < norm_len; ++i) {
-                *wdest++ = th_tis2uni(norm8[i]); --left;
+                *wdest++ = th_tis2uni (norm8[i]); --left;
             }
         } else {
             int i;
@@ -88,15 +92,18 @@ size_t th_wnormalize(thwchar_t wdest[], const thwchar_t *wsrc, size_t n)
                 *wdest++ = wsrc[i]; --left;
             }
         }
-        assert(chunk_len >= 0);
+        assert (chunk_len >= 0);
         wsrc += chunk_len;
     }
 
     *wdest = 0;
 
-    free(norm8);
-    free(src8);
+    free (norm8);
+    free (src8);
 
     return n - left;
 }
 
+/*
+vi:ts=4:ai:expandtab
+*/

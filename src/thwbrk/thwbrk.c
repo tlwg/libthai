@@ -46,23 +46,24 @@
  * Finds word break positions in Thai string @a s and stores at most @a n 
  * breaking positions in @a pos[], from left to right.
  */
-int th_wbrk (const thwchar_t *s, int pos[], size_t n)
+int
+th_wbrk (const thwchar_t *s, int pos[], size_t n)
 {
     thchar_t*   tis_str;
     size_t      alloc_size;
     int         ret;
 
     /* convert to tis-620 string */
-    alloc_size = wcslen(s) + 1;
-    tis_str = malloc(alloc_size);
+    alloc_size = wcslen (s) + 1;
+    tis_str = malloc (alloc_size);
     if (!tis_str)
         return 0;
-    th_uni2tis_line(s, tis_str, alloc_size);
+    th_uni2tis_line (s, tis_str, alloc_size);
   
     /* do word break */
-    ret = th_brk(tis_str, pos, n);
+    ret = th_brk (tis_str, pos, n);
 
-    free(tis_str);
+    free (tis_str);
 
     return ret;
 }
@@ -80,8 +81,9 @@ int th_wbrk (const thwchar_t *s, int pos[], size_t n)
  * Analyzes the input string and store the string in output buffer
  * with the given word delimitor inserted at every word boundary.
  */
-int th_wbrk_line(const thwchar_t *in, thwchar_t *out, size_t n,
-                 const thwchar_t* delim )
+int
+th_wbrk_line (const thwchar_t *in, thwchar_t *out, size_t n,
+              const thwchar_t* delim )
 {
     int        *brk_pos;
     size_t      n_brk_pos, i, j;
@@ -100,7 +102,7 @@ int th_wbrk_line(const thwchar_t *in, thwchar_t *out, size_t n,
     delim_len = wcslen (delim);
     for (i = j = 0, p_out = out; n > 1 && i < n_brk_pos; i++) {
         while (n > 1 && j < brk_pos[i]) {
-            *p_out++ = in [j++];
+            *p_out++ = in[j++];
             --n;
         }
         if (n > delim_len + 1) {
@@ -110,7 +112,7 @@ int th_wbrk_line(const thwchar_t *in, thwchar_t *out, size_t n,
         }
     }
     while (n > 1 && in [j]) {
-        *p_out++ = in [j++];
+        *p_out++ = in[j++];
         --n;
     }
     *p_out = 0;
@@ -119,3 +121,7 @@ int th_wbrk_line(const thwchar_t *in, thwchar_t *out, size_t n,
 
     return p_out - out;
 }
+
+/*
+vi:ts=4:ai:expandtab
+*/

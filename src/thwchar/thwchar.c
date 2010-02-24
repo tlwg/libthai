@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * libthai - Thai Language Support Library
  * Copyright (C) 2001  Theppitak Karoonboonyanan
@@ -108,7 +109,8 @@ static thwchar_t tis620_2_uni_map_[128] = {
  *
  * @return  Corresponding Unicode code
  */
-thwchar_t th_tis2uni(thchar_t c)
+thwchar_t
+th_tis2uni (thchar_t c)
 {
     return (c < 0x80) ? (thwchar_t)c : tis620_0_uni_map_[c-0x80];
 }
@@ -122,11 +124,12 @@ thwchar_t th_tis2uni(thchar_t c)
  *
  * @return  the length of the output Unicode string
  */
-int th_tis2uni_line(const thchar_t *s, thwchar_t *result, size_t n)
+int
+th_tis2uni_line (const thchar_t *s, thwchar_t *result, size_t n)
 {
     int left = n;
     while (*s && left > 1) {
-        *result++ = th_tis2uni(*s++);
+        *result++ = th_tis2uni (*s++);
         --left;
     }
     *result = 0;
@@ -140,9 +143,10 @@ int th_tis2uni_line(const thchar_t *s, thwchar_t *result, size_t n)
  *
  * @return  Corresponding Unicode code
  */
-thwchar_t th_winthai2uni(thchar_t c)
+thwchar_t
+th_winthai2uni (thchar_t c)
 {
-    return (c < 0x80) ? (thwchar_t)c : tis620_2_uni_map_[c-0x80];
+    return (c < 0x80) ? (thwchar_t) c : tis620_2_uni_map_[c-0x80];
 }
 
 /**
@@ -152,9 +156,10 @@ thwchar_t th_winthai2uni(thchar_t c)
  *
  * @return  Corresponding Unicode code
  */
-thwchar_t th_macthai2uni(thchar_t c)
+thwchar_t
+th_macthai2uni (thchar_t c)
 {
-    return (c < 0x80) ? (thwchar_t)c : tis620_1_uni_map_[c-0x80];
+    return (c < 0x80) ? (thwchar_t) c : tis620_1_uni_map_[c-0x80];
 }
 
 
@@ -166,7 +171,8 @@ thwchar_t th_macthai2uni(thchar_t c)
  * @return  Corresponding TIS-620 code,
  *          or @c TH_ERR if conversion is impossible
  */
-thchar_t th_uni2tis(thwchar_t wc)
+thchar_t
+th_uni2tis (thwchar_t wc)
 {
     if (wc < 0x0080) { 
         /* BASIC_LATIN range */
@@ -192,11 +198,12 @@ thchar_t th_uni2tis(thwchar_t wc)
  * Note that, since the conversion is lossy, some characters in the 
  * convesion result may be @c TH_ERR, indicating conversion error.
  */
-int th_uni2tis_line(const thwchar_t *s, thchar_t *result, size_t n)
+int
+th_uni2tis_line (const thwchar_t *s, thchar_t *result, size_t n)
 {
     int left = n;
     while (*s && left > 1) {
-        *result++ = th_uni2tis(*s++);
+        *result++ = th_uni2tis (*s++);
         --left;
     }
     *result = 0;
@@ -204,12 +211,14 @@ int th_uni2tis_line(const thwchar_t *s, thchar_t *result, size_t n)
 }
 
 
-static thchar_t uni2thai_ext_(thwchar_t wc, const thwchar_t rev_map[])
+static thchar_t
+uni2thai_ext_ (thwchar_t wc, const thwchar_t rev_map[])
 {
     /* wc assumed out of TIS range */
     thchar_t c = 0x80;
     do {
-        if (rev_map[c-0x80] == wc) return c;
+        if (rev_map[c-0x80] == wc)
+            return c;
     } while (c++ != 0xff);
     return TH_ERR;
 }
@@ -222,10 +231,11 @@ static thchar_t uni2thai_ext_(thwchar_t wc, const thwchar_t rev_map[])
  * @return  Corresponding Thai Windows extended code,
  *          or @c TH_ERR if conversion is impossible
  */
-thchar_t th_uni2winthai(thwchar_t wc)
+thchar_t
+th_uni2winthai (thwchar_t wc)
 {
-    thchar_t c = th_uni2tis(wc);
-    return (c == TH_ERR) ? uni2thai_ext_(wc, tis620_2_uni_map_) : c;
+    thchar_t c = th_uni2tis (wc);
+    return (c == TH_ERR) ? uni2thai_ext_ (wc, tis620_2_uni_map_) : c;
 }
 
 /**
@@ -236,9 +246,13 @@ thchar_t th_uni2winthai(thwchar_t wc)
  * @return  Corresponding Mac Thai extended code,
  *          or @c TH_ERR if conversion is impossible
  */
-thchar_t th_uni2macthai(thwchar_t wc)
+thchar_t
+th_uni2macthai (thwchar_t wc)
 {
-    thchar_t c = th_uni2tis(wc);
-    return (c == TH_ERR) ? uni2thai_ext_(wc, tis620_1_uni_map_) : c;
+    thchar_t c = th_uni2tis (wc);
+    return (c == TH_ERR) ? uni2thai_ext_ (wc, tis620_1_uni_map_) : c;
 }
 
+/*
+vi:ts=4:ai:expandtab
+*/

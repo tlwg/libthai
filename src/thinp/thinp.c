@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * libthai - Thai Language Support Library
  * Copyright (C) 2001  Theppitak Karoonboonyanan
@@ -42,18 +43,19 @@
  * Checks if, according to WTT 2.0 strictness level @a s, @a c2 is allowed 
  * after @a c1.
  */
-int th_isaccept(thchar_t c1, thchar_t c2, thstrict_t s)
+int
+th_isaccept (thchar_t c1, thchar_t c2, thstrict_t s)
 {
     switch (s) {
     case ISC_PASSTHROUGH:
         return 1;
 
     case ISC_BASICCHECK:
-        return TACio_op(c1, c2) != RJ;
+        return TACio_op (c1, c2) != RJ;
 
     case ISC_STRICT:
         {
-            WTTOp op = TACio_op(c1, c2);
+            WTTOp op = TACio_op (c1, c2);
             return op != RJ && op != SR;
         }
 
@@ -71,12 +73,13 @@ static const struct correction_t {
     { 0, 0, { 0, 0, 0 } }
 };
 
-static int correct_(thchar_t c_1, thchar_t c, thchar_t conv[3])
+static int
+correct_ (thchar_t c_1, thchar_t c, thchar_t conv[3])
 {
     const struct correction_t *p;
     for (p = corrections; p->c1; ++p) {
-        if (c_1 == (thchar_t)p->c1 && c == (thchar_t)p->c2) {
-            strcpy((char *)conv, (const char *)p->to);
+        if (c_1 == (thchar_t) p->c1 && c == (thchar_t) p->c2) {
+            strcpy ((char *) conv, (const char *) p->to);
             return 1;
         }
     }
@@ -97,7 +100,8 @@ static int correct_(thchar_t c_1, thchar_t c, thchar_t conv[3])
  * the given input @a c, maintaining WTT canonical order, and do some
  * convenient correction in @a conv.
  */
-int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
+int
+th_validate (struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
 {
     thchar_t prev_c = context.top ?
                           context.top :
@@ -110,14 +114,14 @@ int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
     }
 
     /* try predefined corrections */
-    ret = correct_(prev_c, c, conv->conv);
+    ret = correct_ (prev_c, c, conv->conv);
     if (ret) {
         conv->offset = -1;
         return 1;
     }
 
     /* normal cases, using Strict level */
-    if (th_isaccept(prev_c, c, ISC_STRICT)) {
+    if (th_isaccept (prev_c, c, ISC_STRICT)) {
         conv->conv[0] = c; conv->conv[1] = 0;
         conv->offset = 0;
         return 1;
@@ -127,17 +131,19 @@ int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
     switch (th_chlevel(c)) {
     case 3:
     case 2:
-        if (context.hilo && th_isaccept(context.hilo, c, ISC_STRICT)) {
+        if (context.hilo && th_isaccept (context.hilo, c, ISC_STRICT)) {
             /* hilo OK, replace top only */
             conv->offset = 0;
             conv->conv[0] = c; conv->conv[1] = 0;
-            if (context.top) --conv->offset;
+            if (context.top) {
+                --conv->offset;
+            }
             return 1;
         }
         /* hilo not OK with c (hilo == SARA_AM falls here), or no hilo */
-        if (th_isaccept(context.base, c, ISC_STRICT) &&
-            (context.hilo != TIS_SARA_AM ||
-             th_isaccept(c, TIS_SARA_AM, ISC_STRICT)))
+        if (th_isaccept (context.base, c, ISC_STRICT)
+            && (context.hilo != TIS_SARA_AM
+                || th_isaccept (c, TIS_SARA_AM, ISC_STRICT)))
         {
             /* replace from hilo on, using new top */
             int i = 0;
@@ -149,25 +155,30 @@ int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
                     conv->conv[i++] = TIS_SARA_AM;
                 }
             }
-            if (context.top) --conv->offset;
+            if (context.top) {
+                --conv->offset;
+            }
             conv->conv[i] = 0;
             return 1;
         }
         if (th_chlevel(c) == 2)
-          break;
+            break;
         /* fall through for level 3 */
     case -1:
     case 1:
-        if (th_isaccept(context.base, c, ISC_STRICT)) {
+        if (th_isaccept (context.base, c, ISC_STRICT)) {
             /* replace from hilo on; use new hilo + old top if OK */
             int i = 0;
             conv->offset = 0;
             conv->conv[i++] = c;
-            if (context.hilo) --conv->offset;
+            if (context.hilo) {
+                --conv->offset;
+            }
             if (context.top) {
                 --conv->offset;
-                if (th_isaccept(c, context.top, ISC_STRICT))
+                if (th_isaccept (c, context.top, ISC_STRICT)) {
                     conv->conv[i++] = context.top;
+                }
             }
             conv->conv[i] = 0;
             return 1;
@@ -178,3 +189,6 @@ int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
     return 0;
 }
 
+/*
+vi:ts=4:ai:expandtab
+*/

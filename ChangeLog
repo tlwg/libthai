@@ -1,5 +1,18 @@
 2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thinp/thinp.c,
+	* src/thrend/thrend.c,
+	* src/thcoll/thcoll.c,
+	* src/thcoll/cweight.c,
+	* src/thwstr/thwstr.c,
+	* src/thwchar/thwchar.c,
+	* src/thwbrk/thwbrk.c,
+	* src/thstr/thstr.c,
+	* src/thcell/thcell.c:
+	Reformat source. Add editor modeline.
+
+2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* tests/thsort.c: Yet another GPL header leftover removal.
 	Update my e-mail address.
 

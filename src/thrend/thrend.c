@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * libthai - Thai Language Support Library
  * Copyright (C) 2001  Theppitak Karoonboonyanan
@@ -82,20 +83,21 @@ static const ThaiShapeTable Win_shape_table_ = {
 };
 
 static
-int th_render_cell_(struct thcell_t cell,
-                    thglyph_t res[], size_t res_sz,
-                    int is_decomp_am,
-                    const ThaiShapeTable *tbl)
+int th_render_cell_ (struct thcell_t cell,
+                     thglyph_t res[], size_t res_sz,
+                     int is_decomp_am,
+                     const ThaiShapeTable *tbl)
 {
     size_t left = res_sz;
 
     /* put base character */
     if (left > 0) {
         thchar_t c = cell.base;
-        if (th_isundersplitcons(c) && th_chlevel(cell.hilo) < 0) {
-            c = tailcutcons(c, tbl);
+        if (th_isundersplitcons (c) && th_chlevel (cell.hilo) < 0) {
+            c = tailcutcons (c, tbl);
         }
-        *res++ = c ? c : TH_BLANK_BASE_GLYPH; --left;
+        *res++ = c ? c : TH_BLANK_BASE_GLYPH;
+        --left;
     }
     /* put hilo character */
     if (left > 0 && cell.hilo) {
@@ -107,35 +109,39 @@ int th_render_cell_(struct thcell_t cell,
         }
         if (c) {
             if (th_isovershootcons(cell.base) && th_chlevel(c) > 0) {
-		c = th_isupvowel(c) ? shiftleft_av(c, tbl)
-		                    : shiftleft_tone_ad(c, tbl);
-            } else if (th_isundershootcons(cell.base) && th_chlevel(c) < 0) {
-                c = shiftdown_bv_bd(c, tbl);
+            c = th_isupvowel(c) ? shiftleft_av (c, tbl)
+                                  : shiftleft_tone_ad (c, tbl);
+            } else if (th_isundershootcons (cell.base) && th_chlevel (c) < 0) {
+                c = shiftdown_bv_bd (c, tbl);
             }
-            *res++ = c; --left;
+            *res++ = c;
+            --left;
         }
     }
     /* put top character */
     if (left > 0 && cell.top) {
         thchar_t c = cell.top;
-        if (th_isupvowel(cell.hilo)
+        if (th_isupvowel (cell.hilo)
             || (is_decomp_am && cell.hilo == TIS_SARA_AM))
         {
-            c = th_isovershootcons(cell.base) ? shiftleft_tone_ad(c, tbl) : c;
+            c = th_isovershootcons (cell.base) ? shiftleft_tone_ad (c, tbl) : c;
         } else {
-            c = th_isovershootcons(cell.base) ? shiftdownleft_tone_ad(c, tbl)
-                                              : shiftdown_tone_ad(c, tbl);
+            c = th_isovershootcons (cell.base) ? shiftdownleft_tone_ad (c, tbl)
+                                                 : shiftdown_tone_ad(c, tbl);
         }
-        *res++ = c; --left;
+        *res++ = c;
+        --left;
     }
     /* put extra character */
     if (left > 0 && cell.hilo == TIS_SARA_AM) {
-        *res++ = (is_decomp_am) ? TIS_SARA_AA : TIS_SARA_AM;
+        *res++ = is_decomp_am ? TIS_SARA_AA : TIS_SARA_AM;
         --left;
     }
 
     /* null terminate */
-    if (left > 0) { *res = 0; }
+    if (left > 0) {
+        *res = 0;
+    }
 
     return res_sz - left;
 }
@@ -156,14 +162,16 @@ int th_render_cell_(struct thcell_t cell,
  * If resulting glyphs are longer than the provided buffer, only
  * the first @a res_sz glyphs are stored.
  */
-int th_render_cell_tis(struct thcell_t cell,
-                       thglyph_t res[], size_t res_sz,
-                       int is_decomp_am)
+int
+th_render_cell_tis (struct thcell_t cell,
+                    thglyph_t res[], size_t res_sz,
+                    int is_decomp_am)
 {
     size_t left = res_sz;
 
     if (left > 0) {
-      *res++ = cell.base ? cell.base : TH_BLANK_BASE_GLYPH; --left;
+        *res++ = cell.base ? cell.base : TH_BLANK_BASE_GLYPH;
+        --left;
     }
     if (left > 0 && cell.hilo) {
         if (cell.hilo != TIS_SARA_AM) {
@@ -182,7 +190,9 @@ int th_render_cell_tis(struct thcell_t cell,
         *res++ = (is_decomp_am) ? TIS_SARA_AA : TIS_SARA_AM;
         --left;
     }
-    if (left > 0) { *res = 0; }
+    if (left > 0) {
+        *res = 0;
+    }
 
     return res_sz - left;
 }
@@ -203,11 +213,12 @@ int th_render_cell_tis(struct thcell_t cell,
  * If resulting glyphs are longer than the provided buffer, only
  * the first @a res_sz glyphs are stored.
  */
-int th_render_cell_win(struct thcell_t cell,
-                       thglyph_t res[], size_t res_sz,
-                       int is_decomp_am)
+int
+th_render_cell_win (struct thcell_t cell,
+                    thglyph_t res[], size_t res_sz,
+                    int is_decomp_am)
 {
-    return th_render_cell_(cell, res, res_sz, is_decomp_am, &Win_shape_table_);
+    return th_render_cell_ (cell, res, res_sz, is_decomp_am, &Win_shape_table_);
 }
 
 /**
@@ -226,30 +237,31 @@ int th_render_cell_win(struct thcell_t cell,
  * If resulting glyphs are longer than the provided buffer, only
  * the first @a res_sz glyphs are stored.
  */
-int th_render_cell_mac(struct thcell_t cell,
-                       thglyph_t res[], size_t res_sz,
-                       int is_decomp_am)
+int
+th_render_cell_mac (struct thcell_t cell,
+                    thglyph_t res[], size_t res_sz,
+                    int is_decomp_am)
 {
-    return th_render_cell_(cell, res, res_sz, is_decomp_am, &Mac_shape_table_);
+    return th_render_cell_ (cell, res, res_sz, is_decomp_am, &Mac_shape_table_);
 }
 
-static
-int th_render_text(const thchar_t *s,
-                   thglyph_t res[], size_t res_sz,
-                   int is_decomp_am,
-                   int (*cell_rend_fn)(struct thcell_t, thglyph_t[], size_t, int))
+static int
+th_render_text (const thchar_t *s,
+                thglyph_t res[], size_t res_sz,
+                int is_decomp_am,
+                int (*cell_rend_fn)(struct thcell_t, thglyph_t[], size_t, int))
 {
     size_t left = res_sz;
-    int len = strlen((const char*)s);
+    int len = strlen ((const char*) s);
 
     while (left > 0 && len > 0) {
         struct thcell_t cell;
-        size_t nchars = 0;
-        int    nglyphs = 0;
+        size_t nchars;
+        int    nglyphs;
 
-        nchars = th_next_cell(s, len, &cell, is_decomp_am);
+        nchars = th_next_cell (s, len, &cell, is_decomp_am);
         s += nchars; len -= nchars;
-        nglyphs = (*cell_rend_fn)(cell, res, left, is_decomp_am);
+        nglyphs = (*cell_rend_fn) (cell, res, left, is_decomp_am);
         res += nglyphs; left -= nglyphs;
     }
 
@@ -272,11 +284,12 @@ int th_render_text(const thchar_t *s,
  * If resulting glyphs are longer than the provided buffer, only
  * the first @a res_sz glyphs are stored.
  */
-int th_render_text_tis(const thchar_t *s,
-                       thglyph_t res[], size_t res_sz,
-                       int is_decomp_am)
+int
+th_render_text_tis (const thchar_t *s,
+                    thglyph_t res[], size_t res_sz,
+                    int is_decomp_am)
 {
-    return th_render_text(s, res, res_sz, is_decomp_am, th_render_cell_tis);
+    return th_render_text (s, res, res_sz, is_decomp_am, th_render_cell_tis);
 }
 
 /**
@@ -295,11 +308,12 @@ int th_render_text_tis(const thchar_t *s,
  * If resulting glyphs are longer than the provided buffer, only
  * the first @a res_sz glyphs are stored.
  */
-int th_render_text_win(const thchar_t *s,
-                       thglyph_t res[], size_t res_sz,
-                       int is_decomp_am)
+int
+th_render_text_win (const thchar_t *s,
+                    thglyph_t res[], size_t res_sz,
+                    int is_decomp_am)
 {
-    return th_render_text(s, res, res_sz, is_decomp_am, th_render_cell_win);
+    return th_render_text (s, res, res_sz, is_decomp_am, th_render_cell_win);
 }
 
 /**
@@ -318,10 +332,14 @@ int th_render_text_win(const thchar_t *s,
  * If resulting glyphs are longer than the provided buffer, only
  * the first @a res_sz glyphs are stored.
  */
-int th_render_text_mac(const thchar_t *s,
-                       thglyph_t res[], size_t res_sz,
-                       int is_decomp_am)
+int
+th_render_text_mac (const thchar_t *s,
+                    thglyph_t res[], size_t res_sz,
+                    int is_decomp_am)
 {
-    return th_render_text(s, res, res_sz, is_decomp_am, th_render_cell_mac);
+    return th_render_text (s, res, res_sz, is_decomp_am, th_render_cell_mac);
 }
 
+/*
+vi:ts=4:ai:expandtab
+*/
