@@ -1,4 +1,3 @@
-# $Id: Makefile.am,v 1.14 2008-12-23 10:16:58 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 
 dictdatadir = $(datadir)/libthai

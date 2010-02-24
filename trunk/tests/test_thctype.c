@@ -1,5 +1,4 @@
 /*
- * $Id: test_thctype.c,v 1.3 2004-10-12 09:27:19 thep Exp $
  * test_thctype.c : Test bed for <thai/thctype.h> functions
  * Created: 2001-07-31
  * Author:  Theppitak Karoonboonyanan

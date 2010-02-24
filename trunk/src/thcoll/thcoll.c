@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thcoll.c,v 1.4 2007-10-18 14:52:29 thep Exp $
  * thcoll.c - Thai string collating function definition
  * Created: 12 Nov 1998
  * Author: Theppitak Karoonboonyanan <thep@linux.thai.net>

@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thstr.c,v 1.5 2007-10-18 14:52:29 thep Exp $
  * thstr.c - Thai string manipulators
  * Created: 2001-08-03
  * Author:  Theppitak Karoonboonyanan <thep@linux.thai.net>

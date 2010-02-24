@@ -1,5 +1,4 @@
 /*
- * $Id: test_thcell.c,v 1.8 2006-03-13 15:02:30 thep Exp $
  * test_thcell.c : Test suite for <thai/thcell.h> functions
  * Created: 2001-08-09
  * Author:  Theppitak Karoonboonyanan

@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thwstr.c,v 1.3 2007-10-18 14:52:29 thep Exp $
  * thwstr.c - Thai string manipulators (Unicode wrapper)
  * Created: 2001-09-30
  * Author:  Theppitak Karoonboonyanan <thep@linux.thai.net>

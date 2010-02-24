@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thwstr.h,v 1.3 2006-07-31 12:54:02 thep Exp $
  * thwstr.h - Thai wide-char string manipulators
  * Created: 2001-08-03
  */

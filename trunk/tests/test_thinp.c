@@ -1,5 +1,4 @@
 /*
- * $Id: test_thinp.c,v 1.1 2001-08-09 13:30:08 thep Exp $
  * test_thinp.c : Test suite for <thai/thinp.h> functions
  * Created: 2001-08-09
  * Author:  Theppitak Karoonboonyanan

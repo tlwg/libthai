@@ -1,5 +1,19 @@
 2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* include/thai/*.h, src/*.c, src/*/*.c,
+	* Makefile.am, include/Makefile.am, include/thai/Makefile.am,
+	* src/Makefile.am, src/*/Makefile.am,
+	* tests/*.c, tests/*.sh,
+	* tests/Makefile.am,
+	* data/Makefile.am,
+	* man/template.3, man/man3/*.3,
+	* man/Makefile.am, man/man3/Makefile.am:
+	Remove CVS $Id in all files.
+
+	* src/thctype/wtt.c: Fix file name in comment.
+
+2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* include/thai/*.h, src/*.c, src/*/*.c: Add license header to every
 	source file.
 

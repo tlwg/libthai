@@ -24,7 +24,6 @@
 */
 
 /*
- * $Id: thsort.c,v 1.2 2001-06-12 13:14:23 thep Exp $
  * thsort.c - a word list sorting tool based on ThColl
  * Created: 26 Nov 1998
  * Author: Theppitak Karoonboonyanan <thep@links.nectec.or.th>

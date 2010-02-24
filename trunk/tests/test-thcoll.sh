@@ -1,5 +1,4 @@
 #!/bin/sh
-# $Id: test-thcoll.sh,v 1.3 2003-09-10 05:29:46 thep Exp $
 
 srcdir=${srcdir-.}
 top_builddir=${top_builddir-.}

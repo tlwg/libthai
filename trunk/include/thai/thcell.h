@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thcell.h,v 1.7 2006-07-31 11:07:46 thep Exp $
  * thcell.h - Thai string cell custering
  * Created: 2001-08-08 (split from thrend.h)
  */

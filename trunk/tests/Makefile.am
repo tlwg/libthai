@@ -1,4 +1,3 @@
-# $Id: Makefile.am,v 1.12 2008-12-15 07:44:25 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 
 INCLUDES = -I$(top_srcdir)/include

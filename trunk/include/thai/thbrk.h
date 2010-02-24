@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thbrk.h,v 1.6 2006-07-31 12:54:02 thep Exp $
  * thbrk.h - Thai word segmentation
  * Created: 2001-05-17
  */

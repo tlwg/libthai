@@ -1,6 +1,4 @@
 /* Test driver for thwbrk 
- *
- * $Id: test_thwbrk.c,v 1.13 2007-08-28 08:28:22 thep Exp $
  */
 
 #define MAXLINELENGTH 1000

@@ -1,5 +1,4 @@
 /*
- * $Id: test_thrend.c,v 1.4 2005-03-15 13:11:14 thep Exp $
  * test_thrend.c : Test suite for <thai/thrend.h> functions
  * Created: 2001-08-10
  * Author:  Theppitak Karoonboonyanan
