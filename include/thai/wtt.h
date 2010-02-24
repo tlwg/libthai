@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: wtt.h,v 1.3 2006-08-01 11:38:21 thep Exp $
  * wtt.h - WTT I/O implementation
  * Created: 2001-08-04
  */

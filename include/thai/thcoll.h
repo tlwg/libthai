@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thcoll.h,v 1.5 2006-07-31 12:54:02 thep Exp $
  * thcoll.h - Thai string collation
  * Created: 2001-05-17
  */

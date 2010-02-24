@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thinp.h,v 1.9 2006-07-31 11:07:46 thep Exp $
  * thinp.h - Thai string input sequence filtering
  * Created: 2001-05-17
  */

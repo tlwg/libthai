@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thailib.h,v 1.7 2006-07-31 13:55:51 thep Exp $
  * thailib.h - general declarations for libthai
  * Created: 2001-05-17
  */

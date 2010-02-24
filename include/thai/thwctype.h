@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thwctype.h,v 1.4 2006-07-31 12:54:02 thep Exp $
  * thwctype.h - Thai wide-char character classifications
  * Created: 2001-05-17
  */

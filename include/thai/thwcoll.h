@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thwcoll.h,v 1.4 2006-07-31 12:54:02 thep Exp $
  * thwcoll.h - Thai wide-char string collation
  * Created: 2001-05-17
  */

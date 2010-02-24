@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thrend.h,v 1.11 2006-08-01 11:46:57 thep Exp $
  * thrend.h - Thai string rendering
  * Created: 2001-05-17
  */

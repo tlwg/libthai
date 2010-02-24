@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: cweight.c,v 1.5 2007-10-18 14:52:29 thep Exp $
  * cweight.c - Thai Character Weight Table for TIS-620/2533 Collating
  * Created: 9 Nov 1998
  * Author:  Theppitak Karoonboonyanan <thep@linux.thai.net>

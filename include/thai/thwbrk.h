@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thwbrk.h,v 1.4 2006-07-31 12:54:02 thep Exp $
  * thwbrk.h - Thai wide-char word segmentation
  * Created: 2001-05-17
  */

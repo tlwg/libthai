@@ -1,4 +1,3 @@
-# $Id: Makefile.am,v 1.19 2008-12-23 10:16:57 thep Exp $
 SUBDIRS = thctype thstr thcell thinp thrend thcoll thbrk thwchar thwctype \
 	thwstr thwbrk
 

@@ -1,4 +1,3 @@
-# $Id: Makefile.am,v 1.9 2008-12-17 05:14:11 thep Exp $
 MAINTAINERCLEANFILES = Makefile.in
 CLEANFILES = thbrk.tri tdict.txt
 

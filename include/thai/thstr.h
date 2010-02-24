@@ -18,7 +18,6 @@
  */
 
 /*
- * $Id: thstr.h,v 1.2 2006-07-31 11:07:46 thep Exp $
  * thstr.h - Thai string manipulators
  * Created: 2001-08-03
  */

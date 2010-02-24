@@ -1,6 +1,4 @@
 /* Test driver for thwchar
- *
- * $Id: test_thwchar.c,v 1.5 2004-10-12 09:27:19 thep Exp $
  */
 
 #define MAXLINELENGTH 1000
