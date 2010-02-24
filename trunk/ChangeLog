@@ -1,5 +1,10 @@
 2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* tests/thsort.c: Yet another GPL header leftover removal.
+	Update my e-mail address.
+
+2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	Replace <thai/tis.h> with a rewritten one, so we can enforce the
 	license.
 
