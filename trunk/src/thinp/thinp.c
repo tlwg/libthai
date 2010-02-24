@@ -65,9 +65,9 @@ int th_isaccept(thchar_t c1, thchar_t c2, thstrict_t s)
 static const struct correction_t {
     thchar_t c1, c2, to[3];
 } corrections[] = {
-    { RU, SARA_AA, { RU, LAKKHANGYAO, 0 } },
-    { LU, SARA_AA, { LU, LAKKHANGYAO, 0 } },
-    { NIKHAHIT, SARA_AA, { SARA_AM, 0, 0 } },
+    { TIS_RU, TIS_SARA_AA, { TIS_RU, TIS_LAKKHANGYAO, 0 } },
+    { TIS_LU, TIS_SARA_AA, { TIS_LU, TIS_LAKKHANGYAO, 0 } },
+    { TIS_NIKHAHIT, TIS_SARA_AA, { TIS_SARA_AM, 0, 0 } },
     { 0, 0, { 0, 0, 0 } }
 };
 
@@ -105,7 +105,9 @@ int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
     int ret;
 
     /* SARA_AM, if present, is always the last char of the cell */
-    if (context.hilo == SARA_AM) prev_c = SARA_AM;
+    if (context.hilo == TIS_SARA_AM) {
+        prev_c = TIS_SARA_AM;
+    }
 
     /* try predefined corrections */
     ret = correct_(prev_c, c, conv->conv);
@@ -134,7 +136,8 @@ int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
         }
         /* hilo not OK with c (hilo == SARA_AM falls here), or no hilo */
         if (th_isaccept(context.base, c, ISC_STRICT) &&
-            (context.hilo != SARA_AM || th_isaccept(c, SARA_AM, ISC_STRICT)))
+            (context.hilo != TIS_SARA_AM ||
+             th_isaccept(c, TIS_SARA_AM, ISC_STRICT)))
         {
             /* replace from hilo on, using new top */
             int i = 0;
@@ -142,8 +145,9 @@ int th_validate(struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
             conv->conv[i++] = c;
             if (context.hilo) {
                 --conv->offset;
-                if (context.hilo == SARA_AM)
-                    conv->conv[i++] = SARA_AM;
+                if (context.hilo == TIS_SARA_AM) {
+                    conv->conv[i++] = TIS_SARA_AM;
+                }
             }
             if (context.top) --conv->offset;
             conv->conv[i] = 0;

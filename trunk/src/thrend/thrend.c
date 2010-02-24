@@ -38,12 +38,12 @@ typedef struct {
     thglyph_t TailCutCons[4];
 } ThaiShapeTable;
 
-#define shiftdown_tone_ad(c,tbl)     ((tbl)->ShiftDown_TONE_AD[(c)-MAITAIKHU])
-#define shiftdownleft_tone_ad(c,tbl) ((tbl)->ShiftDownLeft_TONE_AD[(c)-MAITAIKHU])
-#define shiftleft_tone_ad(c,tbl)     ((tbl)->ShiftLeft_TONE_AD[(c)-MAITAIKHU])
-#define shiftleft_av(c,tbl)          ((tbl)->ShiftLeft_AV[(c)-MAIHUNAKAT])
-#define shiftdown_bv_bd(c,tbl)       ((tbl)->ShiftDown_BV_BD[(c)-SARA_U])
-#define tailcutcons(c,tbl)           ((tbl)->TailCutCons[(c)-YOYING])
+#define shiftdown_tone_ad(c,tbl)     ((tbl)->ShiftDown_TONE_AD[(c)-TIS_MAITAIKHU])
+#define shiftdownleft_tone_ad(c,tbl) ((tbl)->ShiftDownLeft_TONE_AD[(c)-TIS_MAITAIKHU])
+#define shiftleft_tone_ad(c,tbl)     ((tbl)->ShiftLeft_TONE_AD[(c)-TIS_MAITAIKHU])
+#define shiftleft_av(c,tbl)          ((tbl)->ShiftLeft_AV[(c)-TIS_MAI_HAN_AKAT])
+#define shiftdown_bv_bd(c,tbl)       ((tbl)->ShiftDown_BV_BD[(c)-TIS_SARA_U])
+#define tailcutcons(c,tbl)           ((tbl)->TailCutCons[(c)-TIS_YO_YING])
 
 /*
  * No adjusted vowel/tonemark glyphs (tis620-0)
@@ -100,8 +100,11 @@ int th_render_cell_(struct thcell_t cell,
     /* put hilo character */
     if (left > 0 && cell.hilo) {
         thchar_t c = 0;
-        if (cell.hilo != SARA_AM) { c = cell.hilo; }
-        else if (is_decomp_am) { c = NIKHAHIT; }
+        if (cell.hilo != TIS_SARA_AM) {
+            c = cell.hilo;
+        } else if (is_decomp_am) {
+            c = TIS_NIKHAHIT;
+        }
         if (c) {
             if (th_isovershootcons(cell.base) && th_chlevel(c) > 0) {
 		c = th_isupvowel(c) ? shiftleft_av(c, tbl)
@@ -115,7 +118,9 @@ int th_render_cell_(struct thcell_t cell,
     /* put top character */
     if (left > 0 && cell.top) {
         thchar_t c = cell.top;
-        if (th_isupvowel(cell.hilo) || (is_decomp_am && cell.hilo == SARA_AM)) {
+        if (th_isupvowel(cell.hilo)
+            || (is_decomp_am && cell.hilo == TIS_SARA_AM))
+        {
             c = th_isovershootcons(cell.base) ? shiftleft_tone_ad(c, tbl) : c;
         } else {
             c = th_isovershootcons(cell.base) ? shiftdownleft_tone_ad(c, tbl)
@@ -124,8 +129,9 @@ int th_render_cell_(struct thcell_t cell,
         *res++ = c; --left;
     }
     /* put extra character */
-    if (left > 0 && cell.hilo == SARA_AM) {
-        *res++ = (is_decomp_am) ? SARA_AA : SARA_AM; --left;
+    if (left > 0 && cell.hilo == TIS_SARA_AM) {
+        *res++ = (is_decomp_am) ? TIS_SARA_AA : TIS_SARA_AM;
+        --left;
     }
 
     /* null terminate */
@@ -160,12 +166,21 @@ int th_render_cell_tis(struct thcell_t cell,
       *res++ = cell.base ? cell.base : TH_BLANK_BASE_GLYPH; --left;
     }
     if (left > 0 && cell.hilo) {
-        if (cell.hilo != SARA_AM) { *res++ = cell.hilo; --left; }
-	else if (is_decomp_am) { *res++ = NIKHAHIT; --left; }
+        if (cell.hilo != TIS_SARA_AM) {
+            *res++ = cell.hilo;
+            --left;
+        } else if (is_decomp_am) {
+            *res++ = TIS_NIKHAHIT;
+            --left;
+        }
     }
-    if (left > 0 && cell.top) { *res++ = cell.top; --left; }
-    if (left > 0 && cell.hilo == SARA_AM) {
-        *res++ = (is_decomp_am) ? SARA_AA : SARA_AM; --left;
+    if (left > 0 && cell.top) {
+        *res++ = cell.top;
+        --left;
+    }
+    if (left > 0 && cell.hilo == TIS_SARA_AM) {
+        *res++ = (is_decomp_am) ? TIS_SARA_AA : TIS_SARA_AM;
+        --left;
     }
     if (left > 0) { *res = 0; }
 
