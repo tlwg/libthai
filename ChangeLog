@@ -1,3 +1,15 @@
+2010-02-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/*.h, src/*.c, src/*/*.c: Add my e-mail address to
+	license header as the contact address.
+
+	* src/thctype/wtt.c,
+	* src/thctype/thctype.c,
+	* src/thcoll/cweight.h,
+	* src/thcoll/cweight.c,
+	* src/thwctype/thwctype.c:
+	Add editor modeline.
+
 2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thinp/thinp.c,
