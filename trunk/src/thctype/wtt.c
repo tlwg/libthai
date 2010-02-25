@@ -1,6 +1,7 @@
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * libthai - Thai Language Support Library
- * Copyright (C) 2001  Theppitak Karoonboonyanan
+ * Copyright (C) 2001  Theppitak Karoonboonyanan <thep@linux.thai.net>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -108,3 +109,6 @@ WTTOp    TACio_op(thchar_t c1, thchar_t c2)
     return TACio_op_[TACchtype_[c1]][TACchtype_[c2]];
 }
 
+/*
+vi:ts=4:ai:expandtab
+*/

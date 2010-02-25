@@ -1,6 +1,7 @@
+/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * libthai - Thai Language Support Library
- * Copyright (C) 2001  Theppitak Karoonboonyanan
+ * Copyright (C) 2001  Theppitak Karoonboonyanan <thep@linux.thai.net>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -145,3 +146,6 @@ int th_wcisblvowel(thwchar_t wc) { return th_isblvowel(th_uni2tis(wc)); }
  */
 int th_wcchlevel(thwchar_t wc)   { return th_chlevel(th_uni2tis(wc)); }
 
+/*
+vi:ts=4:ai:expandtab
+*/
