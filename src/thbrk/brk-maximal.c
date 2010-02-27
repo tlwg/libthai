@@ -487,10 +487,10 @@ static Trie *
 brk_get_dict ()
 {
     static int is_dict_tried = 0;
-    char   path[512];
 
     if (!brk_dict && !is_dict_tried) {
         const char *dict_dir;
+        char        path[512];
 
         /* Try LIBTHAI_DICTDIR env first */
         if (NULL != (dict_dir = getenv ("LIBTHAI_DICTDIR"))) {
