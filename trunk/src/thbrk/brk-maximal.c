@@ -486,9 +486,10 @@ brk_recover (const thchar_t *text, int len, int pos,
 static Trie *
 brk_get_dict ()
 {
+    static int is_dict_tried = 0;
     char   path[512];
 
-    if (!brk_dict) {
+    if (!brk_dict && !is_dict_tried) {
         const char *dict_dir;
 
         /* Try LIBTHAI_DICTDIR env first */
@@ -501,6 +502,8 @@ brk_get_dict ()
         if (!brk_dict) {
             brk_dict = trie_new_from_file (DICT_DIR "/" DICT_NAME ".tri");
         }
+
+        is_dict_tried = 1;
     }
 
     return brk_dict;
