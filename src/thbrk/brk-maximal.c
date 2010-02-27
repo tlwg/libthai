@@ -503,6 +503,18 @@ brk_get_dict ()
             brk_dict = trie_new_from_file (DICT_DIR "/" DICT_NAME ".tri");
         }
 
+        if (!brk_dict) {
+            if (dict_dir) {
+                fprintf (stderr,
+                         "LibThai: Fail to open dictionary at '%s' and '%s'.\n",
+                         path, DICT_DIR "/" DICT_NAME ".tri");
+            } else {
+                fprintf (stderr,
+                         "LibThai: Fail to open dictionary at '%s'.\n",
+                         DICT_DIR "/" DICT_NAME ".tri");
+            }
+        }
+
         is_dict_tried = 1;
     }
 
