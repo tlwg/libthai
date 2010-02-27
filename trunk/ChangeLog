@@ -1,5 +1,10 @@
 2010-02-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thbrk/brk-maximal.c (brk_get_dict): Print some warning when
+	dictionary opening fails.
+
+2010-02-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/thbrk/brk-maximal.c (brk_get_dict): Do not try to open dictionary
 	again if once tried. Multiple failing trials degraded performance.
 
