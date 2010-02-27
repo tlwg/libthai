@@ -1,5 +1,9 @@
 2010-02-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thbrk/brk-maximal.c (brk_get_dict): Limit path[] scope.
+
+2010-02-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/thbrk/brk-maximal.c (brk_get_dict): Print some warning when
 	dictionary opening fails.
 
