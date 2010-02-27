@@ -1,3 +1,10 @@
+2010-02-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thcoll/cweight.c (char_weight_tbl_): Replace TIS-620 characters
+	in comments with character names.
+	* src/thctype/thctype.c (_th_ctype_tbl, _th_chlevel_tbl): Remove
+	non-TIS-620 characters from comments. Convert source to UTF-8.
+
 2010-02-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thbrk/brk-maximal.c (brk_get_dict): Limit path[] scope.
