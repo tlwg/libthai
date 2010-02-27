@@ -366,7 +366,7 @@ static thchar_t char_weight_tbl_[TOT_CHARS][TOT_LEVELS] = {
     /*0x9D*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
     /*0x9E*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
     /*0x9F*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
-    /*0xA0*/ { IGNORE, IGNORE, L3_NB_SACE, IGNORE        }, /*   */
+    /*0xA0*/ { IGNORE, IGNORE, L3_NB_SACE, IGNORE        }, /* NBSP */
     /*0xA1*/ { L1_KO_KAI, L2_BLANK, L3_BLANK, L4_BLK          }, /* KO KAI */
     /*0xA2*/ { L1_KHO_KHAI, L2_BLANK, L3_BLANK, L4_BLK        }, /* KHO KHAI */
     /*0xA3*/ { L1_KHO_KHUAT, L2_BLANK, L3_BLANK, L4_BLK       }, /* KHO KHUAT */
@@ -413,7 +413,7 @@ static thchar_t char_weight_tbl_[TOT_CHARS][TOT_LEVELS] = {
     /*0xCC*/ { L1_LO_CHULA, L2_BLANK, L3_BLANK, L4_BLK        }, /* LO CHULA */
     /*0xCD*/ { L1_O_ANG, L2_BLANK, L3_BLANK, L4_BLK           }, /* O ANG */
     /*0xCE*/ { L1_HO_NOKHUK, L2_BLANK, L3_BLANK, L4_BLK       }, /* HO NOKHUK */
-    /*0xCF*/ { IGNORE, IGNORE, L3_PAIYAN_NOI, IGNORE     }, /* Ï */
+    /*0xCF*/ { IGNORE, IGNORE, L3_PAIYAN_NOI, IGNORE     }, /* PAIYANNOI */
     /*0xD0*/ { L1_SARA_A, L2_BLANK, L3_BLANK, L4_BLK           }, /* SARA A */
     /*0xD1*/ { L1_MAI_HAN_AKAT, L2_BLANK, L3_BLANK, L4_BLK     }, /* MAI HAN-AKAT */
     /*0xD2*/ { L1_SARA_AA, L2_BLANK, L3_BLANK, L4_BLK          }, /* SARA AA */
@@ -424,40 +424,40 @@ static thchar_t char_weight_tbl_[TOT_CHARS][TOT_LEVELS] = {
     /*0xD7*/ { L1_SARA_UEE, L2_BLANK, L3_BLANK, L4_BLK         }, /* SARA UEE */
     /*0xD8*/ { L1_SARA_U, L2_BLANK, L3_BLANK, L4_BLK           }, /* SARA U */
     /*0xD9*/ { L1_SARA_UU, L2_BLANK, L3_BLANK, L4_BLK          }, /* SARA UU */
-    /*0xDA*/ { IGNORE, L2_PINTU, L3_BLANK, L4_BLK  }, /* Ú */
+    /*0xDA*/ { IGNORE, L2_PINTU, L3_BLANK, L4_BLK  }, /* PHINTHU */
     /*0xDB*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
     /*0xDC*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
     /*0xDD*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
     /*0xDE*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
-    /*0xDF*/ { IGNORE, IGNORE, L3_BAHT, IGNORE           }, /* ß */
+    /*0xDF*/ { IGNORE, IGNORE, L3_BAHT, IGNORE           }, /* BAHT */
     /*0xE0*/ { L1_SARA_E, L2_BLANK, L3_BLANK, L4_BLK           }, /* SARA E */
     /*0xE1*/ { L1_SARA_AE, L2_BLANK, L3_BLANK, L4_BLK          }, /* SARA AE */
     /*0xE2*/ { L1_SARA_O, L2_BLANK, L3_BLANK, L4_BLK           }, /* SARA O */
     /*0xE3*/ { L1_SARA_AI_MAIMUAN, L2_BLANK, L3_BLANK, L4_BLK  }, /* SARA AI MAIMUAN */
     /*0xE4*/ { L1_SARA_AI_MAIMALAI, L2_BLANK, L3_BLANK, L4_BLK }, /* SARA AI MAIMALAI */
     /*0xE5*/ { L1_SARA_AA, L2_BLANK, L3_BLANK, L4_EXT          }, /* LAKKHANG YAO */
-    /*0xE6*/ { IGNORE, IGNORE, L3_MAI_YAMOK, IGNORE      }, /* æ */
-    /*0xE7*/ { IGNORE, L2_TYKHU, L3_BLANK, L4_BLK  }, /* ç */
-    /*0xE8*/ { IGNORE, L2_TONE1, L3_BLANK, L4_BLK  }, /* è */
-    /*0xE9*/ { IGNORE, L2_TONE2, L3_BLANK, L4_BLK  }, /* é */
-    /*0xEA*/ { IGNORE, L2_TONE3, L3_BLANK, L4_BLK  }, /* ê */
-    /*0xEB*/ { IGNORE, L2_TONE4, L3_BLANK, L4_BLK  }, /* ë */
-    /*0xEC*/ { IGNORE, L2_GARAN, L3_BLANK, L4_BLK  }, /* ì */
-    /*0xED*/ { L1_NKHIT, L2_BLANK, L3_BLANK, L4_BLK  }, /* í */
-    /*0xEE*/ { IGNORE, L2_YAMAK, L3_BLANK, L4_BLK  }, /* î */
-    /*0xEF*/ { IGNORE, IGNORE, L3_FONGMAN, IGNORE           }, /* ï */
-    /*0xF0*/ { L1_08, L2_THAII, L3_BLANK, L4_BLK  }, /* ð */
-    /*0xF1*/ { L1_18, L2_THAII, L3_BLANK, L4_BLK  }, /* ñ */
-    /*0xF2*/ { L1_28, L2_THAII, L3_BLANK, L4_BLK  }, /* ò */
-    /*0xF3*/ { L1_38, L2_THAII, L3_BLANK, L4_BLK  }, /* ó */
-    /*0xF4*/ { L1_48, L2_THAII, L3_BLANK, L4_BLK  }, /* ô */
-    /*0xF5*/ { L1_58, L2_THAII, L3_BLANK, L4_BLK  }, /* õ */
-    /*0xF6*/ { L1_68, L2_THAII, L3_BLANK, L4_BLK  }, /* ö */
-    /*0xF7*/ { L1_78, L2_THAII, L3_BLANK, L4_BLK  }, /* ÷ */
-    /*0xF8*/ { L1_88, L2_THAII, L3_BLANK, L4_BLK  }, /* ø */
-    /*0xF9*/ { L1_98, L2_THAII, L3_BLANK, L4_BLK  }, /* ù */
-    /*0xFA*/ { IGNORE, IGNORE, L3_ANGKHANKHU, IGNORE }, /* ú */
-    /*0xFB*/ { IGNORE, IGNORE, L3_KHOMUT, IGNORE }, /* û */
+    /*0xE6*/ { IGNORE, IGNORE, L3_MAI_YAMOK, IGNORE      }, /* MAIYAMOK */
+    /*0xE7*/ { IGNORE, L2_TYKHU, L3_BLANK, L4_BLK  }, /* MAITAIKHU */
+    /*0xE8*/ { IGNORE, L2_TONE1, L3_BLANK, L4_BLK  }, /* MAI EK */
+    /*0xE9*/ { IGNORE, L2_TONE2, L3_BLANK, L4_BLK  }, /* MAI THO */
+    /*0xEA*/ { IGNORE, L2_TONE3, L3_BLANK, L4_BLK  }, /* MAI TRI */
+    /*0xEB*/ { IGNORE, L2_TONE4, L3_BLANK, L4_BLK  }, /* MAI CHATTAWA */
+    /*0xEC*/ { IGNORE, L2_GARAN, L3_BLANK, L4_BLK  }, /* THANTHAKHAT */
+    /*0xED*/ { L1_NKHIT, L2_BLANK, L3_BLANK, L4_BLK  }, /* NIKHAHIT */
+    /*0xEE*/ { IGNORE, L2_YAMAK, L3_BLANK, L4_BLK  }, /* YAMAKKAN */
+    /*0xEF*/ { IGNORE, IGNORE, L3_FONGMAN, IGNORE           }, /* FONGMAN */
+    /*0xF0*/ { L1_08, L2_THAII, L3_BLANK, L4_BLK  }, /* THAI DIGIT ZERO */
+    /*0xF1*/ { L1_18, L2_THAII, L3_BLANK, L4_BLK  }, /* THAI DIGIT ONE */
+    /*0xF2*/ { L1_28, L2_THAII, L3_BLANK, L4_BLK  }, /* THAI DIGIT TWO */
+    /*0xF3*/ { L1_38, L2_THAII, L3_BLANK, L4_BLK  }, /* THAI DIGIT THREE */
+    /*0xF4*/ { L1_48, L2_THAII, L3_BLANK, L4_BLK  }, /* THAI DIGIT FOUR */
+    /*0xF5*/ { L1_58, L2_THAII, L3_BLANK, L4_BLK  }, /* THAI DIGIT FIVE */
+    /*0xF6*/ { L1_68, L2_THAII, L3_BLANK, L4_BLK  }, /* THAI DIGIT SIX */
+    /*0xF7*/ { L1_78, L2_THAII, L3_BLANK, L4_BLK  }, /* THAI DIGIT SEVEN */
+    /*0xF8*/ { L1_88, L2_THAII, L3_BLANK, L4_BLK  }, /* THAI DIGIT EIGHT */
+    /*0xF9*/ { L1_98, L2_THAII, L3_BLANK, L4_BLK  }, /* THAI DIGIT NINE */
+    /*0xFA*/ { IGNORE, IGNORE, L3_ANGKHANKHU, IGNORE }, /* ANGKHANKHU */
+    /*0xFB*/ { IGNORE, IGNORE, L3_KHOMUT, IGNORE }, /* KHOMUT */
     /*0xFC*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
     /*0xFD*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
     /*0xFE*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
