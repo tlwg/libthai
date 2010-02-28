@@ -1,0 +1,2214 @@
+2010-02-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Bump library revision.
+
+	* configure.in, NEWS:
+	=== Version 0.1.14 ===
+
+2010-02-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{ict,proper,common}.txt: Add words.
+
+2010-02-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thcoll/cweight.c (char_weight_tbl_): Replace TIS-620 characters
+	in comments with character names.
+	* src/thctype/thctype.c (_th_ctype_tbl, _th_chlevel_tbl): Remove
+	non-TIS-620 characters from comments. Convert source to UTF-8.
+
+2010-02-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_get_dict): Limit path[] scope.
+
+2010-02-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_get_dict): Print some warning when
+	dictionary opening fails.
+
+2010-02-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_get_dict): Do not try to open dictionary
+	again if once tried. Multiple failing trials degraded performance.
+
+2010-02-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/*.h, src/*.c, src/*/*.c: Add my e-mail address to
+	license header as the contact address.
+
+	* src/thctype/wtt.c,
+	* src/thctype/thctype.c,
+	* src/thcoll/cweight.h,
+	* src/thcoll/cweight.c,
+	* src/thwctype/thwctype.c:
+	Add editor modeline.
+
+2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thinp/thinp.c,
+	* src/thrend/thrend.c,
+	* src/thcoll/thcoll.c,
+	* src/thcoll/cweight.c,
+	* src/thwstr/thwstr.c,
+	* src/thwchar/thwchar.c,
+	* src/thwbrk/thwbrk.c,
+	* src/thstr/thstr.c,
+	* src/thcell/thcell.c:
+	Reformat source. Add editor modeline.
+
+2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* tests/thsort.c: Yet another GPL header leftover removal.
+	Update my e-mail address.
+
+2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Replace <thai/tis.h> with a rewritten one, so we can enforce the
+	license.
+
+	* include/thai/tis.h:
+	Rewritten based on Unicode names, with TIS_ prefix.
+
+	* src/thinp/thinp.c (corrections, th_validate),
+	* src/thrend/thrend.c (shiftdown_tone_ad, shiftdownleft_tone_ad,
+	  shiftleft_tone_ad, shiftdown_bv_bd, tailcutcons, th_render_cell_,
+	  th_render_cell_tis),
+	* src/thbrk/brk-maximal.c (th_brkpos_hints),
+	* src/thcell/thcell.c (th_next_cell, th_prev_cell),
+	* tests/test_thcell.c (test_ans_nodecomp_am, test_ans_decomp_am):
+	Update character names to the new TIS_* ones.
+
+2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/*.h, src/*.c, src/*/*.c,
+	* Makefile.am, include/Makefile.am, include/thai/Makefile.am,
+	* src/Makefile.am, src/*/Makefile.am,
+	* tests/*.c, tests/*.sh,
+	* tests/Makefile.am,
+	* data/Makefile.am,
+	* man/template.3, man/man3/*.3,
+	* man/Makefile.am, man/man3/Makefile.am:
+	Remove CVS $Id in all files.
+
+	* src/thctype/wtt.c: Fix file name in comment.
+
+2010-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/*.h, src/*.c, src/*/*.c: Add license header to every
+	source file.
+
+2010-02-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* doc/Makefile.am: The added *.c dependencies must be from src/*/*.c,
+	not include/thai/*.c. Silly copy-and-paste error.
+
+2010-02-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* doc/Makefile.am: Add *.c to doxygen.stamp dependency, as the doc
+	comments have been moved there.
+
+2010-02-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_root_pool): Fail if brk_get_dict()
+	returns NULL.
+
+2010-02-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{ict,proper,common,science}.txt: Add words.
+
+2010-01-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thcoll/cweight.c, src/thcoll/cweight.h, src/thcoll/thcoll.c:
+	Remove GPL header left over. The library is LGPL.
+
+2010-01-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/brk-maximal.c (brk_root_pool): Fail if brk_pool_node_new()
+	returns NULL.
+	* src/brk-maximal.c (brk_maximal_do_impl): Fail if best_brk_new()
+	returns NULL.
+
+2010-01-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Post-release version suffix added.
+
+2010-01-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Bump library revision.
+
+	* configure.in, NEWS:
+	=== Version 0.1.13 ===
+
+2010-01-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Add 'AC_CONFIG_MACRO_DIR([m4])' for the new libtool.
+
+2010-01-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thwchar/thwchar.c (th_tis2uni_line, th_uni2tis_line):
+	Fix type of 'result' argument to match that in header file, so
+	doxygen recognizes and generates doc for it.
+
+2010-01-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{proper,common}.txt: Add words.
+
+2010-01-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thctype.h, src/thctype/thctype.c: Replace non-portable
+	isascii() with most-significant bit check.
+
+2010-01-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{common,geo}.txt: Add words.
+
+2010-01-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thailib.h, src/libthai.c: Move more doc comments.
+
+2010-01-09  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Move documentation from *.h to *.c, so libthai developers have the doc
+	at hand. Users can still read the doxygen-generated doc BTW.
+
+	* include/thai/*.h, src/*/*.c: Move doc comments from *.h to *.c.
+	* doc/Doxyfile.in: Set INPUT to @top_srcdir@.
+
+2010-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{proper,common,geo}.txt: Add words.
+
+2010-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_shot_init):
+	Return failure/success status.
+	* src/thbrk/brk-maximal.c (brk_pool_node_new):
+	Check & handle return code from brk_shot_init().
+
+2010-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thwbrk/thwbrk.c (th_wbrk, th_wbrk_line):
+	Rewritten, for harmony with the rests of the source, plus potential
+	integer overflow vulnerability removed.
+
+2010-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Fix potential integer overflow vulnerabilities.
+	Thanks Tim Starling <tstarling@wikimedia.org> for pointing out.
+
+	* src/thbrk/thbrk.c (th_brk_line): Return zero if malloc size overflows
+	or malloc fails.
+	* src/thbrk/brk-maximal.c (best_brk_new): Return NULL if malloc size
+	overflows.
+
+2009-08-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Post-release version suffix added.
+
+	* data/tdict-std-compound.txt: Remove loose compounds.
+	* data/tdict-{ict,district,proper,common,science,lang-ethnic,geo}.txt:
+	Add words.
+
+2009-06-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Bump library revision.
+
+	* configure.in, NEWS:
+	=== Version 0.1.12 ===
+
+2009-06-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std-compound.txt: Remove loose compounds.
+
+2009-06-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std-compound.txt: Remove loose compounds.
+	* data/tdict-{ict,district,proper,common,science,geo}.txt: Add words.
+
+2009-06-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, best_brk_contest): 
+	Back out weighted scoring for solution contest, as it sometimes tries
+	too hard to minimize word count, even though another solution with more
+	known words can match more text and results in smaller unknown zone.
+	Accidental words problem, which this scheme tried to address, has
+	already been alleviated with increased recovery threshold.
+
+2009-06-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl): Add break pos at
+	string end and let it enter the contest, instead of backing it out by
+	moving back str_pos as done in previous commit. That commit just
+	missed the point. Doing the right thing also guarantees consistency
+	with the case when some text of valid words is appended to the string.
+
+2009-06-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl): Set str_pos for cases
+	that fail at string end back to the last progress position, to prevent
+	it from wrongly winning the contest over some good candidates.
+
+2009-06-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/tkbrk/brk-maximal.c (RECOVERED_WORDS): Increase recovery
+	threshold, 2 is too few and can trigger wrong recovery position too
+	easily.
+
+2009-06-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/Makefile.am, +data/tdict-lang-ethnic.txt: Add a new category.
+	* data/tdict-{common,geo}.txt, data/tdict-lang-ethnic.txt:
+	Move some words to the new category.
+	* data/tdict-{lang-ethnic,ict,spell,proper,common,science,geo}.txt:
+	Add words.
+	* data/tdict-std.txt: Remove a duplicated compound.
+
+2009-06-13  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (best_brk_contest): Compare penalties with
+	'<=' like in previous code, instead of '<', to retain longest-matching
+	effect in case of equal scores.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std-compound.txt: Remove loose compounds.
+	* data/tdict-{common,proper}.txt: Move a proper noun to tdict-proper.
+	* data/tdict-{ict,spell,district,proper,common,science,geo}.txt:
+	Add words.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, best_brk_contest): 
+	Use weighted scoring, rather than parameters prioritization, to choose
+	better solution.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl): When recovering from
+	error, try to recover from the position next to the last break,
+	rather than right at the crash position. We care the input string,
+	not what it's being partially matched against.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_recover): When checking a character in
+	text, brk pos returned from brk_recover_try() are relative to
+	'text + p', not 'text'.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Split normal word break and recovery routines apart.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, +brk_recover_try):
+	  - Split brk_maximal_do_impl() into itself with (do_recover == 1) and
+	    brk_recover_try() with (do_recover == 0), for logic simplification.
+	  - Strip unnecessary tasks like best break contests and penalties from
+	    brk_recover_try(). All it needs is existence of a solution,
+	    regardless of its quality.
+	  - Use memcpy() to copy brk pos arrays instead of for loop.
+	* src/thbrk/brk-maximal.c (brk_maximal_do, brk_recover):
+	  - Adjust calls to brk_maximal_do_impl() and brk_recover_try()
+	    according to the changed prototypes.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl): Add one missing change
+	for last commit.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl): Update 'shot' after
+	'node' is changed, instead of referencing through the possibly new
+	'node' value, for code readability.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Beautify code.
+
+	* src/thbrk/brk-maximal.c (th_brkpos_hints): Adjust indents.
+	* src/thbrk/brk-maximal.c (brk_recover): Adjust brackets.
+
+2009-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (th_brkpos_hints): Add check for cases like
+	'เฉพาะ'.
+
+2009-06-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Remove obsolete Win32 checking stuffs.
+
+2009-06-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Add symbol versioning.
+
+	* configure.in: Check for -version-script support in linker.
+	* +src/libthai.map: Add symbol map.
+	* src/Makefile.am:
+	  - Conditionally supply -version-script, if supported, or
+	    -export-symbols otherwise, to linker.
+	  - Conditionally specify libthai.map or libthai.def as libthai.la
+	    dependency, according to corresponding linker option applied.
+	  - Include libthai.map in EXTRA_DISTS.
+
+2009-06-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (th_brkpos_hints):
+	Fix comment style to C, not C++.
+
+2009-06-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Fix wrong case of syllable like 'ช็อก'.
+
+	* src/thbrk/brk-maximal.c (th_brkpos_hints):
+	  - The case of SARA E/AE with next third character as MAITAIKHU should
+	    not apply when the MAITAIKHU is followed by O ANG or WO WAEN.
+	    That's a signature of new syllable, such as 'ช็อก'.
+	  - Add the case of syllable like 'ช็อก' or 'ช็วก'.
+
+2009-06-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Refactor so brk hints is prepared only once per brk_maximal_do() call.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do, +brk_maximal_do_impl):
+	Split implementation code into _impl() function, and let the
+	original brk_maximal_do() be a wrapper doing necessary preparations.
+
+	* src/thbrk/brk-maximal.c (brk_recover):
+	Call brk_maximal_do_impl() instead of brk_maximal_do(), passing the
+	appropriate brk hints subarray to it.
+
+	* src/thbrk/brk-maximal.{c,h} (brk_maximal_do):
+	* src/thbrk/thbrk.c (th_brk):
+	Drop the do_recover arg from brk_maximal_do(), as it's now a wrapper
+	which can seed initial condition for the mutual recursion.
+
+	* src/thbrk/brk-maximal.c (th_brkpos_hints): Add prototype.
+
+2009-06-04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (th_isleadable -> th_brkpos_hints):
+	  - Turn simple leadable check into a pre-processed break position
+	    hinting. Instead of doing the complicated checks on every loop,
+	    now the clients just check the prepared boolean array.
+	  - Add more complicated cases, such as Thai composite vowels.
+
+	* src/thbrk/brk-maximal.c (brk_recover):
+	  - Change prototype to accept brk pos hints, so it doesn't need to be
+	    recalculated.
+	  - Drop additional checks of preceeding ldvowel, as it's already
+	    covered by the brk pos hints.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do):
+	  - Pre-calculate brk pos hints on entry, and free it on exit.
+	  - Check the hints instead of calling the obsolete th_isleadable().
+	  - Pass the hints to brk_recover().
+
+2009-06-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{ict,proper,common,science,geo}.txt: Add words.
+
+2009-05-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{std-compound,common}.txt: Remove some loose compounds.
+	* data/tdict-common.txt: Reorder some words.
+	* data/tdict-{ict,proper,common,science,geo}.txt: Add words.
+
+2009-05-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/Makefile.am: Refactor and add sublibs to libthai.la dependencies,
+	so the final library gets rebuilt when its sub-libraries are changed.
+
+2009-05-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (th_isleadable): Consonant following
+	MAITAIKHU is not always unleadable, such as after "ก็". So, drop the
+	case.
+
+2009-05-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (th_isleadable): Also check for certain
+	vowels like MAITAIKHU, MAIHUNAKAT, SARA UEE in previous cell for
+	non-leadable consonants.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do, brk_recover): Adjust
+	th_isleadable() calls according to prototype change.
+
+2009-05-16  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (th_isleadable): Prohibit consonants with
+	THANTHAKHAT from being leadable.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do, brk_recover): Adjust
+	th_isleadable() calls according to prototype change.
+
+2009-05-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{ict,proper,common,science,geo}.txt: Add words.
+
+2009-05-13  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/Makefile.am, data/tdict-*.txt: Convert wordlists from TIS-620
+	to UTF-8, for easy management with modern tools.
+
+2009-05-13  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std-compound.txt: Remove some loose compounds.
+	* data/tdict-{ict,spell,district,proper,common,science,geo}.txt:
+	Add words.
+
+2009-05-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{ict,district,proper,common,science,geo}.txt: Add words.
+	* data/tdict-proper.txt: Sort some words properly.
+
+2009-04-29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{ict,proper,common,science,geo}.txt: Add words.
+
+2009-04-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Post-release version prefix added.
+
+	* data/tdict-{ict,district,proper,common,geo}.txt: Add words.
+	* data/tdict-{common,collection}.txt: Move some collection of words
+	to appropriate category.
+
+2009-04-06  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Bump library revision.
+
+	* configure.in, NEWS:
+	=== Version 0.1.11 ===
+
+2009-04-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{ict,district,proper,common,science,geo}.txt: Add words.
+
+2009-03-31  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Post-release version suffix added.
+
+	* libthai.pc.in: Require datrie-0.2 privately, to avoid exposing it
+	  unnecessarily to applications. This had even caused upgrading problem
+	  when libdatrie with different soname versions are loaded
+	  simultaneously, one from the application, and the other from libthai.
+	  And with libdatrie poor symbols handling, this had caused name clash.
+	  Thanks Loic Minier for pointing out the cause.
+
+2009-03-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* libthai.pc.in: Requires datrie-0.2 instead of datrie.
+	* configure.in: Bump library revision.
+
+	* configure.in, NEWS:
+	=== Version 0.1.10 ===
+
+2009-03-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* tdict-{common,district,ict,proper}.txt: Add words.
+	* tdict-std.txt: Remove 2 potentially ambiguous words.
+
+2009-03-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* tdict-{district,proper,common,geo}.txt: Add words.
+	* tdict-collection.txt: Add another variant of "x" transcription.
+
+2009-03-20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std-compound.txt: Removed potentially ambiguous word.
+	* data/tdict-{ict,district,science}.txt: Add words.
+
+2009-03-12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{common,geo,ict,spell}.txt: Add words. Move word from
+	  -common to -spell as appropriate.
+
+2009-01-21  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	First SVN commit.
+
+	* data/tdict-{common,geo}.txt: Add words.
+
+2009-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-common.txt, data/tdict-proper.txt:
+	Move more proper nouns from tdict-common.
+
+	* data/tdict-{collection,common,district,geo,ict,proper,science,
+	spell}.txt: Add words.
+
+2008-12-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_get_dict):
+	Move comment to proper place.
+
+2008-12-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_get_dict):
+	Adjust code so that brk_dict is not checked twice for normal cases.
+
+2008-12-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_maxmimal_do):
+	Call trie_state_is_single() instead of trie_state_is_leaf() when a
+	state is known to be terminal, eliminating redundant check.
+	(Requires libdatrie >= 0.1.99.2+cvs20081228)
+
+2008-12-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c
+	(brk_shot_init, brk_shot_reuse, best_brk_contest):
+	Use memcpy() to copy arrays, rather than iteration via array index.
+	Yet another minor performance improvement.
+
+	* src/thbrk/brk-maximal.c (brk_shot_reuse):
+	Re-allocate 'brk_pos' array only when growing, and never bother
+	shrinking it.
+
+2008-12-26  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Reuse break pool nodes more deeply, improving performance a little bit.
+	(Requires libdatrie >= 0.1.99.2+cvs20081226)
+
+	* src/thbrk/brk-maximal.c
+	(brk_shot_copy -> brk_shot_init, +brk_shot_reuse):
+	Split brk_shot_copy() into brk_shot_init() and brk_shot_reuse().
+	The former is for newly created nodes, while the latter is for
+	reusing old nodes, with memory reallocation minimized.
+	* src/thbrk/brk-maximal.c (brk_pool_node_new):
+	Separately call brk_shot_init() and brk_shot_reuse() per case.
+	* src/thbrk/brk-maximal.c (brk_pool_free):
+	Do not destruct BrkShot member. Keep it for further reuses.
+	* src/thbrk/brk-maximal.c (brk_pool_allocator_clear):
+	..And actually destruct it here.
+
+	* src/thbrk/brk-maximal.c (brk_root_pool):
+	Save one malloc() call for temporary 'root_shot'.
+
+2008-12-26  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/brk-maximal.c (brk_pool_get_node, brk_maximal_do):
+	Get rid of unused arg 's' for brk_pool_get_node().
+
+2008-12-26  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-ict.txt: Add words.
+
+2008-12-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Add housekeeping routine to clean up dictionary.
+
+	* src/Makefile.am, src/dummy.c -> libthai.c, src/libthai.def:
+	Add destructor function in .fini section, to be called on library
+	unload.
+
+	* src/thbrk/Makefile.am, +src/thbrk/thbrk-private.h, src/thbrk/thbrk.c
+	(thbrk_on_unload):
+	Add on-unload function for thbrk module.
+
+	* src/thbrk/brk-maximal.h, src/thbrk/brk-maximal.c 
+	(brk_get_dict, brk_maximal_on_unload):
+	  - Move 'brk_dict' static var from function to file scope
+	  - Add on-unload function to clean up dictionary
+
+2008-12-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/brk-maximal.c (brk_maximal_do): Adjust if-block a little bit.
+
+2008-12-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{geo,ict}.txt: Add words.
+
+2008-12-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/Makefile.am, +data/tdict-proper.txt, data/tdict-common.txt:
+	Split proper nouns from tdict-common.txt into a new list.
+	* data/tdict-{common,proper}.txt: Add words
+
+2008-12-16  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/Makefile.am:  No need to install 'thbrk.abm' any more.
+
+2008-12-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{common,geo,ict}.txt: Add words.
+
+2008-12-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Switch to libdatrie 0.2. (Requires libdatrie >= 0.1.99.2)
+
+	* configure.in:
+	  - Check for 'trietool-0.2' binary instead of 'trietool'
+	  - Check for 'datrie-0.2' pkg-config instead of 'datrie'
+
+	* src/thbrk/brk-maximal.c:
+	  - Replace 'SBTrie' with 'Trie'
+	  - Replace 'SBTrieState' with 'TrieState'
+	  - Replace 'sb_trie_*' function calls with corresponding 'trie_*'
+	  - For 'sb_trie_state_walk()', also convert TIS-620 char to UCS-4
+	    before actually walking
+	  - For 'sb_trie_open()', replace with 'trie_new_from_file()', plus
+	    dir + path combined
+
+	* data/Makefile.am:
+	  - Replace '*.br' and '*.tl' targets with '*.tri'
+	  - Add '-e tis-620' command-line argument to trietool
+	* data/Makefile.am, data/thbrk.sbm -> data/thbrk.abm:
+	  - Replace 'thbrk.sbm' (TIS-620) with 'thbrk.abm' (Unicode)
+
+	* tests/Makefile.am:
+	  - Add 'libthwchar.la' where 'libthbrk.la' is used, as th_tis2uni()
+	    is required there
+
+2008-06-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in, Makefile.am: Add --disable-dict option to prevent
+	dictionary data generation.
+
+2007-10-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thctype.h:
+	* src/thcell/thcell.c:
+	* src/thcoll/cweight.c:
+	* src/thcoll/cweight.h:
+	* src/thcoll/thcoll.c:
+	* src/thctype/thctype.c:
+	* src/thctype/wtt.c:
+	* src/thinp/thinp.c:
+	* src/thrend/thrend.c:
+	* src/thstr/thstr.c:
+	* src/thwchar/thwchar.c:
+	* src/thwstr/thwstr.c: Update my e-mail address.
+
+2007-10-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/libthai.def: List only symbols in plain format, for Mac build.
+	Thanks Vee Satayamas for the report.
+
+	* src/Makefile.am: Add libthai.def as libthai_la_DEPENDENCIES.
+
+2007-08-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* NEWS:
+	=== Version 0.1.9 ===
+
+2007-08-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* tests/test_thbrk.c (main), tests/test_thwbrk.c (main): Update check
+	values, according to the new compound words support.
+
+2007-08-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* doc/Doxyfile.in: Update for doxygen 1.5.3.
+
+2007-08-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std[-compound].txt: Remove rare words. Rearrange and add
+	compounds. (O Ang - Ho Nokhuk)
+
+	* data/tdict-{common,spell}.txt: Add words.
+
+2007-08-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std[-compound].txt: Remove rare words. Rearrange and add
+	compounds. (Ho Hip)
+
+	* data/tdict-{common,geo}.txt: Add words.
+
+2007-08-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std[-compound].txt: Remove rare words. Rearrange and add
+	compounds. (So Sua)
+
+	* data/tdict-{common,district,geo,spell}.txt: Add words.
+
+2007-07-20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std[-compound].txt: Remove rare words. Rearrange and add
+	compounds. (Wo Waen - So Rusi)
+
+	* data/tdict-{common,ict,scicence,spell}.txt: Add words.
+
+2007-07-12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std[-compound].txt: Remove rare words. Rearrange and add
+	compounds. (Ro Rua - Lu)
+
+	* data/tdict-{common,science}.txt: Add words.
+
+	* data/tdict-district.txt: Move non-province names to the bottom, so
+	they are separated from provinces. Add two more names.
+
+2007-07-09  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std[-compound].txt: Remove rare words. Rearrange and add
+	compounds. (Mo Ma - Yo Yak)
+
+	* data/tdict-{common,geo,ict,science,spell}.txt: Add words.
+
+2007-07-06  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std[-compound].txt: Remove rare words. Rearrange and add
+	compounds. (Pho Phan - Pho Samphao)
+
+	* data/tdict-{common,spell,ict}.txt: Add words.
+
+2007-06-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std[-compound].txt: Remove rare words. Rearrange and add
+	compounds. (Tho Thahan - Fo Fa)
+
+	* data/tdict-{common,spell}.txt: Add words.
+
+2007-06-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std[-compound].txt: Remove more rare words. Move some
+	compound words from -std to -std-compound. Add some missing entries
+	found. (Restarted from Ko Kai - Tho Thung. We need more space to
+	continue adding compounds from last commit.)
+
+	* data/tdict-{common,ict}.txt: Add words.
+
+2007-06-21  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std[-compound].txt: Add more compound words. Move some
+	compound words from -std to -std-compound. Remove some rare entries,
+	to make room for more entries. (~80% done)
+
+	* data/tdict-{common,ict}.txt: Add words.
+
+2007-06-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/Makefile.am, +data/tdict-std-compound.txt, data/tdict-std.txt:
+	Split compound words into a new file. Selectively add compound words.
+	(Half done.)
+
+	* data/tdict-{common,ict,science,spell}.txt: Add words.
+
+2007-06-12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (th_brk): Don't break between CR and LF.
+	Remove last break if at string end.
+
+	* tests/test_th[w]brk.c (main): Update test values.
+
+2007-06-11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Redesign itemization code for th_brk(), aiming at Unicode UAX #14
+	compatiblity.
+
+	* src/thbrk/Makefile.am, +src/thbrk/brk-ctype.{c,h}: Add character
+	classification table, as well as operation table for breaking between
+	all class combinations.
+
+	* src/thbrk/thbrk.c (th_brk): Rewrite the itemization code, based on
+	the break class table.
+
+	* tests/test_th[w]brk.c (main): Update test values.
+
+2007-06-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Post-release version bump.
+
+	* data/tdict-{std,common}.txt: Add words.
+
+2007-03-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* NEWS: Updated.
+
+	=== Version 0.1.8 ===
+
+2007-03-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* tests/test_thbrk.c (main), tests/test_thwbrk.c (main): Fix word
+	break check values, as white space handling has now been changed.
+
+2007-03-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Add AC_LIBTOOL_WIN32_DLL as required for Win32.
+
+	* src/Makefile.am (libthai_la_LDFLAGS): Always pass -no-undefined to 
+	enforce all resolved symbols. Thanks Loïc Minier.
+
+2007-03-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/Makefile.am (EXTRA_DIST, libthai_la_LDFLAGS), +src/libthai.def:
+	Add -export-symbols flag to limit exported symbols. Thanks Loïc Minier
+	for suggestion.
+
+	* src/thwstr/thwstr.c (th_wthaichunk): Declare the non-extern func as
+	static.
+
+2007-03-02  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-common.txt: Added words.
+
+2007-02-04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Yet another fix to white space bug in th_brk(), as spotted by
+	Suppachoke Santiwitchaya. This is just temporary fix for use while the
+	planned redesign does not happen.
+
+	* src/thbrk/thbrk.c (th_brk): Allow break between Thai punct and white
+	space.
+
+	* src/thbrk/thbrk.c (is_breakable): Allow break between punct and
+	white space. Remove rule that inhibited break between space and
+	MAIYAMOK. It was not sufficient anyway, as the space before MAIYAMOK
+	was still wrapped.
+
+	* ChangeLog: Fix wrong date in previous commit.
+
+2007-02-02  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (is_breakable): Allow break before white space.
+	This fixes wrong treatment of whitespace in HTML in mozlibthai 
+	component, which caused glitches in webpages.
+
+2007-01-13  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{common,geo,std}.txt: Added words.
+
+2006-10-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Post-release version bump.
+
+2006-10-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog: Converted to UTF-8.
+
+	* NEWS: Updated.
+
+	=== Version 0.1.7 ===
+
+2006-10-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/Makefile.am: Specify LC_ALL=C to make sure 'sort' always works.
+
+2006-10-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Fix 'make distcheck', plus a little enhancement on dict location.
+
+	* src/thbrk/brk-maximal.c (brk_get_dict): Try openning dict at
+	$LIBTHAI_DICTDIR environment before the default location.
+
+	* tests/Makefile.am, +tests/test-thbrk.sh, +tests/test-thwbrk.sh:
+	Added wrapper scripts to call test_th[w]brk programs with
+	LIBTHAI_DICTDIR set to trie in build tree.
+
+	* data/Makefile.am (EXTRA_DIST): Do not ship the auto-generated
+	tdict.txt in source.
+
+2006-10-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* tests/test_thbrk.c (main), tests/test_thwbrk.c (main): Rearrange
+	source. Remove some unnecessary variables. Adjust style. Fix warnings.
+
+2006-10-13  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* tests/test_thbrk.c (main), tests/test_thwbrk.c (main): Fix checking 
+	value for the length of the output from th_[w]brk_line() tests.
+
+2006-10-11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std.txt: Added some compound words.
+
+	* data/tdict-{common,ict}.txt: Added words.
+
+2006-10-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std.txt: Added some compound words.
+
+	* data/tdict-{common,ict}.txt: Added words.
+
+2006-09-19  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/Makefile.am (libthbrk_la_SOURCES), src/thbrk/thbrk.c,
+	+src/thbrk/brk-maximal.{h,c}: Split low-level mechanisms to
+	brk-maximal module.
+
+	* -src/thbrk/cttex.c, -src/thbrk/dict2state.c: Removed unused files.
+
+2006-09-19  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std.txt: Removed rare word (ยาจนก) which potentially
+	causes wierd ambiguity. Added some more compound words.
+
+	* data/tdict-{common,ict,spell}.txt: Added words.
+
+2006-09-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* TODO: Updated plan. Cleared what have been done.
+
+2006-09-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std.txt: Removed rare words (มาระ, มาริ) which
+	potentially cause weird ambiguities. Added some more compound words.
+
+	* data/tdict-{common,geo}.txt: Added words.
+
+2006-09-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std.txt: Added some compound words.
+
+	* data/tdict-{common,district,geo,ict,spell}.txt: Added words.
+
+2006-09-12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std.txt: Removed rare word (มมาก) which potentially
+	causes ambiguity. Moved entry (มาย) into its compound forms, as it
+	alone can cause ambiguity. Added some more compound words.
+
+	* data/tdict-{common,geo,ict,spell}.txt: Added words.
+
+2006-09-11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_do): Used is_breakable() to determine
+	breakability at the end of Thai chunk, instead of hard-coded
+	condition.
+
+	* src/thbrk/thbrk.c (is_breakable): Added condition for Thai chunk
+	ending. Also added condition so text is not breakable right after
+	period, comma and semicolon.
+
+	* data/tdict-std.txt: Broke "{เมทิล|เอทิล}แอลกอฮอล์" into two words.
+
+	* data/tdict-{common,geo,science,spell}.txt: Added words.
+
+2006-09-11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (is_breakable): Added non-breakable cases:
+	space + Mai Yamok; * + {right parenthesis|Khomut|...}.
+
+2006-09-11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (th_brk, is_breakable): Do not break after certain
+	punctuations like left quote, left parenthesis, etc., also covering
+	Paiyan Yai sequence.
+
+	* data/tdict-common.txt: Removed Paiyan Yai. Added some more words.
+
+2006-09-11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std.txt: Removed rare word (ทิวสะ) that caused weird
+	ambiguities. Added some compound words.
+
+	* data/tdict-{common,geo,ict,spell}.txt: Added words.
+
+2006-09-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-{std,common,district,geo,ict,science,spell}.txt:
+	Added words.
+
+2006-09-06  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std.txt: Removed two rare words (การก, ผลอ) that caused
+	weird ambiguities. Added some compound words.
+
+	* data/tdict-{common,district,geo,ict,science}.txt: Added words.
+
+2006-09-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_recover): Guarded against accessing beyond
+	string end.
+
+	* data/tdict-{std,common,geo,ict}.txt: Added more entries.
+
+2006-09-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_do): Adjusted condition in previous change a
+	little bit.
+
+2006-09-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_do): (Optimization) In recovery mode, stop
+	immediately when first solution is found.
+
+2006-09-02  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_recover, brk_do): (Optimization) Remembered 
+	previous recovery result for reuse, cutting off a few repeated
+	recoveries at the same position.
+
+	* data/tdict-{std,common}.txt: Added entries.
+
+2006-09-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (best_brk_contest): Adjusted condition so that
+	equally scored solution that comes later overrides previous one.
+	Longest matching is preferred as a result for such situation.
+
+	* data/tdict-std.txt: Added three more words.
+
+2006-09-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (th_isleadable): RU and LU are also leadable.
+	And don't bother checking for Thai digits. They are never passed.
+
+	* src/thbrk/thbrk.c (brk_do): Fixed wrong choosing of nodes with error
+	at end of string. Added penalty for such cases, and made sure the
+	break position is not marked.
+
+	* data/tdict-{std,science,ict,common}.txt: Added & removed entries.
+
+2006-09-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/Makefile.am, +data/tdict-collection.txt, data/tdict-common.txt:
+	Split collection sets into tdict-collection.
+
+	* data/Makefile.am, +data/tdict-spell.txt, data/tdict-std.txt:
+	Split common typos or variations into tdict-spell.
+
+	* data/tdict-{std,common,ict,district,geo,science}.txt: Moved more 
+	words out of tdict-std. Removed more redundant entries. Fixed typos.
+	Added more words.
+
+2006-09-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/Makefile.am (dictdatadir): Added variable missed during
+	the tdict split.
+
+	* data/tdict-{std,ict,common}.txt: Moved some words out of tdict-std.
+	Removed duplicated and redundant entries. Added some more words.
+
+2006-08-31  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in, Makefile.am, src/thbrk/Makefile.am, +data/Makefile.am,
+	src/thbrk/tdict.sbm -> data/tdict.sbm,
+	src/thbrk/tdict.txt ->
+	data/tdict-{common,district,geo,ict,science,std}.txt: Moved tdict
+	generation from source to data directory.
+
+2006-08-31  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	=== merged from datrie_wbrk-branch into HEAD ===
+
+2006-08-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_do): (Optimization) Unified the recovered
+	node immediately. Chance is that it gets superseded, rather than
+	picked up in later loop. Rearranged code to eliminate source
+	duplications.
+
+2006-08-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_do): (Optimization) When unifying converted
+	nodes, clear all matches rather than just the first.
+
+2006-08-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_do): (Optimization) When successfully
+	recovered, stop walking immediately, increasing chance to be
+	superseded earlier by better candidate. Also removed unnecessary check 
+	for str_pos < len, because it's guaranteed by brk_recover() when return
+	value is not -1.
+
+2006-08-29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (+brk_pool_allocator_use,
+	brk_pool_allocator_clear): Guarded the free list with ref count, for
+	thread safety.
+
+	* src/thbrk/thbrk.c (th_brk): Requested to use the break pool
+	allocator at the beginning.
+
+2006-08-29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_pool_node_new, brk_pool_free_node):
+	~(Optimization) Kept freed BrkPool nodes for reuse in next allocation, 
+	reducing calls to malloc().
+
+	* src/thbrk/thbrk.c (+brk_pool_allocator_clear, th_brk): Cleared the 
+	free list when work is done.
+
+2006-08-29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_do): Calculated penalty for unrecoverable
+	string with (len - recent break), not (strlen(s) - recent break).
+
+2006-08-29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in (LT_REVISION): Incremented library revision.
+
+	* src/thbrk/thbrk.c (brk_do): (Optimization) Do not contest best break 
+	when trie walking crashes in recover mode. It won't win recovery 
+	criterion anyway. Also got rid of one inner loop condition.
+
+2006-08-29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_recover): Do not try to recover after a
+	leading vowel.
+
+2006-08-26  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (th_brk): Tokenized mixed Thai-English text and
+	called brk_do() chunk by chunk.
+
+	* src/thbrk/thbrk.c (brk_do, brk_recover): Accepted string and length
+	rather than null-terminated string, to support chunk-wise breaking.
+
+2006-08-26  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_pool_delete): Adjusted code, for tiny
+	performance improvement, esp. when deleting first node.
+
+2006-08-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/tdict.txt: Manually revised word list. Removed some
+	archaic or obsolete words. Added some new terms.
+
+2006-08-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c: s/penulty/penalty/. :-P
+
+2006-08-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (brk_do): Calculated penalty more accurately by
+	measuring distance from recent break pos, rather than the crash pos.
+	Also added penalty on recovery failure.
+
+	* src/thbrk/thbrk.c (best_brk_contest): Fixed boolean expression by
+	adding parentheses.
+
+2006-08-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* libthai.pc.in: Added datrie to Requires.
+
+	* src/thbrk/Makefile.am: Removed old dict before rebuilding.
+
+	* src/thbrk/thbrk.c (th_brk_line): Added implementation.
+
+	* src/thbrk/thbrk.c (brk_do): Be satisfied with terminal state only if
+	the following character can begin a word.
+
+	* src/thbrk/thbrk.c (BrkShot, BestBrk, brk_root_pool, brk_do,
+	brk_shot_copy, best_brk_new, best_brk_contest): Added penulty
+	on crash recovery, and considered it when contesting shots. This can
+	prevent long crash shots from showing up as maximally matched.
+
+2006-08-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	=== begin of datrie_wbrk-branch ===
+
+	* configure.in, src/thbrk/Makefile.am, src/thbrk/thbrk.c,
+	+src/thbrk/thbrk.sbm: Replaced old thbrk from cttex with my new
+	version written from scratch.
+
+2006-08-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Post-release version bump.
+
+2006-08-05  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* NEWS, configure.in:
+	Version 0.1.6.
+
+2006-08-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Update library version info, according to recent API
+	additions.
+
+2006-08-02  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Disable debug by default.
+
+2006-08-02  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Enable doxygen by default.
+
+	* configure.in, doc/Makefile.am: Use htmldocdir variable instead of
+	pkgdocdir/docdir. Let default behavior install html under html/ subdir.
+
+	* configure.in, Makefile.am: Exclude man/ subdir, and use
+	doxygen-generated man pages instead.
+
+	* doc/Doxyfile.in: Disable SHOW_INCLUDE_FILES, as showing include
+	files included from the documented file just confuses readers in the 
+	man pages.
+
+2006-08-02  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thctype.h, man/man3/thctype.3: Clarify character level
+	2 and 3 in the document.
+
+2006-08-02  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thinp/thinp.c: Use WTTOp enum instead of int, as per recent
+	change in wtt.h
+
+2006-08-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* doc/Makefile.am: Rearrange the man pages.
+
+2006-08-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* doc/Makefile.am, doc/Doxyfile.in: Generate man links and selectively
+	install man pages.
+
+2006-08-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* doc/Makefile.am: Use html.stamp target to prevent unneccessary
+	generation of document.
+
+2006-08-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thctype.h: Fix HTML errors in documentation comments.
+
+	* include/thai/thctype.h, man/man3/thctype.3: Fix typo.
+
+	* include/thai/thrend.h: Fix errors in doxygen tags in comments.
+
+2006-08-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/wtt.h, src/thctype/wtt.c: Add documentation from wtt.3.
+	Use enum instead of #define.
+
+	* man/man3/wtt.c: Revised.
+
+2006-08-01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thctype.h: Add documentation taken from thctype.3.
+
+	* man/man3/thctype.3: Revised.
+
+	* doc/Doxyfile.in: Append "include" to STRIP_FROM_PATH.
+
+2006-07-31  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thailib.h: Add main page using content from libthai.3.
+
+	* man/man3/libthai.3: Fix typos.
+
+2006-07-31  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/{thbrk,thcoll}.h: Fix typos in comments.
+
+	* include/thai/{thwbrk,thwchar,thwcoll,thwctype,thwstr}.h:
+	Edit comments for documentation.
+
+	* include/thai/thwctype.h, src/thwctype/thwctype.c: Add missing
+	functions corresponding to thctype: th_wcisthdiac,
+	th_wcistaillesscons, th_wcisovershootcons, th_wcisundershootcons,
+	th_wcisundersplitcons.
+
+2006-07-31  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in, Makefile.am, +doc/, +doc/Doxyfile.in,
+	+doc/Makefile.am: Add document generation with doxygen.
+
+	* include/thai/{thailib,thbrk,thcell,thcoll,thctype,thinp,thrend,
+	thstr}.h: Edit comments for documentation.
+
+2006-07-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thcoll/cweight.c (th_char_weight_()): Remove unnecessary check
+	of c's range that always yields true.
+
+	* src/thwchar/thwchar.c (uni2thai_ext_()): Fix loop condition that
+	always yielded true due to range of data type.
+
+2006-07-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thinp/thinp.c, src/thrend/thrend.c: Add missing <string.h>.
+
+2006-05-04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in, src/Makefile.am: Add check and condition for Win32
+	build with cygwin/mingw.
+
+2006-03-13  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* NEWS, configure.in:
+	Version 0.1.5.
+
+2006-03-13  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* tests/test_thwbrk.c: Allocate more buffer for th_brk_line() output,
+	fixing bogus bug that blocks the test.
+
+2006-03-13  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* tests/test_thwbrk.c: Print out the strings in problem when the
+	result from th_brk_line() and th_wbrk_line() do not match.
+
+2006-03-13  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* tests/test_thcell.c: Fix bug in test_th_prev_cell() due to wrong
+	variable referencing.
+
+2006-02-18  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* src/tkbrk/Makefile.am: Remove map.c from cttex sources, to fix
+	compiling bug caused by building map.o with and without libtool.
+
+2006-02-18  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* configure.in, src/Makefile.am: Add -version-info into LDFLAGS. 
+	We start maintaining library version info from now on.
+
+2005-10-28  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* COPYING:  Update FSF address.
+
+2005-10-09  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* configure.in:
+	Formatted configure options help strings with AC_HELP_STRING().
+	Used --disable/--enable help style rather than --enable with default
+	yes or no.
+
+2005-03-15  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* src/thrend/thrend.c:
+	Add Mac PUAs for baseless Tho Than and Yo Ying, as well as lowered
+	version of lower marks.
+
+	* tests/test_thrend.c:
+	Update tester accodingly.
+
+2005-03-02  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thbrk/:
+	Debug information (default commented out)
+	Some new words added to tdict.txt
+
+2005-01-13  Pattara Kiatisevi <ott@linux.thai.net>
+	
+	* src/thbrk/thbrk.c:
+	A space is considered and returned as a breakable point
+
+2004-10-16  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* NEWS, configure.in:
+	Version 0.1.4.
+
+2004-10-13  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* src/thstr/thstr.c (th_normalize):
+	Handle char of "Level 3".
+
+	* src/thinp/thinp.c (th_validate):
+	Handle correction of char of "Level 3".
+
+2004-10-13  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* src/thcell/thcell.c (th_next_cell):
+	Check for acell.hilo before placing repeated SARA AM into the same
+	cell.
+
+	* tests/test_thcell.c:
+	Add test case for repeated SARA AM.
+
+2004-10-12  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* tests/test_thctype.c (test_bool_funcs):
+	Rewrite if-do-while loops with clearer while loops. Get rid of warning
+	of range checking.
+
+	* tests/test_thbrk.c, tests/test_thwbrk.c, test_thwchar.c:
+	Add missing string.h includes.
+
+2004-10-12  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	Handle the case of NIKHAHIT and MAITAIKHU, which can be in either
+	above or top level. This behavior is defined as "level 3" in
+	th_chlevel() returning value.
+
+	* src/thcell/thcell.c (th_next_cell, th_prev_cell):
+	Conditionally place character of weight 3 at above or top level.
+
+	* src/thctype/thctype.h (th_chlevel):
+	Document the "level 3".
+
+	* src/thctype/thctype.c (_th_chlevel_tbl):
+	Change levels of NIKHAHIT and MAITAIKHU to 3.
+
+	* tests/test_thcell.c, tests/test_thrend.c:
+	Add the test cases of NIKHAHIT and MAITAIKHU at top level.
+
+2004-05-15  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* set the mode of cttex to firstmode=1 (we want it fast)
+
+2004-04-08  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* AUTHORS:
+	Update e-mail addresses.
+
+2004-02-22  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* tests/test_thrend.c:
+	Update check values as per new blank base glyph.
+
+	* NEWS, configure.in:
+	Version 0.1.3
+
+2004-01-20  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	* include/thai/thrend.h, src/thrend/thrend.c:
+	Use TH_BLANK_BASE_GLYPH as a base for floating upper/lower vowels.
+
+2003-09-10  Theppitak Karoonboonyanan <thep@linux.thai.net>
+
+	*** Stop using CVS-generated ChangeLog, as it's hard to read ***
+
+	* include/thai/Makefile.am:
+	List the missing thwstr.h.
+
+	* man/man3/Makefile.am:
+	Add EXTRA_DIST to include missing man pages.
+
+	* man/template.3, man/man3/*.3:
+	Change my e-mail address.
+
+	* tests/test-thcoll.sh:
+	Also remove out.txt, to pass 'make distcheck'.
+
+	* TODO:
+	Add TODO about normalization rules.
+
+	* NEWS, configure.in:
+	Version 0.1.2.
+
+2003-03-23 Sunday 20:26  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.55), src/thctype/wtt.c (1.3): Fix TACio_op_[] data
+	for (FV1,NON) and (FV1,LV).
+
+2003-03-23 Sunday 20:23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.54), include/thai/thcell.h (1.6),
+	src/thcell/thcell.c (1.7): Add th_cell_init() function.
+
+2003-02-02 Sunday 15:45  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* debian/: ex.package.doc-base (1.2), files (1.2),
+	libthai0.postinst.debhelper (1.2), libthai0.postrm.debhelper (1.2),
+	libthai0.substvars (1.2): -some more bullshits
+
+2003-02-02 Sunday 15:44  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* debian/: conffiles.ex (1.2), cron.d.ex (1.2), emacsen-install.ex
+	(1.2), emacsen-remove.ex (1.2), emacsen-startup.ex (1.2), init.d.ex
+	(1.2), manpage.1.ex (1.2), manpage.sgml.ex (1.2), menu.ex (1.2),
+	postinst.ex (1.2), postrm.ex (1.2), preinst.ex (1.2), prerm.ex
+	(1.2), shlibs.local.ex (1.2), watch.ex (1.2): -remove these
+	bullshits
+
+2003-02-02 Sunday 15:35  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* debian/: README.Debian (1.1), changelog (1.1), conffiles.ex
+	(1.1), control (1.1), copyright (1.1), cron.d.ex (1.1), dirs (1.1),
+	docs (1.1), emacsen-install.ex (1.1), emacsen-remove.ex (1.1),
+	emacsen-startup.ex (1.1), ex.package.doc-base (1.1), files (1.1),
+	init.d.ex (1.1), libthai-dev.dirs (1.1), libthai-dev.files (1.1),
+	libthai0.dirs (1.1), libthai0.files (1.1),
+	libthai0.postinst.debhelper (1.1), libthai0.postrm.debhelper (1.1),
+	libthai0.substvars (1.1), manpage.1.ex (1.1), manpage.sgml.ex
+	(1.1), menu.ex (1.1), postinst.ex (1.1), postrm.ex (1.1),
+	preinst.ex (1.1), prerm.ex (1.1), rules (1.1), shlibs.local.ex
+	(1.1), watch.ex (1.1): -let's debianize it
+
+2002-09-20 Friday 21:40  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* libthai.pc.in (1.2): Fix Cflags to not descend to thai/ subdir in
+	include path
+
+2001-10-03 Wednesday 21:52  poonlap
+
+	* man/man3/libthai.3 (1.1): Main manpage.
+
+2001-09-30 Sunday 21:03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.53), configure.in (1.18), include/thai/thwstr.h
+	(1.2), src/Makefile.am (1.13), src/thwstr/.cvsignore (1.1),
+	src/thwstr/Makefile.am (1.1), src/thwstr/thwstr.c (1.1): Add a
+	quick-and-dirty implementation of thwstr.
+
+2001-09-30 Sunday 18:48  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.52), tests/test_thwchar.c (1.4): Add tests for
+	uni<->win/mac conversion. Use stderr in output messages.
+
+2001-09-25 Tuesday 19:26  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.51), Makefile.am (1.4), configure.in (1.17),
+	man/.cvsignore (1.1), man/Makefile.am (1.1), man/man3/.cvsignore
+	(1.1), man/man3/Makefile.am (1.1): Add Makefiles for man pages.
+
+2001-09-22 Saturday 15:19  poonlap
+
+	* src/Makefile.am (1.12): Thwbrk is not listed in the
+	library(typo-error), fixed.
+
+2001-09-17 Monday 08:53  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* AUTHORS (1.4), ChangeLog (1.50), include/thai/thwinp.h (1.4): Add
+	K.Poonlap to AUTHORS. Rename thwciscompose() to thwcisaccept().
+
+2001-09-16 Sunday 21:59  poonlap
+
+	* man/: template.3 (1.1), man3/thctype.3 (1.1), man3/wtt.3 (1.1):
+	Create first man pages for thctype.3, wtt.3 Also template.3
+
+2001-09-14 Friday 21:36  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.48), configure.in (1.16), include/thai/thwctype.h
+	(1.3), src/Makefile.am (1.11), src/thwctype/.cvsignore (1.1),
+	src/thwctype/Makefile.am (1.1), ChangeLog (1.49),
+	src/thwctype/thwctype.c (1.1): Add a quick implementation of
+	thwctype.
+
+2001-09-14 Friday 21:07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* tests/: test_thbrk.c (1.5), test_thcell.c (1.5): Fix warning.
+
+2001-09-14 Friday 21:05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.47), src/thwchar/Makefile.am (1.3),
+	src/thwchar/hashtbl.c (1.2), src/thwchar/hashtbl.h (1.2),
+	src/thwchar/thwchar.c (1.7): Remove hashing. Use simple linear
+	search, to get rid of memory leak.
+
+2001-09-14 Friday 20:48  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.46), include/thai/thwchar.h (1.8),
+	src/thwchar/thwchar.c (1.6): Use lazy creation for hash tables.
+
+2001-09-14 Friday 00:54  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.45), include/thai/thwchar.h (1.7),
+	src/thwchar/Makefile.am (1.2), src/thwchar/hashtbl.c (1.1),
+	src/thwchar/hashtbl.h (1.1), src/thwchar/thwchar.c (1.5): Implement
+	uni2winthai(), uni2macthai() with hash table added in hashtbl.[ch].
+
+2001-08-22 Wednesday 11:41  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.44), include/thai/wtt.h (1.2), src/thcell/thcell.c
+	(1.6), src/thctype/wtt.c (1.2), src/thinp/thinp.c (1.8),
+	src/thrend/thrend.c (1.10), src/thstr/thstr.c (1.3),
+	src/thwchar/thwchar.c (1.4): Add comments. Check naming convention.
+	Refine coding style.
+
+2001-08-14 Tuesday 13:18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.43), NEWS (1.5) (utags: r0_1_1): Release Version
+	0.1.1.
+
+2001-08-14 Tuesday 13:16  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.42): Prepare to release Version 0.1.1.
+
+2001-08-14 Tuesday 13:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.ac (1.3): Remove configure.ac.
+
+2001-08-14 Tuesday 13:11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in (1.15), include/thai/thctype.h (1.8), src/dummy.c
+	(1.2), src/thbrk/dict2state.c (1.3), src/thcoll/cweight.c (1.3),
+	src/thcoll/cweight.h (1.3), src/thinp/thinp.c (1.7),
+	src/thstr/thstr.c (1.2) (utags: r0_1_1): Require autoconf 2.50. Add
+	--enable-ansi and --enable-debug flags.  Turn on all warnings. Fix
+	warnings.
+
+2001-08-13 Monday 13:07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.41), NEWS (1.4), README (1.6, r0_1_1), TODO (1.2,
+	r0_1_1), configure.ac (1.2), configure.in (1.14): Version 0.1.1
+
+2001-08-10 Friday 18:09  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.40), src/thrend/thrend.c (1.9, r0_1_1): Merge
+	special case of NIKHAHIT with tone/ad in general.
+
+2001-08-10 Friday 18:07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.39), include/thai/thrend.h (1.8, r0_1_1),
+	src/thrend/thrend.c (1.8), tests/Makefile.am (1.10, r0_1_1),
+	tests/test_thrend.c (1.1, r0_1_1): Add test suite for thrend. Fix
+	bugs in thrend: th_chlevel() typo; treat NIKHAHIT and MAITAIKHU
+	with shift_left_tone_ad() in th_render_cell(); also shift top-level
+	character left when collapsed with NIKHAHIT split from SARA_AM.
+
+2001-08-10 Friday 15:25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.38), include/thai/thcell.h (1.5, r0_1_1),
+	src/thcell/thcell.c (1.5, r0_1_1): Allow null pointer to struct
+	thcell_t to be passed in th_next_cell() and th_prev_cell(), where
+	no cell data will be written back.
+
+2001-08-09 Thursday 20:33  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.37), tests/test_thcell.c (1.4, r0_1_1),
+	tests/test_thstr.c (1.3, r0_1_1): Add header comments.
+
+2001-08-09 Thursday 20:27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.35), tests/Makefile.am (1.9), ChangeLog (1.36),
+	tests/test_thinp.c (1.1, r0_1_1): Add thinp test suite.
+
+2001-08-09 Thursday 18:52  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.34), include/thai/thcell.h (1.4),
+	src/thcell/thcell.c (1.4), src/thrend/thrend.c (1.7),
+	tests/test_thcell.c (1.3): Change return types and arguments of
+	thcell functions to reduce information redundancy.
+
+2001-08-09 Thursday 18:13  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.33), tests/test_thcell.c (1.2): Add
+	test_th_make_cells().
+
+2001-08-09 Thursday 17:55  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.32), tests/Makefile.am (1.8), tests/test_thcell.c
+	(1.1): Add thcell test suite.
+
+2001-08-09 Thursday 00:57  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.31), include/thai/thcell.h (1.3),
+	include/thai/thinp.h (1.8, r0_1_1), include/thai/thrend.h (1.7),
+	src/thcell/thcell.c (1.3), src/thinp/thinp.c (1.6),
+	src/thrend/thrend.c (1.6): Rename struct thcell to struct thcell_t,
+	for naming consistency.
+
+2001-08-09 Thursday 00:52  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.30), include/thai/thinp.h (1.7), src/thinp/thinp.c
+	(1.5): Change th_validate() to use a cell as context. Define struct
+	thinpconv_t for describing input buffer conversion.
+
+2001-08-08 Wednesday 20:58  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.29), include/thai/thcell.h (1.2),
+	src/thcell/thcell.c (1.2): Add th_prev_cell().
+
+2001-08-08 Wednesday 19:49  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.28), autogen.sh (1.4, r0_1_1), configure.ac (1.1):
+	Add result checking in autogen.sh. Add configure.ac for autoconf
+	2.50+.
+
+2001-08-08 Wednesday 19:39  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.27), configure.in (1.13), include/thai/Makefile.am
+	(1.5, r0_1_1), include/thai/thcell.h (1.1), include/thai/thrend.h
+	(1.6), src/Makefile.am (1.10, r0_1_1), src/thcell/.cvsignore (1.1,
+	r0_1_1), src/thcell/Makefile.am (1.1, r0_1_1), src/thcell/thcell.c
+	(1.1), src/thrend/thrend.c (1.5): Split thcell functions into a
+	separate module.
+
+2001-08-08 Wednesday 11:45  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.26), src/thrend/thrend.c (1.4): Add guards for cells
+	without base or hilo char.
+
+2001-08-07 Tuesday 19:43  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.25), src/thinp/thinp.c (1.4): Remove uncommon
+	predefined sequence correction.
+
+2001-08-07 Tuesday 19:40  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.24), include/thai/thrend.h (1.5), include/thai/tis.h
+	(1.2, r0_1_1), src/thrend/thrend.c (1.3): Fix NULL redefinition in
+	tis.h. Change rendering function API to return total glyphs.
+	Implement Win/Mac shaping. Implement string rendering functions.
+
+2001-08-07 Tuesday 17:29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.23), include/thai/thrend.h (1.4),
+	src/thrend/thrend.c (1.2): Treat SARA_AM cases. Add is_decomp_am
+	argument to determine its appearance.  Redefine WTT "cell" for
+	decomposed SARA_AM case. Add code for plain TIS rendering with
+	SARA_AM concerned.
+
+2001-08-07 Tuesday 16:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.22), include/thai/thctype.h (1.7),
+	src/thctype/thctype.c (1.7, r0_1_1), tests/test_thctype.c (1.2,
+	r0_1_1): Add consonant shapes classification in thctype, for the
+	use of elegant renderers.
+
+2001-08-06 Monday 21:08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.21), configure.in (1.12), include/thai/thrend.h
+	(1.3), src/Makefile.am (1.9), src/thinp/thinp.c (1.3),
+	src/thrend/.cvsignore (1.1, r0_1_1), src/thrend/Makefile.am (1.1,
+	r0_1_1), src/thrend/thrend.c (1.1): Add partial implementation for
+	thrend (cell clustering). Change cell definition (WTT hilo byte
+	encoding is too complicated). Use menomic TIS character names in
+	thinp.c.
+
+2001-08-05 Sunday 19:42  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.20), include/thai/thinp.h (1.6), src/thinp/thinp.c
+	(1.2): Change th_validate() to take more context. Define conversion
+	mechanism more deliberately. Implement th_validate().
+
+2001-08-04 Saturday 23:04  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* ChangeLog (1.19, r0_1_0): -before release 0.1.0
+
+2001-08-04 Saturday 22:46  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thailib.h (1.5, r0_1_1, r0_1_0): Resolve conflict.
+
+2001-08-04 Saturday 22:32  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* include/thai/thailib.h (1.4): -sunCC prefers ((thchar_t) ~0) than
+	~((thchar_t) 0) (from P'Thep)
+
+2001-08-04 Saturday 22:26  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thwbrk/thwbrk.c (1.5), tests/test_thbrk.c (1.4) (utags:
+	r0_1_1, r0_1_0): -casting
+
+2001-08-04 Saturday 22:11  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* tests/test_thwbrk.c (1.3, r0_1_1, r0_1_0): -casting
+
+2001-08-04 Saturday 22:08  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* tests/test_thwchar.c (1.3, r0_1_1, r0_1_0): -change comments to
+	C-style
+
+2001-08-04 Saturday 21:59  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thbrk/thbrk.c (1.8, r0_1_1, r0_1_0): -fix missing casting
+	between char * and unsigned char *
+
+2001-08-04 Saturday 21:58  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thwchar.h (1.6, r0_1_1, r0_1_0): Remove duplicated
+	macro THCHAR_ERR (already defined in thailib.h)
+
+2001-08-04 Saturday 21:45  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/: thbrk/thbrk.c (1.7), thwbrk/thwbrk.c (1.4): -change
+	comments to C-style :(
+
+2001-08-04 Saturday 21:40  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* tests/test_thbrk.c (1.3): -change comments to C-style :(
+
+2001-08-04 Saturday 21:24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* tests/test_thstr.c (1.2, r0_1_0): Fix signed/unsigned char
+	warning.
+
+2001-08-04 Saturday 20:57  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thctype/thctype.c (1.6, r0_1_0): Remove weird characters.
+
+2001-08-04 Saturday 20:41  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* ChangeLog (1.18): -hmm, do I always need to commit this
+	ChangeLog?
+
+2001-08-04 Saturday 20:35  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* tests/test_thwchar.c (1.2): -remove wprintf, useless
+
+2001-08-04 Saturday 20:29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.17), NEWS (1.3, r0_1_0): More detailed info in NEWS.
+
+2001-08-04 Saturday 20:16  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* NEWS (1.2), README (1.5, r0_1_0): -move release information to
+	NEWS
+
+2001-08-04 Saturday 20:11  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* README (1.4): -more info in RELEASE INFORMATION
+
+2001-08-04 Saturday 20:07  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* README (1.3), AUTHORS (1.3, r0_1_1, r0_1_0): -more descriptive
+
+2001-08-04 Saturday 20:04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in (1.11), include/thai/Makefile.am (1.4),
+	include/thai/thinp.h (1.5), include/thai/wtt.h (1.1, r0_1_1),
+	src/Makefile.am (1.8), src/thctype/Makefile.am (1.2, r0_1_1),
+	src/thctype/wtt.c (1.1, r0_1_1), src/thinp/.cvsignore (1.1,
+	r0_1_1), src/thinp/Makefile.am (1.1, r0_1_1), src/thinp/thinp.c
+	(1.1) (utags: r0_1_0): Add WTT 2.0 tables. Partially implement
+	thinp.
+
+2001-08-04 Saturday 18:08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* AUTHORS (1.2), ChangeLog (1.16), README (1.2), TODO (1.1,
+	r0_1_0), configure.in (1.10): Release first version 0.1.0
+
+2001-08-03 Friday 18:20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.15), src/thbrk/Makefile.am (1.7, r0_1_1, r0_1_0),
+	src/thbrk/cttex.c (1.3, r0_1_1, r0_1_0), src/thbrk/thbrk.c (1.6),
+	tests/Makefile.am (1.7, r0_1_0): Make thbrk and cttex use thstr
+	instead of fixline() and adj().  Fix a memory leak.
+
+2001-08-03 Friday 17:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.14), configure.in (1.9), include/thai/Makefile.am
+	(1.3), include/thai/thstr.h (1.1, r0_1_1, r0_1_0),
+	include/thai/thwstr.h (1.1, r0_1_1, r0_1_0), src/Makefile.am (1.7),
+	src/thctype/thctype.c (1.5), src/thstr/.cvsignore (1.1, r0_1_1,
+	r0_1_0), src/thstr/Makefile.am (1.1, r0_1_1, r0_1_0),
+	src/thstr/thstr.c (1.1, r0_1_0), tests/.cvsignore (1.5, r0_1_1,
+	r0_1_0), tests/Makefile.am (1.6), tests/test_thstr.c (1.1): Add
+	thstr, thwstr API set. Add th_normalize() implementation (extracted
+	from cttex). Fix level table for top characters in thctype.
+
+2001-08-01 Wednesday 20:13  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thwbrk/thwbrk.c (1.3): -new implementation, not convert
+	cutCode to tis620 back and forth
+
+2001-08-01 Wednesday 05:21  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* tests/test_thbrk.c (1.2): -cosmetic on error messages
+
+2001-08-01 Wednesday 05:20  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thbrk/thbrk.c (1.5): -fix const casting problem
+
+2001-07-31 Tuesday 22:03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.13), src/thwbrk/thwbrk.c (1.2), tests/test_thwbrk.c
+	(1.2): Fix changes affected by the revised thwchar.
+
+2001-07-31 Tuesday 22:01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thwchar/thwchar.c (1.3, r0_1_1, r0_1_0): Revise thwchar.
+
+2001-07-31 Tuesday 20:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* tests/test_thctype.c (1.1, r0_1_0): Add test_thctype.c to
+	repository.
+
+2001-07-31 Tuesday 20:50  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.12), tests/.cvsignore (1.4): Add .cvsignore entries
+	in tests/.
+
+2001-07-31 Tuesday 20:47  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thctype.h (1.6, r0_1_0), src/thctype/thctype.c
+	(1.4), tests/Makefile.am (1.5): Add test program for thctype. Fix
+	many bugs in thctype.
+
+2001-07-31 Tuesday 18:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.11), include/thai/thctype.h (1.5),
+	src/thcoll/thcoll.c (1.3, r0_1_1, r0_1_0), src/thctype/thctype.c
+	(1.3): Refine thctype interface & implementation (remove win/mac
+	checking, add combining char checking, fix vowel class bitmasks).
+	Make thcoll use thctype.
+
+2001-07-30 Monday 18:43  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thwbrk/.cvsignore (1.1, r0_1_1, r0_1_0): -.cvsignore
+
+2001-07-30 Monday 18:42  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* configure.in (1.8): -add thwbrk
+
+2001-07-30 Monday 18:41  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* tests/: Makefile.am (1.4), test_thwbrk.c (1.1), test_thwchar.c
+	(1.1): -test drivers for thwbrk and thwchar
+
+2001-07-30 Monday 18:40  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thwbrk/: Makefile.am (1.1, r0_1_1, r0_1_0), thwbrk.c (1.1):
+	-thwbrk implementation
+
+2001-07-30 Monday 18:38  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/: Makefile.am (1.6), thwchar/thwchar.c (1.2): -thwchar
+	uni2tis620-0 implementation
+
+2001-07-30 Monday 18:37  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* include/thai/: thbrk.h (1.4, r0_1_1, r0_1_0), thwbrk.h (1.3,
+	r0_1_1, r0_1_0), thwchar.h (1.5): -add new interfaces and
+	descriptions.
+
+2001-07-27 Friday 17:43  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in (1.7), include/thai/thwchar.h (1.4), src/Makefile.am
+	(1.5), src/thwchar/.cvsignore (1.1, r0_1_1, r0_1_0),
+	src/thwchar/Makefile.am (1.1, r0_1_1, r0_1_0),
+	src/thwchar/thwchar.c (1.1): Add half-implementation of thwchar.
+
+2001-07-27 Friday 17:17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.10), src/thbrk/.cvsignore (1.4, r0_1_1, r0_1_0),
+	tests/.cvsignore (1.3): Update .cvsignore's in accordance with
+	test_thbrk
+
+2001-07-27 Friday 17:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/Makefile.am (1.6), src/thbrk/test_thbrk.c (1.5),
+	tests/Makefile.am (1.3), tests/test_thbrk.c (1.1): Move test_thbrk
+	to tests/.
+
+2001-07-25 Wednesday 09:11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* .cvsignore (1.3, r0_1_1, r0_1_0), ChangeLog (1.9),
+	include/.cvsignore (1.2, r0_1_1, r0_1_0), include/thai/.cvsignore
+	(1.2, r0_1_1, r0_1_0), src/.cvsignore (1.2, r0_1_1, r0_1_0),
+	src/thbrk/.cvsignore (1.3), src/thcoll/.cvsignore (1.2, r0_1_1,
+	r0_1_0), src/thctype/.cvsignore (1.2, r0_1_1, r0_1_0),
+	tests/.cvsignore (1.2): List more auto-generated files to
+	.cvsignore's.
+
+2001-07-25 Wednesday 04:31  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* include/thai/thbrk.h (1.3), src/thbrk/test_thbrk.c (1.4),
+	src/thbrk/thbrk.c (1.4): -modified the th_brk_line to accept
+	cutCode as char* instead of int.  -modified according to the
+	changed interface the test program.
+
+2001-07-24 Tuesday 21:23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* Makefile.am (1.3, r0_1_1, r0_1_0), configure.in (1.6),
+	libthai.pc.in (1.1, r0_1_1, r0_1_0): Add pkg-config metadata.
+
+2001-07-24 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* autogen.sh (1.3, r0_1_0): Remove ineffective warning message
+	about 'configure'.
+
+2001-07-24 Tuesday 20:00  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/.cvsignore (1.1), include/thai/.cvsignore (1.1),
+	src/.cvsignore (1.1), src/thbrk/.cvsignore (1.2),
+	src/thcoll/.cvsignore (1.1), src/thctype/.cvsignore (1.1),
+	tests/.cvsignore (1.1): Add .cvsignore to subdirs.
+
+2001-07-24 Tuesday 19:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* COPYING (1.3, r0_1_1, r0_1_0), src/thbrk/Makefile (1.3): Change
+	license to LGPL. Remove excessive Makefile.
+
+2001-07-24 Tuesday 19:49  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* autogen.sh (1.2), configure.in (1.5), src/thbrk/Makefile (1.2):
+	Remove 'configure' invoking from autogen.sh, output some message.
+
+2001-07-24 Tuesday 19:41  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* .cvsignore (1.2), COPYING (1.2), ChangeLog (1.8), INSTALL (1.2),
+	Makefile.in (1.7), aclocal.m4 (1.3), config.guess (1.2), config.sub
+	(1.2), configure (1.4), install-sh (1.2), ltmain.sh (1.2), missing
+	(1.2), mkinstalldirs (1.2), include/Makefile.in (1.6),
+	include/thai/Makefile.in (1.6), src/Makefile.in (1.6),
+	src/thbrk/Makefile.in (1.6), src/thcoll/Makefile.in (1.6),
+	src/thctype/Makefile.in (1.5), tests/Makefile.in (1.6): Remove
+	autotool-generated files.
+
+2001-07-24 Tuesday 19:31  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* .cvsignore (1.1), Makefile.in (1.6), autogen.sh (1.1),
+	include/Makefile.in (1.5), include/thai/Makefile.in (1.5),
+	src/Makefile.in (1.5), src/thbrk/Makefile.in (1.5),
+	src/thcoll/Makefile.in (1.5), src/thctype/Makefile.in (1.4),
+	tests/Makefile.in (1.5): Add .cvsignore and autogen.sh
+
+2001-07-23 Monday 04:44  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thbrk/Makefile.am (1.5): -changed to use dynamic link instead
+	of static for test_thwbk
+
+2001-07-23 Monday 04:32  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thbrk/: test_thbrk.c (1.3), thbrk.c (1.3): -fix the segfault
+	in char* stuff
+
+2001-07-23 Monday 04:30  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thbrk/.cvsignore (1.1): -testing
+
+2001-07-19 Thursday 06:43  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thbrk/test_thbrk.c (1.2): -change to be non-interactive
+	unless "-i" option is specified.  -still segfault, not yet finished
+
+2001-07-17 Tuesday 12:23  Chanop Silpa-Anan <chanop@linux.thai.net>
+
+	* ChangeLog (1.7): latest updated
+
+2001-07-17 Tuesday 12:20  Chanop Silpa-Anan <chanop@linux.thai.net>
+
+	* src/thbrk/: Makefile.am (1.4), Makefile.in (1.4): merge map.c and
+	map.h into one target, save typo error
+
+2001-07-17 Tuesday 12:00  Chanop Silpa-Anan <chanop@linux.thai.net>
+
+	* src/thbrk/: Makefile.am (1.3), Makefile.in (1.3), map.c (1.2),
+	map.h (1.2): Dynamically generate map.c and map.h in a build
+	directory.  Remove map.c and map.h from the repository.
+
+2001-07-17 Tuesday 10:54  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* Makefile.in (1.5), include/Makefile.in (1.4),
+	include/thai/Makefile.in (1.4), src/Makefile.in (1.4),
+	src/thbrk/Makefile.am (1.2), src/thbrk/Makefile.in (1.2),
+	src/thcoll/Makefile.in (1.4), src/thctype/Makefile.in (1.3),
+	tests/Makefile.in (1.4): Fix dependencies for test_thbrk, so map.c
+	won't always be rebuilt.
+
+2001-07-17 Tuesday 05:30  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* ChangeLog (1.6): -ChangeLog is now automatically generated by
+	manually run ../bin/cvs2cl.pl :)
+
+2001-07-17 Tuesday 05:27  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* ChangeLog (1.5): -add cvs2cl.pl
+
+2001-07-16 Monday 17:54  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.4), Makefile.in (1.4), aclocal.m4 (1.2), configure
+	(1.3), configure.in (1.4), include/Makefile.in (1.3),
+	include/thai/Makefile.in (1.3), src/Makefile.am (1.4),
+	src/Makefile.in (1.3), src/thbrk/Makefile.am (1.1),
+	src/thbrk/Makefile.in (1.1), src/thbrk/Makefile.ott (1.1, r0_1_1,
+	r0_1_0), src/thbrk/cttex.c (1.2), src/thbrk/dict2state.c (1.2,
+	r0_1_0), src/thbrk/map.c (1.1), src/thbrk/map.h (1.1),
+	src/thbrk/thbrk.c (1.2), src/thcoll/Makefile.in (1.3),
+	src/thctype/Makefile.in (1.2), tests/Makefile.in (1.3): Add
+	automake files for building thbrk.
+
+2001-07-15 Sunday 23:35  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* include/thai/thbrk.h (1.2): -add th_brk_line interface
+
+2001-07-15 Sunday 23:31  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thbrk/: Makefile (1.1), README.TXT (1.1, r0_1_1, r0_1_0),
+	cttex.c (1.1), dict2state.c (1.1), tdict.txt (1.1, r0_1_1, r0_1_0),
+	test_thbrk.c (1.1), thbrk.c (1.1): -first version.  -wrapper for
+	P'Hui's cttex.
+
+2001-07-09 Monday 21:54  Pattara Kiatisevi <ott@linux.thai.net>
+
+	* src/thbrk/tdict-preparation/: Makefile (1.1), README.TXT (1.1),
+	dictsort (1.1), dictsort.c (1.1), tdict.local (1.1),
+	tdict.nonsorted (1.1), tdict.org (1.1), tdict.txt (1.1),
+	nectec/adjv.txt (1.1), nectec/archaic.txt (1.1), nectec/conj.txt
+	(1.1), nectec/exclam.txt (1.1), nectec/formal.txt (1.1),
+	nectec/idiom.txt (1.1), nectec/local.txt (1.1), nectec/nibat.txt
+	(1.1), nectec/nouns.txt (1.1), nectec/obsolete.txt (1.1),
+	nectec/poem.txt (1.1), nectec/prefix.txt (1.1), nectec/prep.txt
+	(1.1), nectec/pron.txt (1.1), nectec/raja.txt (1.1),
+	nectec/riheads.txt (1.1), nectec/riheads_org.txt (1.1),
+	nectec/riwords.txt (1.1), nectec/riwords_org.txt (1.1),
+	nectec/slang.txt (1.1), nectec/suffix.txt (1.1), nectec/verb.txt
+	(1.1) (utags: r0_1_1, r0_1_0): -tdict.txt preparation part from
+	cttex with some modifications
+
+2001-06-15 Friday 19:01  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.3), Makefile.in (1.3), include/thai/thctype.h (1.4),
+	src/thctype/thctype.c (1.2): Add th_isdiac() API. Add function body
+	for thctype functions.
+
+2001-06-14 Thursday 10:29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* ChangeLog (1.2): Add ChangeLog item.
+
+2001-06-13 Wednesday 22:35  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* Makefile.in (1.2), configure (1.2), configure.in (1.3),
+	include/Makefile.in (1.2), include/thai/Makefile.in (1.2),
+	include/thai/thctype.h (1.3), src/Makefile.am (1.3),
+	src/Makefile.in (1.2), src/blank.c (1.2), src/dummy.c (1.1,
+	r0_1_0), src/thcoll/Makefile.in (1.2), src/thctype/Makefile.am
+	(1.1), src/thctype/Makefile.in (1.1), src/thctype/thctype.c (1.1),
+	tests/Makefile.in (1.2): Add thctype implementation (first draft,
+	so dirty)
+
+2001-06-12 Tuesday 20:18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* Makefile.am (1.2), configure.in (1.2), include/Makefile.am (1.2,
+	r0_1_1, r0_1_0), include/thai/Makefile.am (1.2), src/Makefile.am
+	(1.2), src/thcoll/Makefile.am (1.2, r0_1_1, r0_1_0),
+	tests/Makefile.am (1.2): Add $Id: ChangeLog,v 1.171 2009-01-08 14:58:07 thep Exp $
+
+2001-06-12 Tuesday 20:14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thcoll/cweight.c (1.2, r0_1_0), src/thcoll/cweight.h (1.2,
+	r0_1_0), src/thcoll/thcoll.c (1.2), tests/test-thcoll.sh (1.2,
+	r0_1_1, r0_1_0), tests/thsort.c (1.2, r0_1_1, r0_1_0): Add $Id: ChangeLog,v 1.171 2009-01-08 14:58:07 thep Exp $
+
+2001-06-12 Tuesday 20:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* AUTHORS (1.1), COPYING (1.1), ChangeLog (1.1), INSTALL (1.1),
+	Makefile.am (1.1), Makefile.in (1.1), NEWS (1.1), README (1.1),
+	aclocal.m4 (1.1), config.guess (1.1), config.sub (1.1), configure
+	(1.1), configure.in (1.1), install-sh (1.1), ltmain.sh (1.1),
+	missing (1.1), mkinstalldirs (1.1), include/Makefile.am (1.1),
+	include/Makefile.in (1.1), include/thai/Makefile.am (1.1),
+	include/thai/Makefile.in (1.1), src/Makefile.am (1.1),
+	src/Makefile.in (1.1), src/blank.c (1.1), src/cweight.c (1.2),
+	src/cweight.h (1.2), src/thcoll.c (1.2), src/thcoll/Makefile.am
+	(1.1), src/thcoll/Makefile.in (1.1), src/thcoll/cweight.c (1.1),
+	src/thcoll/cweight.h (1.1), src/thcoll/thcoll.c (1.1),
+	tests/Makefile.am (1.1), tests/Makefile.in (1.1), tests/sorted.txt
+	(1.1, r0_1_1, r0_1_0), tests/test-thcoll.sh (1.1): add building
+	system
+
+2001-06-11 Monday 21:16  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/cweight.c (1.1), src/cweight.h (1.1), src/thcoll.c (1.1),
+	tests/sorttest.txt (1.1, r0_1_1, r0_1_0), tests/thsort.c (1.1): add
+	a draft thcoll implementation
+
+2001-05-18 Friday 11:51  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/: thailib.h (1.3), thcoll.h (1.3, r0_1_1, r0_1_0),
+	thinp.h (1.4), thwcoll.h (1.3, r0_1_1, r0_1_0), thwinp.h (1.3,
+	r0_1_1, r0_1_0): size_t definition in <thai/thailib.h>, strict_t to
+	thstrict_t in <thai/thinp.h>
+
+2001-05-18 Friday 01:15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thinp.h (1.3): Change the spec (comment) of
+	th_validate()
+
+2001-05-18 Friday 01:07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thwchar.h (1.3): fix arg & return types of uni2*
+
+2001-05-18 Friday 01:04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/thbrk.h (1.1): use thbrk.h for 8-bit code, to
+	prevent confusion
+
+2001-05-18 Friday 00:58  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/: thailib.h (1.2), thcoll.h (1.2), thctype.h (1.2),
+	thinp.h (1.2), thrend.h (1.2, r0_1_0), thwbrk.h (1.2), thwchar.h
+	(1.2), thwcoll.h (1.2), thwctype.h (1.2, r0_1_1, r0_1_0), thwinp.h
+	(1.2), thwrend.h (1.2, r0_1_1, r0_1_0): Add comments. Fix many
+	declarations. Add thglyph_t.
+
+2001-05-17 Thursday 23:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/: thailib.h (1.1.1.1), thcoll.h (1.1.1.1), thctype.h
+	(1.1.1.1), thinp.h (1.1.1.1), thrend.h (1.1.1.1), thwbrk.h
+	(1.1.1.1), thwchar.h (1.1.1.1), thwcoll.h (1.1.1.1), thwctype.h
+	(1.1.1.1), thwinp.h (1.1.1.1), thwrend.h (1.1.1.1), tis.h (1.1.1.1,
+	r0_1_0) (utags: libthai_0_1): first draft API
+
+2001-05-17 Thursday 23:12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* include/thai/: thailib.h (1.1), thcoll.h (1.1), thctype.h (1.1),
+	thinp.h (1.1), thrend.h (1.1), thwbrk.h (1.1), thwchar.h (1.1),
+	thwcoll.h (1.1), thwctype.h (1.1), thwinp.h (1.1), thwrend.h (1.1),
+	tis.h (1.1): Initial revision
+

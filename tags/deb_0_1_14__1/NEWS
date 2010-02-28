@@ -1,0 +1,98 @@
+=======================================================================
+RELEASES INFORMATION
+=======================================================================
+
+LibThai 0.1.14 (28 February 2010):
+* Fix crash on corrupted dictionary file; now it fails quietly instead.
+* License clarification on individual source files.
+* Updated word break dictionary.
+
+LibThai 0.1.13 (15 January 2010):
+* Fix integer overflow vulnerabilities (CVE-2009-4012).
+* Updated word break dictionary.
+
+LibThai 0.1.12 (18 June 2009):
+* Improved unknown words boundary.
+* Add symbol versioning.
+* Updated word break dictionary.
+
+LibThai 0.1.11 (6 April 2009):
+* Diminished link flags in pkg-config info, for less dependency for clients.
+* More words in word break dictionary.
+
+LibThai 0.1.10 (30 March 2009):
+* More dictionary capacity with libdatrie 0.2.
+* Dictionary clean-up on unload.
+* Some performance fine-tuning.
+* More words in word break dictionary.
+
+LibThai 0.1.9 (28 August 2007):
+* Rewritten itemization for line breaker, for conformance to UAX#14.
+* Revised dictionary for compound words support.
+
+LibThai 0.1.8 (3 March 2007):
+* Improved handling of white spaces in word break routine, for better quality
+  line wrapping in Gecko libthai component.
+* More words in word break dictionary.
+* Excessive exported symbols are eliminated from library.
+
+LibThai 0.1.7 (14 October 2006):
+* Rewritten word break routines:
+  - Split dictionary from source, thus new dependency on libdatrie
+  - New word break routine from scratch, for maintainability
+* Improved dictionary for word segmentation:
+  - New word list preparation process from multiple categories
+  - New contemporary words not included in Royal Institute dictionary,
+    as well as some proper names for countries and locations, etc.
+  - Fine-tuned dictionary to get rid of some potential ambiguities
+
+LibThai 0.1.6 (5 August 2006):
+* Documentation with doxygen.
+* Add missing APIs.
+* Fix compiler warnings.
+
+LibThai 0.1.5 (13 March 2006):
+* Improved word breaking. Space is now also considered a breakable point.
+* More PUA support for Mac fonts rendering.
+* Start maintaining library version info from now on.
+
+LibThai 0.1.4 (16 October 2004):
+
+* Handle the rendering of NIKHAHIT and MAITAIKHU for Pali and Kuy,
+  respectively, in which the marks can be in either above or top level.
+* Input sequence validation for NIKHAHIT and MAITAIKHU is improved as well.
+* Render the error case of repeated SARA AM's more gracefully.
+
+LibThai 0.1.3 (22 February 2004):
+
+* Define blank base glyph for floating upper/lower vowels rendering.
+* (Minor modified version as required by pango-libthai binding).
+
+LibThai 0.1.2 (10 September 2003):
+
+* It's still alive!
+* Bug fix & code furnishing
+* conversion functions for Win & Mac extension
+* Some document (man pages)
+* Experiment with GTK+ 2 plug-ins (in separate packages)
+
+LibThai 0.1.1 (14 August 2001):
+
+* WTT-based cell clustering
+* Thai input sequence correction
+* Thai shaping
+
+LibThai 0.1.0 (4 August 2001):
+
+* First public release, request for comments for API
+* Thai character properties with WTT 2.0 tables
+* Thai string collation (bilingual)
+* Thai string normalization
+* WTT-based input sequence checking
+* Thai Word breaking (cttex)
+* Conversion between TIS-620 and Unicode
+* All implementations not yet completed
+
+=======================================================================
+See ChangeLog file for more details.
+
