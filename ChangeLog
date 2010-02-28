@@ -1,5 +1,12 @@
 2010-02-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* configure.in: Bump library revision.
+
+	* configure.in, NEWS:
+	=== Version 0.1.14 ===
+
+2010-02-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-{ict,proper,common}.txt: Add words.
 
 2010-02-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
