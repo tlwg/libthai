@@ -1,3 +1,10 @@
+libthai (0.1.14-1) unstable; urgency=low
+
+  * New upstream release.
+  * Bump Standards-Version to 3.8.4 (no changes needed)
+
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Sun, 28 Feb 2010 13:25:47 +0700
+
 libthai (0.1.13-1) unstable; urgency=high
 
   * New upstream security update release
