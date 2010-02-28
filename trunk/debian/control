@@ -6,7 +6,7 @@ Uploaders:  Loic Minier <lool@dooz.org>
 Build-Depends: debhelper (>= 7), libtool, automake, autoconf, pkg-config,
  libdatrie-dev (>= 0.2.0), libdatrie1-bin
 Build-Depends-Indep: doxygen
-Standards-Version: 3.8.3
+Standards-Version: 3.8.4
 Vcs-Svn: http://linux.thai.net/svn/software/libthai
 Vcs-Browser: http://linux.thai.net/websvn/wsvn/software.libthai/?sc=0
 Homepage: http://libthai.sourceforge.net/
