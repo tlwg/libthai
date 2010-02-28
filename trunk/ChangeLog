@@ -1,5 +1,9 @@
 2010-02-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-{ict,proper,common}.txt: Add words.
+
+2010-02-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/thcoll/cweight.c (char_weight_tbl_): Replace TIS-620 characters
 	in comments with character names.
 	* src/thctype/thctype.c (_th_ctype_tbl, _th_chlevel_tbl): Remove
