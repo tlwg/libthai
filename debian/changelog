@@ -1,3 +1,11 @@
+libthai (0.1.14-2) unstable; urgency=medium
+
+  * Urgency medium due to RC bug fix.
+  * patches/01_ftbfs-manpages.patch: Added to turn off manpages generation,
+    which are unused anyway. (Closes: #573663)
+
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Sun, 14 Mar 2010 16:58:52 +0700
+
 libthai (0.1.14-1) unstable; urgency=low
 
   * New upstream release.
