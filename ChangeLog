@@ -1,3 +1,16 @@
+2010-12-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Adjust dictionary, as per Widhaya's feedback:
+	http://groups.google.com/group/thai-linux-foss-devel/browse_thread/
+	thread/986f74d786c9bace
+
+	* data/tdict-std-compound.txt:
+	* data/tdict-std-common.txt:
+	  - Remove some compounds that may cause potential ambiguities.
+	* data/tdict-spell.txt:
+	* data/tdict-common.txt:
+	  - Add words.
+
 2010-12-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-{common,geo}.txt: Add words.
