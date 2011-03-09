@@ -1,3 +1,10 @@
+2011-03-09  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-ict.txt:
+	* data/tdict-district.txt:
+	* data/tdict-common.txt:
+	* data/tdict-science.txt: Add words.
+
 2010-12-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	Adjust dictionary, as per Widhaya's feedback:
