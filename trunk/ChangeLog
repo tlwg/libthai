@@ -1,5 +1,21 @@
 2011-03-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	Split tdict-country.txt and tdict-city.txt out of tdict-geo.txt
+	and let tdict-geo.txt keeps only geographical names.
+
+	* data/Makefile.am:
+	* +data/tdict-country.txt:
+	* +data/tdict-city.txt:
+	* data/tdict-geo.txt:
+	  - Split country names into tdict-country.txt
+	  - Split city names into tdict-city.txt
+
+	* data/tdict-geo.txt:
+	* data/tdict-lang-ethnic.txt:
+	  - Split language/etchnic names into tdict-lang-ethnic.txt
+
+2011-03-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-proper.txt:
 	* data/tdict-common.txt:
 	* data/tdict-geo.txt: Add words.
