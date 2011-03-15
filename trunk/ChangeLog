@@ -1,3 +1,9 @@
+2011-03-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-proper.txt:
+	* data/tdict-common.txt:
+	* data/tdict-geo.txt: Add words.
+
 2011-03-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-spell.txt:
