@@ -1,5 +1,21 @@
 2011-03-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	Split historical names out of tdict-city.txt and tdict-district.txt.
+
+	* data/Makefile.am:
+	* +data/tdict-history.txt:
+	* data/tdict-city.txt:
+	* data/tdict-district.txt:
+	Split historical names into tdict-history.txt.
+
+	* data/tdict-city.txt:
+	* data/tdict-geo.txt:
+	* data/tdict-lang-ethnic.txt:
+	Move 2 names from tdict-city.txt to tdict-geo.txt and
+	tdict-lang-ethnic.txt.
+
+2011-03-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	Split tdict-country.txt and tdict-city.txt out of tdict-geo.txt
 	and let tdict-geo.txt keeps only geographical names.
 
