@@ -1,3 +1,21 @@
+2011-03-20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-district.txt:
+	* data/tdict-history.txt:
+	Move "หริภุญชัย" from district to history list.
+
+	* data/tdict-city.txt:
+	Change "ฟูกุโอกะ" to "ฟูกูโอกะ", which is statistically more popular.
+
+	* data/tdict-history.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-city.txt:
+	* data/tdict-science.txt:
+	* data/tdict-geo.txt:
+	* data/tdict-spell.txt:
+	* data/tdict-common.txt:
+	Add words.
+
 2011-03-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	Split historical names out of tdict-city.txt and tdict-district.txt.
