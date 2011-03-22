@@ -1,3 +1,15 @@
+2011-03-22  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-history.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-district.txt:
+	Move 2 names from proper, district to history.
+
+	* data/tdict-proper.txt:
+	* data/tdict-city.txt:
+	* data/tdict-district.txt:
+	* data/tdict-common.txt: Add words.
+
 2011-03-20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-district.txt:
