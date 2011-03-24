@@ -1,0 +1,145 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+ifeq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
+	build_flags = --build=$(DEB_BUILD_GNU_TYPE)
+else
+	build_flags = --build=$(DEB_BUILD_GNU_TYPE) --host=$(DEB_HOST_GNU_TYPE)
+endif
+
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+LDFLAGS = -Wl,-z,defs
+
+SHARED_PKG := libthai0
+SHLIB_VER := 0.1.12
+
+reconf: reconf-stamp
+reconf-stamp: configure.in
+	dh_testdir
+
+	[ -d m4 ] || mkdir m4
+	autoreconf --install
+
+	touch $@
+
+config-indep: config-indep-stamp
+config-indep-stamp: reconf
+	dh_testdir
+
+	rm -f config-arch-stamp
+
+	./configure --prefix=/usr --enable-dict
+
+	touch $@
+
+config-arch: config-arch-stamp
+config-arch-stamp: reconf
+	dh_testdir
+
+	rm -f config-indep-stamp
+
+	./configure $(build_flags) --prefix=/usr --disable-dict \
+	  --enable-shared CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)"
+
+	touch $@
+
+build-indep: build-indep-stamp
+build-indep-stamp:  config-indep
+	dh_testdir
+
+	$(MAKE) -C data
+	$(MAKE) -C doc
+
+	touch $@
+
+build-arch: build-arch-stamp
+build-arch-stamp:  config-arch
+	dh_testdir
+
+	$(MAKE) -C src
+
+	touch $@
+
+build:
+
+clean:
+	dh_testdir
+	dh_testroot
+
+	[ ! -f Makefile ] || $(MAKE) maintainer-clean
+	rm -f aclocal.m4 configure ltmain.sh
+	find . -name Makefile.in -exec rm -f {} \;
+	rm -rf m4
+
+	dh_clean
+
+install-indep: build-indep
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs -i
+
+	$(MAKE) -C data install DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) -C doc  install DESTDIR=$(CURDIR)/debian/tmp
+
+install-arch: build-arch
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs -s
+
+	$(MAKE) -C include install DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) -C src     install DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) install-am DESTDIR=$(CURDIR)/debian/tmp
+
+# Build architecture-independent files here.
+binary-indep: build-indep install-indep
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs -i ChangeLog
+	dh_installdocs -i
+	dh_install -i --sourcedir=debian/tmp
+	dh_link -i
+	dh_compress -i
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: build-arch install-arch
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs -s ChangeLog
+	dh_installdocs -s
+	dh_install -s --sourcedir=debian/tmp
+	dh_link -s
+	dh_strip -s
+	dh_compress -s
+	dh_fixperms -s
+	dh_makeshlibs -s -p$(SHARED_PKG) -V '$(SHARED_PKG) (>= $(SHLIB_VER))'
+	dh_installdeb -s
+	dh_shlibdeps -s
+	dh_gencontrol -s
+	dh_md5sums -s
+	dh_builddeb -s
+
+binary: binary-indep binary-arch
+.PHONY: reconf config-indep config-arch build build-indep build-arch clean binary-indep binary-arch binary
