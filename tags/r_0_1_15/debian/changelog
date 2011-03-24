@@ -1,0 +1,410 @@
+libthai (0.1.14-2) unstable; urgency=medium
+
+  * Urgency medium due to RC bug fix.
+  * patches/01_ftbfs-manpages.patch: Added to turn off manpages generation,
+    which are unused anyway. (Closes: #573663)
+
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Sun, 14 Mar 2010 16:58:52 +0700
+
+libthai (0.1.14-1) unstable; urgency=low
+
+  * New upstream release.
+  * Bump Standards-Version to 3.8.4 (no changes needed)
+
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Sun, 28 Feb 2010 13:25:47 +0700
+
+libthai (0.1.13-1) unstable; urgency=high
+
+  * New upstream security update release
+    - Fix integer overflow vulnerabilities (CVE-2009-4012).
+  * debian/rules: Fix failure to build twice in a row:
+    - Fix typo '$(MAKE) maintainerclan'
+    - Clean other changed files left over from 'make maintainer-clean'
+    - 'config.status' depends on 'configure.in' instead of 'configure'
+
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Fri, 15 Jan 2010 17:37:19 +0700
+
+libthai (0.1.12-2) unstable; urgency=low
+
+  * debian/control:
+    - Update my e-mail address to @debian.org.
+    - Drop DM-Upload-Allowed.
+  * debian/copyright:
+    - Update my e-mail address for debian/* to @debian.org.
+  * debian/rules:
+    - Run autoreconf instead of just updating config.{sub,guess}, as required
+      by libtool
+    - Run 'make maintainerclean' instead of 'make distclean' on clean target,
+      to clear all autoconf-generated files
+  * debian/control:
+    - Build-Depends on libtool, automake, autoconf, for autoreconf.
+    - Drop Build-Depends on autotools-dev
+  * Switch to "3.0 (quilt)" source format.
+  * Bump Standards-Version to 3.8.3 (no changes needed)
+
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Thu, 10 Dec 2009 10:10:35 +0700
+
+libthai (0.1.12-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control: Drop duplicated "section" fields for libthai0 and
+    libthai-data [lintian].
+  * Declare libthai0 as Enhances: kdelibs5.
+  * Drop libthai.la, as kdelibs5 has now replaced substantial parts of KDE,
+    obsoleting the last package set that requires it:
+    - debian/libthai-dev.install: Remove *.la
+    - debian/rules: Remove libthai.la dependency emptying code
+    - debian/control: Remove Enhances: kdelibs declaration from libthai-dev
+  * Shared lib updates due to symbol versioning:
+    - debian/rules:
+      + Bump shlib dep to 0.1.12
+    - debian/libthai0.symbols:
+      + Update symbols, setting minver to 0.1.12 for all symbols
+  * Bump Standards-Version to 3.8.2 (no changes needed)
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sun, 21 Jun 2009 08:34:02 +0700
+
+libthai (0.1.11-3) unstable; urgency=low
+
+  * Version libthai-dev dep on libdatrie-dev (>= 0.2.0).
+  * debian/rules:
+    - Empty the dependency_libs in the *.la files
+    - Define LDFLAGS outside the configure line, for easy adjustment
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 15 Apr 2009 11:15:20 +0700
+
+libthai (0.1.11-2) unstable; urgency=low
+
+  * Version b-dep on libdatrie-dev (>= 0.2.0).
+  * Drop versioned b-dep on dpkg-dev, as Vcs-Cvs: is no more needed.
+  * Upload to unstable.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon, 13 Apr 2009 11:01:07 +0700
+
+libthai (0.1.11-1) experimental; urgency=low
+
+  * Versioned Conflicts on libdatrie0 (<< 0.1.4), i.e. lenny version, which
+    lacked symbol versioning and caused symbol clashes.
+  * New upstream release.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon, 06 Apr 2009 13:54:19 +0700
+
+libthai (0.1.10-1) experimental; urgency=low
+
+  * New upstream release, with updated dependency and data format change
+    - Build-dep on libdatrie-dev (>= 0.2.0) instead of libdatrie0-dev
+    - Build-dep on libdatrie1-bin instead of libdatrie-bin
+    - libthai-dev depends on libdatrie-dev instead of libdatrie0-dev
+    - libthai0 depends on libthai-data (>= 0.1.10)
+    - libthai-data conflicts with libthai0 (<< 0.1.10)
+  * VCS moved from CVS to SVN; update Vcs-* fields accordingly.
+  * debian/libdatrie0.symbols: Add new export symbol '_libthai_on_unload';
+    No shlibs version bump, because the new symbol is just for housekeeping
+  * Bump debhelper compat to level 7
+    - Bump debian/compat to 7
+    - Build-dep on debhelper (>= 7)
+    - debian/rules:
+      + Replace obsoleted 'dh_clean -k' with 'dh_prep'
+      + Remove *-stamp clean-ups in clean target, as dh_clean now does it
+  * Update debian/copyright to proposal rev 454:
+    - Add Upstream-Name:
+    - Use Upstream-Maintainer: instead of Upstream-Author:
+    - Use Upstream-Source: instead of Original-Source-Location:
+    - Drop Packaged-By: and Packaged-Date:
+    - Move 'Files: *' section to top
+    - Replace GPL-2+ and LGPL-2+ license message with 'On Debian ...'
+  * debian/copyright: Update copyright years
+  * Bump Standards-Version to 3.8.1 (no changes needed)
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Mon, 30 Mar 2009 17:28:52 +0700
+
+libthai (0.1.9-4) unstable; urgency=low
+
+  * debian/libthai-doc.doc-base: Correct doc-base section (Programming).
+  * debian/copyright: Update format to recent proposal.
+  * debian/watch: Fix watch pattern so that only *.tar.gz is matched, not
+    *.tar.gz.md5sum.
+  * debian/rules: Use 'make -C $dir' instead of 'cd $dir; make'.
+  * debian/control:
+    - Add DM-Upload-Allowed
+    - Bump Standards-Version to 3.8.0 (no changes needed)
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat, 21 Jun 2008 11:16:43 +0700
+
+libthai (0.1.9-3) unstable; urgency=low
+
+  * Move libdatrie-bin from Build-Depends-Indp to Build-Depends, as it's still
+    needed by the configure script even for arch builds.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Thu, 07 Feb 2008 20:11:50 +0700
+
+libthai (0.1.9-2) unstable; urgency=low
+
+  * Add back *.la, as it still remotely enhances kdelibs via KLibLoader, which
+    weirdly requires *.la to dlopen(). This is temporary support for Thai KDE
+    users, until Bug #444284 is fixed, or KDE 4 enters unstable.
+  * Declare libthai-dev as Enhances: kdelibs. This declaration should be moved
+    to libthai0 once kdelibs 4 is fixed to load libthai.so.0 instead; or be
+    removed if kdelibs is eventually built with libthai dependency.
+  * debian/copyright: Rewrite in machine-interpretable format.
+  * Remove XS- prefix from XS-Vcs-* fields.
+  * Move Homepage info from description to control field.
+  * Bump Standards-Version to 3.7.3, no changes needed.
+  * Add symbols file to provide fine-grained shlib dependency tracking
+    - debian/libthai0.symbols: Added.
+    - debian/control: Build-dep on debhelper (>= 5.0.61) and dpkg-dev (>=
+      1.14.13) for the required dh_makeshlibs version.
+  * Do not install Doxygen-generated man pages, as they aren't parsable by
+    man-db. (lintian) For documentation, we already have HTML docs in
+    libthai-doc.
+  * debian/rules: Split build target into build-indep and build-arch.
+  * debian/control: Split Build-Depends-Indep out of Build-Depends
+    accordingly.
+  * Fix CVSROOT in Vcs-Cvs, so it really works with debcheckout.
+  * Don't ship upstream TODO (not much useful info yet).
+  * Don't mention manpages in libthai-dev description, as they have been
+    dropped.
+  * Corrections by Paul Wise's sponsorship:
+    + Do not install docs for libthai0, libthai-data.
+    + Use short description for libthai-data, and add that it's usually
+      auto-installed.
+    + debian/libthai-doc.install, debian/libthai-doc.doc-base: Install docs
+      under /usr/share/doc/libthai-doc, not libthai0-doc.
+    + debian/copyright: Don't refer to file in License field.
+    + debian/libthai0.symbols: Bump all symbols' minver to 0.1.7, so safer
+      version is preferred, as already suggested by shlibs.
+    + debian/rules:
+      - Adjust config.guess, config.sub handling so the change is not included
+        in .diff.gz.
+      - Pass CFLAGS to configure.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 06 Feb 2008 18:20:09 +0700
+
+libthai (0.1.9-1) unstable; urgency=low
+
+  * New upstream version
+    - Rewritten itemization for line breaker, for conformance to UAX#14.
+    - Revised dictionary for compound words support.
+  * Add XS-Vcs-Cvs and XS-Vcs-Browser info.
+  * Remove Pattara Kiatisevi from Uploaders, with his agreement. Thanks for
+    his initial packaging.
+  * Do not ignore 'make clean' error.
+  * Do not ship *.la.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Tue, 28 Aug 2007 16:40:41 +0700
+
+libthai (0.1.8-3) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 11 Apr 2007 09:02:10 +0700
+
+libthai (0.1.8-2) experimental; urgency=high
+
+  * Fix major screwup with the debhelper files; doh!
+
+ -- Loic Minier <lool@dooz.org>  Wed,  7 Mar 2007 12:27:36 +0100
+
+libthai (0.1.8-1) experimental; urgency=low
+
+  [ Theppitak Karoonboonyanan ]
+  * New upstream release
+    - Improved handling of white spaces in word break routine, for better
+      quality of line wrapping in Gecko libthai component.
+    - More words in word break dictionary.
+    - Excessive exported symbols are eliminated from library.
+  * Drop all patches previously stolen from upstream CVS.
+
+  [ Loic Minier ]
+  * Add myself as uploader.
+  * Revert the package renamings back to libthai-dev and libthai-doc as this
+    is too much overhead; cleanup corresponding Conflicts/Provides.
+  * Drop version in Suggests.
+  * Set shlibs to >= 0.1.7.
+  * Add ${misc:Depends}.
+
+ -- Loic Minier <lool@dooz.org>  Sun,  4 Mar 2007 15:26:46 +0100
+
+libthai (0.1.7-7) experimental; urgency=low
+
+  * Add missing Depends: libdatrie0-dev in libthai0-dev, found by
+    Neutron Soutmun.
+  * Add missing Build-Depends: pkg-config, thanks pbuilder.
+  * Explicitly Build-Depends: libdatrie0-dev instead of libdatrie-dev.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 21 Feb 2007 09:45:27 +0700
+
+libthai (0.1.7-6) experimental; urgency=low
+
+  * Backported patch from upstream CVS
+    - Yet another fix to white space bug in th_brk(), as spotted by
+      Suppachoke Santiwitchaya. This is just temporary fix for use while the
+      planned redesign does not happen.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sun,  4 Feb 2007 15:11:10 +0700
+
+libthai (0.1.7-5) experimental; urgency=low
+
+  * Backported patch from upstream CVS
+    - Improved word break routine: allow break before white space, fixing 
+      wrong treatment of whitespaces in HTML in mozlibthai component, which 
+      caused glitches in webpages.
+    - Some more words added to dictionary.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Fri,  2 Feb 2007 22:29:14 +0700
+
+libthai (0.1.7-4) experimental; urgency=low
+
+  * Provide libthai-dev and libthai-doc transitional packages.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat, 13 Jan 2007 18:04:17 +0700
+
+libthai (0.1.7-3) experimental; urgency=low
+
+  * Rename libthai-{dev,doc} to libthai0-{dev,doc}.
+    - debian/control: rename corresponding packages.
+    - debian/libthai-{dev,doc}.*: rename to libthai0-{dev,doc}.*.
+    - debian/libthai0-doc.install, debian/libthai0-doc.doc-base:
+      install and point to docs in /usr/share/doc/libthai0-doc.
+  * Bump debhelper compatibility to V5:
+    - debian/compat: added with version 5 compatibility.
+    - debian/control: Build-Depends: debhelper (>= 5).
+    - debian/rules: remove DH_COMPAT overriding.
+    - debian/*.dirs: removed, not needed.
+  * debian/rules adjustments
+    - Remove unused shared library version info assignment.
+    - Pass --host=$(DEB_HOST_GNU_TYPE) to configure only when cross compiling.
+    - Revert separate arch and indep builds, as they're not actually split
+      right now.
+  * debian/copyright: change the download place to match that in watch file.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Wed, 20 Dec 2006 14:17:42 +0700
+
+libthai (0.1.7-2) experimental; urgency=low
+
+  * debian/control: Add Build-Depends: libdatrie-bin, according to new
+    libdatrie upload.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Fri, 15 Dec 2006 11:40:31 +0700
+
+libthai (0.1.7-1) experimental; urgency=low
+
+  * Make the package binNMU-safe by using ${binary:Version} instead of
+    ${Source-Version} for libthai-dev dependency on libthai0.
+  * Suggests: libthai-doc in libthai-dev.
+  * Add autotools-dev build-dep.
+  * debian/rules:
+    - Split build rules into build-indep and build-arch.
+    - Remove nostrip checking, as it is already done in dh_strip.
+    - Update shared library version.
+  * New upstream release
+    + Rewritten word break routines:
+      - Split dictionary from source, thus new dependency on libdatrie
+      - New word break routine from scratch, for maintainability
+    + Improved dictionary for word segmentation:
+      - New word list preparation process from multiple categories
+      - New contemporary words not included in Royal Institute dictionary,
+        as well as some proper names for countries and locations, etc.
+      - Fine-tuned dictionary to get rid of some potential ambiguities
+  * Add libthai-data package.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sat, 14 Oct 2006 18:40:37 +0700
+
+libthai (0.1.6-1) unstable; urgency=low
+
+  * New upstream release.
+  * Provided more informative short description.  Also added details about
+    individual packages, as well as upstream homepage. (Closes: #360621)
+  * Added libthai-doc package, installing HTML document available in new
+    upstream release, with doc-base control file.
+  * Build-depends on doxygen.
+  * Used individual package.docs files, so they get installed in all packages.
+  * Removed useless README.Debian.
+  * Add back config.sub and config.guess replacements.
+  * Used dh_install instead of the old dh_movefiles.
+  * Removed unneeded debhelper commands: dh_installexamples, dh_installmenu,
+    dh_installcron, dh_installman, dh_installinfo.
+  * Bumped standard version to 3.7.2, no changes needed.
+  * Added watch file.
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Sun,  6 Aug 2006 23:00:52 +0700
+
+libthai (0.1.5-3) unstable; urgency=low
+
+  * actually closed ITP bug (Closes: #358539)
+  * debian/control:
+    - took over the packaging from Pattara Kiatisevi with his consent.
+      thanks for your initial works! (he's still an uploader, anyway)
+  * debian/rules:
+    - removed commented debhelper instructions
+  * debian/copyright:
+    - more info on current maintainer
+    - added missing copyright years
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Tue, 28 Mar 2006 09:14:55 +0700
+
+libthai (0.1.5-2) unstable; urgency=low
+
+  * initial debian version
+  * debian/rules:
+    - removed replacement of upstream's config.guess and config.sub
+  * debian/copyright:
+    - updated e-mail addresses and urls
+    - mentioned system file for LGPL-2
+  * debian/control:
+    - added myself as an uploader
+
+ -- Theppitak Karoonboonyanan <thep@linux.thai.net>  Tue, 21 Mar 2006 16:54:12 +0700
+
+libthai (0.1.5-1ubuntu1) dapper; urgency=low
+
+  * initial ubuntu version
+  * removed the CVS dirs from the source (repacked it)
+  * debian/control: 
+    - added "libs" to Source section 
+    - changed standard version to 3.6.2.2
+  
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Tue, 14 Mar 2006 11:49:48 +0000
+
+libthai (0.1.5-1) unstable; urgency=low 
+
+  * upstream version 1.5 
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Tue,  14 Mar 2006 00:54:00 +0700
+
+libthai (0.1.4-1) unstable; urgency=low 
+
+  * upstream version 1.4 (since 16 October 2004, see the NEWS file)
+  * add a check value of array size in th_brk
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sun,  12 Dec 2004 15:43:00 +0900
+
+libthai (0.1.3-2) unstable; urgency=low 
+
+  * set the mode of cttex to firstmode=1 (we want it fast)
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sat,  15 May 2004 00:20:00 +0900
+
+libthai (0.1.3-1) unstable; urgency=low 
+
+  * Define blank base glyph for floating upper/lower vowels rendering.
+  * (Minor modified version as required by pango-libthai binding).
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Mon,  23 February 2004 13:10:00 +0900
+
+libthai (0.1.2-1) unstable; urgency=low
+
+  * It's still alive!
+  * Bug fix & code furnishing
+  * conversion functions for Win & Mac extension
+  * Some document (man pages)
+  * Experiment with GTK+ 2 plug-ins (in separate packages)
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sun,  14 Sep 2003 02:16:00 +0900
+
+libthai (0.1.1-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Pattara Kiatisevi <ott@linux.thai.net>  Sun,  2 Feb 2003 16:37:08 +0900
+
