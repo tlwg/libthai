@@ -2,6 +2,9 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.15 (24 March 2011):
+* Updated word break dictionary.
+
 LibThai 0.1.14 (28 February 2010):
 * Fix crash on corrupted dictionary file; now it fails quietly instead.
 * License clarification on individual source files.

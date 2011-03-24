@@ -1,5 +1,10 @@
 2011-03-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* configure.in, NEWS:
+	=== Version 0.1.15 ===
+
+2011-03-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-history.txt:
 	* data/tdict-proper.txt:
 	* data/tdict-city.txt:
