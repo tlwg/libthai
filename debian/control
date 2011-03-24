@@ -4,9 +4,9 @@ Section: libs
 Maintainer: Theppitak Karoonboonyanan <thep@debian.org>
 Uploaders:  Loic Minier <lool@dooz.org>
 Build-Depends: debhelper (>= 7), libtool, automake, autoconf, pkg-config,
- libdatrie-dev (>= 0.2.0), libdatrie1-bin
-Build-Depends-Indep: doxygen
-Standards-Version: 3.8.4
+ libdatrie-dev (>= 0.2.0)
+Build-Depends-Indep: doxygen, libdatrie1-bin
+Standards-Version: 3.9.1
 Vcs-Svn: http://linux.thai.net/svn/software/libthai
 Vcs-Browser: http://linux.thai.net/websvn/wsvn/software.libthai/?sc=0
 Homepage: http://libthai.sourceforge.net/
@@ -30,7 +30,6 @@ Package: libthai0
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, libthai-data (>= 0.1.10)
 Enhances: kdelibs5
-Conflicts: libdatrie0 (<< 0.1.4)
 Description: Thai language support library
  LibThai is a set of Thai language support routines aimed to ease
  developers' tasks to incorporate Thai language support in their applications.
@@ -42,14 +41,16 @@ Description: Thai language support library
 
 Package: libthai-data
 Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
-Conflicts: libthai0 (<< 0.1.10)
+Breaks: libthai0 (<< 0.1.10)
 Description: Data files for Thai language support library
  Data needed by LibThai library. It is usually automatically installed.
 
 Package: libthai-doc
 Section: doc
 Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}, lynx | www-browser
 Description: Documentation files for Thai language support library
  LibThai is a set of Thai language support routines aimed to ease
