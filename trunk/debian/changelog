@@ -1,3 +1,29 @@
+libthai (0.1.15-1) unstable; urgency=low
+
+  * New upstream release.
+    - patches/01_ftbfs-manpages.patch: Drop, merged upstream.
+  * debian/copyright:
+    - Updated to DEP-5 rev 173.
+    - Update copyright years.
+  * Drop Conflicts on libdatrie0: it's not really a conflict, just for
+    clean-up purpose, which can be done by apt auto-remove.
+  * Mark libthai-data and libthai-doc as "Multi-Arch: foreign" in preparation
+    for multi-arch environment to come. (Closes: #616503)
+  * debian/rules:
+    - Drop unnecessary --infodir & --mandir configure options.
+    - Completely split arch/indep build rules, so they are configured
+      separately. Now dictionary is not built for binary-arch. Not only doc
+      is excluded.
+    - build target does nothing, binary-arch and binary-indep do its job.
+    - autoreconf is done only once if binary-arch and binary-indep are
+      invoked together.
+  * Move libdatrie1-bin from B-Dep to B-Dep-Indep, as now allowed by
+    debian/rules.
+  * Bump Standards-Version to 3.9.1:
+    - libthai-data Breaks, instead of Conflicts, old libthai0.
+
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Thu, 24 Mar 2011 19:06:40 +0700
+
 libthai (0.1.14-2) unstable; urgency=medium
 
   * Urgency medium due to RC bug fix.
