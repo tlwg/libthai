@@ -14,7 +14,11 @@ stamp-h.in
 Makefile
 Makefile.in
 aclocal.m4
+autom4te.cache
+m4
+depcomp
 missing
+INSTALL
 install-sh
 mkinstalldirs
 ChangeLog
