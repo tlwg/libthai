@@ -1,3 +1,7 @@
+2011-06-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.in: Post-release version suffix added.
+
 2011-03-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in, NEWS:
