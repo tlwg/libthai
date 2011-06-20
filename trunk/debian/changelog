@@ -1,3 +1,26 @@
+libthai (0.1.15-2) unstable; urgency=low
+
+  * Merge Ubuntu changes (build for multiarch)
+    - Build-dep on debhelper (>= 8.1.3)
+    - Add "Pre-Depends: ${misc:Pre-Depends}" for libthai0
+    - Add DEB_HOST_MULTIARCH and pass it to --libdir as a subdir
+      under /usr/lib in configure
+    - Replace /usr/lib/ with /usr/lib/*/ in {libthai0,libthai-dev}.install
+    - Add "Multi-Arch: same" for libthai0
+  * Use dh-autoreconf instead of direct autoreconf call and manual cleanups
+    - Build-dep on dh-autoreconf
+    - Call dh_autoreconf on configure and dh_autoreconf_clean on clean
+  * Bump Standards-Version to 3.9.2 (no changes needed)
+
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Mon, 20 Jun 2011 16:33:40 +0700
+
+libthai (0.1.15-1ubuntu1) oneiric; urgency=low
+
+  * Merge from Debian unstable, remaining changes:
+    - Build for multiarch.
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Fri, 03 Jun 2011 22:34:07 -0700
+
 libthai (0.1.15-1) unstable; urgency=low
 
   * New upstream release.
