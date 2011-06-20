@@ -4,6 +4,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 # These are used for cross-compiling and for saving the configure script
 # from having to guess our platform (since we know it already)
 DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
@@ -34,7 +35,7 @@ reconf-stamp: configure.in
 	dh_testdir
 
 	[ -d m4 ] || mkdir m4
-	autoreconf --install
+	dh_autoreconf
 
 	touch $@
 
@@ -55,6 +56,7 @@ config-arch-stamp: reconf
 	rm -f config-indep-stamp
 
 	./configure $(build_flags) --prefix=/usr --disable-dict \
+	  --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) \
 	  --enable-shared CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)"
 
 	touch $@
@@ -82,10 +84,7 @@ clean:
 	dh_testdir
 	dh_testroot
 
-	[ ! -f Makefile ] || $(MAKE) maintainer-clean
-	rm -f aclocal.m4 configure ltmain.sh
-	find . -name Makefile.in -exec rm -f {} \;
-	rm -rf m4
+	dh_autoreconf_clean
 
 	dh_clean
 
