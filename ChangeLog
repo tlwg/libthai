@@ -1,3 +1,17 @@
+2011-07-19  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt:
+	* data/tdict-geo.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-common.txt: Add words.
+
+	* data/tdict-std-compound.txt: Remove loose compound.
+
+	* data/tdict-std.txt:
+	  - Remove rare words which potentially cause ambiguities.
+	  - Remove a duplicated entry.
+
 2011-06-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-proper.txt:
