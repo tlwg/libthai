@@ -1,3 +1,12 @@
+2011-09-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-proper.txt:
+	* data/tdict-common.txt: Add words.
+
+	* data/tdict-std.txt: Remove "มาย" which is rare but can potentially
+	cause ambiguity (e.g. "มายกร่าง"). A valid compound, "เมามาย" is
+	already in tdict-std-compound.txt.
+
 2011-07-19  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-proper.txt:
