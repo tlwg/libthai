@@ -1,5 +1,9 @@
 2011-10-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-common.txt, data/tdict-city.txt: "ไดฟุกุ" is city name.
+
+2011-10-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-science.txt:
 	* data/tdict-common.txt: Add words.
 
