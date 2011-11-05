@@ -1,5 +1,9 @@
 2011-11-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* configure.in: Add bug report address.
+
+2011-11-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-history.txt:
 	* data/tdict-proper.txt:
 	* data/tdict-spell.txt:

@@ -4,7 +4,7 @@
 AC_PREREQ(2.50)
 
 AC_INIT(include/thai/thailib.h)
-AM_INIT_AUTOMAKE(libthai, 0.1.15svn)
+AM_INIT_AUTOMAKE(libthai, 0.1.15svn, thep@linux.thai.net)
 
 AC_SUBST(VERSION)
 
