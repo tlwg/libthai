@@ -3,8 +3,8 @@ Priority: optional
 Section: libs
 Maintainer: Theppitak Karoonboonyanan <thep@debian.org>
 Uploaders:  Loic Minier <lool@dooz.org>
-Build-Depends: debhelper (>= 8.1.3), dh-autoreconf, pkg-config,
- libdatrie-dev (>= 0.2.0)
+Build-Depends: dpkg-dev (>= 0.16.1~), debhelper (>= 8.1.3), dh-autoreconf,
+ pkg-config, libdatrie-dev (>= 0.2.0)
 Build-Depends-Indep: doxygen, libdatrie1-bin
 Standards-Version: 3.9.2
 Vcs-Svn: http://linux.thai.net/svn/software/libthai
