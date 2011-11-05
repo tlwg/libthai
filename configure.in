@@ -1,12 +1,9 @@
-# $Id: configure.in,v 1.38 2008-12-15 07:44:23 thep Exp $
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
 
 AC_INIT(include/thai/thailib.h)
 AM_INIT_AUTOMAKE(libthai, 0.1.15svn, thai-linux-foss-devel@googlegroups.com)
-
-AC_SUBST(VERSION)
 
 # Library versioning
 # Library code modified:                    REVISION++

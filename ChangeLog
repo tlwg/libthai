@@ -1,5 +1,11 @@
 2011-11-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* configure.in:
+	  - Remove remaining '$Id'.
+	  - Remove unnecessary AC_SUBST(VERSION).
+
+2011-11-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* -TODO: Removed, the plan is obsolete.
 
 2011-11-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
