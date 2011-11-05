@@ -1,5 +1,10 @@
 2011-11-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* README: Update project URL & e-mail.
+	* configure.in: Use googlegroups as bug report address.
+
+2011-11-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* configure.in: Add bug report address.
 
 2011-11-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
