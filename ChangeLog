@@ -1,3 +1,12 @@
+2011-11-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-history.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-spell.txt:
+	* data/tdict-common.txt: Add words.
+
+	* data/tdict-country.txt: Use more popular short name for Saudi Arabia.
+
 2011-10-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-common.txt, data/tdict-city.txt: "ไดฟุกุ" is city name.
