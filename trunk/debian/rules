@@ -16,16 +16,8 @@ else
 	build_flags = --build=$(DEB_BUILD_GNU_TYPE) --host=$(DEB_HOST_GNU_TYPE)
 endif
 
-
-CFLAGS = -Wall -g
-
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-	CFLAGS += -O0
-else
-	CFLAGS += -O2
-endif
-
-LDFLAGS = -Wl,-z,defs
+dpkg-buildflags = DEB_BUILD_MAINT_OPTIONS="hardening=+pie,+bindnow" dpkg-buildflags
+build_flags += $(shell $(dpkg-buildflags) --export=configure)
 
 SHARED_PKG := libthai0
 SHLIB_VER := 0.1.12
@@ -55,9 +47,9 @@ config-arch-stamp: reconf
 
 	rm -f config-indep-stamp
 
-	./configure $(build_flags) --prefix=/usr --disable-dict \
+	./configure --prefix=/usr --disable-dict \
 	  --libdir=\$${prefix}/lib/$(DEB_HOST_MULTIARCH) \
-	  --enable-shared CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)"
+	  --enable-shared $(build_flags)
 
 	touch $@
 

@@ -1,3 +1,14 @@
+libthai (0.1.16-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/copyright: Use non-forwarding format URL. Bump to revision 202.
+  * Use hardening build flags:
+    - B-Dep on dpkg-dev (>= 0.16.1~) for dpkg-buildflags
+    - Obtain build flags from dpkg-buildflags
+    - Drop old CFLAGS & LDFLAGS, as now overridden by dpkg-buildflags
+
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Sat, 05 Nov 2011 16:06:12 +0700
+
 libthai (0.1.15-2) unstable; urgency=low
 
   * Merge Ubuntu changes (build for multiarch)
