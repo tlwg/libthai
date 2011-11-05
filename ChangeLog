@@ -1,5 +1,10 @@
 2011-11-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* configure.in, NEWS:
+	=== Version 0.1.16 ===
+
+2011-11-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* configure.in:
 	  - Remove remaining '$Id'.
 	  - Remove unnecessary AC_SUBST(VERSION).
