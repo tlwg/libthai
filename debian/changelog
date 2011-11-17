@@ -1,3 +1,11 @@
+libthai (0.1.16-2) UNRELEASED; urgency=low
+
+  * debian/copyright:
+    - Upstream license is actually LGPL-2.1, not 2.0.
+    - Add extended text for LGPL-2.1 and GPL-2.
+
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Thu, 17 Nov 2011 16:02:08 +0700
+
 libthai (0.1.16-1) unstable; urgency=low
 
   * New upstream release.
