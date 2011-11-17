@@ -3,8 +3,11 @@ libthai (0.1.16-2) UNRELEASED; urgency=low
   * debian/copyright:
     - Upstream license is actually LGPL-2.1, not 2.0.
     - Add extended text for LGPL-2.1 and GPL-2.
+  * debian/rules:
+    - Add back upstream 'make distclean' that was lost in 0.1.15-2, so it
+      builds twice in a row again.
 
- -- Theppitak Karoonboonyanan <thep@debian.org>  Thu, 17 Nov 2011 16:02:08 +0700
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Thu, 17 Nov 2011 16:14:16 +0700
 
 libthai (0.1.16-1) unstable; urgency=low
 

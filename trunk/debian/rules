@@ -76,6 +76,7 @@ clean:
 	dh_testdir
 	dh_testroot
 
+	[ ! -f Makefile ] || $(MAKE) distclean
 	dh_autoreconf_clean
 
 	dh_clean
