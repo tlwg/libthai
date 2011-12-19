@@ -30,7 +30,7 @@ Package: libthai0
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, libthai-data (>= 0.1.10)
 Pre-Depends: ${misc:Pre-Depends}
-Enhances: kdelibs5
+Enhances: libqtcore4, libqtgui4, libkhtml5
 Multi-Arch: same
 Description: Thai language support library
  LibThai is a set of Thai language support routines aimed to ease
