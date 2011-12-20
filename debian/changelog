@@ -4,8 +4,10 @@ libthai (0.1.16-3) UNRELEASED; urgency=low
     Also add Qt4 libs to the list.
   * debian/control, debian/copyright: Apply wrap-and-sort.
   * Point Homepage: directly to linux.thai.net.
+  * Use full description for libthai-data again, as it could be installed
+    manually as an alternative dictionary for swath.
 
- -- Theppitak Karoonboonyanan <thep@debian.org>  Tue, 20 Dec 2011 13:10:47 +0700
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Tue, 20 Dec 2011 13:16:01 +0700
 
 libthai (0.1.16-2) unstable; urgency=low
 
