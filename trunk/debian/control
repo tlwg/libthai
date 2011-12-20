@@ -13,7 +13,7 @@ Build-Depends-Indep: doxygen, libdatrie1-bin
 Standards-Version: 3.9.2
 Vcs-Svn: http://linux.thai.net/svn/software/libthai
 Vcs-Browser: http://linux.thai.net/websvn/wsvn/software.libthai/?sc=0
-Homepage: http://libthai.sourceforge.net/
+Homepage: http://linux.thai.net/projects/libthai
 
 Package: libthai-dev
 Section: libdevel

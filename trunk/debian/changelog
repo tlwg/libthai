@@ -3,8 +3,9 @@ libthai (0.1.16-3) UNRELEASED; urgency=low
   * Update libthai0 enhance list, now that kdelibs5 no longer exists.
     Also add Qt4 libs to the list.
   * debian/control, debian/copyright: Apply wrap-and-sort.
+  * Point Homepage: directly to linux.thai.net.
 
- -- Theppitak Karoonboonyanan <thep@debian.org>  Tue, 20 Dec 2011 09:16:39 +0700
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Tue, 20 Dec 2011 13:10:47 +0700
 
 libthai (0.1.16-2) unstable; urgency=low
 
