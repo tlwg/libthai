@@ -5,7 +5,7 @@ Source: ftp://linux.thai.net/pub/thailinux/software/libthai/
 
 Files: *
 Copyright: 2001-2011 Theppitak Karoonboonyanan <thep@linux.thai.net>,
-                     Pattara Kiatisevi <ott@linux.thai.net>, 
+                     Pattara Kiatisevi <ott@linux.thai.net>,
                      Vuthichai Ampornaramveth <vuthi@nii.ac.jp>,
                      Poonlap Veerathanabutr <poonlap@linux.thai.net>,
                      Chanop Silpa-Anan <chanop@debian.org>
@@ -29,7 +29,7 @@ License: LGPL-2.1+
 
 Files: debian/*
 Copyright: 2003-2006 Pattara Kiatisevi <ott@linux.thai.net>
-Copyright: 2006-2011 Theppitak Karoonboonyanan <thep@debian.org> 
+Copyright: 2006-2011 Theppitak Karoonboonyanan <thep@debian.org>
 License: GPL-2+
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -47,4 +47,3 @@ License: GPL-2+
  .
  On Debian systems, the complete text of the GNU General Public License
  version 2 can be found in `/usr/share/common-licenses/GPL-2'.
-
