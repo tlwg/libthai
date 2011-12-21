@@ -22,6 +22,7 @@ Depends:
  libdatrie-dev (>= 0.2.0),
  libthai0 (= ${binary:Version}),
  ${misc:Depends}
+Enhances: libkhtml5
 Suggests: libthai-doc
 Description: Development files for Thai language support library
  LibThai is a set of Thai language support routines aimed to ease
@@ -36,7 +37,7 @@ Package: libthai0
 Architecture: any
 Depends: libthai-data (>= 0.1.10), ${misc:Depends}, ${shlibs:Depends}
 Pre-Depends: ${misc:Pre-Depends}
-Enhances: libkhtml5, libqtcore4, libqtgui4
+Enhances: libqtcore4, libqtgui4
 Multi-Arch: same
 Description: Thai language support library
  LibThai is a set of Thai language support routines aimed to ease

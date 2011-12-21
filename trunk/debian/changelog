@@ -1,13 +1,16 @@
 libthai (0.1.16-3) UNRELEASED; urgency=low
 
-  * Update libthai0 enhance list, now that kdelibs5 no longer exists.
-    Also add Qt4 libs to the list.
+  * Update enhance list, now that kdelibs5 no longer exists.
+    - The enhanced subpackage of kde4libs is libkhtml5.
+    - It requires libthai-dev (for libthai.so) to actually enhance it,
+      not just libthai0.
+    - Also add libqtcore4 and libqtgui4 as libthai0 enhance list.
   * debian/control, debian/copyright: Apply wrap-and-sort.
   * Point Homepage: directly to linux.thai.net.
   * Use full description for libthai-data again, as it could be installed
     manually as an alternative dictionary for swath.
 
- -- Theppitak Karoonboonyanan <thep@debian.org>  Tue, 20 Dec 2011 13:16:01 +0700
+ -- Theppitak Karoonboonyanan <thep@debian.org>  Wed, 21 Dec 2011 10:22:59 +0700
 
 libthai (0.1.16-2) unstable; urgency=low
 
