@@ -1,5 +1,16 @@
 2012-01-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-proper.txt:
+	* data/tdict-city.txt:
+	* data/tdict-science.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-common.txt: Add words.
+
+	* data/tdic-proper.txt, data/tdict-history.txt: Move "ศรีวิชัย" to
+	-history.
+
+2012-01-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* configure.in: Post-release version suffix added.
 
 2011-11-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
