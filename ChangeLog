@@ -1,5 +1,11 @@
 2012-02-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* src/thbrk/thbrk.c (th_brk): Handle Thai acronyms by detecting
+	groups of <= 3 Thai characters + '.'. Thanks John Tapsell for
+	the report and initial patch.
+
+2012-02-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* src/thrend/thrend.c (th_render_cell_): Reformat source a little bit.
 
 2012-01-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
