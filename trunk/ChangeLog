@@ -1,3 +1,7 @@
+2012-02-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thrend/thrend.c (th_render_cell_): Reformat source a little bit.
+
 2012-01-18  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-proper.txt:
