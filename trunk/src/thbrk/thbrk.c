@@ -34,6 +34,8 @@
 #include "brk-ctype.h"
 #include "brk-maximal.h"
 
+#define MAX_ACRONYM_FRAG_LEN  3
+
 void
 thbrk_on_unload ()
 {
@@ -109,7 +111,7 @@ int
 th_brk (const thchar_t *s, int pos[], size_t n)
 {
     brk_class_t     prev_class, effective_class;
-    const thchar_t *thai_chunk, *p;
+    const thchar_t *thai_chunk, *acronym_end, *p;
     int             cur_pos;
 
     if (!*s)
@@ -117,7 +119,7 @@ th_brk (const thchar_t *s, int pos[], size_t n)
 
     brk_maximal_init ();
 
-    p = thai_chunk = s;
+    p = thai_chunk = acronym_end = s;
     prev_class = effective_class = brk_class (*p);
     cur_pos = 0;
 
@@ -129,8 +131,27 @@ th_brk (const thchar_t *s, int pos[], size_t n)
         op = brk_op (effective_class, new_class);
 
         if (BRK_CLASS_THAI == prev_class) {
+            /* handle acronyms */
+            if ('.' == *p && p - acronym_end <= MAX_ACRONYM_FRAG_LEN) {
+                /* the fullstop after Thai is part of Thai acronym */
+                new_class = BRK_CLASS_THAI;
+                acronym_end = p + 1;
+            } else if (acronym_end > thai_chunk) {
+                /* an acronym was marked */
+                if (BRK_CLASS_THAI != new_class
+                    || p - acronym_end > MAX_ACRONYM_FRAG_LEN)
+                {
+                    /* end of Thai chunk or entered non-acronym Thai word,
+                     * jump back to the acronym end */
+                    prev_class = effective_class = brk_class ('.');
+                    p = thai_chunk = acronym_end;
+                    new_class = brk_class (*p);
+                    op = brk_op (effective_class, new_class);
+                }
+            }
+
             /* break chunk if leaving Thai chunk */
-            if (BRK_CLASS_THAI != new_class) {
+            if (BRK_CLASS_THAI != new_class && p > thai_chunk) {
                 int n_brk, i;
 
                 n_brk = brk_maximal_do (thai_chunk, p - thai_chunk,
@@ -152,7 +173,7 @@ th_brk (const thchar_t *s, int pos[], size_t n)
         } else {
             /* set chunk if entering Thai chunk */
             if (BRK_CLASS_THAI == new_class)
-                thai_chunk = p;
+                thai_chunk = acronym_end = p;
         }
 
         switch (op) {
