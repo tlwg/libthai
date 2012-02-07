@@ -82,11 +82,11 @@ static const ThaiShapeTable Win_shape_table_ = {
     { 0x90, 0x00, 0x00, 0x80 }
 };
 
-static
-int th_render_cell_ (struct thcell_t cell,
-                     thglyph_t res[], size_t res_sz,
-                     int is_decomp_am,
-                     const ThaiShapeTable *tbl)
+static int
+th_render_cell_ (struct thcell_t cell,
+                 thglyph_t res[], size_t res_sz,
+                 int is_decomp_am,
+                 const ThaiShapeTable *tbl)
 {
     size_t left = res_sz;
 
@@ -127,7 +127,7 @@ int th_render_cell_ (struct thcell_t cell,
             c = th_isovershootcons (cell.base) ? shiftleft_tone_ad (c, tbl) : c;
         } else {
             c = th_isovershootcons (cell.base) ? shiftdownleft_tone_ad (c, tbl)
-                                                 : shiftdown_tone_ad(c, tbl);
+                                                 : shiftdown_tone_ad (c, tbl);
         }
         *res++ = c;
         --left;
