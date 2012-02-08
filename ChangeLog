@@ -1,3 +1,15 @@
+2012-02-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-history.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-city.txt:
+	* data/tdict-science.txt:
+	* data/tdict-geo.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-spell.txt:
+	* data/tdict-district.txt:
+	* data/tdict-common.txt: Add words.
+
 2012-02-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* src/thbrk/thbrk.c (th_brk): Handle Thai acronyms by detecting
