@@ -1,3 +1,11 @@
+2012-02-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-history.txt:
+	* data/tdict-spell.txt:
+	* data/tdict-common.txt: Add words.
+
+	* data/tdict-geo.txt: Fix typo.
+
 2012-02-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-history.txt:
