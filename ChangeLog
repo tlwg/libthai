@@ -1,5 +1,9 @@
 2012-02-21  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* tests/test_thbrk.c, tests/test_thwbrk.c: Add acronym to the tests.
+
+2012-02-21  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-history.txt:
 	* data/tdict-proper.txt:
 	* data/tdict-city.txt:
