@@ -1,0 +1,50 @@
+#!/usr/bin/make -f
+
+CURDIR = $(shell pwd)
+INSTALL_DOCS = \
+	$(CURDIR)/../AUTHORS	\
+	$(CURDIR)/../ChangeLog	\
+	$(CURDIR)/../COPYING	\
+	$(CURDIR)/../INSTALL	\
+	$(CURDIR)/../NEWS	\
+	$(CURDIR)/../README
+
+all: binary
+
+distclean:
+	make distclean
+	rm -rf include src data tests doc
+	rm -rf libthai
+	rm -f configure-stamp
+	rm -f *.exe
+
+configure: configure-stamp
+configure-stamp:
+	../configure --prefix=/ --host=i586-mingw32msvc
+	touch $@
+
+build: configure
+	make
+
+install:
+	make install DESTDIR=$(CURDIR)/libthai
+
+	# install docs
+	if [ ! -e $(CURDIR)/libthai/doc ]; then \
+	  mkdir $(CURDIR)/libthai/doc; \
+	fi
+	for file in $(INSTALL_DOCS); do \
+	  cp $$file $(CURDIR)/libthai/doc/`basename $$file`.txt; \
+	  todos $(CURDIR)/libthai/doc/$$file.txt; \
+	done
+
+	# install contrib files
+	if [ ! -e $(CURDIR)/libthai/contrib ]; then \
+	  mkdir $(CURDIR)/libthai/contrib; \
+	fi
+	cp contrib/libthaienv.sh $(CURDIR)/libthai/contrib
+
+binary: build install
+	makensis libthai.nsi
+
+.PHONY: all distclean configure build install binary
