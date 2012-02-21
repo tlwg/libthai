@@ -1,3 +1,8 @@
+2012-02-20  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* src/thbrk/thbrk.c (th_brk): Do not break last Thai chunk with
+	dictionary if it's acronym.
+
 2012-02-14  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-history.txt:
