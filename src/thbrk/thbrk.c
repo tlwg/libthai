@@ -197,8 +197,10 @@ th_brk (const thchar_t *s, int pos[], size_t n)
             effective_class = new_class;
     }
 
-    /* break last Thai chunk */
-    if (BRK_CLASS_THAI == prev_class && cur_pos < n) {
+    /* break last Thai non-acronym chunk */
+    if (BRK_CLASS_THAI == prev_class && acronym_end <= thai_chunk
+        && cur_pos < n)
+    {
         int n_brk, i;
 
         n_brk = brk_maximal_do (thai_chunk, p - thai_chunk,
