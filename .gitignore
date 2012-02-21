@@ -1,0 +1,183 @@
+
+# /
+/*.lo
+/libtool
+/ltmain.sh
+/configure
+/config.cache
+/config.guess
+/config.h
+/config.h.in
+/config.log
+/config.status
+/config.sub
+/stamp-h
+/stamp-h.in
+/Makefile
+/Makefile.in
+/aclocal.m4
+/autom4te.cache
+/m4
+/depcomp
+/missing
+/INSTALL
+/install-sh
+/mkinstalldirs
+/ChangeLog
+/libthai.pc
+
+# /data/
+/data/Makefile.in
+/data/Makefile
+/data/tdict.txt
+/data/*.tri
+
+# /doc/
+/doc/Makefile.in
+/doc/Makefile
+/doc/Doxyfile
+/doc/doxygen.stamp
+/doc/html
+
+# /include/
+/include/Makefile
+/include/Makefile.in
+
+# /include/thai/
+/include/thai/Makefile
+/include/thai/Makefile.in
+
+# /man/
+/man/.deps
+/man/.libs
+/man/Makefile
+/man/Makefile.in
+/man/*.lo
+/man/*.la
+
+# /man/man3/
+/man/man3/.deps
+/man/man3/.libs
+/man/man3/Makefile
+/man/man3/Makefile.in
+/man/man3/*.lo
+/man/man3/*.la
+
+# /src/
+/src/.deps
+/src/.libs
+/src/Makefile
+/src/Makefile.in
+/src/*.lo
+/src/*.la
+
+# /src/thbrk/
+/src/thbrk/.deps
+/src/thbrk/.libs
+/src/thbrk/Makefile
+/src/thbrk/Makefile.in
+/src/thbrk/*.lo
+/src/thbrk/*.la
+/src/thbrk/cttex
+/src/thbrk/dict2state
+/src/thbrk/map.c
+/src/thbrk/map.h
+/src/thbrk/SunWS_cache
+
+# /src/thcell/
+/src/thcell/.deps
+/src/thcell/.libs
+/src/thcell/Makefile
+/src/thcell/Makefile.in
+/src/thcell/*.lo
+/src/thcell/*.la
+
+# /src/thcoll/
+/src/thcoll/.deps
+/src/thcoll/.libs
+/src/thcoll/Makefile
+/src/thcoll/Makefile.in
+/src/thcoll/*.lo
+/src/thcoll/*.la
+
+# /src/thctype/
+/src/thctype/.deps
+/src/thctype/.libs
+/src/thctype/Makefile
+/src/thctype/Makefile.in
+/src/thctype/*.lo
+/src/thctype/*.la
+
+# /src/thinp/
+/src/thinp/.deps
+/src/thinp/.libs
+/src/thinp/Makefile
+/src/thinp/Makefile.in
+/src/thinp/*.lo
+/src/thinp/*.la
+
+# /src/thrend/
+/src/thrend/.deps
+/src/thrend/.libs
+/src/thrend/Makefile
+/src/thrend/Makefile.in
+/src/thrend/*.lo
+/src/thrend/*.la
+
+# /src/thstr/
+/src/thstr/.deps
+/src/thstr/.libs
+/src/thstr/Makefile
+/src/thstr/Makefile.in
+/src/thstr/*.lo
+/src/thstr/*.la
+
+# /src/thwbrk/
+/src/thwbrk/.deps
+/src/thwbrk/.libs
+/src/thwbrk/Makefile
+/src/thwbrk/Makefile.in
+/src/thwbrk/*.lo
+/src/thwbrk/*.la
+/src/thwbrk/cttex
+/src/thwbrk/dict2state
+/src/thwbrk/map.c
+/src/thwbrk/map.h
+/src/thwbrk/SunWS_cache
+
+# /src/thwchar/
+/src/thwchar/.deps
+/src/thwchar/.libs
+/src/thwchar/Makefile
+/src/thwchar/Makefile.in
+/src/thwchar/*.lo
+/src/thwchar/*.la
+
+# /src/thwctype/
+/src/thwctype/.deps
+/src/thwctype/.libs
+/src/thwctype/Makefile
+/src/thwctype/Makefile.in
+/src/thwctype/*.lo
+/src/thwctype/*.la
+
+# /src/thwstr/
+/src/thwstr/.deps
+/src/thwstr/.libs
+/src/thwstr/Makefile
+/src/thwstr/Makefile.in
+/src/thwstr/*.lo
+/src/thwstr/*.la
+
+# /tests/
+/tests/.deps
+/tests/.libs
+/tests/Makefile
+/tests/Makefile.in
+/tests/out.txt
+/tests/test_thctype
+/tests/test_thstr
+/tests/test_thwchar
+/tests/thsort
+/tests/test_thbrk
+/tests/test_thwbrk
