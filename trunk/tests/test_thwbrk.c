@@ -22,7 +22,7 @@ int main (int argc, char* argv[])
   int outputLength, unicodeCutCodeLength;
   int numCut, i;
   
-  strcpy ((char *)str, "สวัสดีครับ นี่เป็นการทดสอบตัวเอง");
+  strcpy ((char *)str, "สวัสดีครับ กอ.รมน. นี่เป็นการทดสอบตัวเอง");
   printf ("Testing with input string: %s\n", str);
 
   printf ("Converting to Unicode...\n");
@@ -39,8 +39,8 @@ int main (int argc, char* argv[])
     }
   }
   printf ("\n");
-  if (numCut != 6) { 
-    printf ("Error! Should have 6 cut points.\n Test th_wbrk() failed...\n");
+  if (numCut != 7) {
+    printf ("Error! Should have 7 cut points.\n Test th_wbrk() failed...\n");
     exit (-1);
   }
 	
@@ -53,8 +53,8 @@ int main (int argc, char* argv[])
 
   printf ("Return value from th_wbrk_line is %d\n", outputLength);
   printf ("Output string length is %d\n", wcslen(uout));
-  if (outputLength != 62) {
-    printf ("Error! Output string length != 62. "
+  if (outputLength != 75) {
+    printf ("Error! Output string length != 75. "
             "Test th_wbrk_line() failed...\n");
     exit (-1);
   }
