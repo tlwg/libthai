@@ -1,5 +1,9 @@
 2012-02-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-std-compound.txt: Add hyphens.
+
+2012-02-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-history.txt:
 	* data/tdict-country.txt:
 	* data/tdict-proper.txt:
