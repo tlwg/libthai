@@ -1,3 +1,7 @@
+2012-02-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std.txt: Add hyphens for Ko Kai.
+
 2012-02-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-std-compound.txt: Add hyphens.
