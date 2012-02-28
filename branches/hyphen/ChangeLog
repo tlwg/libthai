@@ -1,3 +1,7 @@
+2012-02-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std.txt: Add hyphens for Kho Khai words.
+
 2012-02-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-std.txt: Add hyphens for Ko Kai.
