@@ -1,5 +1,9 @@
 2012-02-29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-std.txt: Add hyphens for No Nu, Bo Baimai words.
+
+2012-02-29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-std.txt: Add hyphens for Tho Thung .. Tho Thong words.
 
 2012-02-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
