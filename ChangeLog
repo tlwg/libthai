@@ -1,5 +1,9 @@
 2012-03-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-std.txt: Add hyphens for Lo Ling .. Lue words.
+
+2012-03-03  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-std.txt: Add hyphens for Yo Yak .. Rue words.
 
 2012-03-02  Theppitak Karoonboonyanan  <thep@linux.thai.net>
