@@ -1,5 +1,9 @@
 2012-03-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-std.txt: Add hyphens for O Ang, Ho Nokhuk words.
+
+2012-03-05  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-std.txt: Add hyphens for Ho Hip words.
 
 2012-03-04  Theppitak Karoonboonyanan  <thep@linux.thai.net>
