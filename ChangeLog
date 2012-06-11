@@ -1,3 +1,15 @@
+2012-06-11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-std.txt: Remove some prefix-words as found during
+	  working on thailatex hyphenation.
+
+2012-06-10  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-common.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-city.txt:
+	* data/tdict-ict.txt: Add words.
+
 2012-06-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* configure.in: Belated post-release version suffix added.
