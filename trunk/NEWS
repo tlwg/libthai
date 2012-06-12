@@ -2,6 +2,9 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.18 (12 June 2012):
+* Updated word break dictionary.
+
 LibThai 0.1.17 (21 February 2012):
 * Recognizes acronyms on word breaking.
   (Thanks John Tapsell for the report and initial patch.)
