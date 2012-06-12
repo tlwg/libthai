@@ -1,3 +1,10 @@
+2012-06-12  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-city.txt:
+	* data/tdict-common.txt:
+	* data/tdict-lang-ethnic.txt:
+	* data/tdict-proper.txt: Add words.
+
 2012-06-11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-std.txt: Remove some prefix-words as found during
