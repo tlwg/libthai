@@ -1,3 +1,15 @@
+2012-10-16  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-common.txt:
+	* data/tdict-district.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt: Add words.
+
+2012-07-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* doc/Doxyfile.in: Upgrade to doxygen 1.8.1.2 format.
+
 2012-07-29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-city.txt:
