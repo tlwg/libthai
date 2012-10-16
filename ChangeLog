@@ -1,7 +1,3 @@
-2012-07-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
-
-	* doc/Doxyfile.in: Upgrade to doxygen 1.8.1.2 format.
-
 2012-07-29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-city.txt:
@@ -9,6 +5,10 @@
 	* data/tdict-proper.txt:
 	* data/tdict-science.txt:
 	* data/tdict-spell.txt: Add words.
+
+2012-07-30  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* doc/Doxyfile.in: Upgrade to doxygen 1.8.1.2 format.
 
 2012-06-15  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
