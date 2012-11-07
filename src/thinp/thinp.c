@@ -87,7 +87,7 @@ correct_ (thchar_t c_1, thchar_t c, thchar_t conv[3])
 }
 
 /**
- * @brief  Check and try to correct input sequence
+ * @brief  Check and try to correct input sequence with default strictness
  *
  * @param  context : previous cell
  * @param  c       : the newly input character
@@ -97,11 +97,33 @@ correct_ (thchar_t c_1, thchar_t c, thchar_t conv[3])
  *           non-zero otherwise.
  *
  * Given the previous cell as @a context, edit the input buffer using
- * the given input @a c, maintaining WTT canonical order, and do some
- * convenient correction in @a conv.
+ * the given input @a c, maintaining WTT canonical order at default
+ * strictness level, and do some convenient correction in @a conv.
  */
 int
 th_validate (struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
+{
+  return th_validate_leveled (context, c, conv, ISC_BASICCHECK);
+}
+
+/**
+ * @brief  Check and try to correct input sequence
+ *
+ * @param  context : previous cell
+ * @param  c       : the newly input character
+ * @param  conv    : the storage for resulting correction info
+ * @param  s       : strictness level
+ *
+ * @returns  0 if the input is to be rejected
+ *           non-zero otherwise.
+ *
+ * Given the previous cell as @a context, edit the input buffer using
+ * the given input @a c, maintaining WTT canonical order at strictness
+ * level @a s, and do some convenient correction in @a conv.
+ */
+int
+th_validate_leveled (struct thcell_t context, thchar_t c,
+                     struct thinpconv_t *conv, thstrict_t s)
 {
     thchar_t prev_c = context.top ?
                           context.top :
@@ -120,8 +142,8 @@ th_validate (struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
         return 1;
     }
 
-    /* normal cases, using Strict level */
-    if (th_isaccept (prev_c, c, ISC_STRICT)) {
+    /* normal cases */
+    if (th_isaccept (prev_c, c, s)) {
         conv->conv[0] = c; conv->conv[1] = 0;
         conv->offset = 0;
         return 1;
@@ -131,7 +153,7 @@ th_validate (struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
     switch (th_chlevel(c)) {
     case 3:
     case 2:
-        if (context.hilo && th_isaccept (context.hilo, c, ISC_STRICT)) {
+        if (context.hilo && th_isaccept (context.hilo, c, s)) {
             /* hilo OK, replace top only */
             conv->offset = 0;
             conv->conv[0] = c; conv->conv[1] = 0;
@@ -141,9 +163,9 @@ th_validate (struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
             return 1;
         }
         /* hilo not OK with c (hilo == SARA_AM falls here), or no hilo */
-        if (th_isaccept (context.base, c, ISC_STRICT)
+        if (th_isaccept (context.base, c, s)
             && (context.hilo != TIS_SARA_AM
-                || th_isaccept (c, TIS_SARA_AM, ISC_STRICT)))
+                || th_isaccept (c, TIS_SARA_AM, s)))
         {
             /* replace from hilo on, using new top */
             int i = 0;
@@ -166,7 +188,7 @@ th_validate (struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
         /* fall through for level 3 */
     case -1:
     case 1:
-        if (th_isaccept (context.base, c, ISC_STRICT)) {
+        if (th_isaccept (context.base, c, s)) {
             /* replace from hilo on; use new hilo + old top if OK */
             int i = 0;
             conv->offset = 0;
@@ -176,7 +198,7 @@ th_validate (struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
             }
             if (context.top) {
                 --conv->offset;
-                if (th_isaccept (c, context.top, ISC_STRICT)) {
+                if (th_isaccept (c, context.top, s)) {
                     conv->conv[i++] = context.top;
                 }
             }

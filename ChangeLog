@@ -1,5 +1,21 @@
 2012-11-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	Add input method API for correction with levels.
+
+	* include/thai/thinp.h:
+	* src/libthai.def:
+	* src/libthai.map (+th_validate_leveled):
+	  - Add API for input validation with strictness arg.
+	* src/thinp/thinp.c (th_validate, th_validate_leveled):
+	  - Convert old th_validate() code to th_validate_leveled() and replace
+	    the hard-coded ISC_STRICT with the arg.
+	  - Make the old th_validate() a wrapper to th_validate_leveled() with
+	    default param (ISC_BASICCHECK, not ISC_STRICT, though).
+	* configure.in:
+	  - Bump library versions to reflect the added API.
+
+2012-11-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-city.txt:
 	* data/tdict-science.txt:
 	* data/tdict-ict.txt:
