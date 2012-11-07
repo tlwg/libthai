@@ -57,6 +57,9 @@ struct thinpconv_t {
 extern int th_validate(struct thcell_t context, thchar_t c,
                        struct thinpconv_t *conv);
 
+extern int th_validate_leveled(struct thcell_t context, thchar_t c,
+                               struct thinpconv_t *conv, thstrict_t s);
+
 END_CDECL
 
 #endif  /* THAI_THINP_H */

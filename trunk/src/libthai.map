@@ -75,3 +75,9 @@ global:
 local: *;
 };
 
+LIBTHAI_0.1.19 {
+global:
+  th_validate_leveled;
+local: *;
+} LIBTHAI_0.1;
+

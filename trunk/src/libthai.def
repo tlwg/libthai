@@ -48,6 +48,7 @@ th_uni2tis
 th_uni2tis_line
 th_uni2winthai
 th_validate
+th_validate_leveled
 th_wbrk
 th_wbrk_line
 th_wcchlevel
