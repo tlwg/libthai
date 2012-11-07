@@ -1,3 +1,10 @@
+2012-11-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-city.txt:
+	* data/tdict-science.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-lang-ethnic.txt: Add words.
+
 2012-10-16  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-common.txt:
