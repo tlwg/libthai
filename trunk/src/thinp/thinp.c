@@ -103,7 +103,7 @@ correct_ (thchar_t c_1, thchar_t c, thchar_t conv[3])
 int
 th_validate (struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
 {
-  return th_validate_leveled (context, c, conv, ISC_BASICCHECK);
+  return th_validate_leveled (context, c, conv, ISC_STRICT);
 }
 
 /**

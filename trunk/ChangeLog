@@ -1,5 +1,14 @@
 2013-01-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	Change th_validate() default level back to ISC_STRICT.
+
+	* src/thinp/thinp.c (th_validate):
+	  - Change ISC level back from ISC_BASICCHECK to ISC_STRICT.
+	    ISC_BASICCHECK fails 'make check', and the previous value
+	    ISC_STRICT should be better for general input with correction.
+
+2013-01-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-science.txt: Fix typo.
 
 2013-01-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
