@@ -1,5 +1,20 @@
 2013-01-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	Modernize autoconf & switch to XZ tarball compression.
+
+	* configure.in -> configure.ac:
+	  - Rename file for modern autoconf.
+	  - Replace deprecated AC_INIT() form with PACKAGE, VERSION form.
+	  - Use AC_CONFIG_SRCDIR() instead for the old AC_INIT() form.
+	  - Add AC_CONFIG_MACRO_DIR().
+	  - Replace deprecated AC_INIT_AUTOMAKE() form with OPTIONS form,
+	    passing "dist-xz no-dist-gzip" options to switch to XZ tarball.
+
+	* Makefile.am:
+	  - Add "-I m4" to ACLOCAL_AMFLAGS, as suggested by libtool.
+
+2013-01-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	Change th_validate() default level back to ISC_STRICT.
 
 	* src/thinp/thinp.c (th_validate):
