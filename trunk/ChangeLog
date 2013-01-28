@@ -1,3 +1,16 @@
+2013-01-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-common.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-science.txt:
+	* data/tdict-geo.txt:
+	* data/tdict-lang-ethnic.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-city.txt:
+	* data/tdict-district.txt: Add words.
+
+	* data/tdict-std-compound.txt: Drop loose compound 'สว่างไสว'.
+
 2012-11-07  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	Add input method API for correction with levels.
