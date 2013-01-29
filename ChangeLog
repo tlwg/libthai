@@ -1,3 +1,8 @@
+2013-01-29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* configure.ac, NEWS:
+	=== Version 0.1.19 ===
+
 2013-01-28  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	Modernize autoconf & switch to XZ tarball compression.
