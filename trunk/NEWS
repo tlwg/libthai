@@ -2,6 +2,11 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.19 (29 January 2013):
+* New API th_validate_leveled() for IM correction with strictness level.
+* Updated word break dictionary.
+* Switched to XZ tarball compression.
+
 LibThai 0.1.18 (12 June 2012):
 * Updated word break dictionary.
 
