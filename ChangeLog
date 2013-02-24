@@ -1,5 +1,13 @@
 2013-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	Remove compound words that potentially cause ambiguity.
+
+	* data/tdict-std-compound.txt:
+	  - Remove 'มีหน้า' which can cause 'มีหน้า|ที่' instead of 'มี|หน้าที่'.
+	  - Remove 'ลืมตา' which can cause 'ลืมตา|มหา' instead of 'ลืม|ตาม|หา'.
+
+2013-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* configure.in: Post-release version suffix added.
 
 2013-01-29  Theppitak Karoonboonyanan  <thep@linux.thai.net>
