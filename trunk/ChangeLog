@@ -1,5 +1,14 @@
 2013-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-common.txt:
+	* data/tdict-geo.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-lang-ethnic.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt: Add words.
+
+2013-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	Remove compound words that potentially cause ambiguity.
 
 	* data/tdict-std-compound.txt:
