@@ -1,3 +1,13 @@
+2013-08-02  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-common.txt:
+	* data/tdict-district.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-proper.txt: Add words.
+
+	* data/tdict-std.txt: Remove 'พาส' whose use is rare and which
+	potentially causes ambiguity like in 'พาสมองเสื่อม'.
+
 2013-02-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-common.txt:
