@@ -2,7 +2,7 @@ MAINTAINERCLEANFILES = Makefile.in
 
 dictdatadir = $(datadir)/libthai
 
-INCLUDES = -I. -I$(top_srcdir)/include $(DATRIE_CFLAGS)
+AM_CPPFLAGS = -I. -I$(top_srcdir)/include $(DATRIE_CFLAGS)
 DEFS = -DDICT_DIR=\"$(dictdatadir)\"
 
 noinst_LTLIBRARIES = libthbrk.la

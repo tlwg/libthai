@@ -1,6 +1,6 @@
 MAINTAINERCLEANFILES = Makefile.in
 
-INCLUDES = -I$(top_srcdir)/include
+AM_CPPFLAGS = -I$(top_srcdir)/include
 
 EXTRA_DIST = sorttest.txt sorted.txt test-thcoll.sh test-thbrk.sh test-thwbrk.sh
 

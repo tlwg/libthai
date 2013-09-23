@@ -1,6 +1,6 @@
 MAINTAINERCLEANFILES = Makefile.in
 
-INCLUDES = -I. -I$(top_srcdir)/include
+AM_CPPFLAGS = -I. -I$(top_srcdir)/include
 
 noinst_LTLIBRARIES = libthstr.la
 
