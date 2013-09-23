@@ -1,5 +1,12 @@
 2013-09-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	Update Doxyfile.
+
+	* doc/Doxyfile.in:
+	  - Updated with 'doxygen -u'.
+
+2013-09-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	Fix automake warnings.
 
 	* src/thbrk/Makefile.am:
