@@ -1,3 +1,10 @@
+2013-09-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-common.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt: Add words.
+
 2013-09-23  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	Check for doxygen required version.
