@@ -2,6 +2,19 @@
 
 	Fix warnings in tests.
 
+	* tests/test_thwchar.c (main):
+	  - Cast (thchar_t *) to (char *) to fix signedness differences.
+	  - Cast (thwchar_t) to (unsigned long) for "%lx" string format.
+	  - Cast (size_t) return values from wcslen() and strlen() to long,
+	    and use "%ld" format to print them.
+	  - Replace 'outputLength' var with 'tisLength' and 'uniLength'
+	    and do some useful checks on return values of th_tis2uni_line()
+	    and th_uni2tis_line().
+
+2013-10-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Fix warnings in tests.
+
 	* tests/test_thinp.c (test_th_validate):
 	  - Cast (thchar_t *) to (char *), to fix signedness differences.
 	* tests/thsort.c (readData):
