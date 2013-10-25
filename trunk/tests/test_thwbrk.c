@@ -1,4 +1,4 @@
-/* Test driver for thwbrk 
+/* Test driver for thwbrk
  */
 
 #define MAXLINELENGTH 1000
@@ -21,7 +21,7 @@ int main (int argc, char* argv[])
   int pos[MAXLINELENGTH];
   int outputLength, unicodeCutCodeLength;
   int numCut, i;
-  
+
   strcpy ((char *)str, "สวัสดีครับ กอ.รมน. นี่เป็นการทดสอบตัวเอง");
   printf ("Testing with input string: %s\n", str);
 
@@ -32,7 +32,7 @@ int main (int argc, char* argv[])
   numCut = th_wbrk (ustr, pos, MAXLINELENGTH);
 
   printf ("Total %d cut points.", numCut);
-  if (numCut > 0) { 
+  if (numCut > 0) {
     printf ("Cut points list: %d", pos[0]);
     for (i = 1; i < numCut; i++) {
       printf (", %d", pos[i]);
@@ -43,16 +43,20 @@ int main (int argc, char* argv[])
     printf ("Error! Should have 7 cut points.\n Test th_wbrk() failed...\n");
     exit (-1);
   }
-	
+
   unicodeCutCodeLength = th_tis2uni_line ((const thchar_t *) "<WBR>",
                                           (thwchar_t*) unicodeCutCode, 6);
+  if (unicodeCutCodeLength != strlen ("<WBR>")) {
+    printf ("Warning! Expect th_tis2uni_line() returned length %ld, got %d\n",
+            (long)strlen ("<WBR>"), unicodeCutCodeLength);
+  }
 
   printf ("Calling th_wbrk_line() ....\n");
   outputLength = th_wbrk_line (ustr, (thwchar_t*) uout, MAXLINELENGTH,
                                unicodeCutCode);
 
   printf ("Return value from th_wbrk_line is %d\n", outputLength);
-  printf ("Output string length is %d\n", wcslen(uout));
+  printf ("Output string length is %ld\n", (long)wcslen(uout));
   if (outputLength != 75) {
     printf ("Error! Output string length != 75. "
             "Test th_wbrk_line() failed...\n");
@@ -73,6 +77,6 @@ int main (int argc, char* argv[])
     printf ("Test th_wbrk_line() failed...\n");
     exit (-1);
   }
-  
+
   return 0;
 }
