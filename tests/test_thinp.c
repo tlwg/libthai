@@ -61,8 +61,9 @@ static int test_th_validate()
 
         th_prev_cell(buffer, cur_pos, &prev_cell, 1);
         if (th_validate(prev_cell, *keys, &conv)) {
-            strcpy(&buffer[cur_pos + conv.offset], conv.conv);
-            cur_pos += conv.offset + strlen(conv.conv);
+            strcpy((char *)&buffer[cur_pos + conv.offset],
+                   (const char *)conv.conv);
+            cur_pos += conv.offset + strlen((const char *)conv.conv);
         }
         ++keys;
     }
