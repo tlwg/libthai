@@ -2,6 +2,16 @@
 
 	Fix warnings in tests.
 
+	* tests/test_thwbrk.c (main):
+	  - Do some useful checks for 'unicodeCutCodeLength' unused var.
+	  - Cast (size_t) returned value of wcslen() to (long) and use "%ld"
+	    format to print it.
+	  - Remove trailing spaces in source.
+
+2013-10-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Fix warnings in tests.
+
 	* tests/test_thwchar.c (main):
 	  - Cast (thchar_t *) to (char *) to fix signedness differences.
 	  - Cast (thwchar_t) to (unsigned long) for "%lx" string format.
