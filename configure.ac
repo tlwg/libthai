@@ -2,7 +2,7 @@
 
 AC_PREREQ(2.50)
 
-AC_INIT(libthai, 0.1.19svn, thai-linux-foss-devel@googlegroups.com)
+AC_INIT(libthai, 0.1.20, thai-linux-foss-devel@googlegroups.com)
 AC_CONFIG_SRCDIR([include/thai/thailib.h])
 AC_CONFIG_MACRO_DIR([m4])
 

@@ -2,6 +2,10 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.20 (25 October 2013):
+* Updated word break dictionary.
+* Fix compiler warnings in test suites.
+
 LibThai 0.1.19 (29 January 2013):
 * New API th_validate_leveled() for IM correction with strictness level.
 * Updated word break dictionary.
