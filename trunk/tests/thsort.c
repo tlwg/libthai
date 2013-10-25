@@ -13,7 +13,7 @@
 /* for qsort() */
 typedef int (*CMPFUNC)(const void *, const void *);
 
-static size_t readData(FILE *dataFile, thchar_t *data[], int maxData)
+static size_t readData(FILE *dataFile, thchar_t *data[], size_t maxData)
 {
     size_t nData = 0;
     static char wordBuf[128];
@@ -28,7 +28,7 @@ static size_t readData(FILE *dataFile, thchar_t *data[], int maxData)
         /* allocate & copy the line */
         data[nData] = (thchar_t*)malloc(len+1);
         if (data[nData] == NULL) {
-            printf("Warning: Only %d items were read\n", nData);
+            printf("Warning: Only %ld items were read\n", (long)nData);
             return nData;
         }
         strcpy((char*)data[nData], wordBuf);

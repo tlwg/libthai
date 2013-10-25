@@ -1,3 +1,13 @@
+2013-10-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Fix warnings in tests.
+
+	* tests/test_thinp.c (test_th_validate):
+	  - Cast (thchar_t *) to (char *), to fix signedness differences.
+	* tests/thsort.c (readData):
+	  - Cast (size_t) to (long) and use "%ld" format to print it.
+	  - Redeclare maxData from int to size_t, to match that of nData.
+
 2013-10-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* README: Remove version-specific text.
