@@ -1,5 +1,10 @@
 2013-12-21  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-std-compound.txt, data/tdict-std.txt:
+	  - Move 'ชุติมา' from -std-compound to -std.
+
+2013-12-21  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* data/tdict-city.txt:
 	* data/tdict-common.txt:
 	* data/tdict-proper.txt:
