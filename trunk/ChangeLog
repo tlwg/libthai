@@ -1,5 +1,12 @@
 2013-12-21  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
+	* data/tdict-city.txt:
+	* data/tdict-common.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt: Add words.
+
+2013-12-21  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
 	* configure.in: Post-release version suffix added.
 
 2013-10-25  Theppitak Karoonboonyanan  <thep@linux.thai.net>
