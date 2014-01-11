@@ -1,3 +1,11 @@
+2014-01-11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	Fix warning in test suite.
+
+	* tests/test_thbrk.c (main):
+	  - Fix compiler warning on unused return value from fgets().
+	    Caught by debian package building with test suites enabled.
+
 2013-12-21  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-std-compound.txt, data/tdict-std.txt:
