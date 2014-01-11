@@ -28,8 +28,7 @@ int main (int argc, char* argv[])
   if (interactive) {
     while (!feof (stdin)) {
       printf ("Please enter thai words/sentences: ");
-      fgets ((char *)str, MAXLINELENGTH-1, stdin);
-      if (!feof (stdin)) {
+      if (!fgets ((char *)str, MAXLINELENGTH-1, stdin)) {
         numCut = th_brk (str, pos, MAXLINELENGTH);
         printf ("Total %d cut points.", numCut);
         if (numCut > 0) { 
