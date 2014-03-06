@@ -1,3 +1,19 @@
+2014-03-06  Theppitak Karoonboonyanan  <thep@linux.thai.net>
+
+	* data/tdict-city.txt:
+	* data/tdict-common.txt:
+	* data/tdict-district.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-spell.txt: Add words.
+
+	* data/tdict-common.txt:
+	  - Remove 'บ๊วย' which duplicates an entry in tdict-std.txt.
+	* data/tdict-proper.txt, data/tdict-district.txt:
+	  - Move 'กรือเซะ' from tdict-proper.txt to tdict-district.txt.
+	* data/tdict-proper.txt, data/tdict-geo.txt:
+	  - Move 'แอตแลนติส' from tdict-proper.txt to tdict-geo.txt.
+
 2014-01-11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	Fix warning in test suite.
