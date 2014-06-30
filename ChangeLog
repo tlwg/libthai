@@ -1,3 +1,15 @@
+2014-06-30  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	* data/tdict-common.txt:
+	* data/tdict-district.txt:
+	* data/tdict-geo.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt: Add words.
+
+	* data/tdict-std.txt:
+	  - Remove rare word 'จอแส' which causes wrong segmentation for 'จอแสดงผล'
+	    as 'จอแส|ดง|ผล'.
+
 2014-03-06  Theppitak Karoonboonyanan  <thep@linux.thai.net>
 
 	* data/tdict-city.txt:
