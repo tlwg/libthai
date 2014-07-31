@@ -1,3 +1,10 @@
+2014-07-31  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	* data/tdict-city.txt:
+	* data/tdict-common.txt:
+	* data/tdict-district.txt:
+	* data/tdict-lang-ethnic.txt: Add words.
+
 2014-06-30  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	* data/tdict-common.txt:
