@@ -1,5 +1,13 @@
 2014-08-03  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Rename th_brkpos_hints() to thbrk_brkpos_hints().
+
+	* src/thbrk/thbrk-private.h, src/thbrk/thbrk.c,
+	  src/thbrk/brk-maximal.c:
+	  - Change function prefix for consistency.
+
+2014-08-03  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Move th_brkpos_hints() to common thbrk code.
 
 	This is a preparation for alternative word break algorithms.
