@@ -1,3 +1,16 @@
+2014-08-03  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Move th_brkpos_hints() to common thbrk code.
+
+	This is a preparation for alternative word break algorithms.
+	
+	* src/thbrk/brk-maximal.c, src/thbrk/thbrk-private.h:
+	  - Move declaration of th_brkpos_hints() to thbrk-private.h.
+	* src/thbrk/brk-maximal.c:
+	  - Include thbrk-private.h to get th_brkpos_hints() declaration.
+	* src/thbrk/brk-maximal.c, src/thbrk/thbrk.c:
+	  - Move implementation of th_brkpos_hints() to thbrk.c.
+
 2014-07-31  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	* data/tdict-city.txt:
