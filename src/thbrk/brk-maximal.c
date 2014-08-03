@@ -36,8 +36,6 @@
 #include "brk-maximal.h"
 #include "thbrk-private.h"
 
-#define DICT_NAME   "thbrk"
-
 /**
  * @brief Break shot
  */
@@ -103,8 +101,6 @@ typedef struct {
  *   PRIVATE METHODS DECLARATIONS   *
  *----------------------------------*/
 
-static Trie *       brk_get_dict ();
-
 static BrkPool *    brk_root_pool (int pos_size);
 static int          brk_maximal_do_impl (const thchar_t *s, int len,
                                          const char *brkpos_hints,
@@ -118,16 +114,6 @@ static int          brk_recover (const thchar_t *text, int len, int pos,
 /*---------------------*
  *   PRIVATE GLOBALS   *
  *---------------------*/
-static Trie *brk_dict = 0;
-
-void
-brk_maximal_on_unload ()
-{
-    if (brk_dict) {
-        trie_free (brk_dict);
-    }
-}
-
 void
 brk_maximal_init ()
 {
@@ -365,7 +351,7 @@ brk_root_pool (int pos_size)
 
     pool = NULL;
 
-    if (NULL == (dict = brk_get_dict()))
+    if (NULL == (dict = thbrk_get_dict()))
         return NULL;
     root_shot.dict_state = trie_root (dict);
     root_shot.brk_pos = NULL; /* it's not used anyway */
@@ -413,44 +399,6 @@ brk_recover (const thchar_t *text, int len, int pos,
     }
 
     return -1;
-}
-
-static Trie *
-brk_get_dict ()
-{
-    static int is_dict_tried = 0;
-
-    if (!brk_dict && !is_dict_tried) {
-        const char *dict_dir;
-        char        path[512];
-
-        /* Try LIBTHAI_DICTDIR env first */
-        if (NULL != (dict_dir = getenv ("LIBTHAI_DICTDIR"))) {
-            snprintf (path, sizeof path, "%s/%s.tri", dict_dir, DICT_NAME);
-            brk_dict = trie_new_from_file (path);
-        }
-
-        /* Then, fall back to default DICT_DIR macro */
-        if (!brk_dict) {
-            brk_dict = trie_new_from_file (DICT_DIR "/" DICT_NAME ".tri");
-        }
-
-        if (!brk_dict) {
-            if (dict_dir) {
-                fprintf (stderr,
-                         "LibThai: Fail to open dictionary at '%s' and '%s'.\n",
-                         path, DICT_DIR "/" DICT_NAME ".tri");
-            } else {
-                fprintf (stderr,
-                         "LibThai: Fail to open dictionary at '%s'.\n",
-                         DICT_DIR "/" DICT_NAME ".tri");
-            }
-        }
-
-        is_dict_tried = 1;
-    }
-
-    return brk_dict;
 }
 
 static int

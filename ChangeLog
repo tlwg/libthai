@@ -1,5 +1,23 @@
 2014-08-03  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Move brk_get_dict() to common thbrk code.
+
+	* src/thbrk/brk-maximal.c, src/thbrk/thbrk-private.h:
+	  - Move brk_get_dict() declaration to thbrk-private.h.
+	  - Rename the function to thbrk_get_dict() for consistency.
+	* src/thbrk/brk-maximal.c, src/thbrk/thbrk.c:
+	  - Move implementation of brk_get_dict() to thbrk.c.
+	  - Rename function & variable accordingly.
+	* src/thbrk/brk-maximal.c (brk_root_pool):
+	  - Rename function call to thbrk_get_dict().
+	* src/thbrk/brk-maximal.h, src/thbrk/brk-maximal.c,
+	  src/thbrk/thbrk.c:
+	  - Move implementation of brk_maximal_on_unload() to
+	    thbrk_on_unload(). 
+	  - Remove brk_maximal_on_unload() which is no longer needed.
+
+2014-08-03  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Rename th_brkpos_hints() to thbrk_brkpos_hints().
 
 	* src/thbrk/thbrk-private.h, src/thbrk/thbrk.c,
