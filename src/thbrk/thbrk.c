@@ -43,7 +43,7 @@ thbrk_on_unload ()
 }
 
 void
-th_brkpos_hints (const thchar_t *str, int len, char *hints)
+thbrk_brkpos_hints (const thchar_t *str, int len, char *hints)
 {
     int  i;
 

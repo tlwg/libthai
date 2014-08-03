@@ -31,7 +31,7 @@
 
 void    thbrk_on_unload ();
 
-void    th_brkpos_hints (const thchar_t *str, int len, char *hints);
+void    thbrk_brkpos_hints (const thchar_t *str, int len, char *hints);
 
 #endif  /* __THBRK_PRIVATE_H */
 

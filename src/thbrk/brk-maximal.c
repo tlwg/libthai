@@ -147,7 +147,7 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n)
     int          ret;
 
     brkpos_hints = (char *) malloc (len);
-    th_brkpos_hints (s, len, brkpos_hints);
+    thbrk_brkpos_hints (s, len, brkpos_hints);
 
     ret = brk_maximal_do_impl (s, len, brkpos_hints, pos, n);
 
