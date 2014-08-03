@@ -34,12 +34,56 @@
 #include "brk-ctype.h"
 #include "brk-maximal.h"
 
+#define DICT_NAME   "thbrk"
+
 #define MAX_ACRONYM_FRAG_LEN  3
+
+static Trie *thbrk_dict = 0;
 
 void
 thbrk_on_unload ()
 {
-    brk_maximal_on_unload ();
+    if (thbrk_dict) {
+        trie_free (thbrk_dict);
+    }
+}
+
+Trie *
+thbrk_get_dict ()
+{
+    static int is_dict_tried = 0;
+
+    if (!thbrk_dict && !is_dict_tried) {
+        const char *dict_dir;
+        char        path[512];
+
+        /* Try LIBTHAI_DICTDIR env first */
+        if (NULL != (dict_dir = getenv ("LIBTHAI_DICTDIR"))) {
+            snprintf (path, sizeof path, "%s/%s.tri", dict_dir, DICT_NAME);
+            thbrk_dict = trie_new_from_file (path);
+        }
+
+        /* Then, fall back to default DICT_DIR macro */
+        if (!thbrk_dict) {
+            thbrk_dict = trie_new_from_file (DICT_DIR "/" DICT_NAME ".tri");
+        }
+
+        if (!thbrk_dict) {
+            if (dict_dir) {
+                fprintf (stderr,
+                         "LibThai: Fail to open dictionary at '%s' and '%s'.\n",
+                         path, DICT_DIR "/" DICT_NAME ".tri");
+            } else {
+                fprintf (stderr,
+                         "LibThai: Fail to open dictionary at '%s'.\n",
+                         DICT_DIR "/" DICT_NAME ".tri");
+            }
+        }
+
+        is_dict_tried = 1;
+    }
+
+    return thbrk_dict;
 }
 
 void

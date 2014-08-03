@@ -30,9 +30,6 @@
 #include <thai/thailib.h>
 
 void
-brk_maximal_on_unload ();
-
-void
 brk_maximal_init ();
 
 void

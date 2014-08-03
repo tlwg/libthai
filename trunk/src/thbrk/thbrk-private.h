@@ -28,8 +28,11 @@
 #define __THBRK_PRIVATE_H
 
 #include <thai/thctype.h>
+#include <datrie/trie.h>
 
 void    thbrk_on_unload ();
+
+Trie *  thbrk_get_dict ();
 
 void    thbrk_brkpos_hints (const thchar_t *str, int len, char *hints);
 
