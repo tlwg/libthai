@@ -27,7 +27,11 @@
 #ifndef __THBRK_PRIVATE_H
 #define __THBRK_PRIVATE_H
 
+#include <thai/thctype.h>
+
 void    thbrk_on_unload ();
+
+void    th_brkpos_hints (const thchar_t *str, int len, char *hints);
 
 #endif  /* __THBRK_PRIVATE_H */
 
