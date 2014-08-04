@@ -27,14 +27,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <stdio.h>
-#include <limits.h>
 #include <datrie/trie.h>
 #include <thai/tis.h>
-#include <thai/thctype.h>
 #include <thai/thwchar.h>
 #include "brk-maximal.h"
-#include "thbrk-private.h"
+#include "brk-common.h"
 
 /**
  * @brief Break shot
@@ -133,7 +130,7 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n)
     int          ret;
 
     brkpos_hints = (char *) malloc (len);
-    thbrk_brkpos_hints (s, len, brkpos_hints);
+    brk_brkpos_hints (s, len, brkpos_hints);
 
     ret = brk_maximal_do_impl (s, len, brkpos_hints, pos, n);
 
@@ -351,7 +348,7 @@ brk_root_pool (int pos_size)
 
     pool = NULL;
 
-    if (NULL == (dict = thbrk_get_dict()))
+    if (NULL == (dict = brk_get_dict()))
         return NULL;
     root_shot.dict_state = trie_root (dict);
     root_shot.brk_pos = NULL; /* it's not used anyway */

@@ -1,3 +1,27 @@
+2014-08-04  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Refactor common thbrk code into brk-common.
+
+	This prevents mutual dependency between brk-* and thbrk.
+
+	* src/thbrk/Makefile.am:
+	* src/thbrk/thbrk-private.h -> src/thbrk/brk-common.h:
+	  - Rename file, as thbrk-private.h contains only functions for
+	    common brk-* codes.
+	  - Rename thbrk_* functions back to brk_*.
+	* src/thbrk/Makefile.am:
+	* src/thbrk/thbrk.c:
+	* +src/thbrk/brk-common.c:
+	  - Move common thbrk_* functions implementations to brk-common.c.
+	  - Rename the functions according to changes in brk-common.h.
+	* src/thbrk/brk-maximal.c:
+	  - Update #include for thbrk-private.h to brk-common.h.
+	  - Update calls to thbrk_* to brk_*.
+	  - Remove #include's previously used by the common code.
+	* src/libthai.c (_libthai_on_unload):
+	  - Update #include for thbrk-private.h to brk-common.h.
+	  - Update call to thbrk_on_unload() to brk_on_unload().
+
 2014-08-03  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Move brk_get_dict() to common thbrk code.
