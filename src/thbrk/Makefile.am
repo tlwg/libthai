@@ -9,11 +9,13 @@ noinst_LTLIBRARIES = libthbrk.la
 
 libthbrk_la_SOURCES =	\
 	thbrk.c		\
-	thbrk-private.h	\
 	brk-ctype.c	\
 	brk-ctype.h	\
+	brk-common.c	\
+	brk-common.h	\
 	brk-maximal.c	\
-	brk-maximal.h
+	brk-maximal.h	\
+	$(NULL)
 
 libthbrk_la_LIBADD = $(DATRIE_LIBS)
 

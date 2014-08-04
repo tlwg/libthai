@@ -85,12 +85,12 @@
  *
  */
 
-#include "thbrk/thbrk-private.h"
+#include "thbrk/brk-common.h"
 
 __attribute__ ((destructor)) void
 _libthai_on_unload ()
 {
-    thbrk_on_unload ();
+    brk_on_unload ();
 }
 
 /*
