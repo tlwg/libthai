@@ -64,6 +64,7 @@ static void         brk_pool_allocator_use ();
 static void         brk_pool_allocator_clear ();
 
 static BrkPool *    brk_pool_node_new (const BrkShot *shot);
+static void         brk_pool_node_free (BrkPool *pool);
 
 static void         brk_pool_free (BrkPool *pool);
 static BrkPool *    brk_pool_get_node (BrkPool *pool);
@@ -403,7 +404,8 @@ brk_shot_init (BrkShot *dst, const BrkShot *src)
 {
     dst->dict_state = trie_state_clone (src->dict_state);
     dst->str_pos = src->str_pos;
-    if (!(dst->brk_pos = (int *) malloc (src->n_brk_pos * sizeof (int))))
+    dst->brk_pos = (int *) malloc (src->n_brk_pos * sizeof (int));
+    if (!dst->brk_pos)
         return -1;
     memcpy (dst->brk_pos, src->brk_pos, src->cur_brk_pos * sizeof (int));
     dst->n_brk_pos = src->n_brk_pos;
@@ -488,7 +490,7 @@ brk_pool_node_new (const BrkShot *shot)
 }
 
 static void
-brk_pool_free_node (BrkPool *pool)
+brk_pool_node_free (BrkPool *pool)
 {
     /* put it in free list for further reuse */
     pool->next = brk_pool_free_list;
@@ -502,7 +504,7 @@ brk_pool_free (BrkPool *pool)
         BrkPool *next;
 
         next = pool->next;
-        brk_pool_free_node (pool);
+        brk_pool_node_free (pool);
         pool = next;
     }
 }
@@ -578,7 +580,7 @@ brk_pool_delete (BrkPool *pool, BrkPool *node)
         if (p)
             p->next = node->next;
     }
-    brk_pool_free_node (node);
+    brk_pool_node_free (node);
 
     return pool;
 }

@@ -1,3 +1,14 @@
+2014-08-05  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Code clean up.
+
+	* src/thbrk/brk-maximal.c (brk_shot_init):
+	  - Split assignment and if-condition.
+	* src/thbrk/brk-maximal.c (brk_pool_free_node -> brk_pool_node_free):
+	  - Rename the function to obj-action form, in accordance with
+	    brk_pool_node_new().
+	  - Add forward declaration for it.
+
 2014-08-04  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Refactor common thbrk code into brk-common.
