@@ -1,5 +1,14 @@
 2014-08-09  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	thbrk: Be greedy when recovering from error.
+
+	* src/thbrk/brk-maximal.c (brk_recover_try):
+	  - Loop to match as many words as possible on every node picked
+	    from pool, to increase the chance of early sufficient words
+	    matched, and to avoid too much possibility exploration.
+
+2014-08-09  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Minor optimization.
 
 	Callgrind says brk_recover_try() is the most frequently called.

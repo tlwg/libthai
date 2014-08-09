@@ -280,59 +280,63 @@ brk_recover_try (const thchar_t *s, int len,
 
         /* walk dictionary character-wise till a word is matched */
         is_keep_node = 1;
-        do {
-            if (!trie_state_walk (shot->dict_state,
-                                  th_tis2uni (s[shot->str_pos++])))
-            {
-                is_keep_node = 0;
-                break;
-            }
-
-            is_terminal = trie_state_is_terminal (shot->dict_state);
-            if (shot->str_pos >= len) {
-                if (!is_terminal) {
+        for (;;) {
+            do {
+                if (!trie_state_walk (shot->dict_state,
+                                      th_tis2uni (s[shot->str_pos++])))
+                {
                     is_keep_node = 0;
+                    break;
                 }
+
+                is_terminal = trie_state_is_terminal (shot->dict_state);
+                if (shot->str_pos >= len) {
+                    if (!is_terminal) {
+                        is_keep_node = 0;
+                    }
+                    break;
+                }
+            } while (!(is_terminal && brkpos_hints[shot->str_pos]));
+
+            if (!is_keep_node) {
+                pool = brk_pool_delete (pool, node);
                 break;
             }
-        } while (!(is_terminal && brkpos_hints[shot->str_pos]));
 
-        if (!is_keep_node) {
-            pool = brk_pool_delete (pool, node);
-            continue;
-        }
-
-        /* if node still kept, mark break position and rewind dictionary */
-        if (shot->str_pos < len &&
-            !trie_state_is_single (shot->dict_state))
-        {
-            /* add node to mark break position instead of current */
-            node = brk_pool_node_new (shot);
-            pool = brk_pool_add (pool, node);
-            shot = &node->shot;
-        }
-
-        trie_state_rewind (shot->dict_state);
-        shot->brk_pos [shot->cur_brk_pos++] = shot->str_pos;
-
-        if (shot->str_pos == len || shot->cur_brk_pos == recov_words) {
-            /* path is done; get result & remove it */
-            if (shot->cur_brk_pos > ret) {
-                ret = shot->cur_brk_pos;
-                *last_brk_pos = shot->brk_pos[ret - 1];
+            /* if node still kept, mark break position and rewind dictionary */
+            if (shot->str_pos < len &&
+                !trie_state_is_single (shot->dict_state))
+            {
+                /* add node to mark break position instead of current */
+                node = brk_pool_node_new (shot);
+                pool = brk_pool_add (pool, node);
+                shot = &node->shot;
             }
-            pool = brk_pool_delete (pool, node);
-            /* stop as soon as first solution is found */
-            if (ret == recov_words)
+
+            trie_state_rewind (shot->dict_state);
+            shot->brk_pos [shot->cur_brk_pos++] = shot->str_pos;
+
+            if (shot->str_pos == len || shot->cur_brk_pos == recov_words) {
+                /* path is done; get result & remove it */
+                if (shot->cur_brk_pos > ret) {
+                    ret = shot->cur_brk_pos;
+                    *last_brk_pos = shot->brk_pos[ret - 1];
+                }
+                pool = brk_pool_delete (pool, node);
+                /* stop as soon as first solution is found */
+                if (ret == recov_words)
+                    goto recov_done;
                 break;
-        } else {
-            /* find matched nodes, contest and keep the best one */
-            while (NULL != (match = brk_pool_match (pool, node))) {
-                pool = brk_pool_delete (pool, match);
+            } else {
+                /* find matched nodes, contest and keep the best one */
+                while (NULL != (match = brk_pool_match (pool, node))) {
+                    pool = brk_pool_delete (pool, match);
+                }
             }
         }
     }
 
+recov_done:
     brk_pool_free (pool);
     return ret;
 }
