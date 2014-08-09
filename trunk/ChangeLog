@@ -1,3 +1,8 @@
+2014-08-09  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	* src/thbrk/brk-maximal.c:
+	  - Add missing #include <limits.h>.
+
 2014-08-05  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Code clean up.
