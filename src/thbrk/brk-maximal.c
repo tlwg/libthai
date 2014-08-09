@@ -106,7 +106,7 @@ static int          brk_maximal_do_impl (const thchar_t *s, int len,
                                          int pos[], size_t n);
 static int          brk_recover_try (const thchar_t *s, int len,
                                      const char *brkpos_hints,
-                                     int pos[], size_t n);
+                                     size_t recov_words, int *last_brk_pos);
 static int          brk_recover (const thchar_t *text, int len, int pos,
                                  const char *brkpos_hints, RecovHist *rh);
 
@@ -264,13 +264,13 @@ brk_maximal_do_impl (const thchar_t *s, int len,
 static int
 brk_recover_try (const thchar_t *s, int len,
                  const char *brkpos_hints,
-                 int pos[], size_t n)
+                 size_t recov_words, int *last_brk_pos)
 {
     BrkPool     *pool;
     BrkPool     *node;
     int          ret;
 
-    pool = brk_root_pool (n);
+    pool = brk_root_pool (recov_words);
     ret = 0;
 
     while (NULL != (node = brk_pool_get_node (pool))) {
@@ -284,7 +284,6 @@ brk_recover_try (const thchar_t *s, int len,
             if (!trie_state_walk (shot->dict_state,
                                   th_tis2uni (s[shot->str_pos++])))
             {
-                is_terminal = 0;
                 is_keep_node = 0;
                 break;
             }
@@ -304,29 +303,27 @@ brk_recover_try (const thchar_t *s, int len,
         }
 
         /* if node still kept, mark break position and rewind dictionary */
-        if (is_terminal) {
-            if (shot->str_pos < len &&
-                !trie_state_is_single (shot->dict_state))
-            {
-                /* add node to mark break position instead of current */
-                node = brk_pool_node_new (shot);
-                pool = brk_pool_add (pool, node);
-                shot = &node->shot;
-            }
-
-            trie_state_rewind (shot->dict_state);
-            shot->brk_pos [shot->cur_brk_pos++] = shot->str_pos;
+        if (shot->str_pos < len &&
+            !trie_state_is_single (shot->dict_state))
+        {
+            /* add node to mark break position instead of current */
+            node = brk_pool_node_new (shot);
+            pool = brk_pool_add (pool, node);
+            shot = &node->shot;
         }
 
-        if (shot->str_pos == len || shot->cur_brk_pos == n) {
+        trie_state_rewind (shot->dict_state);
+        shot->brk_pos [shot->cur_brk_pos++] = shot->str_pos;
+
+        if (shot->str_pos == len || shot->cur_brk_pos == recov_words) {
             /* path is done; get result & remove it */
             if (shot->cur_brk_pos > ret) {
                 ret = shot->cur_brk_pos;
-                memcpy (pos, shot->brk_pos, ret * sizeof (pos[0]));
+                *last_brk_pos = shot->brk_pos[ret - 1];
             }
             pool = brk_pool_delete (pool, node);
             /* stop as soon as first solution is found */
-            if (ret == n)
+            if (ret == recov_words)
                 break;
         } else {
             /* find matched nodes, contest and keep the best one */
@@ -374,7 +371,7 @@ static int
 brk_recover (const thchar_t *text, int len, int pos,
              const char *brkpos_hints, RecovHist *rh)
 {
-    int brk_pos[RECOVERED_WORDS];
+    int last_brk_pos;
     int n, p;
 
     while (pos < len && !brkpos_hints[pos]) {
@@ -386,9 +383,9 @@ brk_recover (const thchar_t *text, int len, int pos,
     for (p = pos; p < len; ++p) {
         if (brkpos_hints[p]) {
             n = brk_recover_try (text + p, len - p, brkpos_hints + p,
-                                 brk_pos, RECOVERED_WORDS);
+                                 RECOVERED_WORDS, &last_brk_pos);
             if (n == RECOVERED_WORDS
-                || (n > 0 && '\0' == text[p + brk_pos[n-1]]))
+                || (n > 0 && '\0' == text[last_brk_pos]))
             {
                 rh->pos = pos;
                 rh->recov = p;
