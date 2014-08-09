@@ -1,5 +1,19 @@
 2014-08-09  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Minor optimization.
+
+	Callgrind says brk_recover_try() is the most frequently called.
+	So, try to optimize it as we can.
+
+	* src/thbrk/brk-maximal.c (brk_recover, brk_recover_try):
+	  - Only return the last break position instead of all.
+	* src/thbrk/brk-maximal.c (brk_recover_try):
+	  - Remove unneeded assignment on is_terminal for the case in which
+	    its value is irrelevant.
+	  - Remove unneeded check on is_terminal where its value is known.
+
+2014-08-09  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	* src/thbrk/brk-maximal.c:
 	  - Add missing #include <limits.h>.
 
