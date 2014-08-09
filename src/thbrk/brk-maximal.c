@@ -27,6 +27,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <limits.h>
 #include <datrie/trie.h>
 #include <thai/tis.h>
 #include <thai/thwchar.h>
