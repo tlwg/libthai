@@ -1,3 +1,11 @@
+2014-08-18  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	* data/tdict-city.txt:
+	* data/tdict-common.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt: Add words.
+
 2014-08-09  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	thbrk: Be greedy when recovering from error.
