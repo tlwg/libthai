@@ -1,3 +1,11 @@
+2014-08-19  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Fix build failure due to missing header.
+
+	* src/Makefile.am:
+	  - Add CFLAGS so that thbrk/brk-common.h included from libthai.c
+	    can find thai/thctype.h header.
+
 2014-08-18  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	* data/tdict-city.txt:
