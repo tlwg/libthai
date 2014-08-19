@@ -5,6 +5,8 @@ MAINTAINERCLEANFILES = Makefile.in
 
 EXTRA_DIST = libthai.map libthai.def
 
+AM_CPPFLAGS = -I. -I$(top_srcdir)/include
+
 lib_LTLIBRARIES = libthai.la
 
 libthai_sublibs = \
