@@ -2,6 +2,10 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.21 (21 August 2014):
+* Updated word break dictionary.
+* Improve word breaking performance by 8.61%
+
 LibThai 0.1.20 (25 October 2013):
 * Updated word break dictionary.
 * Fix compiler warnings in test suites.
