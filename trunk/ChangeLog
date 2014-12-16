@@ -1,3 +1,16 @@
+2014-12-16  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Update word break dictionary.
+
+	* data/tdict-city.txt:
+	* data/tdict-collection.txt:
+	* data/tdict-common.txt:
+	* data/tdict-country.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt:
+	* data/tdict-spell.txt: Add words.
+
 2014-08-23  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	* configure.ac: Post-release version suffix added.
