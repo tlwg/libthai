@@ -30,6 +30,14 @@
 #include <thai/thctype.h>
 #include <datrie/trie.h>
 
+#if defined(__GNUC__) && (__GNUC__ > 2) && defined(__OPTIMIZE__)
+#define LIKELY(expr) (__builtin_expect (!!(expr), 1))
+#define UNLIKELY(expr) (__builtin_expect (!!(expr), 0))
+#else
+#define LIKELY(expr) (expr)
+#define UNLIKELY(expr) (expr)
+#endif
+
 void    brk_on_unload ();
 
 Trie *  brk_get_dict ();

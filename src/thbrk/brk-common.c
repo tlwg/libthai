@@ -49,7 +49,7 @@ brk_get_dict ()
 {
     static int is_dict_tried = 0;
 
-    if (!brk_dict && !is_dict_tried) {
+    if (UNLIKELY (!brk_dict && !is_dict_tried)) {
         const char *dict_dir;
         char        path[512];
 

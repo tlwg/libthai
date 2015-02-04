@@ -1,3 +1,17 @@
+2015-02-04  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Micro-optimize with likely/unlikely hints.
+
+	* src/thbrk/brk-common.h:
+	  - Add LIKELY() and UNLIKELY() macros based on compiler extension.
+	* src/thbrk/brk-common.c (brk_get_dict):
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, brk_root_pool,
+	  brk_shot_init, brk_pool_node_new, best_brk_new):
+	  - Use LIKELY() and UNLIKELY() where it is known to be so, mostly
+	    for one-time initialization and failure handling.
+
+	Callgrind says it does help speed up a little bit.
+
 2014-12-16  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Update word break dictionary.
