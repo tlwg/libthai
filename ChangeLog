@@ -1,3 +1,10 @@
+2015-03-06  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Fix compiler warning.
+
+	* src/thbrk/brk-maximal.c (brk_recover):
+	  - Initialize last_brk_pos on declaration.
+
 2015-02-05  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Disable timestamp in Doxygen-generated doc.
