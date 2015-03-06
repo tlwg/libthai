@@ -376,7 +376,7 @@ static int
 brk_recover (const thchar_t *text, int len, int pos,
              const char *brkpos_hints, RecovHist *rh)
 {
-    int last_brk_pos;
+    int last_brk_pos = 0;
     int n, p;
 
     while (pos < len && !brkpos_hints[pos]) {
