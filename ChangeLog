@@ -1,5 +1,12 @@
 2015-03-06  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Update Doxyfile.
+
+	* doc/Doxyfile.in:
+	  - Updated for doxygen 1.8.8 with 'doxygen -u'.
+
+2015-03-06  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Fix compiler warning.
 
 	* src/thbrk/brk-maximal.c (brk_recover):
