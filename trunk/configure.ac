@@ -114,9 +114,9 @@ AC_ARG_ENABLE(dict,
               , enable_dict="yes")
 
 if test "x$enable_dict" = "xyes"; then
-  AC_CHECK_PROGS(TRIETOOL,trietool-0.2,no)
+  AC_CHECK_PROGS(TRIETOOL,[trietool-0.2 trietool],no)
   if test "x$TRIETOOL" = "xno"; then
-    AC_MSG_ERROR([You need trietool-0.2 (from libdatrie package) to generate dict, or just use --disable-dict to skip])
+    AC_MSG_ERROR([You need trietool[[-0.2]] (from libdatrie package) to generate dict, or just use --disable-dict to skip])
   fi
 fi
 

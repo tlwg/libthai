@@ -1,3 +1,11 @@
+2015-03-07  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Also check for 'trietool' (without -0.2 suffix)
+
+	* configure.ac:
+	  - Check for both trietool-0.2 (for libdatrie < 0.2.9) and
+	    trietool (for libdatrie >= 0.2.9) utility.
+
 2015-03-06  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Update Doxyfile.
