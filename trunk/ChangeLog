@@ -1,3 +1,11 @@
+2015-04-29  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Bump doxygen required version.
+
+	* configure.ac:
+	  - Bump doxygen required version to 1.8.8, according to recent
+	    Doxyfile update.
+
 2015-03-07  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Also check for 'trietool' (without -0.2 suffix)
