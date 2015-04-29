@@ -21,7 +21,7 @@ AC_SUBST(LT_AGE)
 
 AC_CONFIG_MACRO_DIR([m4])
 
-DOXYGEN_REQ_VER=1.8.4
+DOXYGEN_REQ_VER=1.8.8
 
 dnl Checks for programs.
 AC_PROG_CC
