@@ -133,6 +133,8 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n)
     int          ret;
 
     brkpos_hints = (char *) malloc (len);
+    if (UNLIKELY (!brkpos_hints))
+        goto err_nothing_done;
     brk_brkpos_hints (s, len, brkpos_hints);
 
     ws = (thwchar_t *) malloc ((len + 1) * sizeof (thwchar_t));
@@ -149,6 +151,7 @@ brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n)
 
 err_brkpos_hints_created:
     free (brkpos_hints);
+err_nothing_done:
     return 0;
 }
 
