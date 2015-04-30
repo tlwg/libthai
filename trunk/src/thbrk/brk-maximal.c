@@ -101,13 +101,13 @@ typedef struct {
  *----------------------------------*/
 
 static BrkPool *    brk_root_pool (int pos_size);
-static int          brk_maximal_do_impl (const thchar_t *s, int len,
+static int          brk_maximal_do_impl (const thwchar_t *ws, int len,
                                          const char *brkpos_hints,
                                          int pos[], size_t n);
-static int          brk_recover_try (const thchar_t *s, int len,
+static int          brk_recover_try (const thwchar_t *ws, int len,
                                      const char *brkpos_hints,
                                      size_t recov_words, int *last_brk_pos);
-static int          brk_recover (const thchar_t *text, int len, int pos,
+static int          brk_recover (const thwchar_t *wtext, int len, int pos,
                                  const char *brkpos_hints, RecovHist *rh);
 
 /*---------------------*
@@ -129,20 +129,31 @@ int
 brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n)
 {
     char        *brkpos_hints;
+    thwchar_t   *ws;
     int          ret;
 
     brkpos_hints = (char *) malloc (len);
     brk_brkpos_hints (s, len, brkpos_hints);
 
-    ret = brk_maximal_do_impl (s, len, brkpos_hints, pos, n);
+    ws = (thwchar_t *) malloc ((len + 1) * sizeof (thwchar_t));
+    if (UNLIKELY (!ws))
+        goto err_brkpos_hints_created;
+    th_tis2uni_line (s, ws, len + 1);
 
+    ret = brk_maximal_do_impl (ws, len, brkpos_hints, pos, n);
+
+    free (ws);
     free (brkpos_hints);
 
     return ret;
+
+err_brkpos_hints_created:
+    free (brkpos_hints);
+    return 0;
 }
 
 static int
-brk_maximal_do_impl (const thchar_t *s, int len,
+brk_maximal_do_impl (const thwchar_t *ws, int len,
                      const char *brkpos_hints,
                      int pos[], size_t n)
 {
@@ -169,14 +180,14 @@ brk_maximal_do_impl (const thchar_t *s, int len,
         is_recovered = 0;
         str_pos = shot->str_pos;
         do {
-            if (!trie_state_walk (shot->dict_state, th_tis2uni (s[str_pos++])))
+            if (!trie_state_walk (shot->dict_state, ws[str_pos++]))
             {
                 int recovered;
 
                 is_terminal = 0;
 
                 /* try to recover from error */
-                recovered = brk_recover (s, len, shot->str_pos + 1,
+                recovered = brk_recover (ws, len, shot->str_pos + 1,
                                          brkpos_hints, &recov_hist);
                 if (-1 != recovered) {
                     /* add penalty by recovered - recent break pos */
@@ -262,7 +273,7 @@ brk_maximal_do_impl (const thchar_t *s, int len,
 }
 
 static int
-brk_recover_try (const thchar_t *s, int len,
+brk_recover_try (const thwchar_t *ws, int len,
                  const char *brkpos_hints,
                  size_t recov_words, int *last_brk_pos)
 {
@@ -282,8 +293,7 @@ brk_recover_try (const thchar_t *s, int len,
         is_keep_node = 1;
         for (;;) {
             do {
-                if (!trie_state_walk (shot->dict_state,
-                                      th_tis2uni (s[shot->str_pos++])))
+                if (!trie_state_walk (shot->dict_state, ws[shot->str_pos++]))
                 {
                     is_keep_node = 0;
                     break;
@@ -373,7 +383,7 @@ brk_root_pool (int pos_size)
 #define RECOVERED_WORDS 3
 
 static int
-brk_recover (const thchar_t *text, int len, int pos,
+brk_recover (const thwchar_t *wtext, int len, int pos,
              const char *brkpos_hints, RecovHist *rh)
 {
     int last_brk_pos = 0;
@@ -387,10 +397,10 @@ brk_recover (const thchar_t *text, int len, int pos,
 
     for (p = pos; p < len; ++p) {
         if (brkpos_hints[p]) {
-            n = brk_recover_try (text + p, len - p, brkpos_hints + p,
+            n = brk_recover_try (wtext + p, len - p, brkpos_hints + p,
                                  RECOVERED_WORDS, &last_brk_pos);
             if (n == RECOVERED_WORDS
-                || (n > 0 && '\0' == text[last_brk_pos]))
+                || (n > 0 && '\0' == wtext[last_brk_pos]))
             {
                 rh->pos = pos;
                 rh->recov = p;
