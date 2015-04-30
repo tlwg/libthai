@@ -1,3 +1,19 @@
+2015-04-30  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Do TIS-to-Unicode conversion only once on word breaking.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do):
+	  - Convert input string to Unicode before passing to
+	    brk_maximal_do_impl().
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, brk_recover,
+	  brk_recover_try):
+	  - Redeclare to accept wide char string.
+	  - Do not call th_tis2uni() on every input char.
+
+	This appears to reduce word breaking time by 0.28% on test case.
+	Thanks edgehogapp@gmail.com for the suggestion.
+	https://groups.google.com/forum/#!topic/thai-linux-foss-devel/Be-OLMRYF7M
+
 2015-04-29  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Bump doxygen required version.
