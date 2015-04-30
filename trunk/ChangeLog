@@ -1,5 +1,12 @@
 2015-04-30  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Catch error on break hints allocation.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do):
+	  - Do not continue if brkpos_hints allocation fails.
+
+2015-04-30  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Do TIS-to-Unicode conversion only once on word breaking.
 
 	* src/thbrk/brk-maximal.c (brk_maximal_do):
