@@ -1,5 +1,9 @@
 2015-05-02  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	* configure.ac: Bump library revision, due to code change.
+
+2015-05-02  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update word break dictionary.
 
 	* data/tdict-common.txt:
