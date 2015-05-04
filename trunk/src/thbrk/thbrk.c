@@ -32,6 +32,7 @@
 #include <thai/thbrk.h>
 #include "brk-ctype.h"
 #include "brk-maximal.h"
+#include "brk-common.h"
 
 #define MAX_ACRONYM_FRAG_LEN  3
 
@@ -57,10 +58,10 @@ th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
     thchar_t   *p_out;
 
     n_brk_pos = strlen ((const char *) in);
-    if (n_brk_pos > SIZE_MAX / sizeof (int))
+    if (UNLIKELY (n_brk_pos > SIZE_MAX / sizeof (int)))
         return 0;
     brk_pos = (int *) malloc (n_brk_pos * sizeof (int));
-    if (!brk_pos)
+    if (UNLIKELY (!brk_pos))
         return 0;
 
     n_brk_pos = th_brk (in, brk_pos, n_brk_pos);

@@ -1,3 +1,13 @@
+2015-05-04  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	More LIKELY/UNLIKELY hints.
+
+	* src/thbrk/thbrk.c (th_brk_line):
+	  - Add UNLIKELY() on error conditions.
+
+	Note: adding UNLIKELY() to th_brk() first if-statement makes it
+	slower, which is weird. So, not added there.
+
 2015-05-02  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	* configure.ac: Bump library revision, due to code change.
