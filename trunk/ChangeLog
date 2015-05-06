@@ -1,3 +1,17 @@
+2015-05-06  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Split LIKELY/UNLIKELY to a separate header.
+
+	This prevents modules from depending on brk-common.h,
+	which provides low-level APIs for breaker backends.
+
+	* src/thbrk/Makefile.am, src/thbrk/brk-common.h
+	  +src/thbrk/thbrk-utils.h:
+	  - Move LIKELY/UNLIKELY macro definitions from brk-common.h
+	    to a new header thbrk-utils.h
+	* src/thbrk/brk-common.c, src/thbrk/brk-maximal.c, src/thbrk/thbrk.c:
+	  - Include thbrk-utils.h instead of brk-common.h for LIKELY/UNLIKELY.
+
 2015-05-04  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	More LIKELY/UNLIKELY hints.

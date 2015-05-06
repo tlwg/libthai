@@ -31,6 +31,7 @@
 #include <datrie/trie.h>
 #include <thai/tis.h>
 #include <thai/thwchar.h>
+#include "thbrk-utils.h"
 #include "brk-maximal.h"
 #include "brk-common.h"
 
