@@ -30,9 +30,9 @@
 #include <thai/tis.h>
 #include <thai/thctype.h>
 #include <thai/thbrk.h>
+#include "thbrk-utils.h"
 #include "brk-ctype.h"
 #include "brk-maximal.h"
-#include "brk-common.h"
 
 #define MAX_ACRONYM_FRAG_LEN  3
 
