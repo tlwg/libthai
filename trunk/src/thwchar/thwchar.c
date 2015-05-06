@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * libthai - Thai Language Support Library
- * Copyright (C) 2001  Theppitak Karoonboonyanan <thep@linux.thai.net>
+ * Copyright (C) 2001  Theppitak Karoonboonyanan <theppitak@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -22,7 +22,7 @@
  * thwchar.c - wide char support for Thai
  * Created: 2001-07-27
  * Author:  Pattara Kiatisevi <ott@linux.thai.net>,
- *          Theppitak Karoonboonyanan <thep@linux.thai.net>
+ *          Theppitak Karoonboonyanan <theppitak@gmail.com>
  */
 
 #include <thai/thwchar.h>
