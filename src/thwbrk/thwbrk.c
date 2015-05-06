@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * libthai - Thai Language Support Library
- * Copyright (C) 2001  Theppitak Karoonboonyanan <thep@linux.thai.net>
+ * Copyright (C) 2001  Theppitak Karoonboonyanan <theppitak@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,7 +21,7 @@
 /*
  * thwbrk.c - Thai word break routine, wide char version
  * Created 2001-07-15
- * Author:  Theppitak Karoonboonyanan <thep@linux.thai.net>
+ * Author:  Theppitak Karoonboonyanan <theppitak@gmail.com>
  */
 
 #include <stdio.h>

@@ -1,6 +1,6 @@
 /*
  * libthai - Thai Language Support Library
- * Copyright (C) 2001  Theppitak Karoonboonyanan <thep@linux.thai.net>
+ * Copyright (C) 2001  Theppitak Karoonboonyanan <theppitak@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,7 +20,7 @@
 /*
  * thctype.h - Thai character classifications
  * Created: 2001-05-17
- * Author:  Theppitak Karoonboonyanan <thep@linux.thai.net>
+ * Author:  Theppitak Karoonboonyanan <theppitak@gmail.com>
  */
 
 #ifndef THAI_THCTYPE_H

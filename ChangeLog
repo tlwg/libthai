@@ -1,5 +1,55 @@
 2015-05-06  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Use my Gmail e-mail address everywhere.
+
+	* AUTHORS:
+	* include/thai/thailib.h:
+	* include/thai/thbrk.h:
+	* include/thai/thcell.h:
+	* include/thai/thcoll.h:
+	* include/thai/thctype.h:
+	* include/thai/thinp.h:
+	* include/thai/thrend.h:
+	* include/thai/thstr.h:
+	* include/thai/thwbrk.h:
+	* include/thai/thwchar.h:
+	* include/thai/thwcoll.h:
+	* include/thai/thwctype.h:
+	* include/thai/thwinp.h:
+	* include/thai/thwrend.h:
+	* include/thai/thwstr.h:
+	* include/thai/tis.h:
+	* include/thai/wtt.h:
+	* man/man3/libthai.3:
+	* man/man3/thctype.3:
+	* man/man3/wtt.3:
+	* man/template.3:
+	* src/libthai.c:
+	* src/thbrk/brk-common.c:
+	* src/thbrk/brk-common.h:
+	* src/thbrk/brk-ctype.c:
+	* src/thbrk/brk-ctype.h:
+	* src/thbrk/brk-maximal.c:
+	* src/thbrk/brk-maximal.h:
+	* src/thbrk/thbrk.c:
+	* src/thcell/thcell.c:
+	* src/thcoll/cweight.c:
+	* src/thcoll/cweight.h:
+	* src/thcoll/thcoll.c:
+	* src/thctype/thctype.c:
+	* src/thctype/wtt.c:
+	* src/thinp/thinp.c:
+	* src/thrend/thrend.c:
+	* src/thstr/thstr.c:
+	* src/thwbrk/thwbrk.c:
+	* src/thwchar/thwchar.c:
+	* src/thwctype/thwctype.c:
+	* src/thwstr/thwstr.c:
+	* tests/thsort.c:
+	  - Replace my e-mail address with the Gmail one.
+
+2015-05-06  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	More LIKELY/UNLIKELY hints.
 
 	* src/thbrk/brk-maximal.c (brk_recover):

@@ -1,7 +1,7 @@
 /*
  * thsort.c - word list sorting routine
  * Created: 26 Nov 1998
- * Author: Theppitak Karoonboonyanan <thep@linux.thai.net>
+ * Author: Theppitak Karoonboonyanan <theppitak@gmail.com>
  */
 
 #include <thai/thcoll.h>
