@@ -396,7 +396,7 @@ brk_recover (const thwchar_t *wtext, int len, int pos,
     while (pos < len && !brkpos_hints[pos]) {
         ++pos;
     }
-    if (rh->pos == pos)
+    if (UNLIKELY (rh->pos == pos))
         return rh->recov;
 
     for (p = pos; p < len; ++p) {

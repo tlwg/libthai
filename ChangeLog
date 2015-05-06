@@ -1,5 +1,12 @@
 2015-05-06  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	More LIKELY/UNLIKELY hints.
+
+	* src/thbrk/brk-maximal.c (brk_recover):
+	  - Add UNLIKELY to recovery history hits, reducing time by 0.03%
+
+2015-05-06  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Split LIKELY/UNLIKELY to a separate header.
 
 	This prevents modules from depending on brk-common.h,
