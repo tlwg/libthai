@@ -1,5 +1,14 @@
 2015-05-06  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Update word break dictionary.
+
+	* data/tdict-common.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt: Add words.
+
+2015-05-06  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Use my Gmail e-mail address everywhere.
 
 	* AUTHORS:
