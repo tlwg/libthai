@@ -1,5 +1,9 @@
 2015-05-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	* configure.ac: Bump library revision, due to code change.
+
+2015-05-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Fix 'make distcheck' failure.
 
 	* doc/Makefile.am:
