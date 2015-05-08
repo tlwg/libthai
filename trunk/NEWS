@@ -2,6 +2,12 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.22 (8 May 2015):
+* Updated word break dictionary.
+* Improve word breaking performance by 0.38%
+* No timestamp on Doxygen-generated doc
+  (Thanks Debian Reproducible)
+
 LibThai 0.1.21 (21 August 2014):
 * Updated word break dictionary.
 * Improve word breaking performance by 8.61%

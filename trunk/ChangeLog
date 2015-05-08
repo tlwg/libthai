@@ -1,5 +1,10 @@
 2015-05-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	* configure.ac, NEWS:
+	=== Version 0.1.22 ===
+
+2015-05-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	* configure.ac: Bump library revision, due to code change.
 
 2015-05-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
