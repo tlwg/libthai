@@ -1,0 +1,4 @@
+SUBDIRS = thai
+
+MAINTAINERCLEANFILES = Makefile.in
+
