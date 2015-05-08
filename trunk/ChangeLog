@@ -1,3 +1,10 @@
+2015-05-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Fix 'make distcheck' failure.
+
+	* doc/Makefile.am:
+	  - Remove doxygen db file on clean.
+
 2015-05-06  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Update word break dictionary.
