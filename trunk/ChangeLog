@@ -1,5 +1,16 @@
 2015-06-04  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Protect against invalid array access.
+
+	* src/thbrk/thbrk.c (th_brk):
+	  - Add a condition to protect against accessing pos[-1]
+	    which may be caused by a failure in brk_maximal_do()
+	    on the first Thai chunk, which makes cur_pos remain 0.
+
+	Thanks Behdad Esfahbod for the report.
+
+2015-06-04  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	* configure.ac: Post-release version suffix added.
 
 2015-05-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
