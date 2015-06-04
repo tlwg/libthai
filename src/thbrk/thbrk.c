@@ -158,7 +158,7 @@ th_brk (const thchar_t *s, int pos[], size_t n)
                  * note that even if it's allowed, the table-lookup
                  * operation below will take care of it anyway
                  */
-                if (pos[cur_pos - 1] == p - s)
+                if (LIKELY (cur_pos > 0) && pos[cur_pos - 1] == p - s)
                     --cur_pos;
 
                 if (cur_pos >= n)
