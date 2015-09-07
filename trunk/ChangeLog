@@ -1,3 +1,13 @@
+2015-09-07  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Fix doxygen version checking.
+
+	* configure.ac:
+	  - Correctly compare doxygen versions. Simple expr comparison
+	    didn't work with version 1.8.10.
+
+	Taken from Petr Gajdos <pgajdos@suse.cz>'s patch for libdatrie.
+
 2015-06-04  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Protect against invalid array access.
