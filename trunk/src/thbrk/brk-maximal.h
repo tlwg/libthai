@@ -29,12 +29,6 @@
 
 #include <thai/thailib.h>
 
-void
-brk_maximal_init ();
-
-void
-brk_maximal_quit ();
-
 int
 brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n);
 
