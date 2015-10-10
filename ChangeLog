@@ -1,3 +1,31 @@
+2015-10-10  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Replace static global free-list with local one.
+
+	The static global free-list in brk-maximal.c makes it not
+	thread-safe.
+
+	* src/thbrk/brk-maximal.c:
+	  - Add type BrkEnv to keep break pool free list, with
+	    brk_env_init() and brk_env_destroy() methods.
+	  - (brk_pool_node_new, brk_pool_node_free, brk_pool_free,
+	     brk_pool_delete, brk_root_pool, brk_recover_try,
+	     brk_recover):
+	    Add (BrkEnv *) arg to relevant functions and use it properly.
+	  - (brk_maximal_do):
+	    Create and destroy BrkEnv instance for use locally.
+	    Pass it to the required function calls.
+	  - (brk_pool_delete -> brk_pool_delete_node):
+	    Rename function to avoid confusion with brk_pool_free().
+
+	* src/thbrk/brk-maximal.c:
+	* src/thbrk/brk-maximal.h:
+	* src/thbrk/thbrk.c:
+	  - Get rid of now-unnecessary brk_maximal_init() and
+	    brk_maximal_quit().
+
+	Thanks Behdad Esfahbod for the report.
+
 2015-09-07  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Fix doxygen version checking.

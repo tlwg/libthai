@@ -111,8 +111,6 @@ th_brk (const thchar_t *s, int pos[], size_t n)
     if (!*s)
         return 0;
 
-    brk_maximal_init ();
-
     p = thai_chunk = acronym_end = s;
     prev_class = effective_class = brk_class (*p);
     cur_pos = 0;
@@ -207,8 +205,6 @@ th_brk (const thchar_t *s, int pos[], size_t n)
         if (pos[cur_pos - 1] == p - s)
             --cur_pos;
     }
-
-    brk_maximal_quit ();
 
     return cur_pos;
 }

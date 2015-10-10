@@ -56,23 +56,29 @@ static void         brk_shot_destruct (BrkShot *shot);
  */
 
 typedef struct _BrkPool BrkPool;
+typedef struct _BrkEnv  BrkEnv;
 
 struct _BrkPool {
     BrkPool        *next;
     BrkShot         shot;
 };
 
-static void         brk_pool_allocator_use ();
-static void         brk_pool_allocator_clear ();
+static BrkPool *    brk_pool_node_new (const BrkShot *shot, BrkEnv *env);
+static void         brk_pool_node_free (BrkPool *pool, BrkEnv *env);
 
-static BrkPool *    brk_pool_node_new (const BrkShot *shot);
-static void         brk_pool_node_free (BrkPool *pool);
-
-static void         brk_pool_free (BrkPool *pool);
+static void         brk_pool_free (BrkPool *pool, BrkEnv *env);
 static BrkPool *    brk_pool_get_node (BrkPool *pool);
 static BrkPool *    brk_pool_match (BrkPool *pool, BrkPool *node);
 static BrkPool *    brk_pool_add (BrkPool *pool, BrkPool *node);
-static BrkPool *    brk_pool_delete (BrkPool *pool, BrkPool *node);
+static BrkPool *    brk_pool_delete_node (BrkPool *pool, BrkPool *node,
+                                          BrkEnv *env);
+
+struct _BrkEnv {
+    BrkPool        *free_list;
+};
+
+static void         brk_env_init (BrkEnv *env);
+static void         brk_env_destroy (BrkEnv *env);
 
 /**
  * @brief Best break solution
@@ -101,31 +107,21 @@ typedef struct {
  *   PRIVATE METHODS DECLARATIONS   *
  *----------------------------------*/
 
-static BrkPool *    brk_root_pool (int pos_size);
+static BrkPool *    brk_root_pool (int pos_size, BrkEnv *env);
 static int          brk_maximal_do_impl (const thwchar_t *ws, int len,
                                          const char *brkpos_hints,
                                          int pos[], size_t n);
 static int          brk_recover_try (const thwchar_t *ws, int len,
                                      const char *brkpos_hints,
-                                     size_t recov_words, int *last_brk_pos);
+                                     size_t recov_words, int *last_brk_pos,
+                                     BrkEnv *env);
 static int          brk_recover (const thwchar_t *wtext, int len, int pos,
-                                 const char *brkpos_hints, RecovHist *rh);
+                                 const char *brkpos_hints, RecovHist *rh,
+                                 BrkEnv *env);
 
 /*---------------------*
  *   PRIVATE GLOBALS   *
  *---------------------*/
-void
-brk_maximal_init ()
-{
-    brk_pool_allocator_use ();
-}
-
-void
-brk_maximal_quit ()
-{
-    brk_pool_allocator_clear ();
-}
-
 int
 brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n)
 {
@@ -161,16 +157,21 @@ brk_maximal_do_impl (const thwchar_t *ws, int len,
                      const char *brkpos_hints,
                      int pos[], size_t n)
 {
+    BrkEnv       env;
     BrkPool     *pool;
     BrkPool     *node;
     BestBrk     *best_brk;
     RecovHist    recov_hist;
     int          ret;
 
-    pool = brk_root_pool (n);
+    brk_env_init (&env);
+
+    pool = brk_root_pool (n, &env);
     best_brk = best_brk_new (n);
-    if (UNLIKELY (!best_brk))
+    if (UNLIKELY (!best_brk)) {
+        brk_env_destroy (&env);
         return 0;
+    }
     recov_hist.pos = recov_hist.recov = -1;
 
     while (NULL != (node = brk_pool_get_node (pool))) {
@@ -192,7 +193,7 @@ brk_maximal_do_impl (const thwchar_t *ws, int len,
 
                 /* try to recover from error */
                 recovered = brk_recover (ws, len, shot->str_pos + 1,
-                                         brkpos_hints, &recov_hist);
+                                         brkpos_hints, &recov_hist, &env);
                 if (-1 != recovered) {
                     /* add penalty by recovered - recent break pos */
                     shot->penalty += recovered;
@@ -236,7 +237,7 @@ brk_maximal_do_impl (const thwchar_t *ws, int len,
                 !trie_state_is_single (shot->dict_state))
             {
                 /* add node to mark break position instead of current */
-                node = brk_pool_node_new (shot);
+                node = brk_pool_node_new (shot, &env);
                 pool = brk_pool_add (pool, node);
                 shot = &node->shot;
             }
@@ -248,7 +249,7 @@ brk_maximal_do_impl (const thwchar_t *ws, int len,
         if (!is_keep_node || shot->str_pos == len || shot->cur_brk_pos >= n) {
             /* path is done; contest and remove */
             best_brk_contest (best_brk, shot);
-            pool = brk_pool_delete (pool, node);
+            pool = brk_pool_delete_node (pool, node, &env);
         } else {
             /* find matched nodes, contest and keep the best one */
             while (NULL != (match = brk_pool_match (pool, node))) {
@@ -263,7 +264,7 @@ brk_maximal_do_impl (const thwchar_t *ws, int len,
                 } else {
                     del_node = match;
                 }
-                pool = brk_pool_delete (pool, del_node);
+                pool = brk_pool_delete_node (pool, del_node, &env);
             }
         }
     }
@@ -271,21 +272,23 @@ brk_maximal_do_impl (const thwchar_t *ws, int len,
     ret = best_brk->cur_brk_pos;
     memcpy (pos, best_brk->brk_pos, ret * sizeof (pos[0]));
 
-    brk_pool_free (pool);
+    brk_pool_free (pool, &env);
     best_brk_free (best_brk);
+    brk_env_destroy (&env);
     return ret;
 }
 
 static int
 brk_recover_try (const thwchar_t *ws, int len,
                  const char *brkpos_hints,
-                 size_t recov_words, int *last_brk_pos)
+                 size_t recov_words, int *last_brk_pos,
+                 BrkEnv *env)
 {
     BrkPool     *pool;
     BrkPool     *node;
     int          ret;
 
-    pool = brk_root_pool (recov_words);
+    pool = brk_root_pool (recov_words, env);
     ret = 0;
 
     while (NULL != (node = brk_pool_get_node (pool))) {
@@ -313,7 +316,7 @@ brk_recover_try (const thwchar_t *ws, int len,
             } while (!(is_terminal && brkpos_hints[shot->str_pos]));
 
             if (!is_keep_node) {
-                pool = brk_pool_delete (pool, node);
+                pool = brk_pool_delete_node (pool, node, env);
                 break;
             }
 
@@ -322,7 +325,7 @@ brk_recover_try (const thwchar_t *ws, int len,
                 !trie_state_is_single (shot->dict_state))
             {
                 /* add node to mark break position instead of current */
-                node = brk_pool_node_new (shot);
+                node = brk_pool_node_new (shot, env);
                 pool = brk_pool_add (pool, node);
                 shot = &node->shot;
             }
@@ -336,7 +339,7 @@ brk_recover_try (const thwchar_t *ws, int len,
                     ret = shot->cur_brk_pos;
                     *last_brk_pos = shot->brk_pos[ret - 1];
                 }
-                pool = brk_pool_delete (pool, node);
+                pool = brk_pool_delete_node (pool, node, env);
                 /* stop as soon as first solution is found */
                 if (ret == recov_words)
                     goto recov_done;
@@ -344,19 +347,19 @@ brk_recover_try (const thwchar_t *ws, int len,
             } else {
                 /* find matched nodes, contest and keep the best one */
                 while (NULL != (match = brk_pool_match (pool, node))) {
-                    pool = brk_pool_delete (pool, match);
+                    pool = brk_pool_delete_node (pool, match, env);
                 }
             }
         }
     }
 
 recov_done:
-    brk_pool_free (pool);
+    brk_pool_free (pool, env);
     return ret;
 }
 
 static BrkPool *
-brk_root_pool (int pos_size)
+brk_root_pool (int pos_size, BrkEnv *env)
 {
     Trie       *dict;
     BrkPool    *pool;
@@ -374,7 +377,7 @@ brk_root_pool (int pos_size)
     root_shot.str_pos = root_shot.cur_brk_pos = 0;
     root_shot.penalty = 0;
 
-    node = brk_pool_node_new (&root_shot);
+    node = brk_pool_node_new (&root_shot, env);
     if (LIKELY (node)) {
         pool = brk_pool_add (pool, node);
     }
@@ -388,7 +391,8 @@ brk_root_pool (int pos_size)
 
 static int
 brk_recover (const thwchar_t *wtext, int len, int pos,
-             const char *brkpos_hints, RecovHist *rh)
+             const char *brkpos_hints, RecovHist *rh,
+             BrkEnv *env)
 {
     int last_brk_pos = 0;
     int n, p;
@@ -402,7 +406,7 @@ brk_recover (const thwchar_t *wtext, int len, int pos,
     for (p = pos; p < len; ++p) {
         if (brkpos_hints[p]) {
             n = brk_recover_try (wtext + p, len - p, brkpos_hints + p,
-                                 RECOVERED_WORDS, &last_brk_pos);
+                                 RECOVERED_WORDS, &last_brk_pos, env);
             if (n == RECOVERED_WORDS
                 || (n > 0 && '\0' == wtext[last_brk_pos]))
             {
@@ -456,40 +460,34 @@ brk_shot_destruct (BrkShot *shot)
         free (shot->brk_pos);
 }
 
-static BrkPool *brk_pool_free_list = NULL;
-static int      brk_pool_allocator_refcnt = 0;
-
-static void
-brk_pool_allocator_use ()
+void
+brk_env_init (BrkEnv *env)
 {
-    ++brk_pool_allocator_refcnt;
+  env->free_list = NULL;
 }
 
-static void
-brk_pool_allocator_clear ()
+void
+brk_env_destroy (BrkEnv *env)
 {
-    if (--brk_pool_allocator_refcnt > 0)
-        return;
-
-    while (brk_pool_free_list) {
+    while (env->free_list) {
         BrkPool *next;
 
-        next = brk_pool_free_list->next;
-        brk_shot_destruct (&brk_pool_free_list->shot);
-        free (brk_pool_free_list);
-        brk_pool_free_list = next;
+        next = env->free_list->next;
+        brk_shot_destruct (&env->free_list->shot);
+        free (env->free_list);
+        env->free_list = next;
     }
 }
 
 static BrkPool *
-brk_pool_node_new (const BrkShot *shot)
+brk_pool_node_new (const BrkShot *shot, BrkEnv *env)
 {
     BrkPool *node;
 
-    if (brk_pool_free_list) {
+    if (env->free_list) {
         /* reuse old node if possible */
-        node = brk_pool_free_list;
-        brk_pool_free_list = brk_pool_free_list->next;
+        node = env->free_list;
+        env->free_list = env->free_list->next;
         brk_shot_reuse (&node->shot, shot);
     } else {
         node = (BrkPool *) malloc (sizeof (BrkPool));
@@ -507,21 +505,21 @@ brk_pool_node_new (const BrkShot *shot)
 }
 
 static void
-brk_pool_node_free (BrkPool *pool)
+brk_pool_node_free (BrkPool *pool, BrkEnv *env)
 {
     /* put it in free list for further reuse */
-    pool->next = brk_pool_free_list;
-    brk_pool_free_list = pool;
+    pool->next = env->free_list;
+    env->free_list = pool;
 }
 
 static void
-brk_pool_free (BrkPool *pool)
+brk_pool_free (BrkPool *pool, BrkEnv *env)
 {
     while (pool) {
         BrkPool *next;
 
         next = pool->next;
-        brk_pool_node_free (pool);
+        brk_pool_node_free (pool, env);
         pool = next;
     }
 }
@@ -585,7 +583,7 @@ brk_pool_add (BrkPool *pool, BrkPool *node)
 }
 
 static BrkPool *
-brk_pool_delete (BrkPool *pool, BrkPool *node)
+brk_pool_delete_node (BrkPool *pool, BrkPool *node, BrkEnv *env)
 {
     if (pool == node) {
         pool = pool->next;
@@ -597,7 +595,7 @@ brk_pool_delete (BrkPool *pool, BrkPool *node)
         if (p)
             p->next = node->next;
     }
-    brk_pool_node_free (node);
+    brk_pool_node_free (node, env);
 
     return pool;
 }
