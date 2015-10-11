@@ -75,8 +75,8 @@ int main(int argc, char *argv[])
     FILE   *dataFile;
     FILE   *outFile;
     size_t  dataRead;
-    char    DataFileName[64];
-    char    OutFileName[64];
+    char    DataFileName[512];
+    char    OutFileName[512];
 
     if (argc == 3) {
         strcpy(DataFileName, argv[1]);
