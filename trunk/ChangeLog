@@ -1,5 +1,22 @@
 2015-10-11  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Minor optimization on brk_pool_match().
+
+	Callgrind reports brk_pool_match() among top bottlenecks.
+	So, try to optimize it as we can.
+
+	* src/thbrk/brk-maximal.c (brk_pool_match):
+	  - Instead of sharing the loop for two different cases,
+	    check the case once and run loop for each case separately,
+	    to minimize branching down to a single time.
+	  - Evaluate the unchanged 'node->shot.brk_pos[node_cur_pos - 1]'
+	    expression only once, instead of on every round.
+
+	This appears to save time by 9.3% for total brk_pool_match() calls,
+	and by 0.067% of total run time.
+
+2015-10-11  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Fix 'make check' error on long path names.
 
 	* tests/thsort.c (main):
