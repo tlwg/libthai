@@ -1,3 +1,11 @@
+2015-10-11  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Fix 'make check' error on long path names.
+
+	* tests/thsort.c (main):
+	  - Increase file name buffers from 64 to 512, to afford long path
+	    names in command-line arguments.
+
 2015-10-10  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Replace static global free-list with local one.
