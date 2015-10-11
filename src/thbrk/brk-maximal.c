@@ -556,21 +556,23 @@ brk_pool_match (BrkPool *pool, BrkPool *node)
     int node_cur_pos;
 
     node_cur_pos = node->shot.cur_brk_pos;
-    while (pool) {
-        if (pool != node) {
-            if (node_cur_pos == 0) {
-                if (pool->shot.cur_brk_pos == 0)
-                    break;
-            } else {
-                if (pool->shot.cur_brk_pos > 0 &&
-                    pool->shot.brk_pos[pool->shot.cur_brk_pos - 1]
-                        == node->shot.brk_pos[node_cur_pos - 1])
-                {
-                    break;
-                }
-            }
+    if (node_cur_pos == 0) {
+        while (pool) {
+            if (pool != node && pool->shot.cur_brk_pos == 0)
+                break;
+            pool = pool->next;
         }
-        pool = pool->next;
+    } else {
+        int node_brk_pos = node->shot.brk_pos[node_cur_pos - 1];
+        while (pool) {
+            if (pool != node &&
+                pool->shot.cur_brk_pos > 0 &&
+                pool->shot.brk_pos[pool->shot.cur_brk_pos - 1] == node_brk_pos)
+            {
+                break;
+            }
+            pool = pool->next;
+        }
     }
     return pool;
 }
