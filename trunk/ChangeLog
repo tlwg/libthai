@@ -1,3 +1,10 @@
+2015-10-12  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Declare const arg for brk_pool_match().
+
+	* src/thbrk/brk-maximal.c (brk_pool_match):
+	  - Add const-ness to the read-only 'node' arg.
+
 2015-10-11  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Minor optimization on brk_pool_match().

@@ -68,7 +68,7 @@ static void         brk_pool_node_free (BrkPool *pool, BrkEnv *env);
 
 static void         brk_pool_free (BrkPool *pool, BrkEnv *env);
 static BrkPool *    brk_pool_get_node (BrkPool *pool);
-static BrkPool *    brk_pool_match (BrkPool *pool, BrkPool *node);
+static BrkPool *    brk_pool_match (BrkPool *pool, const BrkPool *node);
 static BrkPool *    brk_pool_add (BrkPool *pool, BrkPool *node);
 static BrkPool *    brk_pool_delete_node (BrkPool *pool, BrkPool *node,
                                           BrkEnv *env);
@@ -551,7 +551,7 @@ brk_pool_get_node (BrkPool *pool)
 }
 
 static BrkPool *
-brk_pool_match (BrkPool *pool, BrkPool *node)
+brk_pool_match (BrkPool *pool, const BrkPool *node)
 {
     int node_cur_pos;
 
