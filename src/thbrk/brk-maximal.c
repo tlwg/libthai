@@ -250,10 +250,12 @@ brk_maximal_do_impl (const thwchar_t *ws, int len,
             best_brk_contest (best_brk, shot);
             pool = brk_pool_delete_node (pool, node, &env);
         } else {
+            BrkPool *pool_tail = pool;
             BrkPool *match;
 
             /* find matched nodes, contest and keep the best one */
-            while (NULL != (match = brk_pool_match (pool, node))) {
+            while (NULL != (match = brk_pool_match (pool_tail, node))) {
+                BrkPool *next = match->next;
                 BrkPool *del_node;
 
                 if (match->shot.penalty < node->shot.penalty ||
@@ -261,11 +263,16 @@ brk_maximal_do_impl (const thwchar_t *ws, int len,
                      match->shot.cur_brk_pos < node->shot.cur_brk_pos))
                 {
                     del_node = node;
+                    /* (match->next == node) -> also skip node */
+                    if (next == node) {
+                        next = node->next;
+                    }
                     node = match;
                 } else {
                     del_node = match;
                 }
                 pool = brk_pool_delete_node (pool, del_node, &env);
+                pool_tail = next;
             }
         }
     }
@@ -345,11 +352,14 @@ brk_recover_try (const thwchar_t *ws, int len,
                     goto recov_done;
                 break;
             } else {
+                BrkPool *pool_tail = pool;
                 BrkPool *match;
 
                 /* find matched nodes and delete them */
-                while (NULL != (match = brk_pool_match (pool, node))) {
-                    pool = brk_pool_delete_node (pool, match, env);
+                while (NULL != (match = brk_pool_match (pool_tail, node))) {
+                    BrkPool *next = match->next;
+                    brk_pool_delete_node (pool_tail, match, env);
+                    pool_tail = next;
                 }
             }
         }

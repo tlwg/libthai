@@ -1,5 +1,23 @@
 2015-10-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Call brk_pool_match() linearly.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, brk_recover_try):
+	  - Start next brk_pool_match() on node next to previously matched
+	    one, instead of the pool head, making the match O(n) instead of
+	    O(n^2).
+	  - [brk_maximal_do_impl] Also prevent using the deleted node to
+	    start the next round.
+	  - [brk_recover_try] Also start brk_pool_delete_node() on the
+	    pool tail, making it also linear. This is not possible for
+	    brk_maximal_do_impl, as the node to be deleted is not fixed.
+
+	This appears to save time by 8.85% on brk_pool_match() calls,
+	lowering its bottleneck rank by 2 positions, and saves time by
+	0.0388% of total run time.
+
+2015-10-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Declare variable inside block.
 
 	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, brk_recover_try):
