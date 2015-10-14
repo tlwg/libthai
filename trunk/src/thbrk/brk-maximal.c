@@ -176,7 +176,6 @@ brk_maximal_do_impl (const thwchar_t *ws, int len,
 
     while (NULL != (node = brk_pool_get_node (pool))) {
         BrkShot *shot = &node->shot;
-        BrkPool *match;
         int      is_keep_node, is_terminal, is_recovered;
         int      str_pos;
 
@@ -251,6 +250,8 @@ brk_maximal_do_impl (const thwchar_t *ws, int len,
             best_brk_contest (best_brk, shot);
             pool = brk_pool_delete_node (pool, node, &env);
         } else {
+            BrkPool *match;
+
             /* find matched nodes, contest and keep the best one */
             while (NULL != (match = brk_pool_match (pool, node))) {
                 BrkPool *del_node;
@@ -293,7 +294,6 @@ brk_recover_try (const thwchar_t *ws, int len,
 
     while (NULL != (node = brk_pool_get_node (pool))) {
         BrkShot *shot = &node->shot;
-        BrkPool *match;
         int      is_keep_node, is_terminal;
 
         /* walk dictionary character-wise till a word is matched */
@@ -345,7 +345,9 @@ brk_recover_try (const thwchar_t *ws, int len,
                     goto recov_done;
                 break;
             } else {
-                /* find matched nodes, contest and keep the best one */
+                BrkPool *match;
+
+                /* find matched nodes and delete them */
                 while (NULL != (match = brk_pool_match (pool, node))) {
                     pool = brk_pool_delete_node (pool, match, env);
                 }
