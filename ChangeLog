@@ -1,3 +1,10 @@
+2015-10-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Declare variable inside block.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, brk_recover_try):
+	  - Move "BrkPool *match" declaration into the block it's used.
+
 2015-10-12  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Declare const arg for brk_pool_match().
