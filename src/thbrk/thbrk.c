@@ -104,6 +104,7 @@ th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
 int
 th_brk (const thchar_t *s, int pos[], size_t n)
 {
+    BrkEnv         *env;
     brk_class_t     prev_class, effective_class;
     const thchar_t *thai_chunk, *acronym_end, *p;
     int             cur_pos;
@@ -114,6 +115,8 @@ th_brk (const thchar_t *s, int pos[], size_t n)
     p = thai_chunk = acronym_end = s;
     prev_class = effective_class = brk_class (*p);
     cur_pos = 0;
+
+    env = brk_env_new();
 
     while (*++p && cur_pos < n) {
         brk_class_t  new_class;
@@ -147,7 +150,7 @@ th_brk (const thchar_t *s, int pos[], size_t n)
                 int n_brk, i;
 
                 n_brk = brk_maximal_do (thai_chunk, p - thai_chunk,
-                                        pos + cur_pos, n - cur_pos);
+                                        pos + cur_pos, n - cur_pos, env);
                 for (i = 0; i < n_brk; i++)
                     pos [cur_pos + i] += thai_chunk - s;
                 cur_pos += n_brk;
@@ -196,7 +199,7 @@ th_brk (const thchar_t *s, int pos[], size_t n)
         int n_brk, i;
 
         n_brk = brk_maximal_do (thai_chunk, p - thai_chunk,
-                                pos + cur_pos, n - cur_pos);
+                                pos + cur_pos, n - cur_pos, env);
         for (i = 0; i < n_brk; i++)
             pos [cur_pos + i] += thai_chunk - s;
         cur_pos += n_brk;
@@ -205,6 +208,8 @@ th_brk (const thchar_t *s, int pos[], size_t n)
         if (pos[cur_pos - 1] == p - s)
             --cur_pos;
     }
+
+    brk_env_free (env);
 
     return cur_pos;
 }
