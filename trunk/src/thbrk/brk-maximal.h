@@ -29,8 +29,16 @@
 
 #include <thai/thailib.h>
 
+typedef struct _BrkEnv BrkEnv;
+
+BrkEnv *
+brk_env_new();
+
+void
+brk_env_free (BrkEnv *env);
+
 int
-brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n);
+brk_maximal_do (const thchar_t *s, int len, int pos[], size_t n, BrkEnv *env);
 
 #endif /* __BRK_MAXIMAL_H */
 

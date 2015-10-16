@@ -1,3 +1,31 @@
+2015-10-16  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Share BrkEnv longer.
+
+	The code before the threadsafe commit used to initialize the
+	free list earlier in th_brk() and then called brk_maximal_do()
+	multiple times. This allowed the free list to be shared among
+	all such calls. The threadsafe commit did it deep in
+	brk_maximal_do_impl(), limiting the share within the single
+	brk_maximal_do() call only. We should widen the use to be
+	the same as previously done.
+
+	* src/thbrk/brk-maximal.h (+brk_env_new, +brk_env_free):
+	  - Re-add initialization/quit functions in terms of BrkEnv.
+	  - Add BrkEnv* arg to brk_maximal_do().
+	* src/thbrk/brk-maximal.c (brk_env_init -> brk_env_new,
+	  brk_env_destroy -> brk_env_free):
+	  - Turn the init/destroy functions into new/free version.
+	* src/thbrk/brk-maximal.c (brk_maximal_do, brk_maximal_do_impl):
+	  - Add the BrkEnv* arg and use it instead of the locally created
+	    one.
+	* src/thbrk/thbrk.c (th_brk):
+	  - Create BrkEnv object at start and free it at end.
+	  - Add the env arg to brk_maximal_do() calls.
+
+	This appears to save more 2.4% of the total runtime and makes
+	it on par with the code before the threadsafe commit again.
+
 2015-10-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Call brk_pool_match() linearly.
