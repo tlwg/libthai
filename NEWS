@@ -2,6 +2,15 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.23 (22 Oct 2015):
+* Correctly check doxygen version on configure.
+  (Change adapted from Petr Gajdos' proposed patch to libdatrie.)
+* Threadsafe word breaking.
+  (Thanks Behdad Esfahbod for the report.)
+* Improve word breaking performance by 0.1%
+  (About 0.28% when used with libdatrie 0.2.10)
+* Updated word break dictionary.
+
 LibThai 0.1.22 (8 May 2015):
 * Updated word break dictionary.
 * Improve word breaking performance by 0.38%
