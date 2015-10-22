@@ -1,3 +1,11 @@
+2015-10-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	* configure.ac:
+	  - Bump library revision to reflect code changes.
+
+	* configure.ac, NEWS:
+	=== Version 0.1.23 ===
+
 2015-10-21  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Update word break dictionary.
