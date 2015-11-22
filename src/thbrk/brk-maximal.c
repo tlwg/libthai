@@ -349,7 +349,7 @@ brk_recover_try (const thwchar_t *ws, int len,
                 /* find matched nodes and delete them */
                 while (NULL != (match = brk_pool_match (pool_tail, node))) {
                     BrkPool *next = match->next;
-                    brk_pool_delete_node (pool_tail, match, env);
+                    pool = brk_pool_delete_node (pool, match, env);
                     pool_tail = next;
                 }
             }

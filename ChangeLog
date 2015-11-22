@@ -1,5 +1,16 @@
 2015-11-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Fix infinite loop introduced by recent optimization.
+
+	* src/thbrk/brk-maximal.c (brk_recover_try):
+	  - Update 'pool' correctly when deleting matched BrkPool node.
+	    brk_pool_delete_node() cannot be started at pool_tail indeed.
+
+	Thanks Zack Weinberg for the report via Debian #805703
+	http://bugs.debian.org/805703
+
+2015-11-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	* configure.ac: Post-release version suffix added.
 
 2015-10-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
