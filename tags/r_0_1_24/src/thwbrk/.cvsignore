@@ -1,0 +1,11 @@
+.deps
+.libs
+Makefile
+Makefile.in
+*.lo
+*.la
+cttex
+dict2state
+map.c
+map.h
+SunWS_cache
