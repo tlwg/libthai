@@ -1,5 +1,14 @@
 2015-11-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Update word break dictionary.
+
+	* data/tdict-city.txt:
+	* data/tdict-common.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt: Add words.
+
+2015-11-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Fix infinite loop introduced by recent optimization.
 
 	* src/thbrk/brk-maximal.c (brk_recover_try):
