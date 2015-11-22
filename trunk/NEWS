@@ -2,6 +2,12 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.24 (22 Nov 2015):
+* Fix infinite loop caused by optimization in previous version.
+  (Thanks Zack Weinberg for the report via Debian #805703
+  http://bugs.debian.org/805703)
+* Updated word break dictionary.
+
 LibThai 0.1.23 (22 Oct 2015):
 * Correctly check doxygen version on configure.
   (Change adapted from Petr Gajdos' proposed patch to libdatrie.)
