@@ -2,7 +2,7 @@
 
 AC_PREREQ(2.50)
 
-AC_INIT(libthai, 0.1.23svn, thai-linux-foss-devel@googlegroups.com)
+AC_INIT(libthai, 0.1.24, thai-linux-foss-devel@googlegroups.com)
 AC_CONFIG_SRCDIR([include/thai/thailib.h])
 AC_CONFIG_MACRO_DIR([m4])
 
@@ -13,7 +13,7 @@ AM_INIT_AUTOMAKE(dist-xz no-dist-gzip)
 # Interfaces added:              CURRENT++  REVISION=0  AGE++
 # Interfaces changed/removed:    CURRENT++  REVISION=0  AGE=0
 LT_CURRENT=2
-LT_REVISION=3
+LT_REVISION=4
 LT_AGE=2
 AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION)

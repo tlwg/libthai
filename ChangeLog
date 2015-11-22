@@ -1,5 +1,13 @@
 2015-11-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	* configure.ac:
+	  - Bump library revision to reflect code changes.
+
+	* configure.ac, NEWS:
+	=== Version 0.1.24 ===
+
+2015-11-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update word break dictionary.
 
 	* data/tdict-city.txt:
