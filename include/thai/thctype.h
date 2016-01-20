@@ -363,7 +363,7 @@ extern int th_iscombchar(thchar_t c);
 #include <ctype.h>
 #define _th_ISbit(bit)  (1 << (bit))
 #define _th_bitfld(base, val)  ((val) << (base))
-#define _th_bitmsk(base, bits) (~((~(unsigned short)0) << (bits)) << (base))
+#define _th_bitmsk(base, bits) (~((~(unsigned)0) << (bits)) << (base))
 
 enum {
   _th_IStis   = _th_ISbit(0),        /* TIS-620 char */
