@@ -1,5 +1,17 @@
 2016-01-20  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Fix compilation error with GCC 6
+
+	* include/thai/thctype.h (_th_bitmsk):
+	  - Use unsigned int instead of unsigned short for bitmask base,
+	    as GCC 6 takes ~0 as -1 for unsigned short,
+	    and causes compilation error for scim-thai.
+
+	Thanks Martin Michlmayr for the report via Debian #811690
+	http://bugs.debian.org/811690
+
+2016-01-20  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	* configure.ac: Post-release version suffix added.
 
 2015-11-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
