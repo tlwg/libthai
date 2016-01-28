@@ -1,3 +1,11 @@
+2016-01-28  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Make source more readable.
+
+	* src/thbrk/brk-common.c (brk_get_dict):
+	  - Break assignment and comparison chain on reading
+	    LIBTHAI_DICTDIR environment.
+
 2016-01-20  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Fix compilation error with GCC 6

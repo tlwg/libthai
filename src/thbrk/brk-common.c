@@ -55,7 +55,8 @@ brk_get_dict ()
         char        path[512];
 
         /* Try LIBTHAI_DICTDIR env first */
-        if (NULL != (dict_dir = getenv ("LIBTHAI_DICTDIR"))) {
+        dict_dir = getenv ("LIBTHAI_DICTDIR");
+        if (dict_dir) {
             snprintf (path, sizeof path, "%s/%s.tri", dict_dir, DICT_NAME);
             brk_dict = trie_new_from_file (path);
         }
