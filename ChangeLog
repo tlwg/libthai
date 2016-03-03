@@ -1,3 +1,10 @@
+2016-03-03  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Get rid of unused variable.
+
+	* src/thrend/thrend.c (tis620_0_shape_table_):
+	  - Comment out unused variable reported by GCC 6.
+
 2016-01-28  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Make source more readable.

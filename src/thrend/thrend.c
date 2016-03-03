@@ -46,6 +46,7 @@ typedef struct {
 #define shiftdown_bv_bd(c,tbl)       ((tbl)->ShiftDown_BV_BD[(c)-TIS_SARA_U])
 #define tailcutcons(c,tbl)           ((tbl)->TailCutCons[(c)-TIS_YO_YING])
 
+#if 0 /* Actually unused, just for reference */
 /*
  * No adjusted vowel/tonemark glyphs (tis620-0)
  */
@@ -57,6 +58,7 @@ static const ThaiShapeTable tis620_0_shape_table_ = {
     { 0xD8, 0xD9, 0xDA },
     { 0xAD, 0x00, 0x00, 0xB0 }
 };
+#endif
 
 /*
  * Macintosh
