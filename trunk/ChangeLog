@@ -1,3 +1,11 @@
+2016-03-28  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Do not test word breaking if dict is disabled.
+
+	* tests/Makefile.am:
+	  - Only add test-thbrk.sh and test-thwbrk.sh to TESTS
+	    when dictionary is enabled.
+
 2016-03-03  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Get rid of unused variable.
