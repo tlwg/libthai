@@ -13,14 +13,21 @@ TESTS = \
 	test_thrend \
 	test_thstr \
 	test-thcoll.sh \
-	test-thbrk.sh \
 	test_thwchar \
-	test-thwbrk.sh
+	$(NULL)
+
+if ENABLE_DICT
+TESTS += \
+	test-thbrk.sh \
+	test-thwbrk.sh \
+	$(NULL)
+endif
 
 check_SCRIPTS = \
 	test-thcoll.sh \
 	test-thbrk.sh \
-	test-thwbrk.sh
+	test-thwbrk.sh \
+	$(NULL)
 
 check_PROGRAMS = \
 	test_thctype \
@@ -31,7 +38,8 @@ check_PROGRAMS = \
 	thsort \
 	test_thbrk \
 	test_thwchar \
-	test_thwbrk
+	test_thwbrk \
+	$(NULL)
 
 test_thctype_SOURCES = test_thctype.c
 test_thctype_LDADD = $(top_builddir)/src/thctype/libthctype.la
