@@ -1,3 +1,10 @@
+2016-05-02  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Update word break dictionary.
+
+	* data/tdict-common.txt:
+	* data/tdict-spell.txt: Add words.
+
 2016-03-28  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Do not test word breaking if dict is disabled.
