@@ -73,6 +73,7 @@ static BrkPool *    brk_pool_delete_node (BrkPool *pool, BrkPool *node,
                                           BrkEnv *env);
 
 struct _BrkEnv {
+    const ThDict   *env_dict;
     BrkPool        *free_list;
 };
 
@@ -364,17 +365,17 @@ recov_done:
 static BrkPool *
 brk_root_pool (int pos_size, BrkEnv *env)
 {
-    Trie       *dict;
+    Trie       *dict_trie;
     BrkPool    *pool;
     BrkPool    *node;
     BrkShot     root_shot;
 
     pool = NULL;
 
-    dict = brk_get_dict();
-    if (UNLIKELY (!dict))
+    dict_trie = brk_dict_trie (env->env_dict);
+    if (UNLIKELY (!dict_trie))
         return NULL;
-    root_shot.dict_state = trie_root (dict);
+    root_shot.dict_state = trie_root (dict_trie);
     root_shot.brk_pos = NULL; /* it's not used anyway */
     root_shot.n_brk_pos = pos_size;
     root_shot.str_pos = root_shot.cur_brk_pos = 0;
@@ -464,12 +465,13 @@ brk_shot_destruct (BrkShot *shot)
 }
 
 BrkEnv *
-brk_env_new()
+brk_env_new (const ThDict *dict)
 {
     BrkEnv *env = (BrkEnv *) malloc (sizeof (BrkEnv));
     if (UNLIKELY (!env))
         return NULL;
 
+    env->env_dict = dict;
     env->free_list = NULL;
 
     return env;

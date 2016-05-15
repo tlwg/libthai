@@ -27,12 +27,15 @@
 #ifndef __BRK_COMMON_H
 #define __BRK_COMMON_H
 
+#include <thai/thbrk.h>
 #include <thai/thctype.h>
 #include <datrie/trie.h>
 
-void    brk_on_unload ();
+ThDict *brk_dict_new (const char *dictpath);
 
-Trie *  brk_get_dict ();
+void    brk_dict_delete (ThDict *dict);
+
+Trie *  brk_dict_trie (const ThDict *dict);
 
 void    brk_brkpos_hints (const thchar_t *str, int len, char *hints);
 

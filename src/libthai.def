@@ -8,6 +8,14 @@ _th_ctype_tbl
 th_brk
 th_brk_line
 th_chlevel
+th_dict_brk
+th_dict_brk_line
+th_dict_delete
+th_dict_free_shared
+th_dict_get_shared
+th_dict_new
+th_dict_wbrk
+th_dict_wbrk_line
 th_init_cell
 th_isaccept
 th_isblvowel

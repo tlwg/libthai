@@ -34,6 +34,22 @@ BEGIN_CDECL
  * @brief  Thai word segmentation
  */
 
+typedef struct _ThDict ThDict;
+
+extern ThDict *th_dict_new(const char *dictpath);
+
+extern void th_dict_delete(ThDict *dict);
+
+extern int th_dict_brk(const ThDict *dict, const thchar_t *s, int pos[],
+                       size_t n);
+
+extern int th_dict_brk_line(const ThDict *dict, const thchar_t *in,
+                            thchar_t *out, size_t n, const char *delim);
+
+extern const ThDict *th_dict_get_shared (void);
+
+extern void th_dict_free_shared (void);
+
 extern int th_brk(const thchar_t *s, int pos[], size_t n);
 
 extern int th_brk_line(const thchar_t *in, thchar_t *out, size_t n,
