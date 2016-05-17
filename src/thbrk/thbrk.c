@@ -50,8 +50,8 @@
  * then in the library installation directory. Returns NULL if the
  * dictionary file is not found or cannot be loaded.
  */
-ThDict *
-th_dict_new (const char *dictpath)
+ThBrk *
+th_brk_new (const char *dictpath)
 {
     return brk_dict_new (dictpath);
 }
@@ -59,20 +59,20 @@ th_dict_new (const char *dictpath)
 /**
  * @brief  Delete a word break dictionary instance
  *
- * @param  dict : the word break dictionary
+ * @param  brk : the word break dictionary
  *
  * Frees memory associated with the word break dictionary instance.
  */
 void
-th_dict_delete (ThDict *dict)
+th_brk_delete (ThBrk *brk)
 {
-    brk_dict_delete (dict);
+    brk_dict_delete (brk);
 }
 
 /**
  * @brief  Insert word delimitors in given string
  *
- * @param  dict : the word break dictionary
+ * @param  brk : the word break dictionary
  * @param  in  : the input string to be processed
  * @param  out : the output buffer
  * @param  n   : the size of @a out
@@ -84,8 +84,8 @@ th_dict_delete (ThDict *dict)
  * with the given word delimitor inserted at every word boundary.
  */
 int
-th_dict_brk_line (const ThDict *dict, const thchar_t *in, thchar_t *out,
-                  size_t n, const char *delim)
+th_brk_brk_line (const ThBrk *brk, const thchar_t *in, thchar_t *out,
+                 size_t n, const char *delim)
 {
     int        *brk_pos;
     size_t      n_brk_pos, i, j;
@@ -99,7 +99,7 @@ th_dict_brk_line (const ThDict *dict, const thchar_t *in, thchar_t *out,
     if (UNLIKELY (!brk_pos))
         return 0;
 
-    n_brk_pos = th_dict_brk (dict, in, brk_pos, n_brk_pos);
+    n_brk_pos = th_brk_brk (brk, in, brk_pos, n_brk_pos);
     
     delim_len = strlen (delim);
     for (i = j = 0, p_out = out; n > 1 && i < n_brk_pos; i++) {
@@ -127,7 +127,7 @@ th_dict_brk_line (const ThDict *dict, const thchar_t *in, thchar_t *out,
 /**
  * @brief  Find word break positions in Thai string
  *
- * @param  dict : the word break dictionary
+ * @param  brk : the word break dictionary
  * @param  s   : the input string to be processed
  * @param  pos : array to keep breaking positions
  * @param  n   : size of @a pos[]
@@ -138,7 +138,7 @@ th_dict_brk_line (const ThDict *dict, const thchar_t *in, thchar_t *out,
  * breaking positions in @a pos[], from left to right.
  */
 int
-th_dict_brk (const ThDict *dict, const thchar_t *s, int pos[], size_t n)
+th_brk_brk (const ThBrk *brk, const thchar_t *s, int pos[], size_t n)
 {
     BrkEnv         *env;
     brk_class_t     prev_class, effective_class;
@@ -152,7 +152,7 @@ th_dict_brk (const ThDict *dict, const thchar_t *s, int pos[], size_t n)
     prev_class = effective_class = brk_class (*p);
     cur_pos = 0;
 
-    env = brk_env_new (dict);
+    env = brk_env_new (brk);
 
     while (*++p && cur_pos < n) {
         brk_class_t  new_class;
@@ -250,7 +250,7 @@ th_dict_brk (const ThDict *dict, const thchar_t *s, int pos[], size_t n)
     return cur_pos;
 }
 
-static ThDict *dict_shared_instance = NULL;
+static ThBrk *brk_shared_instance = NULL;
 
 /**
  * @brief  Get the shared word breaking dictionary
@@ -261,16 +261,16 @@ static ThDict *dict_shared_instance = NULL;
  * callers. The dictionary is loaded on-demand, and NULL is returned
  * if the load fails.
  */
-const ThDict *
-th_dict_get_shared ()
+const ThBrk *
+th_brk_get_shared ()
 {
     static int is_tried = 0;
 
-    if (UNLIKELY (!dict_shared_instance && !is_tried)) {
-        dict_shared_instance = th_dict_new (NULL);
+    if (UNLIKELY (!brk_shared_instance && !is_tried)) {
+        brk_shared_instance = th_brk_new (NULL);
     }
 
-    return dict_shared_instance;
+    return brk_shared_instance;
 }
 
 /**
@@ -280,10 +280,10 @@ th_dict_get_shared ()
  * if it has been loaded, otherwise does nothing.
  */
 void
-th_dict_free_shared ()
+th_brk_free_shared ()
 {
-    if (dict_shared_instance) {
-        th_dict_delete (dict_shared_instance);
+    if (brk_shared_instance) {
+        th_brk_delete (brk_shared_instance);
     }
 }
 
@@ -304,8 +304,8 @@ th_dict_free_shared ()
 int
 th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
 {
-    const ThDict *dict = th_dict_get_shared ();
-    return th_dict_brk_line (dict, in, out, n, delim);
+    const ThBrk *brk = th_brk_get_shared ();
+    return th_brk_brk_line (brk, in, out, n, delim);
 }
 
 /**
@@ -324,8 +324,8 @@ th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
 int
 th_brk (const thchar_t *s, int pos[], size_t n)
 {
-    const ThDict *dict = th_dict_get_shared ();
-    return th_dict_brk (dict, s, pos, n);
+    const ThBrk *brk = th_brk_get_shared ();
+    return th_brk_brk (brk, s, pos, n);
 }
 
 /*

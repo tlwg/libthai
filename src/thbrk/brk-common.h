@@ -31,11 +31,11 @@
 #include <thai/thctype.h>
 #include <datrie/trie.h>
 
-ThDict *brk_dict_new (const char *dictpath);
+ThBrk * brk_dict_new (const char *dictpath);
 
-void    brk_dict_delete (ThDict *dict);
+void    brk_dict_delete (ThBrk *brk);
 
-Trie *  brk_dict_trie (const ThDict *dict);
+Trie *  brk_dict_trie (const ThBrk *brk);
 
 void    brk_brkpos_hints (const thchar_t *str, int len, char *hints);
 

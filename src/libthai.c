@@ -55,12 +55,12 @@
  *
  * @subsection ThDictBrk Functions for word segmentation
  *
- * th_dict_new(), th_dict_delete(),
- * th_dict_brk(), th_dict_brk_line(), th_dict_wbrk(), th_dict_wbrk_line(),
+ * th_brk_new(), th_brk_delete(),
+ * th_brk_brk(), th_brk_brk_line(), th_brk_wbrk(), th_brk_wbrk_line(),
  *
  * @subsection ThBrk Functions for word segmentation with the shared dictionary
  *
- * th_dict_get_shared(), th_dict_free_shared(),
+ * th_brk_get_shared(), th_brk_free_shared(),
  * th_brk(), th_brk_line(), th_wbrk(), th_wbrk_line()
  *
  * @subsection ThColl Functions for Thai string collation
@@ -91,12 +91,12 @@
  *
  */
 
-#include "thbrk/brk-common.h"
+#include <thai/thbrk.h>
 
 __attribute__ ((destructor)) void
 _libthai_on_unload ()
 {
-    th_dict_free_shared ();
+    th_brk_free_shared ();
 }
 
 /*

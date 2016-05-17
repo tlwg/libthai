@@ -35,20 +35,20 @@
 
 #define DICT_NAME   "thbrk"
 
-struct _ThDict {
+struct _ThBrk {
     Trie           *dict_trie;
 };
 
 static Trie *brk_load_default_dict ();
 
-ThDict *
+ThBrk *
 brk_dict_new (const char *dictpath)
 {
-    ThDict *    dict;
+    ThBrk *     brk;
     Trie *      dict_trie;
 
-    dict = (ThDict *) malloc (sizeof (ThDict));
-    if (UNLIKELY (!dict)) {
+    brk = (ThBrk *) malloc (sizeof (ThBrk));
+    if (UNLIKELY (!brk)) {
         return NULL;
     }
 
@@ -58,26 +58,26 @@ brk_dict_new (const char *dictpath)
         dict_trie = brk_load_default_dict ();
     }
     if (UNLIKELY (!dict_trie)) {
-        free (dict);
+        free (brk);
         return NULL;
     }
 
-    dict->dict_trie = dict_trie;
+    brk->dict_trie = dict_trie;
 
-    return dict;
+    return brk;
 }
 
 void
-brk_dict_delete (ThDict *dict)
+brk_dict_delete (ThBrk *brk)
 {
-    trie_free (dict->dict_trie);
-    free (dict);
+    trie_free (brk->dict_trie);
+    free (brk);
 }
 
 Trie *
-brk_dict_trie (const ThDict *dict)
+brk_dict_trie (const ThBrk *brk)
 {
-    return dict->dict_trie;
+    return brk->dict_trie;
 }
 
 static Trie *
