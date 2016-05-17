@@ -81,7 +81,7 @@ global:
 local: *;
 } LIBTHAI_0.1;
 
-LIBTHAI_0.1.24svn {
+LIBTHAI_0.1.24 {
 global:
   th_dict_brk;
   th_dict_brk_line;
