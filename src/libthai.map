@@ -81,7 +81,7 @@ global:
 local: *;
 } LIBTHAI_0.1;
 
-LIBTHAI_0.1.24 {
+LIBTHAI_0.1.25 {
 global:
   th_brk_brk;
   th_brk_brk_line;
