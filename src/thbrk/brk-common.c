@@ -75,7 +75,7 @@ brk_dict_delete (ThBrk *brk)
 }
 
 Trie *
-brk_dict_trie (const ThBrk *brk)
+brk_dict_trie (ThBrk *brk)
 {
     return brk->dict_trie;
 }
@@ -100,6 +100,29 @@ brk_load_default_dict ()
     }
 
     return dict_trie;
+}
+
+static ThBrk *brk_shared_dict = NULL;
+
+ThBrk *
+brk_get_shared_dict ()
+{
+    static int is_tried = 0;
+
+    if (UNLIKELY (!brk_shared_dict && !is_tried)) {
+        brk_shared_dict = brk_dict_new (NULL);
+    }
+
+    return brk_shared_dict;
+}
+
+void
+brk_free_shared_dict ()
+{
+    if (brk_shared_dict) {
+        brk_dict_delete (brk_shared_dict);
+        brk_shared_dict = NULL;
+    }
 }
 
 void

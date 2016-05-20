@@ -38,17 +38,17 @@
 #define MAX_ACRONYM_FRAG_LEN  3
 
 /**
- * @brief  Create a word break dictionary instance
+ * @brief  Create a dictionary-based word breaker
  *
  * @param  dictpath : the dictionary path, or NULL for default
  *
  * @return  the created instance, or NULL on failure
  *
  * Loads the dictionary from the given file and returns the created word
- * break dictionary instance. If @a dictpath is NULL, first searches in
- * the directory given by the LIBTHAI_DICTDIR environment variable,
- * then in the library installation directory. Returns NULL if the
- * dictionary file is not found or cannot be loaded.
+ * breaker. If @a dictpath is NULL, first searches in the directory given
+ * by the LIBTHAI_DICTDIR environment variable, then in the library
+ * installation directory. Returns NULL if the dictionary file is not
+ * found or cannot be loaded.
  */
 ThBrk *
 th_brk_new (const char *dictpath)
@@ -57,11 +57,11 @@ th_brk_new (const char *dictpath)
 }
 
 /**
- * @brief  Delete a word break dictionary instance
+ * @brief  Delete a word breaker
  *
- * @param  brk : the word break dictionary
+ * @param  brk : the word breaker
  *
- * Frees memory associated with the word break dictionary instance.
+ * Frees memory associated with the word breaker.
  */
 void
 th_brk_delete (ThBrk *brk)
@@ -72,7 +72,7 @@ th_brk_delete (ThBrk *brk)
 /**
  * @brief  Insert word delimitors in given string
  *
- * @param  brk : the word break dictionary
+ * @param  brk : the word breaker
  * @param  in  : the input string to be processed
  * @param  out : the output buffer
  * @param  n   : the size of @a out
@@ -84,8 +84,8 @@ th_brk_delete (ThBrk *brk)
  * with the given word delimitor inserted at every word boundary.
  */
 int
-th_brk_brk_line (const ThBrk *brk, const thchar_t *in, thchar_t *out,
-                 size_t n, const char *delim)
+th_brk_brk_line (ThBrk *brk, const thchar_t *in, thchar_t *out, size_t n,
+                 const char *delim)
 {
     int        *brk_pos;
     size_t      n_brk_pos, i, j;
@@ -127,7 +127,7 @@ th_brk_brk_line (const ThBrk *brk, const thchar_t *in, thchar_t *out,
 /**
  * @brief  Find word break positions in Thai string
  *
- * @param  brk : the word break dictionary
+ * @param  brk : the word breaker
  * @param  s   : the input string to be processed
  * @param  pos : array to keep breaking positions
  * @param  n   : size of @a pos[]
@@ -138,7 +138,7 @@ th_brk_brk_line (const ThBrk *brk, const thchar_t *in, thchar_t *out,
  * breaking positions in @a pos[], from left to right.
  */
 int
-th_brk_brk (const ThBrk *brk, const thchar_t *s, int pos[], size_t n)
+th_brk_brk (ThBrk *brk, const thchar_t *s, int pos[], size_t n)
 {
     BrkEnv         *env;
     brk_class_t     prev_class, effective_class;
@@ -152,7 +152,7 @@ th_brk_brk (const ThBrk *brk, const thchar_t *s, int pos[], size_t n)
     prev_class = effective_class = brk_class (*p);
     cur_pos = 0;
 
-    env = brk_env_new (brk);
+    env = brk_env_new (brk ? brk : brk_get_shared_dict ());
 
     while (*++p && cur_pos < n) {
         brk_class_t  new_class;
@@ -250,43 +250,6 @@ th_brk_brk (const ThBrk *brk, const thchar_t *s, int pos[], size_t n)
     return cur_pos;
 }
 
-static ThBrk *brk_shared_instance = NULL;
-
-/**
- * @brief  Get the shared word breaking dictionary
- *
- * @return  the shared word breaking dictionary, or NULL on failure
- *
- * Returns an instance of the default dictionary that is shared by all
- * callers. The dictionary is loaded on-demand, and NULL is returned
- * if the load fails.
- */
-const ThBrk *
-th_brk_get_shared ()
-{
-    static int is_tried = 0;
-
-    if (UNLIKELY (!brk_shared_instance && !is_tried)) {
-        brk_shared_instance = th_brk_new (NULL);
-    }
-
-    return brk_shared_instance;
-}
-
-/**
- * @brief  Free the shared word breaking dictionary
- *
- * Frees memory associated with the shared word break dictionary instance
- * if it has been loaded, otherwise does nothing.
- */
-void
-th_brk_free_shared ()
-{
-    if (brk_shared_instance) {
-        th_brk_delete (brk_shared_instance);
-    }
-}
-
 /**
  * @brief  Insert word delimitors in given string
  *
@@ -299,13 +262,12 @@ th_brk_free_shared ()
  *
  * Analyzes the input string and store the string in output buffer
  * with the given word delimitor inserted at every word boundary.
- * Uses the shared dictionary instance.
+ * Uses the shared word breaker.
  */
 int
 th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
 {
-    const ThBrk *brk = th_brk_get_shared ();
-    return th_brk_brk_line (brk, in, out, n, delim);
+    return th_brk_brk_line ((ThBrk *) NULL, in, out, n, delim);
 }
 
 /**
@@ -319,13 +281,12 @@ th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
  *
  * Finds word break positions in Thai string @a s and stores at most @a n
  * breaking positions in @a pos[], from left to right.
- * Uses the shared dictionary instance.
+ * Uses the shared word breaker.
  */
 int
 th_brk (const thchar_t *s, int pos[], size_t n)
 {
-    const ThBrk *brk = th_brk_get_shared ();
-    return th_brk_brk (brk, s, pos, n);
+    return th_brk_brk ((ThBrk *) NULL, s, pos, n);
 }
 
 /*

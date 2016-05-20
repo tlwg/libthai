@@ -37,7 +37,7 @@
 /**
  * @brief  Find word break positions in Thai wide-char string
  *
- * @param  brk : the word break dictionary
+ * @param  brk : the word breaker
  * @param  s   : the input string to be processed
  * @param  pos : array to keep breaking positions
  * @param  n   : size of @a pos[]
@@ -48,7 +48,7 @@
  * breaking positions in @a pos[], from left to right.
  */
 int
-th_brk_wbrk (const ThBrk *brk, const thwchar_t *s, int pos[], size_t n)
+th_brk_wbrk (ThBrk *brk, const thwchar_t *s, int pos[], size_t n)
 {
     thchar_t*   tis_str;
     size_t      alloc_size;
@@ -72,7 +72,7 @@ th_brk_wbrk (const ThBrk *brk, const thwchar_t *s, int pos[], size_t n)
 /**
  * @brief  Insert word delimitors in given wide-char string
  *
- * @param  brk : the word break dictionary
+ * @param  brk : the word breaker
  * @param  in  : the input wide-char string to be processed
  * @param  out : the output wide-char buffer
  * @param  n   : the size of @a out (as number of elements)
@@ -84,8 +84,8 @@ th_brk_wbrk (const ThBrk *brk, const thwchar_t *s, int pos[], size_t n)
  * with the given word delimitor inserted at every word boundary.
  */
 int
-th_brk_wbrk_line (const ThBrk *brk, const thwchar_t *in, thwchar_t *out,
-                  size_t n, const thwchar_t* delim )
+th_brk_wbrk_line (ThBrk *brk, const thwchar_t *in, thwchar_t *out, size_t n,
+                  const thwchar_t* delim )
 {
     int        *brk_pos;
     size_t      n_brk_pos, i, j;
@@ -135,13 +135,12 @@ th_brk_wbrk_line (const ThBrk *brk, const thwchar_t *in, thwchar_t *out,
  *
  * Finds word break positions in Thai string @a s and stores at most @a n
  * breaking positions in @a pos[], from left to right.
- * Uses the shared dictionary instance.
+ * Uses the shared word breaker.
  */
 int
 th_wbrk (const thwchar_t *s, int pos[], size_t n)
 {
-    const ThBrk *brk = th_brk_get_shared ();
-    return th_brk_wbrk (brk, s, pos, n);
+    return th_brk_wbrk ((ThBrk *) NULL, s, pos, n);
 }
 
 /**
@@ -156,14 +155,13 @@ th_wbrk (const thwchar_t *s, int pos[], size_t n)
  *
  * Analyzes the input string and store the string in output buffer
  * with the given word delimitor inserted at every word boundary.
- * Uses the shared dictionary instance.
+ * Uses the shared word breaker.
  */
 int
 th_wbrk_line (const thwchar_t *in, thwchar_t *out, size_t n,
               const thwchar_t* delim )
 {
-    const ThBrk *brk = th_brk_get_shared ();
-    return th_brk_wbrk_line (brk, in, out, n, delim);
+    return th_brk_wbrk_line ((ThBrk *) NULL, in, out, n, delim);
 }
 
 /*

@@ -73,7 +73,7 @@ static BrkPool *    brk_pool_delete_node (BrkPool *pool, BrkPool *node,
                                           BrkEnv *env);
 
 struct _BrkEnv {
-    const ThBrk    *env_brk;
+    ThBrk          *env_brk;
     BrkPool        *free_list;
 };
 
@@ -465,7 +465,7 @@ brk_shot_destruct (BrkShot *shot)
 }
 
 BrkEnv *
-brk_env_new (const ThBrk *brk)
+brk_env_new (ThBrk *brk)
 {
     BrkEnv *env = (BrkEnv *) malloc (sizeof (BrkEnv));
     if (UNLIKELY (!env))

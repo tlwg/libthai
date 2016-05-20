@@ -33,7 +33,7 @@
 typedef struct _BrkEnv BrkEnv;
 
 BrkEnv *
-brk_env_new (const ThBrk *brk);
+brk_env_new (ThBrk *brk);
 
 void
 brk_env_free (BrkEnv *env);

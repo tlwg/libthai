@@ -86,8 +86,6 @@ global:
   th_brk_brk;
   th_brk_brk_line;
   th_brk_delete;
-  th_brk_free_shared;
-  th_brk_get_shared;
   th_brk_new;
   th_brk_wbrk;
   th_brk_wbrk_line;

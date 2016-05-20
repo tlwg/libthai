@@ -35,7 +35,11 @@ ThBrk * brk_dict_new (const char *dictpath);
 
 void    brk_dict_delete (ThBrk *brk);
 
-Trie *  brk_dict_trie (const ThBrk *brk);
+Trie *  brk_dict_trie (ThBrk *brk);
+
+ThBrk * brk_get_shared_dict ();
+
+void    brk_free_shared_dict ();
 
 void    brk_brkpos_hints (const thchar_t *str, int len, char *hints);
 
