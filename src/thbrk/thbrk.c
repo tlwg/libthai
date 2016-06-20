@@ -27,9 +27,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <datrie/trie.h>
 #include <thai/tis.h>
 #include <thai/thctype.h>
 #include <thai/thbrk.h>
+#include "thbrk-priv.h"
 #include "thbrk-utils.h"
 #include "brk-ctype.h"
 #include "brk-maximal.h"
@@ -53,7 +55,27 @@
 ThBrk *
 th_brk_new (const char *dictpath)
 {
-    return brk_dict_new (dictpath);
+    ThBrk *     brk;
+    Trie *      dict_trie;
+
+    brk = (ThBrk *) malloc (sizeof (ThBrk));
+    if (UNLIKELY (!brk)) {
+        return NULL;
+    }
+
+    if (dictpath) {
+        dict_trie = trie_new_from_file (dictpath);
+    } else {
+        dict_trie = brk_load_default_dict ();
+    }
+    if (UNLIKELY (!dict_trie)) {
+        free (brk);
+        return NULL;
+    }
+
+    brk->dict_trie = dict_trie;
+
+    return brk;
 }
 
 /**
@@ -66,7 +88,8 @@ th_brk_new (const char *dictpath)
 void
 th_brk_delete (ThBrk *brk)
 {
-    brk_dict_delete (brk);
+    trie_free (brk->dict_trie);
+    free (brk);
 }
 
 /**
@@ -287,6 +310,29 @@ int
 th_brk (const thchar_t *s, int pos[], size_t n)
 {
     return th_brk_brk ((ThBrk *) NULL, s, pos, n);
+}
+
+static ThBrk *brk_shared_dict = NULL;
+
+ThBrk *
+brk_get_shared_dict ()
+{
+    static int is_tried = 0;
+
+    if (UNLIKELY (!brk_shared_dict && !is_tried)) {
+        brk_shared_dict = th_brk_new (NULL);
+    }
+
+    return brk_shared_dict;
+}
+
+void
+brk_free_shared_dict ()
+{
+    if (brk_shared_dict) {
+        th_brk_delete (brk_shared_dict);
+        brk_shared_dict = NULL;
+    }
 }
 
 /*

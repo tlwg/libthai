@@ -87,7 +87,7 @@
  *
  */
 
-#include "thbrk/brk-common.h"
+#include "thbrk/thbrk-priv.h"
 
 __attribute__ ((destructor)) void
 _libthai_on_unload ()

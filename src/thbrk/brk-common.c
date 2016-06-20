@@ -35,52 +35,7 @@
 
 #define DICT_NAME   "thbrk"
 
-struct _ThBrk {
-    Trie           *dict_trie;
-};
-
-static Trie *brk_load_default_dict ();
-
-ThBrk *
-brk_dict_new (const char *dictpath)
-{
-    ThBrk *     brk;
-    Trie *      dict_trie;
-
-    brk = (ThBrk *) malloc (sizeof (ThBrk));
-    if (UNLIKELY (!brk)) {
-        return NULL;
-    }
-
-    if (dictpath) {
-        dict_trie = trie_new_from_file (dictpath);
-    } else {
-        dict_trie = brk_load_default_dict ();
-    }
-    if (UNLIKELY (!dict_trie)) {
-        free (brk);
-        return NULL;
-    }
-
-    brk->dict_trie = dict_trie;
-
-    return brk;
-}
-
-void
-brk_dict_delete (ThBrk *brk)
-{
-    trie_free (brk->dict_trie);
-    free (brk);
-}
-
 Trie *
-brk_dict_trie (ThBrk *brk)
-{
-    return brk->dict_trie;
-}
-
-static Trie *
 brk_load_default_dict ()
 {
     const char *dict_dir;
@@ -100,29 +55,6 @@ brk_load_default_dict ()
     }
 
     return dict_trie;
-}
-
-static ThBrk *brk_shared_dict = NULL;
-
-ThBrk *
-brk_get_shared_dict ()
-{
-    static int is_tried = 0;
-
-    if (UNLIKELY (!brk_shared_dict && !is_tried)) {
-        brk_shared_dict = brk_dict_new (NULL);
-    }
-
-    return brk_shared_dict;
-}
-
-void
-brk_free_shared_dict ()
-{
-    if (brk_shared_dict) {
-        brk_dict_delete (brk_shared_dict);
-        brk_shared_dict = NULL;
-    }
 }
 
 void

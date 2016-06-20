@@ -31,6 +31,8 @@
 #include <datrie/trie.h>
 #include <thai/tis.h>
 #include <thai/thwchar.h>
+#include <thai/thbrk.h>
+#include "thbrk-priv.h"
 #include "thbrk-utils.h"
 #include "brk-maximal.h"
 #include "brk-common.h"
@@ -365,17 +367,17 @@ recov_done:
 static BrkPool *
 brk_root_pool (int pos_size, BrkEnv *env)
 {
-    Trie       *dict_trie;
+    ThBrk      *brk;
     BrkPool    *pool;
     BrkPool    *node;
     BrkShot     root_shot;
 
     pool = NULL;
 
-    dict_trie = brk_dict_trie (env->env_brk);
-    if (UNLIKELY (!dict_trie))
+    brk = env->env_brk;
+    if (UNLIKELY (!brk))
         return NULL;
-    root_shot.dict_state = trie_root (dict_trie);
+    root_shot.dict_state = trie_root (brk->dict_trie);
     root_shot.brk_pos = NULL; /* it's not used anyway */
     root_shot.n_brk_pos = pos_size;
     root_shot.str_pos = root_shot.cur_brk_pos = 0;
