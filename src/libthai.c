@@ -92,7 +92,7 @@
 __attribute__ ((destructor)) void
 _libthai_on_unload ()
 {
-    brk_free_shared_dict ();
+    brk_free_shared_brk ();
 }
 
 /*

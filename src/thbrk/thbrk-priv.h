@@ -34,9 +34,9 @@ struct _ThBrk {
     Trie           *dict_trie;
 };
 
-ThBrk * brk_get_shared_dict ();
+ThBrk * brk_get_shared_brk ();
 
-void    brk_free_shared_dict ();
+void    brk_free_shared_brk ();
 
 #endif  /* __THBRK_PRIV_H */
 

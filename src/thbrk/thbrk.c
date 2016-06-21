@@ -175,7 +175,7 @@ th_brk_brk (ThBrk *brk, const thchar_t *s, int pos[], size_t n)
     prev_class = effective_class = brk_class (*p);
     cur_pos = 0;
 
-    env = brk_env_new (brk ? brk : brk_get_shared_dict ());
+    env = brk_env_new (brk ? brk : brk_get_shared_brk ());
 
     while (*++p && cur_pos < n) {
         brk_class_t  new_class;
@@ -312,26 +312,26 @@ th_brk (const thchar_t *s, int pos[], size_t n)
     return th_brk_brk ((ThBrk *) NULL, s, pos, n);
 }
 
-static ThBrk *brk_shared_dict = NULL;
+static ThBrk *brk_shared_brk = NULL;
 
 ThBrk *
-brk_get_shared_dict ()
+brk_get_shared_brk ()
 {
     static int is_tried = 0;
 
-    if (UNLIKELY (!brk_shared_dict && !is_tried)) {
-        brk_shared_dict = th_brk_new (NULL);
+    if (UNLIKELY (!brk_shared_brk && !is_tried)) {
+        brk_shared_brk = th_brk_new (NULL);
     }
 
-    return brk_shared_dict;
+    return brk_shared_brk;
 }
 
 void
-brk_free_shared_dict ()
+brk_free_shared_brk ()
 {
-    if (brk_shared_dict) {
-        th_brk_delete (brk_shared_dict);
-        brk_shared_dict = NULL;
+    if (brk_shared_brk) {
+        th_brk_delete (brk_shared_brk);
+        brk_shared_brk = NULL;
     }
 }
 
