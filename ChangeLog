@@ -1,3 +1,61 @@
+2016-06-22  Mark Brown  <mark@mercurylang.org>
+
+	Implement a new thread-safe interface for word break.
+
+	To achieve more thread-safety without depending on mutex mechanisms,
+	a new set of APIs is added so that the client can create
+	a shared instance of word break engine by him/herself
+	under appropriate mutex. Then, the word break functions
+	can be safely called in parallel using the shared engine.
+
+
+	* include/thai/thbrk.h:
+	* include/thai/thwbrk.h:
+	* src/libthai.c:
+	* src/libthai.def:
+	* src/libthai.map:
+	  - Add new exported APIs:
+	    th_brk_new(), th_brk_delete(),
+	    th_brk_brk(), th_brk_brk_line(),
+	    th_brk_wbrk(), th_brk_wbrk_line().
+
+	* src/thbrk/brk-common.h, src/thbrk/brk-common.c
+	  (-brk_on_unload, -brk_get_dict, +brk_load_default_dict):
+	  - Remove old shared dict management. It's to be as part of
+	    ThBrk implementation in ThBrk layer instead.
+	  - The logic for finding and loading dictionary at
+	    default paths is still retained here.
+
+	* src/thbrk/thbrk.c (th_brk_new, th_brk_delete):
+	  - Implement ThBrk (de)allocation, with dictionary loading
+	    at specified path or at default paths if not specified.
+
+	* src/thbrk/brk-maximal.h, src/thbrk/brk-maximal.c
+	  (struct _BrkEnv, brk_env_new):
+	  - Add ThBrk engine as a member of BrkEnv.
+	* src/thbrk/brk-maximal.c (brk_root_pool):
+	  - Access dict trie from ThBrk in BrkEnv instead of getting
+	    shared dict directly.
+
+	* src/thbrk/thbrk.c
+	    (th_brk -> th_brk_brk, th_brk_line -> th_brk_brk_line):
+	* src/thwbrk/thwbrk.c
+	    (th_wbrk -> th_brk_wbrk, th_wbrk_line -> th_brk_wbrk_line):
+	  - Modify old functions to new ones by adding ThBrk* parameter.
+
+	* src/thbrk/Makefile.am, +src/thbrk/thbrk-priv.h,
+	  src/thbrk/thbrk.c (brk_get_shared_brk, brk_free_shared_brk):
+	  - Add functions for managing the shared engine to preserve
+	    old behavior.
+	* src/libthai.c (_libthai_on_unload):
+	  - Call brk_free_shared_brk() on unload.
+	* src/thbrk/thbrk.c (th_brk, th_brk_line):
+	* src/thwbrk/thwbrk.c (th_wbrk, th_wbrk_line):
+	  - Provide old APIs as wrappers to the new APIs,
+	    for backward compatibility.
+
+	Merging pull request #1.
+
 2016-05-02  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Update word break dictionary.
