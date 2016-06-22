@@ -31,6 +31,8 @@
 #include <datrie/trie.h>
 #include <thai/tis.h>
 #include <thai/thwchar.h>
+#include <thai/thbrk.h>
+#include "thbrk-priv.h"
 #include "thbrk-utils.h"
 #include "brk-maximal.h"
 #include "brk-common.h"
@@ -73,6 +75,7 @@ static BrkPool *    brk_pool_delete_node (BrkPool *pool, BrkPool *node,
                                           BrkEnv *env);
 
 struct _BrkEnv {
+    ThBrk          *env_brk;
     BrkPool        *free_list;
 };
 
@@ -364,17 +367,17 @@ recov_done:
 static BrkPool *
 brk_root_pool (int pos_size, BrkEnv *env)
 {
-    Trie       *dict;
+    ThBrk      *brk;
     BrkPool    *pool;
     BrkPool    *node;
     BrkShot     root_shot;
 
     pool = NULL;
 
-    dict = brk_get_dict();
-    if (UNLIKELY (!dict))
+    brk = env->env_brk;
+    if (UNLIKELY (!brk))
         return NULL;
-    root_shot.dict_state = trie_root (dict);
+    root_shot.dict_state = trie_root (brk->dict_trie);
     root_shot.brk_pos = NULL; /* it's not used anyway */
     root_shot.n_brk_pos = pos_size;
     root_shot.str_pos = root_shot.cur_brk_pos = 0;
@@ -464,12 +467,13 @@ brk_shot_destruct (BrkShot *shot)
 }
 
 BrkEnv *
-brk_env_new()
+brk_env_new (ThBrk *brk)
 {
     BrkEnv *env = (BrkEnv *) malloc (sizeof (BrkEnv));
     if (UNLIKELY (!env))
         return NULL;
 
+    env->env_brk = brk;
     env->free_list = NULL;
 
     return env;

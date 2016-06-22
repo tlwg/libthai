@@ -28,11 +28,12 @@
 #define __BRK_MAXIMAL_H
 
 #include <thai/thailib.h>
+#include <thai/thbrk.h>
 
 typedef struct _BrkEnv BrkEnv;
 
 BrkEnv *
-brk_env_new();
+brk_env_new (ThBrk *brk);
 
 void
 brk_env_free (BrkEnv *env);

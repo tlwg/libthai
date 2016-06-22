@@ -55,6 +55,8 @@
  *
  * @subsection ThBrk Functions for word segmentation
  *
+ * th_brk_new(), th_brk_delete(),
+ * th_brk_brk(), th_brk_brk_line(), th_brk_wbrk(), th_brk_wbrk_line(),
  * th_brk(), th_brk_line(), th_wbrk(), th_wbrk_line()
  *
  * @subsection ThColl Functions for Thai string collation
@@ -85,12 +87,12 @@
  *
  */
 
-#include "thbrk/brk-common.h"
+#include "thbrk/thbrk-priv.h"
 
 __attribute__ ((destructor)) void
 _libthai_on_unload ()
 {
-    brk_on_unload ();
+    brk_free_shared_brk ();
 }
 
 /*

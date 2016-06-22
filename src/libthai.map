@@ -81,3 +81,14 @@ global:
 local: *;
 } LIBTHAI_0.1;
 
+LIBTHAI_0.1.25 {
+global:
+  th_brk_brk;
+  th_brk_brk_line;
+  th_brk_delete;
+  th_brk_new;
+  th_brk_wbrk;
+  th_brk_wbrk_line;
+local: *;
+} LIBTHAI_0.1.19;
+

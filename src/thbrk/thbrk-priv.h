@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * libthai - Thai Language Support Library
- * Copyright (C) 2001  Theppitak Karoonboonyanan <theppitak@gmail.com>
+ * Copyright (C) 2015  Theppitak Karoonboonyanan <theppitak@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,23 +19,28 @@
  */
 
 /*
- * brk-common.h - Common code for word break backends
- * Created: 2008-12-23
+ * thbrk-priv.h - Private declarations for thbrk.c
+ * Created: 2015-05-06
  * Author:  Theppitak Karoonboonyanan <theppitak@gmail.com>
  */
 
-#ifndef __BRK_COMMON_H
-#define __BRK_COMMON_H
+#ifndef __THBRK_PRIV_H
+#define __THBRK_PRIV_H
 
-#include <thai/thctype.h>
 #include <datrie/trie.h>
+#include <thai/thbrk.h>
 
-Trie *  brk_load_default_dict ();
+struct _ThBrk {
+    Trie           *dict_trie;
+};
 
-void    brk_brkpos_hints (const thchar_t *str, int len, char *hints);
+ThBrk * brk_get_shared_brk ();
 
-#endif  /* __BRK_COMMON_H */
+void    brk_free_shared_brk ();
+
+#endif  /* __THBRK_PRIV_H */
 
 /*
 vi:ts=4:ai:expandtab
 */
+

@@ -34,6 +34,17 @@ BEGIN_CDECL
  * @brief  Thai word segmentation
  */
 
+typedef struct _ThBrk ThBrk;
+
+extern ThBrk *th_brk_new(const char *dictpath);
+
+extern void th_brk_delete(ThBrk *brk);
+
+extern int th_brk_brk(ThBrk *brk, const thchar_t *s, int pos[], size_t n);
+
+extern int th_brk_brk_line(ThBrk *brk, const thchar_t *in, thchar_t *out,
+                           size_t n, const char *delim);
+
 extern int th_brk(const thchar_t *s, int pos[], size_t n);
 
 extern int th_brk_line(const thchar_t *in, thchar_t *out, size_t n,

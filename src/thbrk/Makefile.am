@@ -9,6 +9,7 @@ noinst_LTLIBRARIES = libthbrk.la
 
 libthbrk_la_SOURCES =	\
 	thbrk.c		\
+	thbrk-priv.h	\
 	thbrk-utils.h	\
 	brk-ctype.c	\
 	brk-ctype.h	\

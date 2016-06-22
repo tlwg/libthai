@@ -37,6 +37,7 @@
 /**
  * @brief  Find word break positions in Thai wide-char string
  *
+ * @param  brk : the word breaker
  * @param  s   : the input string to be processed
  * @param  pos : array to keep breaking positions
  * @param  n   : size of @a pos[]
@@ -47,7 +48,7 @@
  * breaking positions in @a pos[], from left to right.
  */
 int
-th_wbrk (const thwchar_t *s, int pos[], size_t n)
+th_brk_wbrk (ThBrk *brk, const thwchar_t *s, int pos[], size_t n)
 {
     thchar_t*   tis_str;
     size_t      alloc_size;
@@ -61,7 +62,7 @@ th_wbrk (const thwchar_t *s, int pos[], size_t n)
     th_uni2tis_line (s, tis_str, alloc_size);
   
     /* do word break */
-    ret = th_brk (tis_str, pos, n);
+    ret = th_brk_brk (brk, tis_str, pos, n);
 
     free (tis_str);
 
@@ -71,6 +72,7 @@ th_wbrk (const thwchar_t *s, int pos[], size_t n)
 /**
  * @brief  Insert word delimitors in given wide-char string
  *
+ * @param  brk : the word breaker
  * @param  in  : the input wide-char string to be processed
  * @param  out : the output wide-char buffer
  * @param  n   : the size of @a out (as number of elements)
@@ -82,8 +84,8 @@ th_wbrk (const thwchar_t *s, int pos[], size_t n)
  * with the given word delimitor inserted at every word boundary.
  */
 int
-th_wbrk_line (const thwchar_t *in, thwchar_t *out, size_t n,
-              const thwchar_t* delim )
+th_brk_wbrk_line (ThBrk *brk, const thwchar_t *in, thwchar_t *out, size_t n,
+                  const thwchar_t* delim )
 {
     int        *brk_pos;
     size_t      n_brk_pos, i, j;
@@ -97,7 +99,7 @@ th_wbrk_line (const thwchar_t *in, thwchar_t *out, size_t n,
     if (!brk_pos)
         return 0;
 
-    n_brk_pos = th_wbrk (in, brk_pos, n_brk_pos);
+    n_brk_pos = th_brk_wbrk (brk, in, brk_pos, n_brk_pos);
     
     delim_len = wcslen (delim);
     for (i = j = 0, p_out = out; n > 1 && i < n_brk_pos; i++) {
@@ -120,6 +122,46 @@ th_wbrk_line (const thwchar_t *in, thwchar_t *out, size_t n,
     free (brk_pos);
 
     return p_out - out;
+}
+
+/**
+ * @brief  Find word break positions in Thai wide-char string
+ *
+ * @param  s   : the input string to be processed
+ * @param  pos : array to keep breaking positions
+ * @param  n   : size of @a pos[]
+ *
+ * @return  the actual number of breaking positions occurred
+ *
+ * Finds word break positions in Thai string @a s and stores at most @a n
+ * breaking positions in @a pos[], from left to right.
+ * Uses the shared word breaker.
+ */
+int
+th_wbrk (const thwchar_t *s, int pos[], size_t n)
+{
+    return th_brk_wbrk ((ThBrk *) NULL, s, pos, n);
+}
+
+/**
+ * @brief  Insert word delimitors in given wide-char string
+ *
+ * @param  in  : the input wide-char string to be processed
+ * @param  out : the output wide-char buffer
+ * @param  n   : the size of @a out (as number of elements)
+ * @param  delim : the wide-char word delimitor to insert
+ *
+ * @return  the actual size of the processed string (as number of elements)
+ *
+ * Analyzes the input string and store the string in output buffer
+ * with the given word delimitor inserted at every word boundary.
+ * Uses the shared word breaker.
+ */
+int
+th_wbrk_line (const thwchar_t *in, thwchar_t *out, size_t n,
+              const thwchar_t* delim )
+{
+    return th_brk_wbrk_line ((ThBrk *) NULL, in, out, n, delim);
 }
 
 /*
