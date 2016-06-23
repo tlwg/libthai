@@ -1,3 +1,8 @@
+2016-06-23  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	* configure.ac:
+	  - Bump library versions to reflect the added API.
+
 2016-06-22  Mark Brown  <mark@mercurylang.org>
 
 	Implement a new thread-safe interface for word break.
