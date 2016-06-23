@@ -73,7 +73,7 @@
  *
  * @subsection ThInp Functions for Thai characters input
  *
- * th_isaccept(), th_validate()
+ * th_isaccept(), th_validate(), th_validate_leveled()
  *
  * @subsection ThRend Functions for Thai string rendering
  *

@@ -120,6 +120,8 @@ th_validate (struct thcell_t context, thchar_t c, struct thinpconv_t *conv)
  * Given the previous cell as @a context, edit the input buffer using
  * the given input @a c, maintaining WTT canonical order at strictness
  * level @a s, and do some convenient correction in @a conv.
+ *
+ * (Available since version 0.1.19, libthai.so.0.2.0)
  */
 int
 th_validate_leveled (struct thcell_t context, thchar_t c,

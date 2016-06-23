@@ -1,5 +1,21 @@
 2016-06-23  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Update documentation for API deprecation.
+
+	* src/thbrk/thbrk.c, src/thwbrk/thwbrk.c:
+	  - Add info for deprecated functions.
+	  - Add availability info for new functions.
+
+	* src/thinp/thinp.c:
+	  - Add availability info for th_validate_leveled().
+
+	* src/libthai.c:
+	  - Add missing link to th_validate_leveled().
+
+2016-06-23  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Update library versioning.
+
 	* configure.ac:
 	  - Bump library versions to reflect the added API.
 

@@ -46,6 +46,8 @@
  *
  * Finds word break positions in Thai string @a s and stores at most @a n 
  * breaking positions in @a pos[], from left to right.
+ *
+ * (Available since version 0.1.25, libthai.so.0.3.0)
  */
 int
 th_brk_wbrk (ThBrk *brk, const thwchar_t *s, int pos[], size_t n)
@@ -82,6 +84,8 @@ th_brk_wbrk (ThBrk *brk, const thwchar_t *s, int pos[], size_t n)
  *
  * Analyzes the input string and store the string in output buffer
  * with the given word delimitor inserted at every word boundary.
+ *
+ * (Available since version 0.1.25, libthai.so.0.3.0)
  */
 int
 th_brk_wbrk_line (ThBrk *brk, const thwchar_t *in, thwchar_t *out, size_t n,
@@ -136,6 +140,9 @@ th_brk_wbrk_line (ThBrk *brk, const thwchar_t *in, thwchar_t *out, size_t n,
  * Finds word break positions in Thai string @a s and stores at most @a n
  * breaking positions in @a pos[], from left to right.
  * Uses the shared word breaker.
+ *
+ * (This function is deprecated since version 0.1.25, in favor of
+ * th_brk_wbrk(), which is more thread-safe.)
  */
 int
 th_wbrk (const thwchar_t *s, int pos[], size_t n)
@@ -156,6 +163,9 @@ th_wbrk (const thwchar_t *s, int pos[], size_t n)
  * Analyzes the input string and store the string in output buffer
  * with the given word delimitor inserted at every word boundary.
  * Uses the shared word breaker.
+ *
+ * (This function is deprecated since version 0.1.25, in favor of
+ * th_brk_wbrk_line(), which is more thread-safe.)
  */
 int
 th_wbrk_line (const thwchar_t *in, thwchar_t *out, size_t n,
