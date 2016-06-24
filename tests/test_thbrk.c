@@ -19,17 +19,24 @@ int main (int argc, char* argv[])
   int outputLength;
   int numCut, i;
   int interactive = 0;
+  ThBrk *brk;
   
   if (argc >= 2) {
     if (0 == strcmp (argv[1], "-i"))
       interactive = 1;
   }
 
+  brk = th_brk_new (NULL);
+  if (!brk) {
+    printf ("Unable to create word breaker!\n");
+    exit (-1);
+  }
+
   if (interactive) {
     while (!feof (stdin)) {
       printf ("Please enter thai words/sentences: ");
       if (!fgets ((char *)str, MAXLINELENGTH-1, stdin)) {
-        numCut = th_brk (str, pos, MAXLINELENGTH);
+        numCut = th_brk_brk (brk, str, pos, MAXLINELENGTH);
         printf ("Total %d cut points.", numCut);
         if (numCut > 0) { 
           printf ("Cut points list: %d", pos[0]);
@@ -38,7 +45,7 @@ int main (int argc, char* argv[])
           }
         }
         printf("\n");
-        outputLength = th_brk_line (str, out, sizeof out, "<WBR>");
+        outputLength = th_brk_brk_line (brk, str, out, sizeof out, "<WBR>");
         printf ("Output string length is %d\n", outputLength-1); /* the penultimate is \n */
         printf ("Output string is %s", out);
         printf("***********************************************************************\n");
@@ -47,10 +54,10 @@ int main (int argc, char* argv[])
   } else {
     strcpy ((char *)str, "สวัสดีครับ กอ.รมน. นี่เป็นการทดสอบตัวเอง");
     printf ("Testing with string: %s\n", str);
-    numCut = th_brk (str, pos, MAXLINELENGTH);
+    numCut = th_brk_brk (brk, str, pos, MAXLINELENGTH);
     printf ("Total %d cut points.", numCut);
     if (numCut != 7) {
-      printf("Error! should be 7.. test th_brk() failed...\n");
+      printf("Error! should be 7.. test th_brk_brk() failed...\n");
       exit (-1);
     }
 	
@@ -59,14 +66,17 @@ int main (int argc, char* argv[])
       printf(", %d", pos[i]);
     }
     printf("\n");
-    outputLength = th_brk_line (str, out, sizeof out, "<WBR>");
+    outputLength = th_brk_brk_line (brk, str, out, sizeof out, "<WBR>");
     printf ("Output string is %s\n", out);
     printf ("Output string length is %d\n", outputLength);
     if (outputLength != 75) {
-      printf ("Error! should be 75.. test th_brk_line() failed...\n");
+      printf ("Error! should be 75.. test th_brk_brk_line() failed...\n");
       exit (-1);
     }
     printf ("*** End of thbrk self test ******\n");
   }
+
+  th_brk_delete (brk);
+
   return 0;
 }

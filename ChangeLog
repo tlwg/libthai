@@ -1,3 +1,11 @@
+2016-06-24  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Update tests to test new APIs.
+
+	* tests/test_thbrk.c (main), tests/test_thwbk.c (main):
+	  - Create, use, and free ThBrk instance with the new APIs
+	    instead of the deprecated ones.
+
 2016-06-23  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Update documentation for API deprecation.
