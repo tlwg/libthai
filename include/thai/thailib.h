@@ -40,6 +40,23 @@
 # define  END_CDECL
 #endif /* __cplusplus */
 
+#if    __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 1)
+#define TH_DEPRECATED __attribute__((__deprecated__))
+#elif defined(_MSC_VER) && (_MSC_VER >= 1300)
+#define TH_DEPRECATED __declspec(deprecated)
+#else
+#define TH_DEPRECATED
+#endif
+
+#if    __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 5)
+#define TH_DEPRECATED_FOR(f) __attribute__((__deprecated__("Use '" #f "' instead")))
+#elif defined(_MSC_FULL_VER) && (_MSC_FULL_VER > 140050320)
+#define TH_DEPRECATED_FOR(f) __declspec(deprecated("is deprecated. Use '" #f "' instead"))
+#else
+#define TH_DEPRECATED_FOR(f) TH_DEPRECATED
+#endif
+
+
 /**
  * @brief  Character value indicating error
  */

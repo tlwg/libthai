@@ -45,8 +45,10 @@ extern int th_brk_brk(ThBrk *brk, const thchar_t *s, int pos[], size_t n);
 extern int th_brk_brk_line(ThBrk *brk, const thchar_t *in, thchar_t *out,
                            size_t n, const char *delim);
 
+TH_DEPRECATED_FOR(th_brk_brk)
 extern int th_brk(const thchar_t *s, int pos[], size_t n);
 
+TH_DEPRECATED_FOR(th_brk_brk_line)
 extern int th_brk_line(const thchar_t *in, thchar_t *out, size_t n,
                        const char *delim);
 

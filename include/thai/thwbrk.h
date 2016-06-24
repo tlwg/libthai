@@ -40,8 +40,10 @@ extern int th_brk_wbrk(ThBrk *brk, const thwchar_t *s, int pos[], size_t n);
 extern int th_brk_wbrk_line(ThBrk *brk, const thwchar_t *in, thwchar_t *out,
                             size_t n, const thwchar_t *delim);
 
+TH_DEPRECATED_FOR(th_brk_wbrk)
 extern int th_wbrk(const thwchar_t *s, int pos[], size_t n);
 
+TH_DEPRECATED_FOR(th_brk_wbrk_line)
 extern int th_wbrk_line(const thwchar_t *in, thwchar_t *out, size_t n,
                         const thwchar_t *delim);
 

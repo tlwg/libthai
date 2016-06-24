@@ -1,5 +1,17 @@
 2016-06-24  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Add function deprecation warnings.
+
+	* include/thai/thailib.h:
+	  - Add TH_DEPRECATED and TH_DEPRECATED_FOR() macros,
+	    taken from GLib.
+	* include/thai/thbrk.h (th_brk, th_brk_line):
+	* include/thai/thwbrk.h (th_wbrk, th_wbrk_line):
+	  - Apply TH_DEPRECATED_FOR() to deprecated functions,
+	    with suggestions for alternatives.
+
+2016-06-24  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update tests to test new APIs.
 
 	* tests/test_thbrk.c (main), tests/test_thwbk.c (main):
