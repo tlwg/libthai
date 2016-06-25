@@ -40,16 +40,18 @@ extern ThBrk *th_brk_new(const char *dictpath);
 
 extern void th_brk_delete(ThBrk *brk);
 
-extern int th_brk_brk(ThBrk *brk, const thchar_t *s, int pos[], size_t n);
+extern int th_brk_find_breaks(ThBrk *brk, const thchar_t *s,
+                              int pos[], size_t pos_sz);
 
-extern int th_brk_brk_line(ThBrk *brk, const thchar_t *in, thchar_t *out,
-                           size_t n, const char *delim);
+extern int th_brk_insert_breaks(ThBrk *brk, const thchar_t *in,
+                                thchar_t *out, size_t out_sz,
+                                const char *delim);
 
-TH_DEPRECATED_FOR(th_brk_brk)
-extern int th_brk(const thchar_t *s, int pos[], size_t n);
+TH_DEPRECATED_FOR(th_brk_find_breaks)
+extern int th_brk(const thchar_t *s, int pos[], size_t pos_sz);
 
-TH_DEPRECATED_FOR(th_brk_brk_line)
-extern int th_brk_line(const thchar_t *in, thchar_t *out, size_t n,
+TH_DEPRECATED_FOR(th_brk_insert_breaks)
+extern int th_brk_line(const thchar_t *in, thchar_t *out, size_t out_sz,
                        const char *delim);
 
 END_CDECL

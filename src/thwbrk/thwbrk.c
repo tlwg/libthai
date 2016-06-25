@@ -40,17 +40,17 @@
  * @param  brk : the word breaker
  * @param  s   : the input string to be processed
  * @param  pos : array to keep breaking positions
- * @param  n   : size of @a pos[]
+ * @param  pos_sz : size of @a pos[]
  *
  * @return  the actual number of breaking positions occurred
  *
- * Finds word break positions in Thai string @a s and stores at most @a n 
+ * Finds word break positions in Thai string @a s and stores at most @a pos_sz
  * breaking positions in @a pos[], from left to right.
  *
  * (Available since version 0.1.25, libthai.so.0.3.0)
  */
 int
-th_brk_wbrk (ThBrk *brk, const thwchar_t *s, int pos[], size_t n)
+th_brk_find_breaks_wc (ThBrk *brk, const thwchar_t *s, int pos[], size_t pos_sz)
 {
     thchar_t*   tis_str;
     size_t      alloc_size;
@@ -62,9 +62,9 @@ th_brk_wbrk (ThBrk *brk, const thwchar_t *s, int pos[], size_t n)
     if (!tis_str)
         return 0;
     th_uni2tis_line (s, tis_str, alloc_size);
-  
+
     /* do word break */
-    ret = th_brk_brk (brk, tis_str, pos, n);
+    ret = th_brk_find_breaks (brk, tis_str, pos, pos_sz);
 
     free (tis_str);
 
@@ -77,7 +77,7 @@ th_brk_wbrk (ThBrk *brk, const thwchar_t *s, int pos[], size_t n)
  * @param  brk : the word breaker
  * @param  in  : the input wide-char string to be processed
  * @param  out : the output wide-char buffer
- * @param  n   : the size of @a out (as number of elements)
+ * @param  out_sz : the size of @a out (as number of elements)
  * @param  delim : the wide-char word delimitor to insert
  *
  * @return  the actual size of the processed string (as number of elements)
@@ -88,8 +88,9 @@ th_brk_wbrk (ThBrk *brk, const thwchar_t *s, int pos[], size_t n)
  * (Available since version 0.1.25, libthai.so.0.3.0)
  */
 int
-th_brk_wbrk_line (ThBrk *brk, const thwchar_t *in, thwchar_t *out, size_t n,
-                  const thwchar_t* delim )
+th_brk_insert_breaks_wc (ThBrk *brk, const thwchar_t *in,
+                         thwchar_t *out, size_t out_sz,
+                         const thwchar_t* delim)
 {
     int        *brk_pos;
     size_t      n_brk_pos, i, j;
@@ -103,23 +104,23 @@ th_brk_wbrk_line (ThBrk *brk, const thwchar_t *in, thwchar_t *out, size_t n,
     if (!brk_pos)
         return 0;
 
-    n_brk_pos = th_brk_wbrk (brk, in, brk_pos, n_brk_pos);
-    
+    n_brk_pos = th_brk_find_breaks_wc (brk, in, brk_pos, n_brk_pos);
+
     delim_len = wcslen (delim);
-    for (i = j = 0, p_out = out; n > 1 && i < n_brk_pos; i++) {
-        while (n > 1 && j < brk_pos[i]) {
+    for (i = j = 0, p_out = out; out_sz > 1 && i < n_brk_pos; i++) {
+        while (out_sz > 1 && j < brk_pos[i]) {
             *p_out++ = in[j++];
-            --n;
+            --out_sz;
         }
-        if (n > delim_len + 1) {
+        if (out_sz > delim_len + 1) {
             wcscpy (p_out, delim);
             p_out += delim_len;
-            n -= delim_len;
+            out_sz -= delim_len;
         }
     }
-    while (n > 1 && in [j]) {
+    while (out_sz > 1 && in [j]) {
         *p_out++ = in[j++];
-        --n;
+        --out_sz;
     }
     *p_out = 0;
 
@@ -133,21 +134,21 @@ th_brk_wbrk_line (ThBrk *brk, const thwchar_t *in, thwchar_t *out, size_t n,
  *
  * @param  s   : the input string to be processed
  * @param  pos : array to keep breaking positions
- * @param  n   : size of @a pos[]
+ * @param  pos_sz : size of @a pos[]
  *
  * @return  the actual number of breaking positions occurred
  *
- * Finds word break positions in Thai string @a s and stores at most @a n
+ * Finds word break positions in Thai string @a s and stores at most @a pos_sz
  * breaking positions in @a pos[], from left to right.
  * Uses the shared word breaker.
  *
  * (This function is deprecated since version 0.1.25, in favor of
- * th_brk_wbrk(), which is more thread-safe.)
+ * th_brk_find_breaks_wc(), which is more thread-safe.)
  */
 int
-th_wbrk (const thwchar_t *s, int pos[], size_t n)
+th_wbrk (const thwchar_t *s, int pos[], size_t pos_sz)
 {
-    return th_brk_wbrk ((ThBrk *) NULL, s, pos, n);
+    return th_brk_find_breaks_wc ((ThBrk *) NULL, s, pos, pos_sz);
 }
 
 /**
@@ -155,7 +156,7 @@ th_wbrk (const thwchar_t *s, int pos[], size_t n)
  *
  * @param  in  : the input wide-char string to be processed
  * @param  out : the output wide-char buffer
- * @param  n   : the size of @a out (as number of elements)
+ * @param  out_sz : the size of @a out (as number of elements)
  * @param  delim : the wide-char word delimitor to insert
  *
  * @return  the actual size of the processed string (as number of elements)
@@ -165,13 +166,13 @@ th_wbrk (const thwchar_t *s, int pos[], size_t n)
  * Uses the shared word breaker.
  *
  * (This function is deprecated since version 0.1.25, in favor of
- * th_brk_wbrk_line(), which is more thread-safe.)
+ * th_brk_insert_breaks_wc(), which is more thread-safe.)
  */
 int
-th_wbrk_line (const thwchar_t *in, thwchar_t *out, size_t n,
+th_wbrk_line (const thwchar_t *in, thwchar_t *out, size_t out_sz,
               const thwchar_t* delim )
 {
-    return th_brk_wbrk_line ((ThBrk *) NULL, in, out, n, delim);
+    return th_brk_insert_breaks_wc ((ThBrk *) NULL, in, out, out_sz, delim);
 }
 
 /*

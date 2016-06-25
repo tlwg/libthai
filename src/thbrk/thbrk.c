@@ -102,8 +102,8 @@ th_brk_delete (ThBrk *brk)
  * @param  brk : the word breaker
  * @param  in  : the input string to be processed
  * @param  out : the output buffer
- * @param  n   : the size of @a out
- * @param  delim : the word delimitor to insert
+ * @param  out_sz : the size of @a out
+ * @param  delim  : the word delimitor to insert
  *
  * @return  the actual size of the processed string
  *
@@ -113,8 +113,9 @@ th_brk_delete (ThBrk *brk)
  * (Available since version 0.1.25, libthai.so.0.3.0)
  */
 int
-th_brk_brk_line (ThBrk *brk, const thchar_t *in, thchar_t *out, size_t n,
-                 const char *delim)
+th_brk_insert_breaks (ThBrk *brk, const thchar_t *in,
+                      thchar_t *out, size_t out_sz,
+                      const char *delim)
 {
     int        *brk_pos;
     size_t      n_brk_pos, i, j;
@@ -128,23 +129,23 @@ th_brk_brk_line (ThBrk *brk, const thchar_t *in, thchar_t *out, size_t n,
     if (UNLIKELY (!brk_pos))
         return 0;
 
-    n_brk_pos = th_brk_brk (brk, in, brk_pos, n_brk_pos);
-    
+    n_brk_pos = th_brk_find_breaks (brk, in, brk_pos, n_brk_pos);
+
     delim_len = strlen (delim);
-    for (i = j = 0, p_out = out; n > 1 && i < n_brk_pos; i++) {
-        while (n > 1 && j < brk_pos[i]) {
+    for (i = j = 0, p_out = out; out_sz > 1 && i < n_brk_pos; i++) {
+        while (out_sz > 1 && j < brk_pos[i]) {
             *p_out++ = in [j++];
-            --n;
+            --out_sz;
         }
-        if (n > delim_len + 1) {
+        if (out_sz > delim_len + 1) {
             strcpy ((char *) p_out, delim);
             p_out += delim_len;
-            n -= delim_len;
+            out_sz -= delim_len;
         }
     }
-    while (n > 1 && in [j]) {
+    while (out_sz > 1 && in [j]) {
         *p_out++ = in [j++];
-        --n;
+        --out_sz;
     }
     *p_out = '\0';
 
@@ -159,17 +160,17 @@ th_brk_brk_line (ThBrk *brk, const thchar_t *in, thchar_t *out, size_t n,
  * @param  brk : the word breaker
  * @param  s   : the input string to be processed
  * @param  pos : array to keep breaking positions
- * @param  n   : size of @a pos[]
+ * @param  pos_sz : size of @a pos[]
  *
  * @return  the actual number of breaking positions occurred
  *
- * Finds word break positions in Thai string @a s and stores at most @a n 
+ * Finds word break positions in Thai string @a s and stores at most @a pos_sz
  * breaking positions in @a pos[], from left to right.
  *
  * (Available since version 0.1.25, libthai.so.0.3.0)
  */
 int
-th_brk_brk (ThBrk *brk, const thchar_t *s, int pos[], size_t n)
+th_brk_find_breaks (ThBrk *brk, const thchar_t *s, int pos[], size_t pos_sz)
 {
     BrkEnv         *env;
     brk_class_t     prev_class, effective_class;
@@ -185,7 +186,7 @@ th_brk_brk (ThBrk *brk, const thchar_t *s, int pos[], size_t n)
 
     env = brk_env_new (brk ? brk : brk_get_shared_brk ());
 
-    while (*++p && cur_pos < n) {
+    while (*++p && cur_pos < pos_sz) {
         brk_class_t  new_class;
         brk_op_t     op;
 
@@ -217,7 +218,7 @@ th_brk_brk (ThBrk *brk, const thchar_t *s, int pos[], size_t n)
                 int n_brk, i;
 
                 n_brk = brk_maximal_do (thai_chunk, p - thai_chunk,
-                                        pos + cur_pos, n - cur_pos, env);
+                                        pos + cur_pos, pos_sz - cur_pos, env);
                 for (i = 0; i < n_brk; i++)
                     pos [cur_pos + i] += thai_chunk - s;
                 cur_pos += n_brk;
@@ -229,7 +230,7 @@ th_brk_brk (ThBrk *brk, const thchar_t *s, int pos[], size_t n)
                 if (LIKELY (cur_pos > 0) && pos[cur_pos - 1] == p - s)
                     --cur_pos;
 
-                if (cur_pos >= n)
+                if (cur_pos >= pos_sz)
                     break;
             }
         } else {
@@ -261,12 +262,12 @@ th_brk_brk (ThBrk *brk, const thchar_t *s, int pos[], size_t n)
 
     /* break last Thai non-acronym chunk */
     if (BRK_CLASS_THAI == prev_class && acronym_end <= thai_chunk
-        && cur_pos < n)
+        && cur_pos < pos_sz)
     {
         int n_brk, i;
 
         n_brk = brk_maximal_do (thai_chunk, p - thai_chunk,
-                                pos + cur_pos, n - cur_pos, env);
+                                pos + cur_pos, pos_sz - cur_pos, env);
         for (i = 0; i < n_brk; i++)
             pos [cur_pos + i] += thai_chunk - s;
         cur_pos += n_brk;
@@ -286,8 +287,8 @@ th_brk_brk (ThBrk *brk, const thchar_t *s, int pos[], size_t n)
  *
  * @param  in  : the input string to be processed
  * @param  out : the output buffer
- * @param  n   : the size of @a out
- * @param  delim : the word delimitor to insert
+ * @param  out_sz : the size of @a out
+ * @param  delim  : the word delimitor to insert
  *
  * @return  the actual size of the processed string
  *
@@ -296,12 +297,13 @@ th_brk_brk (ThBrk *brk, const thchar_t *s, int pos[], size_t n)
  * Uses the shared word breaker.
  *
  * (This function is deprecated since version 0.1.25, in favor of
- * th_brk_brk_line(), which is more thread-safe.)
+ * th_brk_insert_breaks(), which is more thread-safe.)
  */
 int
-th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
+th_brk_line (const thchar_t *in, thchar_t *out, size_t out_sz,
+             const char *delim)
 {
-    return th_brk_brk_line ((ThBrk *) NULL, in, out, n, delim);
+    return th_brk_insert_breaks ((ThBrk *) NULL, in, out, out_sz, delim);
 }
 
 /**
@@ -309,7 +311,7 @@ th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
  *
  * @param  s   : the input string to be processed
  * @param  pos : array to keep breaking positions
- * @param  n   : size of @a pos[]
+ * @param  pos_sz : size of @a pos[]
  *
  * @return  the actual number of breaking positions occurred
  *
@@ -318,12 +320,12 @@ th_brk_line (const thchar_t *in, thchar_t *out, size_t n, const char *delim)
  * Uses the shared word breaker.
  *
  * (This function is deprecated since version 0.1.25, in favor of
- * th_brk_brk(), which is more thread-safe.)
+ * th_brk_find_breaks(), which is more thread-safe.)
  */
 int
-th_brk (const thchar_t *s, int pos[], size_t n)
+th_brk (const thchar_t *s, int pos[], size_t pos_sz)
 {
-    return th_brk_brk ((ThBrk *) NULL, s, pos, n);
+    return th_brk_find_breaks ((ThBrk *) NULL, s, pos, pos_sz);
 }
 
 static ThBrk *brk_shared_brk = NULL;

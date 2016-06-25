@@ -56,7 +56,8 @@
  * @subsection ThBrk Functions for word segmentation
  *
  * th_brk_new(), th_brk_delete(),
- * th_brk_brk(), th_brk_brk_line(), th_brk_wbrk(), th_brk_wbrk_line(),
+ * th_brk_find_breaks(), th_brk_insert_breaks(),
+ * th_brk_find_breaks_wc(), th_brk_insert_breaks_wc(),
  * th_brk(), th_brk_line(), th_wbrk(), th_wbrk_line()
  *
  * @subsection ThColl Functions for Thai string collation

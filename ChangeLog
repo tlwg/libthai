@@ -1,3 +1,28 @@
+2016-06-25  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Rename the new APIs to be more meaningful.
+
+	The methods for ThBrk I proposed to Mark Brown in our discussion
+	were too confusing. Before they get public, let's pick more
+	meaningful names instead:
+	  - th_brk_brk()       -> th_brk_find_breaks()
+	  - th_brk_brk_line()  -> th_brk_insert_breaks()
+	  - th_brk_wbrk()      -> th_brk_find_breaks_wc()
+	  - th_brk_wbrk_line() -> th_brk_insert_breaks_wc()
+
+	* include/thai/thbrk.h:
+	* include/thai/thwbrk.h:
+	* src/libthai.c:
+	* src/libthai.def:
+	* src/libthai.map:
+	* src/thbrk/thbrk.c:
+	* src/thwbrk/thwbrk.c:
+	* tests/test_thbrk.c:
+	* tests/test_thwbrk.c:
+	  - Rename functions as listed above.
+	  - Rename the 'n' argument in the functions to indicate
+	    whose size it describes.
+
 2016-06-24  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Add function deprecation warnings.

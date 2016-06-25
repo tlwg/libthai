@@ -35,16 +35,18 @@ BEGIN_CDECL
  * @brief  Thai wide-char word segmentation
  */
 
-extern int th_brk_wbrk(ThBrk *brk, const thwchar_t *s, int pos[], size_t n);
+extern int th_brk_find_breaks_wc(ThBrk *brk, const thwchar_t *s,
+                                 int pos[], size_t pos_sz);
 
-extern int th_brk_wbrk_line(ThBrk *brk, const thwchar_t *in, thwchar_t *out,
-                            size_t n, const thwchar_t *delim);
+extern int th_brk_insert_breaks_wc(ThBrk *brk, const thwchar_t *in,
+                                   thwchar_t *out, size_t out_sz,
+                                   const thwchar_t *delim);
 
-TH_DEPRECATED_FOR(th_brk_wbrk)
-extern int th_wbrk(const thwchar_t *s, int pos[], size_t n);
+TH_DEPRECATED_FOR(th_brk_find_breaks_wc)
+extern int th_wbrk(const thwchar_t *s, int pos[], size_t pos_sz);
 
-TH_DEPRECATED_FOR(th_brk_wbrk_line)
-extern int th_wbrk_line(const thwchar_t *in, thwchar_t *out, size_t n,
+TH_DEPRECATED_FOR(th_brk_insert_breaks_wc)
+extern int th_wbrk_line(const thwchar_t *in, thwchar_t *out, size_t out_sz,
                         const thwchar_t *delim);
 
 
