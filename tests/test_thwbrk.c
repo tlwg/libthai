@@ -35,8 +35,8 @@ int main (int argc, char* argv[])
   printf ("Converting to Unicode...\n");
   th_tis2uni_line (str, ustr, MAXLINELENGTH);
 
-  printf ("Calling th_brk_find_breaks_wc()...\n");
-  numCut = th_brk_find_breaks_wc (brk, ustr, pos, MAXLINELENGTH);
+  printf ("Calling th_brk_wc_find_breaks()...\n");
+  numCut = th_brk_wc_find_breaks (brk, ustr, pos, MAXLINELENGTH);
 
   printf ("Total %d cut points.", numCut);
   if (numCut > 0) {
@@ -48,7 +48,7 @@ int main (int argc, char* argv[])
   printf ("\n");
   if (numCut != 7) {
     printf ("Error! Should have 7 cut points.\n"
-            "Test th_brk_find_breaks_wc() failed...\n");
+            "Test th_brk_wc_find_breaks() failed...\n");
     exit (-1);
   }
 
@@ -59,16 +59,16 @@ int main (int argc, char* argv[])
             (long)strlen ("<WBR>"), unicodeCutCodeLength);
   }
 
-  printf ("Calling th_brk_insert_breaks_wc() ....\n");
-  outputLength = th_brk_insert_breaks_wc (brk, ustr,
+  printf ("Calling th_brk_wc_insert_breaks() ....\n");
+  outputLength = th_brk_wc_insert_breaks (brk, ustr,
                                           (thwchar_t*) uout, MAXLINELENGTH,
                                           unicodeCutCode);
 
-  printf ("Return value from th_brk_insert_breaks_wc is %d\n", outputLength);
+  printf ("Return value from th_brk_wc_insert_breaks is %d\n", outputLength);
   printf ("Output string length is %ld\n", (long)wcslen(uout));
   if (outputLength != 75) {
     printf ("Error! Output string length != 75. "
-            "Test th_brk_insert_breaks_wc() failed...\n");
+            "Test th_brk_wc_insert_breaks() failed...\n");
     exit (-1);
   }
 
@@ -77,13 +77,13 @@ int main (int argc, char* argv[])
   th_uni2tis_line(uout, out2, MAXLINELENGTH);
 
   if (strcmp ((const char *)out1, (const char *)out2) == 0) {
-    printf ("Correct! .. test th_brk_insert_breaks_wc() passed...\n");
+    printf ("Correct! .. test th_brk_wc_insert_breaks() passed...\n");
   } else {
     printf ("Error! Comparison of results from th_brk_insert_breaks() "
-            "and th_brk_insert_breaks_wc() failed.\n");
+            "and th_brk_wc_insert_breaks() failed.\n");
     printf ("th_brk_insert_breaks :\"%s\"\n", out1);
-    printf ("th_brk_insert_breaks_wc:\"%s\"\n", out2);
-    printf ("Test th_brk_insert_breaks_wc() failed...\n");
+    printf ("th_brk_wc_insert_breaks:\"%s\"\n", out2);
+    printf ("Test th_brk_wc_insert_breaks() failed...\n");
     exit (-1);
   }
 

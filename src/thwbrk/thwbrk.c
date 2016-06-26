@@ -50,7 +50,7 @@
  * (Available since version 0.1.25, libthai.so.0.3.0)
  */
 int
-th_brk_find_breaks_wc (ThBrk *brk, const thwchar_t *s, int pos[], size_t pos_sz)
+th_brk_wc_find_breaks (ThBrk *brk, const thwchar_t *s, int pos[], size_t pos_sz)
 {
     thchar_t*   tis_str;
     size_t      alloc_size;
@@ -88,7 +88,7 @@ th_brk_find_breaks_wc (ThBrk *brk, const thwchar_t *s, int pos[], size_t pos_sz)
  * (Available since version 0.1.25, libthai.so.0.3.0)
  */
 int
-th_brk_insert_breaks_wc (ThBrk *brk, const thwchar_t *in,
+th_brk_wc_insert_breaks (ThBrk *brk, const thwchar_t *in,
                          thwchar_t *out, size_t out_sz,
                          const thwchar_t* delim)
 {
@@ -104,7 +104,7 @@ th_brk_insert_breaks_wc (ThBrk *brk, const thwchar_t *in,
     if (!brk_pos)
         return 0;
 
-    n_brk_pos = th_brk_find_breaks_wc (brk, in, brk_pos, n_brk_pos);
+    n_brk_pos = th_brk_wc_find_breaks (brk, in, brk_pos, n_brk_pos);
 
     delim_len = wcslen (delim);
     for (i = j = 0, p_out = out; out_sz > 1 && i < n_brk_pos; i++) {
@@ -143,12 +143,12 @@ th_brk_insert_breaks_wc (ThBrk *brk, const thwchar_t *in,
  * Uses the shared word breaker.
  *
  * (This function is deprecated since version 0.1.25, in favor of
- * th_brk_find_breaks_wc(), which is more thread-safe.)
+ * th_brk_wc_find_breaks(), which is more thread-safe.)
  */
 int
 th_wbrk (const thwchar_t *s, int pos[], size_t pos_sz)
 {
-    return th_brk_find_breaks_wc ((ThBrk *) NULL, s, pos, pos_sz);
+    return th_brk_wc_find_breaks ((ThBrk *) NULL, s, pos, pos_sz);
 }
 
 /**
@@ -166,13 +166,13 @@ th_wbrk (const thwchar_t *s, int pos[], size_t pos_sz)
  * Uses the shared word breaker.
  *
  * (This function is deprecated since version 0.1.25, in favor of
- * th_brk_insert_breaks_wc(), which is more thread-safe.)
+ * th_brk_wc_insert_breaks(), which is more thread-safe.)
  */
 int
 th_wbrk_line (const thwchar_t *in, thwchar_t *out, size_t out_sz,
               const thwchar_t* delim )
 {
-    return th_brk_insert_breaks_wc ((ThBrk *) NULL, in, out, out_sz, delim);
+    return th_brk_wc_insert_breaks ((ThBrk *) NULL, in, out, out_sz, delim);
 }
 
 /*

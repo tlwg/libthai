@@ -1,3 +1,19 @@
+2016-06-26  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Use 'wc' prefix instead of suffix for wide-char word break APIs.
+
+	To be consistent with other modules, wide-char APIs should be
+	prefixed, not suffixed with 'wc'.
+
+	* include/thai/thwbrk.h:
+	* src/libthai.c:
+	* src/libthai.def:
+	* src/libthai.map:
+	* src/thwbrk/thwbrk.c:
+	* tests/test_thwbrk.c:
+	  - Rename th_brk_find_breaks_wc() -> th_brk_wc_find_breaks().
+	  - Rename th_brk_insert_breaks_wc() -> th_brk_wc_insert_breaks().
+
 2016-06-25  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Rename the new APIs to be more meaningful.
