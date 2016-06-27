@@ -1,3 +1,15 @@
+2016-06-28  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Update word break dictionary.
+
+	* data/tdict-common.txt:
+	* data/tdict-district.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt:
+	* data/tdict-spell.txt:
+	- Add words.
+
 2016-06-27  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Document about multi-thread use.
