@@ -1,3 +1,11 @@
+2016-06-27  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Document about multi-thread use.
+
+	* src/thbrk/thbrk.c (th_brk_new):
+	  - Add documentation about deleting after use, and about
+	    creating/destroying word breaker instance in critical sections.
+
 2016-06-26  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Use 'wc' prefix instead of suffix for wide-char word break APIs.

@@ -52,6 +52,14 @@
  * installation directory. Returns NULL if the dictionary file is not
  * found or cannot be loaded.
  *
+ * The returned ThBrk object should be destroyed after use using
+ * th_brk_delete().
+ *
+ * In multi-thread environments, th_brk_new() and th_brk_delete()
+ * should be used to create and destroy a word breaker instance inside
+ * critical sections (i.e. with mutex). And the word breaker methods
+ * can then be safely called in parallel during its lifetime.
+ *
  * (Available since version 0.1.25, libthai.so.0.3.0)
  */
 ThBrk *
