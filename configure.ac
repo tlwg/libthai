@@ -2,8 +2,11 @@
 
 AC_PREREQ(2.50)
 
-AC_INIT(libthai, 0.1.25, thai-linux-foss-devel@googlegroups.com)
+AC_INIT(libthai,
+        m4_esyscmd([build-aux/git-version-gen]),
+        thai-linux-foss-devel@googlegroups.com)
 AC_CONFIG_SRCDIR([include/thai/thailib.h])
+AC_CONFIG_AUX_DIR(build-aux)
 AC_CONFIG_MACRO_DIR([m4])
 
 AM_INIT_AUTOMAKE(dist-xz no-dist-gzip)
