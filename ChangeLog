@@ -1,3 +1,12 @@
+2016-07-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Match git tag with version pattern.
+
+	* build-aux/git-version-gen:
+	  - Apply --match pattern to git-describe to prevent confusion
+	    with other tags.
+	  - Drop unused LF var.
+
 2016-07-07  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Use versioning based on Git snapshot.
