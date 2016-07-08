@@ -1,5 +1,15 @@
 2016-07-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Move compounds out of tdict-std dictionary.
+
+	* data/tdict-std.txt:
+	  - Remove long compound 'ตะลึงพรึงเพริด'.
+	  - Keep only 'สะพรึง' instead of 'สะพรึงกลัว'.
+	* data/tdict-std.txt, data/tdict-std-compound.txt:
+	  - Move compounds 'ตะลุ่มนก', 'ตากวาง', 'ตานนกกด' to tdict-std-compound.
+
+2016-07-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Match git tag with version pattern.
 
 	* build-aux/git-version-gen:
