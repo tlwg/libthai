@@ -1,3 +1,16 @@
+2016-12-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Update word break dictionary.
+
+	* data/tdict-city.txt:
+	* data/tdict-common.txt:
+	* data/tdict-geo.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt:
+	* data/tdict-spell.txt:
+	  - Add words.
+
 2016-07-09  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Move some uncommon compound names out of tdict-std dictionary.
