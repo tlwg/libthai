@@ -1,5 +1,10 @@
 2016-12-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	* NEWS:
+	=== Version 0.1.26 ===
+
+2016-12-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Include git-version-gen in tarball
 
 	* Makefile.am:
