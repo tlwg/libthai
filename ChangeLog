@@ -1,5 +1,12 @@
 2016-12-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Move word.
+
+	* data/tdict-common.txt, data/tdict-ict.txt:
+	  - Move 'แอดมิน' from tdict-common to tdict-ict.
+
+2016-12-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update word break dictionary.
 
 	* data/tdict-city.txt:
