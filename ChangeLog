@@ -1,5 +1,12 @@
 2016-12-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Include git-version-gen in tarball
+
+	* Makefile.am:
+	  - Add build-aux/git-version-gen to EXTRA_DIST.
+
+2016-12-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Move word.
 
 	* data/tdict-common.txt, data/tdict-ict.txt:
