@@ -1,5 +1,15 @@
 2017-06-29  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Remove duplicated dict entry.
+
+	* data/tdict-common.txt:
+	  - Remove 'ดัมพ์' which is already in tdict-std.
+	* data/tdict-common.txt:
+	* data/tdict-spell.txt:
+	  - Move 'ดั๊มพ์' from tdict-common to tdict-spell.
+
+2017-06-29  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update word break dictionary.
 
 	* data/tdict-city.txt:
