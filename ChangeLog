@@ -1,3 +1,14 @@
+2017-08-07  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Strip prefix for C source files in doc
+
+	* doc/Doxyfile.in:
+	  - Append "@top_srcdir@/src" and "@top_srcdir@/tests"
+	    to STRIP_FROM_PATH, so that references to source directories
+	    in the generated document do not capture full build path.
+
+	Defect caught by Debian Reproducible
+
 2017-06-29  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Remove duplicated dict entry.
