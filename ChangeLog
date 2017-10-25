@@ -1,5 +1,10 @@
 2017-10-25  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	* NEWS:
+	=== Version 0.1.27 ===
+
+2017-10-25  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update word break dictionary.
 
 	* data/tdict-city.txt:
