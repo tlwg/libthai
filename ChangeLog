@@ -1,3 +1,20 @@
+2018-01-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Update word break dictionary.
+
+	* data/tdict-common.txt:
+	* data/tdict-country.txt:
+	* data/tdict-district.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-lang-ethnic.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt:
+	* data/tdict-spell.txt:
+	  - Add words.
+
+	* data/tdict-history.txt:
+	  - Replace "ลาลูแบร์" with just "ลูแบร์".
+
 2017-10-25  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	* NEWS:
