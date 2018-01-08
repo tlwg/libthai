@@ -1,5 +1,21 @@
 2018-01-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Move some entries in tdict-common to proper files.
+
+	* data/Makefile.am, +data/tdict-slang.txt:
+	  - Add file for keeping slangs.
+
+	* data/tdict-common.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-lang-ethnic.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt:
+	* data/tdict-slang.txt:
+	* data/tdict-spell.txt:
+	  - Move entries in tdict-common to more proper files.
+
+2018-01-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update word break dictionary.
 
 	* data/tdict-common.txt:

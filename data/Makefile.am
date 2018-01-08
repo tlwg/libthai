@@ -21,6 +21,7 @@ TDICT_SRC = 				\
 	$(srcdir)/tdict-lang-ethnic.txt	\
 	$(srcdir)/tdict-proper.txt	\
 	$(srcdir)/tdict-science.txt	\
+	$(srcdir)/tdict-slang.txt	\
 	$(srcdir)/tdict-spell.txt	\
 	$(srcdir)/tdict-std.txt		\
 	$(srcdir)/tdict-std-compound.txt
