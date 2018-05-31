@@ -1,3 +1,13 @@
+2018-05-31  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Add missing includes in header files.
+
+	* include/thai/thwbrk.h:
+	* include/thai/thwcoll.h:
+	* include/thai/thwinp.h:
+	* include/thai/thwrend.h:
+	  - Add missing #include <thai/thwchar.h>
+
 2018-01-08  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Move some entries in tdict-common to proper files.

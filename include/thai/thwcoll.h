@@ -26,6 +26,7 @@
 #define THAI_THWCOLL_H
 
 #include <thai/thailib.h>
+#include <thai/thwchar.h>
 
 BEGIN_CDECL
 

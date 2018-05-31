@@ -27,6 +27,7 @@
 
 #include <thai/thailib.h>
 #include <thai/thrend.h>
+#include <thai/thwchar.h>
 
 BEGIN_CDECL
 
