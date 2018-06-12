@@ -1,5 +1,19 @@
 2018-06-12  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Update word break dictionary.
+
+	* data/tdict-common.txt:
+	* data/tdict-district.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-spell.txt:
+	  - Add words suggested by @nuttee15 in issue #2
+	    https://github.com/tlwg/libthai/issues/2#issuecomment-396442354
+	    https://github.com/tlwg/libthai/issues/2#issuecomment-396456551
+	    Thank you very much!
+
+2018-06-12  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Add 2 words from new RI dictionary.
 
 	* data/tdict-std.txt:
