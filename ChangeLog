@@ -1,5 +1,12 @@
 2018-06-12  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Add 2 words from new RI dictionary.
+
+	* data/tdict-std.txt:
+	  - Add 'กายินทรีย์' and 'กาเยนทรีย์' from new RI dict.
+
+2018-06-12  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update word break dictionary.
 
 	* data/tdict-city.txt:
