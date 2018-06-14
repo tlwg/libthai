@@ -48,7 +48,7 @@ Trie *
 brk_load_default_dict ()
 {
     const char *dict_dir;
-    Trie *      dict_trie = NULL;
+    Trie       *dict_trie = NULL;
 
     /* Try LIBTHAI_DICTDIR env first */
     dict_dir = getenv ("LIBTHAI_DICTDIR");

@@ -1,5 +1,12 @@
 2018-06-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Adjust pointer declaration style
+
+	* src/thbrk/brk-common.c (brk_load_default_dict):
+	  - Adjust pointer declaration style for 'dict_trie'
+
+2018-06-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Avoid non-ANSI C snprintf()
 
 	* src/thbrk/brk-common.c (+full_path, brk_load_default_dict):
