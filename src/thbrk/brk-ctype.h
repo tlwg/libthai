@@ -50,7 +50,7 @@ typedef enum {
 typedef enum {
     BRK_OP_PROHIBITED,  /* no break, even with space in between */
     BRK_OP_ALLOWED,     /* direct break, break immediately */
-    BRK_OP_INDIRECT,    /* indirect break, break if with space in between */
+    BRK_OP_INDIRECT     /* indirect break, break if with space in between */
 } brk_op_t;
 
 brk_class_t
