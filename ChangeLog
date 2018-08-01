@@ -1,5 +1,12 @@
 2018-08-01  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Update README.
+
+	* README:
+	  - Use HTTPS in project URL.
+
+2018-08-01  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update library versioning.
 
 	* configure.ac:
