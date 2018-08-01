@@ -1,5 +1,12 @@
 2018-08-01  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Update library versioning.
+
+	* configure.ac:
+	  - Bump library revision to reflect code change.
+
+2018-08-01  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update word break dictionary.
 
 	* data/tdict-city.txt:
