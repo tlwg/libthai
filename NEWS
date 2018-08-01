@@ -2,6 +2,11 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.28 (1 Aug 2018):
+* Fix missing includes in wchar-related headers.
+* More C90 (ANSI C) compliance.
+* Updated word break dictionary.
+
 LibThai 0.1.27 (25 Oct 2017):
 * Fix another reproducibility issue in the generated documentation,
   caught by Debian Reproducible.
