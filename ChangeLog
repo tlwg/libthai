@@ -1,3 +1,11 @@
+2018-12-17  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Split compound in dictionary.
+
+	* data/tdict-std.txt:
+	  - Split "ชิงช้าชาลี" into a new entry "ชาลี", as is the case in recent version
+	    of Royal Institute dictionary.
+
 2018-08-01  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	* NEWS:
