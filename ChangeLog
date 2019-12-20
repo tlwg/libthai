@@ -1,3 +1,10 @@
+2019-12-20  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Use GitHub issue tracker as bug report address.
+
+	* configure.ac:
+	  - Replace bug report e-mail address with GitHub issue tracker URL.
+
 2018-12-17  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Split compound in dictionary.
