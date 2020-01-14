@@ -1,3 +1,28 @@
+2020-01-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Update word break dictionary.
+
+	* data/tdict-city.txt:
+	* data/tdict-common.txt:
+	* data/tdict-district.txt:
+	* data/tdict-geo.txt:
+	* data/tdict-history.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-lang-ethnic.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt:
+	* data/tdict-slang.txt:
+	* data/tdict-spell.txt:
+	  - Add words.
+
+	* data/tdict-proper.txt, data/tdict-city.txt:
+	  - Move "ลิเวอร์พูล" from proper to city.
+	* data/tdict-proper.txt, data/tdict-history.txt:
+	  - Move "เมจิ" from proper to history.
+
+	* data/tdict-common.txt:
+	  - Correct some sorting order.
+
 2019-12-20  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Use GitHub issue tracker as bug report address.
