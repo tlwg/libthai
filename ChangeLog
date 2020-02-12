@@ -293,6 +293,16 @@
 	* configure.ac:
 	  - Remove duplicate AC_CONFIG_MACRO_DIR
 2020-02-14  Chun-wei Fan  <fanc999@yahoo.com.tw>
+
+	Add a set of NMake Makefiles
+	* configure.ac:
+	* Makefile.am:
+	* win32/*:
+	  - Add a set of NMake Makefiles for Visual Studio 2008 and later,
+	    for building libthai as a DLL as well as the pkg-config file.
+	    Buliding the dictionary file and tests are also supported.
+
+2020-02-14  Chun-wei Fan  <fanc999@yahoo.com.tw>
 	Make libthai relocatable on native Windows
 
 	* src/thbrk/brk-common.c:

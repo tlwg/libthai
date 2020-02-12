@@ -1,0 +1,45 @@
+# NMake Makefile for building libthai on Windows
+
+# The items below this line should not be changed, unless one is maintaining
+# the NMake Makefiles.  Customizations can be done in the following NMake Makefile
+# portions (please see comments in the these files to see what can be customized):
+#
+# detectenv-msvc.mak
+# config-msvc.mak
+
+!include detectenv-msvc.mak
+
+# Include the Makefile portion that enables features based on user input
+!include config-msvc.mak
+
+!if "$(VALID_CFGSET)" == "TRUE"
+
+
+all: $(LIBTHAI_LIBS) $(LIBTHAI_DATA) all-build-info
+
+# Include the Makefile portion to convert the source and header lists
+# into the lists we need for compilation and introspection
+!include create-lists-msvc.mak
+
+tests: all $(libthai_tests_EXES)
+	@for %x in (ctype cell inp rend str wchar) do vs$(PDBVER)\$(CFG)\$(PLAT)\test_th%x.exe
+	vs$(PDBVER)\$(CFG)\$(PLAT)\thsort.exe ..\tests\sorttest.txt vs$(PDBVER)\$(CFG)\$(PLAT)\libthai-tests\out.txt
+	@fc ..\tests\sorted.txt vs$(PDBVER)\$(CFG)\$(PLAT)\libthai-tests\out.txt
+	@del vs$(PDBVER)\$(CFG)\$(PLAT)\libthai-tests\out.txt
+	@if "$(LIB_ONLY)" == "" @(for %x in (brk wbrk) do (set LIBTHAI_DICTDIR=$(MAKEDIR)\vs$(PDBVER)\$(CFG)\$(PLAT)\) & (vs$(PDBVER)\$(CFG)\$(PLAT)\test_th%x.exe))
+
+# Include the build rules for sources, DLLs and executables
+!include build-rules-msvc.mak
+
+# Include the rules for build directory creation and code generation
+!include generate-msvc.mak
+
+!include install.mak
+
+!else # "$(VALID_CFGSET)" == "TRUE"
+all: help
+	@echo You need to specify a valid configuration, via
+	@echo CFG=release or CFG=debug
+!endif # "$(VALID_CFGSET)" == "TRUE"
+
+!include info-msvc.mak
