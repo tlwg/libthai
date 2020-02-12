@@ -292,6 +292,15 @@
 
 	* configure.ac:
 	  - Remove duplicate AC_CONFIG_MACRO_DIR
+2020-02-14  Chun-wei Fan  <fanc999@yahoo.com.tw>
+
+	Don't use __attribute__((destructor)) on MSVC builds
+
+	* src/libthai.c:
+	* src/thbrk/brk-common.c:
+	  - Instead define a DLLMain that does the same thing when libthai
+	    is built as a DLL, on DLL_PROCESS_DETACH.  Ensure that tests
+	    builds as well since src/thbrk/brk-common.c is also used.
 
 2020-01-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 

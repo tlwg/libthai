@@ -33,6 +33,47 @@
 #include "thbrk-utils.h"
 #include "brk-common.h"
 
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN 1
+#include <windows.h>
+
+#if !defined (__GNUC__) && !defined (__clang__)
+#ifdef MSVC_BUILD_LIBTHAI_TESTS
+/* Externally refer to brk_free_shared_brk() when building the tests for
+ * Visual Studio so that we do not need to depend on $(srcroot)\src\libthai.c
+ * to build the tests
+ */
+extern void brk_free_shared_brk ();
+#define _libthai_on_unload brk_free_shared_brk
+
+#else
+extern void _libthai_on_unload ();
+#endif /* MSVC_BUILD_LIBTHAI_TESTS */
+#endif /* !__GNUC__ && !__clang__ */
+
+BOOL WINAPI DllMain(HINSTANCE hinstDLL,
+                    DWORD     fdwReason,
+                    LPVOID    lpvReserved);
+
+BOOL WINAPI DllMain(HINSTANCE hinstDLL,
+                    DWORD     fdwReason,
+                    LPVOID    lpvReserved)
+{
+
+#if !defined (__GNUC__) && !defined (__clang__)
+    /* fallback for lack of GCC's __attribute__((destructor)) */
+    switch (fdwReason)
+        {
+            case DLL_PROCESS_DETACH:
+                _libthai_on_unload ();
+                break;
+        }
+#endif
+
+    return TRUE;
+}
+#endif /* _WIN32 */
+
 #define DICT_NAME   "thbrk"
 
 static char *
