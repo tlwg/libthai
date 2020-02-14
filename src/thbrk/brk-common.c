@@ -51,6 +51,9 @@ extern void _libthai_on_unload ();
 #endif /* MSVC_BUILD_LIBTHAI_TESTS */
 #endif /* !__GNUC__ && !__clang__ */
 
+/* This way, we can use the current directory where the .exe is if no DLL is built, such as in tests */
+static HMODULE libthai_dll = NULL;
+
 BOOL WINAPI DllMain(HINSTANCE hinstDLL,
                     DWORD     fdwReason,
                     LPVOID    lpvReserved);
@@ -59,19 +62,77 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,
                     DWORD     fdwReason,
                     LPVOID    lpvReserved)
 {
-
-#if !defined (__GNUC__) && !defined (__clang__)
-    /* fallback for lack of GCC's __attribute__((destructor)) */
     switch (fdwReason)
         {
+            case DLL_PROCESS_ATTACH:
+                libthai_dll = hinstDLL;
+                break;
+
+#if !defined (__GNUC__) && !defined (__clang__)
+            /* fallback for lack of GCC's __attribute__((destructor)) */
             case DLL_PROCESS_DETACH:
                 _libthai_on_unload ();
                 break;
-        }
 #endif
+        }
 
     return TRUE;
 }
+
+/*
+ * modelled around GLib's g_win32_get_package_installation_directory_of_module()
+ * without Cygwin support
+ */
+#ifndef __CYGWIN__
+char *
+libthai_get_installdir (HMODULE hmodule)
+{
+    char *retval;
+	char *filename;
+    char *p;
+    wchar_t wc_fn[MAX_PATH];
+    size_t length;
+    size_t converted = 0;
+
+    /* NOTE: it relies that GetModuleFileNameW returns only canonical paths */
+    if (!GetModuleFileNameW (hmodule, wc_fn, MAX_PATH))
+      return NULL;
+
+    length = wcslen(wc_fn);
+    filename = (char *)malloc (sizeof(char) * (length * 2 + 1));
+    wcstombs_s(&converted, filename, length * 2, wc_fn, _TRUNCATE);
+
+    if ((p = strrchr (filename, '\\')) != NULL)
+        *p = '\0';
+
+    retval = (char *)malloc (sizeof(char) * (length * 2 + 1));
+	memcpy (retval, filename, strlen(filename));
+
+    do
+        {
+            p = strrchr (retval, '\\');
+            if (p == NULL)
+                break;
+
+            *p = '\0';
+
+            if (_stricmp (p + 1, "bin") == 0 ||
+                _stricmp (p + 1, "lib") == 0)
+                break;
+        }
+    while (p != NULL);
+
+    if (p == NULL)
+        {
+          free (retval);
+          retval = filename;
+        }
+    else
+        free (filename);
+
+    return retval;
+}
+#endif /* !__CYGWIN__ */
 #endif /* _WIN32 */
 
 #define DICT_NAME   "thbrk"
@@ -99,9 +160,20 @@ brk_load_default_dict ()
         free (path);
     }
 
-    /* Then, fall back to default DICT_DIR macro */
+    /* Then, fall back to default DICT_DIR macro or relative $(datadir)\share\libthai for native Windows DLL */
     if (!dict_trie) {
+#if defined (_WIN32) && !defined (__CYGWIN__)
+        char *basedir = libthai_get_installdir (libthai_dll);
+        const char *sharedir = "share\\libthai\\" DICT_NAME ".tri";
+        size_t total_len = strlen (basedir) + strlen (sharedir) + 1; /* '+ 1' for the '\\' that we are using below */
+        char *filepath = (char *) malloc (sizeof (char) * (total_len + 1));
+        sprintf (filepath, "%s\\%s", basedir, sharedir);
+        dict_trie = trie_new_from_file (filepath);
+        free (filepath);
+        free (basedir);
+#else
         dict_trie = trie_new_from_file (DICT_DIR "/" DICT_NAME ".tri");
+#endif
     }
 
     return dict_trie;

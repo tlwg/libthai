@@ -293,6 +293,13 @@
 	* configure.ac:
 	  - Remove duplicate AC_CONFIG_MACRO_DIR
 2020-02-14  Chun-wei Fan  <fanc999@yahoo.com.tw>
+	Make libthai relocatable on native Windows
+
+	* src/thbrk/brk-common.c:
+	  - Deduce location of DLL or statically-linked EXE and construct
+	    path dynamically where thbrk.tri can be loaded.
+
+2020-02-14  Chun-wei Fan  <fanc999@yahoo.com.tw>
 
 	Don't use __attribute__((destructor)) on MSVC builds
 
