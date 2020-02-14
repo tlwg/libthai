@@ -156,6 +156,8 @@ AC_OUTPUT(
   tests/Makefile
   doc/Makefile
   doc/Doxyfile
+  win32/Makefile
+  win32/config-msvc.mak
 )
 
 AC_MSG_RESULT([Type make to build libthai.])
