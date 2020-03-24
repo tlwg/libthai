@@ -319,6 +319,18 @@
 	    is built as a DLL, on DLL_PROCESS_DETACH.  Ensure that tests
 	    builds as well since src/thbrk/brk-common.c is also used.
 
+2020-03-23  Ross Burton <ross.burton@intel.com>
+
+	configure.ac: remove duplicate AC_CONFIG_MACRO_DIR
+
+	Autoconf 2.70 will fatally error out if AC_CONFIG_MACRO_DIR is called
+	more than once:
+
+	| configure.ac:25: error: AC_CONFIG_MACRO_DIR can only be used once
+
+	* configure.ac:
+	  - Remove duplicate AC_CONFIG_MACRO_DIR
+
 2020-01-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Update word break dictionary.
