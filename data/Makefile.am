@@ -12,6 +12,7 @@ endif
 TDICT_SRC = 				\
 	$(srcdir)/tdict-common.txt	\
 	$(srcdir)/tdict-collection.txt	\
+	$(srcdir)/tdict-currency.txt	\
 	$(srcdir)/tdict-district.txt	\
 	$(srcdir)/tdict-city.txt	\
 	$(srcdir)/tdict-country.txt	\

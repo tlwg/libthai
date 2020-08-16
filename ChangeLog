@@ -1,3 +1,22 @@
+2020-08-16  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Update word break dictionary.
+
+	* data/Makefile.am, +data/tdict-currency.txt:
+	  - Add new category.
+
+	* data/tdict-city.txt:
+	* data/tdict-common.txt:
+	* data/tdict-district.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt:
+	* data/tdict-slang.txt:
+	* data/tdict-spell.txt:
+	  - Add words.
+
+	* data/tdict-science.txt:
+	  - Fix typo "อัลลอยด์" -> "อัลลอย".
+
 2020-03-23  Ross Burton <ross.burton@intel.com>
 
 	configure.ac: remove duplicate AC_CONFIG_MACRO_DIR
