@@ -281,7 +281,7 @@ th_brk_find_breaks (ThBrk *brk, const thchar_t *s, int pos[], size_t pos_sz)
         cur_pos += n_brk;
 
         /* remove last break if at string end */
-        if (pos[cur_pos - 1] == p - s)
+        if (LIKELY (cur_pos > 0) && pos[cur_pos - 1] == p - s)
             --cur_pos;
     }
 

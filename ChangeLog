@@ -1,3 +1,15 @@
+2021-01-28  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Another protection against invalid array access.
+
+	In addition to commit 8e7ab6967f862a409352f7e8985fd4b445d37f4d.
+
+	* src/thbrk/thbrk.c (th_brk_find_breaks):
+	  - Protect against accessing pos[-1] which may be caused by
+	    a failure in brk_maximal_do().
+
+	Thanks Ratchanan Srirattanamet for the report via personal mail.
+
 2020-08-16  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Update word break dictionary.
