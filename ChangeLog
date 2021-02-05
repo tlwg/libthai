@@ -1,3 +1,15 @@
+2021-02-05  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Provide our own version of INSTALL instruction.
+
+	* INSTALL:
+	  - Explain simple installation steps and build requirements.
+	* .gitignore:
+	  - Remove INSTALL ignoring.
+
+	This is to address a frequently found issue when
+	'autoconf-archive' is missing, like in issue #9.
+
 2021-01-28  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Another protection against invalid array access.
