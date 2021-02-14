@@ -8,9 +8,6 @@
 #include <string.h>
 #include <thai/thbrk.h>
 
-/* run with "-i" argument to get the interactive version
-   otherwise it will run the self test and exit */
-
 int main (int argc, char* argv[])
 {
   thchar_t str[MAXLINELENGTH];
@@ -18,66 +15,39 @@ int main (int argc, char* argv[])
   int pos[MAXLINELENGTH];
   int outputLength;
   int numCut, i;
-  int interactive = 0;
   ThBrk *brk;
+  int success = 1;
   
-  if (argc >= 2) {
-    if (0 == strcmp (argv[1], "-i"))
-      interactive = 1;
-  }
-
   brk = th_brk_new (NULL);
   if (!brk) {
     printf ("Unable to create word breaker!\n");
     exit (-1);
   }
 
-  if (interactive) {
-    while (!feof (stdin)) {
-      printf ("Please enter thai words/sentences: ");
-      if (!fgets ((char *)str, MAXLINELENGTH-1, stdin)) {
-        numCut = th_brk_find_breaks (brk, str, pos, MAXLINELENGTH);
-        printf ("Total %d cut points.", numCut);
-        if (numCut > 0) { 
-          printf ("Cut points list: %d", pos[0]);
-          for (i = 1; i < numCut; i++) {
-            printf(", %d", pos[i]);
-          }
-        }
-        printf("\n");
-        outputLength = th_brk_insert_breaks (brk, str, out, sizeof out,
-                                             "<WBR>");
-        printf ("Output string length is %d\n", outputLength-1); /* the penultimate is \n */
-        printf ("Output string is %s", out);
-        printf("***********************************************************************\n");
-      }
-    }
-  } else {
-    strcpy ((char *)str, "สวัสดีครับ กอ.รมน. นี่เป็นการทดสอบตัวเอง");
-    printf ("Testing with string: %s\n", str);
-    numCut = th_brk_find_breaks (brk, str, pos, MAXLINELENGTH);
-    printf ("Total %d cut points.", numCut);
-    if (numCut != 7) {
-      printf("Error! should be 7.. test th_brk_find_breaks() failed...\n");
-      exit (-1);
-    }
-	
-    printf("Cut points list: %d", pos[0]);
-    for (i = 1; i < numCut; i++) {
-      printf(", %d", pos[i]);
-    }
-    printf("\n");
-    outputLength = th_brk_insert_breaks (brk, str, out, sizeof out, "<WBR>");
-    printf ("Output string is %s\n", out);
-    printf ("Output string length is %d\n", outputLength);
-    if (outputLength != 75) {
-      printf ("Error! should be 75.. test th_brk_insert_breaks() failed...\n");
-      exit (-1);
-    }
-    printf ("*** End of thbrk self test ******\n");
+  strcpy ((char *)str, "สวัสดีครับ กอ.รมน. นี่เป็นการทดสอบตัวเอง");
+  printf ("Testing with string: %s\n", str);
+  numCut = th_brk_find_breaks (brk, str, pos, MAXLINELENGTH);
+  printf ("Total %d cut points.\n", numCut);
+  if (numCut != 7) {
+    printf("Error! should be 7.. test th_brk_find_breaks() failed...\n");
+    success = 0;
+  }
+
+  printf("Cut points list: %d", pos[0]);
+  for (i = 1; i < numCut; i++) {
+    printf(", %d", pos[i]);
+  }
+  printf("\n");
+
+  outputLength = th_brk_insert_breaks (brk, str, out, sizeof out, "<WBR>");
+  printf ("Output string is %s\n", out);
+  printf ("Output string length is %d\n", outputLength);
+  if (outputLength != 75) {
+    printf ("Error! should be 75.. test th_brk_insert_breaks() failed...\n");
+    success = 0;
   }
 
   th_brk_delete (brk);
 
-  return 0;
+  return success ? 0 : -1;
 }

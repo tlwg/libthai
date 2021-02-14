@@ -1,3 +1,11 @@
+2021-02-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Simplify thbrk test.
+
+	* tests/test_thbrk.c:
+	  - Remove interactive mode.
+	  - Continue testing, rather than exit, on failures.
+
 2021-02-05  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Provide our own version of INSTALL instruction.
