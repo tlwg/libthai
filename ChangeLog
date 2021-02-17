@@ -1,5 +1,13 @@
 2021-02-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Rewrite thbrk test for extensibility.
+
+	* tests/test_thbrk.c:
+	  - Rewrite to read and test from sample list.
+	  - Encode samples in UTF-8 and convert them as required.
+
+2021-02-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Simplify thbrk test.
 
 	* tests/test_thbrk.c:

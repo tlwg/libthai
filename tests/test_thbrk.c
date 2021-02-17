@@ -1,53 +1,139 @@
 /* Test driver for thbrk 
  */
 
-#define MAXLINELENGTH 1000
+#define MAXLINELENGTH 100
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <thai/thbrk.h>
+#include <iconv.h>
 
-int main (int argc, char* argv[])
+typedef struct _Sample Sample;
+struct _Sample {
+    const char *str;
+    int         n_brk;
+    int         brk_pos[MAXLINELENGTH];
+    const char *ins_str;
+};
+
+const Sample TestSamples[] = {
+    { u8"สวัสดีครับ กอ.รมน. นี่เป็นการทดสอบตัวเอง",
+      7, {6, 11, 19, 22, 26, 29, 34},
+      u8"สวัสดี|ครับ |กอ.รมน. |นี่|เป็น|การ|ทดสอบ|ตัวเอง"},
+    { 0, 0, {}, 0 }
+};
+
+iconv_t utf8_to_tis_iconv;
+iconv_t tis_to_utf8_iconv;
+
+void init_iconv (void)
 {
-  thchar_t str[MAXLINELENGTH];
-  thchar_t out[MAXLINELENGTH*6+1];
-  int pos[MAXLINELENGTH];
-  int outputLength;
-  int numCut, i;
-  ThBrk *brk;
-  int success = 1;
-  
-  brk = th_brk_new (NULL);
-  if (!brk) {
-    printf ("Unable to create word breaker!\n");
-    exit (-1);
-  }
+    utf8_to_tis_iconv = iconv_open ("TIS-620", "UTF-8");
+    tis_to_utf8_iconv = iconv_open ("UTF-8", "TIS-620");
+}
 
-  strcpy ((char *)str, "���ʴդ�Ѻ ��.���. ����繡�÷��ͺ����ͧ");
-  printf ("Testing with string: %s\n", str);
-  numCut = th_brk_find_breaks (brk, str, pos, MAXLINELENGTH);
-  printf ("Total %d cut points.\n", numCut);
-  if (numCut != 7) {
-    printf("Error! should be 7.. test th_brk_find_breaks() failed...\n");
-    success = 0;
-  }
+void close_iconv (void)
+{
+    iconv_close (utf8_to_tis_iconv);
+    iconv_close (tis_to_utf8_iconv);
+}
 
-  printf("Cut points list: %d", pos[0]);
-  for (i = 1; i < numCut; i++) {
-    printf(", %d", pos[i]);
-  }
-  printf("\n");
+size_t utf8_to_tis (const char *utf8_str, thchar_t *tis, size_t tis_sz)
+{
+    char  *in = (char *)utf8_str;
+    size_t in_left = strlen (in) + 1;
+    char  *out = (char *)tis;
+    size_t out_left = tis_sz;
+    return iconv (utf8_to_tis_iconv, &in, &in_left, &out, &out_left);
+}
 
-  outputLength = th_brk_insert_breaks (brk, str, out, sizeof out, "<WBR>");
-  printf ("Output string is %s\n", out);
-  printf ("Output string length is %d\n", outputLength);
-  if (outputLength != 75) {
-    printf ("Error! should be 75.. test th_brk_insert_breaks() failed...\n");
-    success = 0;
-  }
+size_t tis_to_utf8 (const thchar_t *tis_str, char *utf8, size_t utf8_sz)
+{
+    char  *in = (char *)tis_str;
+    size_t in_left = strlen (in) + 1;
+    char  *out = utf8;
+    size_t out_left = utf8_sz;
+    return iconv (tis_to_utf8_iconv, &in, &in_left, &out, &out_left);
+}
 
-  th_brk_delete (brk);
+void show_breaks (int brk_pos[], int n_brk)
+{
+    int i;
 
-  return success ? 0 : -1;
+    printf ("%d breaks: {", n_brk);
+    for (i = 0; i < n_brk; ++i) {
+        if (i > 0) {
+            printf (", ");
+        }
+        printf ("%d", brk_pos[i]);
+    }
+    printf ("}\n");
+}
+
+int test_samples (ThBrk *brk, const Sample samples[])
+{
+    int success = 1;
+    int i;
+
+    for (i = 0; samples[i].str; ++i) {
+        thchar_t tis_str[MAXLINELENGTH + 1];
+        int brk_pos[MAXLINELENGTH];
+        int n_brk, j;
+        thchar_t ins_str[MAXLINELENGTH*2 + 1];
+        char utf8_str[MAXLINELENGTH*3 + 1];
+
+        printf ("Testing: %s\n", samples[i].str);
+
+        utf8_to_tis (samples[i].str, tis_str, sizeof tis_str);
+
+        n_brk = th_brk_find_breaks (brk, tis_str, brk_pos, MAXLINELENGTH);
+
+        show_breaks (brk_pos, n_brk);
+
+        if (n_brk != samples[i].n_brk) {
+            printf ("Failed at case #%d: n_brk = %d, expected %d\n",
+                    i, n_brk, samples[i].n_brk);
+            success = 0;
+        }
+        for (j = 0; j < n_brk; ++j) {
+            if (brk_pos[j] != samples[i].brk_pos[j]) {
+                printf ("Failed at case #%d, brk_pos[%d] = %d, expected %d\n",
+                        i, j, brk_pos[j], samples[i].brk_pos[j]);
+                success = 0;
+            }
+        }
+
+        th_brk_insert_breaks (brk, tis_str, ins_str, sizeof ins_str, "|");
+        tis_to_utf8 (ins_str, utf8_str, sizeof utf8_str);
+
+        printf ("Segmented: %s\n", utf8_str);
+
+        if (strcmp (utf8_str, samples[i].ins_str) != 0) {
+            printf ("Failed at case #%d: ins_str = \"%s\", expected \"%s\"\n",
+                    i, utf8_str, samples[i].ins_str);
+            success = 0;
+        }
+    }
+
+    return success;
+}
+
+int main (void)
+{
+    int success = 0;
+    ThBrk *brk = th_brk_new (NULL);
+    if (!brk) {
+        printf ("Unable to create word breaker!\n");
+        exit (-1);
+    }
+
+    init_iconv();
+
+    success = test_samples (brk, TestSamples);
+
+    close_iconv();
+    th_brk_delete (brk);
+
+    return success ? 0 : -1;
 }
