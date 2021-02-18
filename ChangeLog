@@ -1,3 +1,22 @@
+2021-02-18  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohitbit 2 break cases before percent
+
+	In UAX#14, although LB18 (break after spaces) makes prohibited breaks
+	between {NU,CL,CP} and PO in LB25 equivalent to indirect breaks,
+	the description of PO Property insists that it must be prohibited
+	"even if one or more space characters intervene", with "(12.00) %"
+	as an example with no break opportunity. [1] So, we take them as
+	prohibited breaks.
+
+	[1] https://www.unicode.org/reports/tr14/#PO
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case as interpreted from UAX#14
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - (NUM, NUM_NBB): _I -> _P
+	  - (NBB, NUM_NBB): _A -> _P
+
 2021-02-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Rewrite thbrk test for extensibility.

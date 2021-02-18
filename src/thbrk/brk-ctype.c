@@ -294,8 +294,8 @@ static brk_op_t _break_table[BRK_CLASS_TOTAL][BRK_CLASS_TOTAL] = {
            /* I   HA                      CE  TE  HEN NBB CUR NB  M   */
 /*THAI*/    { _I, _A, _A, _P, _A, _I, _P, _P, _I, _I, _A, _A, _P, _I, },
 /*ALPHA*/   { _A, _I, _A, _P, _A, _I, _P, _P, _I, _I, _A, _A, _P, _I, },
-/*NUM*/     { _A, _A, _I, _P, _A, _I, _P, _P, _I, _I, _I, _P, _P, _I, },
-/*NBB*/     { _A, _A, _A, _P, _A, _I, _P, _P, _I, _I, _A, _A, _P, _I, },
+/*NUM*/     { _A, _A, _I, _P, _A, _I, _P, _P, _I, _I, _P, _P, _P, _I, },
+/*NBB*/     { _A, _A, _A, _P, _A, _I, _P, _P, _I, _I, _P, _A, _P, _I, },
 /*NBA*/     { _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, },
 /*NB*/      { _I, _I, _I, _P, _I, _I, _P, _P, _I, _I, _I, _I, _P, _I, },
 /*MB*/      { _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, },
