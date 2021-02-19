@@ -303,7 +303,7 @@ static brk_op_t _break_table[BRK_CLASS_TOTAL][BRK_CLASS_TOTAL] = {
 /*QUOTE*/   { _I, _I, _I, _P, _I, _I, _P, _P, _I, _I, _I, _I, _P, _I, },
 /*HYPHEN*/  { _A, _A, _I, _P, _A, _I, _P, _P, _I, _I, _A, _A, _P, _I, },
 /*NUM_NBB*/ { _A, _A, _A, _P, _A, _I, _P, _P, _I, _A, _A, _A, _P, _I, },
-/*NUM_CUR*/ { _A, _A, _P, _P, _A, _I, _P, _P, _I, _P, _A, _A, _P, _I, },
+/*NUM_CUR*/ { _A, _A, _P, _P, _P, _I, _P, _P, _I, _P, _A, _A, _P, _I, },
 /*NUM_NB*/  { _A, _A, _I, _P, _A, _I, _P, _P, _I, _I, _A, _A, _P, _I, },
 /*TERM*/    { _A, _A, _A, _P, _A, _I, _P, _P, _I, _I, _A, _A, _P, _I, },
 };

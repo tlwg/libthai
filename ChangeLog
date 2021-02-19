@@ -1,3 +1,21 @@
+2021-02-19  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit break between currency and left parenthesis
+
+	In UAX#14, although LB18 (break after spaces) makes prohibited breaks
+	between PR and {NU,OP} in LB25 equivalent to indirect breaks,
+	the description of PR Property insists that it must be prohibited
+	"even if a space character intervenes", with "$ (100.00)"
+	as an example with no break opportunity. [1] So, we take them as
+	prohibited breaks.
+
+	[1] https://www.unicode.org/reports/tr14/#PR
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case as interpreted from UAX#14
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - (NUM_CUR, NBA): _A -> _P
+
 2021-02-18  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Prohitbit 2 break cases before percent
