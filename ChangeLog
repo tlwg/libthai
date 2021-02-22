@@ -1,3 +1,22 @@
+2021-02-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit break between right parenthesis and currency
+
+	It's common to write "12๎๎฿" instead of "฿12". So, line break
+	between right parenthesis and currency, such as in "(12)฿",
+	should be prohibited similarly to the left-side form.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test cases
+	* src/thbrk/brk-ctype.h (brk_class_t):
+	  - Add BRK_CLASS_CLOSE to separate ')', ']', '}' from BRK_CLASS_NBB.
+	* src/thbrk/brk-ctype.c (_char_class):
+	  - Change class of ')', ']', '}' from BRK_CLASS_NBB to
+	    BRK_CLASS_CLOSE.
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - Insert row and column for CLOSE, with contents copied from NBB.
+	  - Change (CLOSE, NUM_CUR): _A -> _P
+
 2021-02-19  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Prohibit break between currency and left parenthesis
