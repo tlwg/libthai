@@ -62,7 +62,7 @@ static brk_class_t _char_class[] = {
 /*0x20*/ BRK_CLASS_SPACE,    /* Unicode: SP */  /* SPACE */
 /*0x21*/ BRK_CLASS_NBB,      /* Unicode: EX */  /* EXCLAMATION MARK */
 /*0x22*/ BRK_CLASS_QUOTE,    /* Unicode: QU */  /* QUOTATION MARK */
-/*0x23*/ BRK_CLASS_ALPHA,    /* Unicode: AL */  /* NUMBER SIGN */
+/*0x23*/ BRK_CLASS_QUOTE,    /* Unicode: AL */  /* NUMBER SIGN */
 /*0x24*/ BRK_CLASS_NUM_CUR,  /* Unicode: PR */  /* DOLLAR SIGN */
 /*0x25*/ BRK_CLASS_NUM_NBB,  /* Unicode: PO */  /* PERCENT SIGN */
 /*0x26*/ BRK_CLASS_ALPHA,    /* Unicode: AL */  /* AMPERSAND */

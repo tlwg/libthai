@@ -1,3 +1,18 @@
+2021-03-01  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit some breaks around number sign
+
+	UAX#14 prohibits break within "#ก", which makes sense for
+	hashtags, but its classification as AL would affect cases
+	like "hello|สวัสดี". So, re-classify it as QUOTE instead.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test cases
+	* src/thbrk/brk-ctype.c (_char_class):
+	  - Change class of '#' from BRK_CLASS_ALPHA to BRK_CLASS_QUOTE.
+
+	Partially addresses issue #6.
+
 2021-02-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Prohibit break between right parenthesis and currency
