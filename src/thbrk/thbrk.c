@@ -182,13 +182,13 @@ th_brk_find_breaks (ThBrk *brk, const thchar_t *s, int pos[], size_t pos_sz)
 {
     BrkEnv         *env;
     brk_class_t     prev_class, effective_class;
-    const thchar_t *thai_chunk, *acronym_end, *p;
+    const thchar_t *chunk, *acronym_end, *p;
     int             cur_pos;
 
     if (!*s)
         return 0;
 
-    p = thai_chunk = acronym_end = s;
+    p = chunk = acronym_end = s;
     prev_class = effective_class = brk_class (*p);
     cur_pos = 0;
 
@@ -199,36 +199,36 @@ th_brk_find_breaks (ThBrk *brk, const thchar_t *s, int pos[], size_t pos_sz)
         brk_op_t     op;
 
         new_class = brk_class (*p);
-        op = brk_op (effective_class, new_class);
 
-        if (BRK_CLASS_THAI == prev_class) {
+        if (BRK_CLASS_THAI == prev_class || BRK_CLASS_ALPHA == prev_class) {
             /* handle acronyms */
             if ('.' == *p && p - acronym_end <= MAX_ACRONYM_FRAG_LEN) {
-                /* the fullstop after Thai is part of Thai acronym */
-                new_class = BRK_CLASS_THAI;
+                /* the period after Thai/Alpha is part of the acronym */
+                new_class = prev_class;
                 acronym_end = p + 1;
-            } else if (acronym_end > thai_chunk) {
+            } else if (acronym_end > chunk) {
                 /* an acronym was marked */
-                if (BRK_CLASS_THAI != new_class
+                if (new_class != prev_class
                     || p - acronym_end > MAX_ACRONYM_FRAG_LEN)
                 {
-                    /* end of Thai chunk or entered non-acronym Thai word,
+                    /* end of Thai/Alpha chunk or entered non-acronym word,
                      * jump back to the acronym end */
                     prev_class = effective_class = brk_class ('.');
-                    p = thai_chunk = acronym_end;
+                    p = chunk = acronym_end;
                     new_class = brk_class (*p);
-                    op = brk_op (effective_class, new_class);
                 }
             }
 
             /* break chunk if leaving Thai chunk */
-            if (BRK_CLASS_THAI != new_class && p > thai_chunk) {
+            if (BRK_CLASS_THAI == prev_class && BRK_CLASS_THAI != new_class
+                && p > chunk)
+            {
                 int n_brk, i;
 
-                n_brk = brk_maximal_do (thai_chunk, p - thai_chunk,
+                n_brk = brk_maximal_do (chunk, p - chunk,
                                         pos + cur_pos, pos_sz - cur_pos, env);
                 for (i = 0; i < n_brk; i++)
-                    pos [cur_pos + i] += thai_chunk - s;
+                    pos [cur_pos + i] += chunk - s;
                 cur_pos += n_brk;
 
                 /* remove last break if at string end
@@ -241,11 +241,13 @@ th_brk_find_breaks (ThBrk *brk, const thchar_t *s, int pos[], size_t pos_sz)
                 if (cur_pos >= pos_sz)
                     break;
             }
-        } else {
-            /* set chunk if entering Thai chunk */
-            if (BRK_CLASS_THAI == new_class)
-                thai_chunk = acronym_end = p;
         }
+
+        /* reset chunk on switching */
+        if (new_class != prev_class)
+            chunk = acronym_end = p;
+
+        op = brk_op (effective_class, new_class);
 
         switch (op) {
         case BRK_OP_ALLOWED:
@@ -269,15 +271,15 @@ th_brk_find_breaks (ThBrk *brk, const thchar_t *s, int pos[], size_t pos_sz)
     }
 
     /* break last Thai non-acronym chunk */
-    if (BRK_CLASS_THAI == prev_class && acronym_end <= thai_chunk
+    if (BRK_CLASS_THAI == prev_class && acronym_end <= chunk
         && cur_pos < pos_sz)
     {
         int n_brk, i;
 
-        n_brk = brk_maximal_do (thai_chunk, p - thai_chunk,
+        n_brk = brk_maximal_do (chunk, p - chunk,
                                 pos + cur_pos, pos_sz - cur_pos, env);
         for (i = 0; i < n_brk; i++)
-            pos [cur_pos + i] += thai_chunk - s;
+            pos [cur_pos + i] += chunk - s;
         cur_pos += n_brk;
 
         /* remove last break if at string end */

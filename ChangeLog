@@ -1,3 +1,24 @@
+2021-03-05  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Handle Latin acronyms
+
+	LB29 of UAX#14 prohibits break between IS and AL for acronyms
+	such as "e.g.", but this causes side-effects on other IS
+	punctuations like comma, colon, semicolon as well. This leads
+	to an error in case of ",ก" in Unicode LineBreakTest.txt
+	as tested by Pango, which I think it makes perfect sense
+	to allow break. So, I'm not trying to fix it, but try to
+	extend acronym handling to cover Latin instead.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case
+	* src/thbrk/thbrk.c (th_brk_find_breaks):
+	  - Rename 'thai_chunk' variable to 'chunk'.
+	  - Move brk_op() lookup to after chunk handling.
+	  - Adjust acronym handling to cover BRK_CLASS_ALPHA acronyms.
+	  - Reset chunk pointers every time break class changes,
+	    not just when entering Thai chunk.
+
 2021-03-01  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Prohibit some breaks around number sign
