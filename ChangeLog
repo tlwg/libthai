@@ -1,3 +1,19 @@
+2021-03-09  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit break between Thai/Alpha and number
+
+	LB23 of UAX#14 prohibits break between AL and NU, and between
+	NU and AL. This makes sense for Latin. For Thai, prohibiting
+	break between AL and NU makes sense for codes like "กข43"
+	as a rice strain, but "40บาท" should still be broken.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - (ALPHA, NUM): _A -> _I
+	  - (NUM, ALPHA): _A -> _I
+	  - (THAI, NUM): _A -> _I
+
 2021-03-05  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Handle Latin acronyms
