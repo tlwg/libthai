@@ -1,3 +1,17 @@
+2021-03-15  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit break on the other side of parentesis
+
+	LB30 of UAX#14 prohibits break in "(s)he" and "person(s)".
+	The rule for Thai is more complicated. So, we only cover
+	Latin for now.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - (ALPHA, NBA): _A -> _I
+	  - (CLOSE, ALPHA): _A -> _I
+
 2021-03-09  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Prohibit break between Thai/Alpha and number
