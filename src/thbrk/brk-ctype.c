@@ -293,7 +293,7 @@ static brk_op_t _break_table[BRK_CLASS_TOTAL][BRK_CLASS_TOTAL] = {
            /* THA ALP NUM NBB NBA NB  MB  SPA QUO HYP CLO NUM NUM NUM TER */
            /* I   HA                      CE  TE  HEN SE  NBB CUR NB  M   */
 /*THAI*/    { _I, _A, _I, _P, _A, _I, _P, _P, _I, _I, _P, _A, _A, _P, _I, },
-/*ALPHA*/   { _A, _I, _I, _P, _I, _I, _P, _P, _I, _I, _P, _A, _A, _P, _I, },
+/*ALPHA*/   { _A, _I, _I, _P, _I, _I, _P, _P, _I, _I, _P, _A, _I, _P, _I, },
 /*NUM*/     { _A, _I, _I, _P, _A, _I, _P, _P, _I, _I, _P, _P, _P, _P, _I, },
 /*NBB*/     { _A, _A, _A, _P, _A, _I, _P, _P, _I, _I, _P, _P, _A, _P, _I, },
 /*NBA*/     { _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, },
@@ -304,7 +304,7 @@ static brk_op_t _break_table[BRK_CLASS_TOTAL][BRK_CLASS_TOTAL] = {
 /*HYPHEN*/  { _A, _A, _I, _P, _A, _I, _P, _P, _I, _I, _P, _A, _A, _P, _I, },
 /*CLOSE*/   { _A, _I, _A, _P, _A, _I, _P, _P, _I, _I, _P, _P, _P, _P, _I, },
 /*NUM_NBB*/ { _A, _A, _A, _P, _A, _I, _P, _P, _I, _A, _P, _A, _A, _P, _I, },
-/*NUM_CUR*/ { _A, _A, _P, _P, _P, _I, _P, _P, _I, _P, _P, _A, _A, _P, _I, },
+/*NUM_CUR*/ { _A, _I, _P, _P, _P, _I, _P, _P, _I, _P, _P, _A, _I, _P, _I, },
 /*NUM_NB*/  { _A, _A, _I, _P, _A, _I, _P, _P, _I, _I, _P, _A, _A, _P, _I, },
 /*TERM*/    { _A, _A, _A, _P, _A, _I, _P, _P, _I, _I, _P, _A, _A, _P, _I, },
 };

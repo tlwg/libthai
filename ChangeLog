@@ -1,3 +1,24 @@
+2021-03-19  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit break between Currency and Alpha
+
+	LB24 of UAX#14 prohibits break between PR and AL,
+	and between AL and PR, without example. But some cases
+	can be found from Wikipedia:
+	  - Brazilian real (usually written as R$)
+	  - Nicaraguan córdoba (usually written as C$)
+	  - Other uses: Micro$oft, George Luca$, etc.
+	https://en.wikipedia.org/wiki/Dollar_sign
+
+	Similar usage is not clear for Thai.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case, with "C++" to catch side-effect of PR and PR
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - (ALPHA, NUM_CUR): _A -> _I
+	  - (NUM_CUR, ALPHA): _A -> _I
+	  - (NUM_CUR, NUM_CUR): _A -> _I
+
 2021-03-15  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Prohibit break on the other side of parentesis
