@@ -1,3 +1,18 @@
+2021-03-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit break between Thai/Alpha and Percent
+
+	LB24 of UAX#14 prohibits break between AL and PO,
+	and between PO and AL, without example. But cases like
+	"ten%" can be found in the internet, and similar usage
+	like "สิบ%" sounds sensible in Thai.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - (THAI, NUM_NBB): _A -> _I
+	  - (ALPHA, NUM_NBB): _A -> _I
+
 2021-03-19  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Prohibit break between Currency and Alpha
