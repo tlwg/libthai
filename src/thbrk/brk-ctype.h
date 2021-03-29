@@ -40,6 +40,7 @@ typedef enum {
     BRK_CLASS_SPACE,    /* White Space */
     BRK_CLASS_QUOTE,    /* Ambiguous Quotation */
     BRK_CLASS_HYPHEN,   /* Minus-Hyphen */
+    BRK_CLASS_CLOSE,    /* Close Parenthesis/Bracket/Brace */
     BRK_CLASS_NUM_NBB,  /* No Break Before in Numerical Mode */
     BRK_CLASS_NUM_CUR,  /* Currency, No Break Before/After in Numerical Mode */
     BRK_CLASS_NUM_NB,   /* No Break in Numerical Mode, NBB Otherwise */

@@ -1,3 +1,161 @@
+2021-03-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit break between Thai/Alpha and Percent
+
+	LB24 of UAX#14 prohibits break between AL and PO,
+	and between PO and AL, without example. But cases like
+	"ten%" can be found in the internet, and similar usage
+	like "สิบ%" sounds sensible in Thai.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - (THAI, NUM_NBB): _A -> _I
+	  - (ALPHA, NUM_NBB): _A -> _I
+
+2021-03-19  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit break between Currency and Alpha
+
+	LB24 of UAX#14 prohibits break between PR and AL,
+	and between AL and PR, without example. But some cases
+	can be found from Wikipedia:
+	  - Brazilian real (usually written as R$)
+	  - Nicaraguan córdoba (usually written as C$)
+	  - Other uses: Micro$oft, George Luca$, etc.
+	https://en.wikipedia.org/wiki/Dollar_sign
+
+	Similar usage is not clear for Thai.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case, with "C++" to catch side-effect of PR and PR
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - (ALPHA, NUM_CUR): _A -> _I
+	  - (NUM_CUR, ALPHA): _A -> _I
+	  - (NUM_CUR, NUM_CUR): _A -> _I
+
+2021-03-15  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit break on the other side of parentesis
+
+	LB30 of UAX#14 prohibits break in "(s)he" and "person(s)".
+	The rule for Thai is more complicated. So, we only cover
+	Latin for now.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - (ALPHA, NBA): _A -> _I
+	  - (CLOSE, ALPHA): _A -> _I
+
+2021-03-09  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit break between Thai/Alpha and number
+
+	LB23 of UAX#14 prohibits break between AL and NU, and between
+	NU and AL. This makes sense for Latin. For Thai, prohibiting
+	break between AL and NU makes sense for codes like "กข43"
+	as a rice strain, but "40บาท" should still be broken.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - (ALPHA, NUM): _A -> _I
+	  - (NUM, ALPHA): _A -> _I
+	  - (THAI, NUM): _A -> _I
+
+2021-03-05  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Handle Latin acronyms
+
+	LB29 of UAX#14 prohibits break between IS and AL for acronyms
+	such as "e.g.", but this causes side-effects on other IS
+	punctuations like comma, colon, semicolon as well. This leads
+	to an error in case of ",ก" in Unicode LineBreakTest.txt
+	as tested by Pango, which I think it makes perfect sense
+	to allow break. So, I'm not trying to fix it, but try to
+	extend acronym handling to cover Latin instead.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case
+	* src/thbrk/thbrk.c (th_brk_find_breaks):
+	  - Rename 'thai_chunk' variable to 'chunk'.
+	  - Move brk_op() lookup to after chunk handling.
+	  - Adjust acronym handling to cover BRK_CLASS_ALPHA acronyms.
+	  - Reset chunk pointers every time break class changes,
+	    not just when entering Thai chunk.
+
+2021-03-01  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit some breaks around number sign
+
+	UAX#14 prohibits break within "#ก", which makes sense for
+	hashtags, but its classification as AL would affect cases
+	like "hello|สวัสดี". So, re-classify it as QUOTE instead.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test cases
+	* src/thbrk/brk-ctype.c (_char_class):
+	  - Change class of '#' from BRK_CLASS_ALPHA to BRK_CLASS_QUOTE.
+
+	Partially addresses issue #6.
+
+2021-02-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit break between right parenthesis and currency
+
+	It's common to write "12๎๎฿" instead of "฿12". So, line break
+	between right parenthesis and currency, such as in "(12)฿",
+	should be prohibited similarly to the left-side form.
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test cases
+	* src/thbrk/brk-ctype.h (brk_class_t):
+	  - Add BRK_CLASS_CLOSE to separate ')', ']', '}' from BRK_CLASS_NBB.
+	* src/thbrk/brk-ctype.c (_char_class):
+	  - Change class of ')', ']', '}' from BRK_CLASS_NBB to
+	    BRK_CLASS_CLOSE.
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - Insert row and column for CLOSE, with contents copied from NBB.
+	  - Change (CLOSE, NUM_CUR): _A -> _P
+
+2021-02-19  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohibit break between currency and left parenthesis
+
+	In UAX#14, although LB18 (break after spaces) makes prohibited breaks
+	between PR and {NU,OP} in LB25 equivalent to indirect breaks,
+	the description of PR Property insists that it must be prohibited
+	"even if a space character intervenes", with "$ (100.00)"
+	as an example with no break opportunity. [1] So, we take them as
+	prohibited breaks.
+
+	[1] https://www.unicode.org/reports/tr14/#PR
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case as interpreted from UAX#14
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - (NUM_CUR, NBA): _A -> _P
+
+2021-02-18  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Prohitbit 2 break cases before percent
+
+	In UAX#14, although LB18 (break after spaces) makes prohibited breaks
+	between {NU,CL,CP} and PO in LB25 equivalent to indirect breaks,
+	the description of PO Property insists that it must be prohibited
+	"even if one or more space characters intervene", with "(12.00) %"
+	as an example with no break opportunity. [1] So, we take them as
+	prohibited breaks.
+
+	[1] https://www.unicode.org/reports/tr14/#PO
+
+	* tests/test_thbrk.c (TestSamples):
+	  - Add test case as interpreted from UAX#14
+	* src/thbrk/brk-ctype.c (_break_table):
+	  - (NUM, NUM_NBB): _I -> _P
+	  - (NBB, NUM_NBB): _A -> _P
+
 2021-02-14  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Rewrite thbrk test for extensibility.

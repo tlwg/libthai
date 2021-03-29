@@ -62,13 +62,13 @@ static brk_class_t _char_class[] = {
 /*0x20*/ BRK_CLASS_SPACE,    /* Unicode: SP */  /* SPACE */
 /*0x21*/ BRK_CLASS_NBB,      /* Unicode: EX */  /* EXCLAMATION MARK */
 /*0x22*/ BRK_CLASS_QUOTE,    /* Unicode: QU */  /* QUOTATION MARK */
-/*0x23*/ BRK_CLASS_ALPHA,    /* Unicode: AL */  /* NUMBER SIGN */
+/*0x23*/ BRK_CLASS_QUOTE,    /* Unicode: AL */  /* NUMBER SIGN */
 /*0x24*/ BRK_CLASS_NUM_CUR,  /* Unicode: PR */  /* DOLLAR SIGN */
 /*0x25*/ BRK_CLASS_NUM_NBB,  /* Unicode: PO */  /* PERCENT SIGN */
 /*0x26*/ BRK_CLASS_ALPHA,    /* Unicode: AL */  /* AMPERSAND */
 /*0x27*/ BRK_CLASS_QUOTE,    /* Unicode: QU */  /* APOSTROPHE */
 /*0x28*/ BRK_CLASS_NBA,      /* Unicode: OP */  /* LEFT PARENTHESIS */
-/*0x29*/ BRK_CLASS_NBB,      /* Unicode: CL */  /* RIGHT PARENTHESIS */
+/*0x29*/ BRK_CLASS_CLOSE,    /* Unicode: CL */  /* RIGHT PARENTHESIS */
 /*0x2A*/ BRK_CLASS_ALPHA,    /* Unicode: AL */  /* ASTERISK */
 /*0x2B*/ BRK_CLASS_NUM_CUR,  /* Unicode: PR */  /* PLUS SIGN */
 /*0x2C*/ BRK_CLASS_NUM_NB,   /* Unicode: IS */  /* COMMA */
@@ -120,7 +120,7 @@ static brk_class_t _char_class[] = {
 /*0x5A*/ BRK_CLASS_ALPHA,    /* Unicode: AL */  /* LATIN CAPITAL LETTER Z */
 /*0x5B*/ BRK_CLASS_NBA,      /* Unicode: OP */  /* LEFT SQUARE BRACKET */
 /*0x5C*/ BRK_CLASS_NUM_CUR,  /* Unicode: PR */  /* REVERSE SOLIDUS */
-/*0x5D*/ BRK_CLASS_NBB,      /* Unicode: CL */  /* RIGHT SQUARE BRACKET */
+/*0x5D*/ BRK_CLASS_CLOSE,    /* Unicode: CL */  /* RIGHT SQUARE BRACKET */
 /*0x5E*/ BRK_CLASS_ALPHA,    /* Unicode: AL */  /* CIRCUMFLEX ACCENT */
 /*0x5F*/ BRK_CLASS_ALPHA,    /* Unicode: AL */  /* LOW LINE */
 /*0x60*/ BRK_CLASS_ALPHA,    /* Unicode: AL */  /* GRAVE ACCENT */
@@ -152,7 +152,7 @@ static brk_class_t _char_class[] = {
 /*0x7A*/ BRK_CLASS_ALPHA,    /* Unicode: AL */  /* LATIN SMALL LETTER Z */
 /*0x7B*/ BRK_CLASS_NBA,      /* Unicode: OP */  /* LEFT CURLY BRACKET */
 /*0x7C*/ BRK_CLASS_SPACE,    /* Unicode: BA */  /* VERTICAL LINE */
-/*0x7D*/ BRK_CLASS_NBB,      /* Unicode: CL */  /* RIGHT CURLY BRACKET */
+/*0x7D*/ BRK_CLASS_CLOSE,    /* Unicode: CL */  /* RIGHT CURLY BRACKET */
 /*0x7E*/ BRK_CLASS_ALPHA,    /* Unicode: AL */  /* TILDE */
 /*0x7F*/ BRK_CLASS_NBB,      /* Unicode: CM */  /* <control> */
 /*0x80*/ BRK_CLASS_NBB,      /* Unicode: CM */  /* <control> */
@@ -290,22 +290,23 @@ static brk_class_t _char_class[] = {
 #define _I BRK_OP_INDIRECT
 
 static brk_op_t _break_table[BRK_CLASS_TOTAL][BRK_CLASS_TOTAL] = {
-           /* THA ALP NUM NBB NBA NB  MB  SPA QUO HYP NUM NUM NUM TER */
-           /* I   HA                      CE  TE  HEN NBB CUR NB  M   */
-/*THAI*/    { _I, _A, _A, _P, _A, _I, _P, _P, _I, _I, _A, _A, _P, _I, },
-/*ALPHA*/   { _A, _I, _A, _P, _A, _I, _P, _P, _I, _I, _A, _A, _P, _I, },
-/*NUM*/     { _A, _A, _I, _P, _A, _I, _P, _P, _I, _I, _I, _P, _P, _I, },
-/*NBB*/     { _A, _A, _A, _P, _A, _I, _P, _P, _I, _I, _A, _A, _P, _I, },
-/*NBA*/     { _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, },
-/*NB*/      { _I, _I, _I, _P, _I, _I, _P, _P, _I, _I, _I, _I, _P, _I, },
-/*MB*/      { _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, },
-/*SPACE*/   { _A, _A, _A, _P, _A, _A, _P, _P, _A, _A, _A, _A, _P, _A, },
-/*QUOTE*/   { _I, _I, _I, _P, _I, _I, _P, _P, _I, _I, _I, _I, _P, _I, },
-/*HYPHEN*/  { _A, _A, _I, _P, _A, _I, _P, _P, _I, _I, _A, _A, _P, _I, },
-/*NUM_NBB*/ { _A, _A, _A, _P, _A, _I, _P, _P, _I, _A, _A, _A, _P, _I, },
-/*NUM_CUR*/ { _A, _A, _P, _P, _A, _I, _P, _P, _I, _P, _A, _A, _P, _I, },
-/*NUM_NB*/  { _A, _A, _I, _P, _A, _I, _P, _P, _I, _I, _A, _A, _P, _I, },
-/*TERM*/    { _A, _A, _A, _P, _A, _I, _P, _P, _I, _I, _A, _A, _P, _I, },
+           /* THA ALP NUM NBB NBA NB  MB  SPA QUO HYP CLO NUM NUM NUM TER */
+           /* I   HA                      CE  TE  HEN SE  NBB CUR NB  M   */
+/*THAI*/    { _I, _A, _I, _P, _A, _I, _P, _P, _I, _I, _P, _I, _A, _P, _I, },
+/*ALPHA*/   { _A, _I, _I, _P, _I, _I, _P, _P, _I, _I, _P, _I, _I, _P, _I, },
+/*NUM*/     { _A, _I, _I, _P, _A, _I, _P, _P, _I, _I, _P, _P, _P, _P, _I, },
+/*NBB*/     { _A, _A, _A, _P, _A, _I, _P, _P, _I, _I, _P, _P, _A, _P, _I, },
+/*NBA*/     { _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, _P, },
+/*NB*/      { _I, _I, _I, _P, _I, _I, _P, _P, _I, _I, _P, _I, _I, _P, _I, },
+/*MB*/      { _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, _A, },
+/*SPACE*/   { _A, _A, _A, _P, _A, _A, _P, _P, _A, _A, _P, _A, _A, _P, _A, },
+/*QUOTE*/   { _I, _I, _I, _P, _I, _I, _P, _P, _I, _I, _P, _I, _I, _P, _I, },
+/*HYPHEN*/  { _A, _A, _I, _P, _A, _I, _P, _P, _I, _I, _P, _A, _A, _P, _I, },
+/*CLOSE*/   { _A, _I, _A, _P, _A, _I, _P, _P, _I, _I, _P, _P, _P, _P, _I, },
+/*NUM_NBB*/ { _A, _A, _A, _P, _A, _I, _P, _P, _I, _A, _P, _A, _A, _P, _I, },
+/*NUM_CUR*/ { _A, _I, _P, _P, _P, _I, _P, _P, _I, _P, _P, _A, _I, _P, _I, },
+/*NUM_NB*/  { _A, _A, _I, _P, _A, _I, _P, _P, _I, _I, _P, _A, _A, _P, _I, },
+/*TERM*/    { _A, _A, _A, _P, _A, _I, _P, _P, _I, _I, _P, _A, _A, _P, _I, },
 };
 
 #define _BRK_CHARCLASS(c)  (_char_class[c])
