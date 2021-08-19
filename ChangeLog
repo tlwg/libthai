@@ -2,6 +2,13 @@
 
 	Update word break dictionary.
 
+	* data/tdict-common.txt, data/tdict-spell.txt:
+	  - Move "องคชาติ" from common to spell.
+
+2021-08-19  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Update word break dictionary.
+
 	* data/tdict-common.txt:
 	* data/tdict-district.txt:
 	* data/tdict-geo.txt:
