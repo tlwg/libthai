@@ -1,3 +1,18 @@
+2021-08-19  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Update word break dictionary.
+
+	* data/tdict-common.txt:
+	* data/tdict-district.txt:
+	* data/tdict-geo.txt:
+	* data/tdict-history.txt:
+	* data/tdict-lang-ethnic.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt:
+	* data/tdict-slang.txt:
+	* data/tdict-spell.txt:
+	  - Add words.
+
 2021-03-22  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Prohibit break between Thai/Alpha and Percent
