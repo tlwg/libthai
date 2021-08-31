@@ -1,3 +1,19 @@
+2021-08-31  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Apply 'autoupdate' for autoconf 2.71
+
+	* configure.ac:
+	  - Quote m4 strings in AC_INIT() parameters.
+	  - Replace obsolete AC_PROG_LIBTOOL with LT_INIT. With this,
+	    drop AC_LIBTOOL_WIN32_DLL, as we haven't really declared
+	    dllexport anywhere yet.
+	  - Replace obsolete AC_LIBTOOL_LINKER_OPTION() with
+	    _LT_LINKER_OPTION(). Also quote an m4 string.
+	  - Replace obsolete AC_HELP_STRING() with AS_HELP_STRING().
+	  - Replace parameterized AC_OUTPUT() with AC_CONFIG_FILES()
+	    and parameter-less AC_OUTPUT.
+	  - Update AC_PREREQ() from 2.59 to 2.71.
+
 2021-08-19  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Update word break dictionary.

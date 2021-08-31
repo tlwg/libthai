@@ -1,9 +1,9 @@
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ(2.50)
+AC_PREREQ([2.71])
 
-AC_INIT(libthai,
-        m4_esyscmd([build-aux/git-version-gen]),
+AC_INIT([libthai],
+        [m4_esyscmd(build-aux/git-version-gen)],
         [https://github.com/tlwg/libthai/issues])
 AC_CONFIG_SRCDIR([include/thai/thailib.h])
 AC_CONFIG_AUX_DIR(build-aux)
@@ -29,14 +29,13 @@ AC_PROG_CC
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
-AC_LIBTOOL_WIN32_DLL
-AM_PROG_LIBTOOL
+LT_INIT
 
 # Whether linker support --version-script option
 echo '{global:hello; local:*;};' > conftest.ver
-AC_LIBTOOL_LINKER_OPTION(
+_LT_LINKER_OPTION(
   [whether linker supports -version-script],
-  libthai_cv_have_version_script,
+  [libthai_cv_have_version_script],
   [-Wl,-version-script -Wl,conftest.ver])
 
 AM_CONDITIONAL(LD_HAS_VERSION_SCRIPT,
@@ -44,11 +43,11 @@ AM_CONDITIONAL(LD_HAS_VERSION_SCRIPT,
 
 dnl Check commandline options
 AC_ARG_ENABLE(debug,
-              [AC_HELP_STRING([--enable-debug],
+              [AS_HELP_STRING([--enable-debug],
                               [enable assertion checks])],
               , enable_debug="no")
 AC_ARG_ENABLE(ansi,
-              [AC_HELP_STRING([--enable-ansi],
+              [AS_HELP_STRING([--enable-ansi],
                               [turn on strict ansi])],
               , enable_ansi="no")
 
@@ -79,7 +78,7 @@ fi
 
 dnl Disable doc generation with doxygen option
 AC_ARG_ENABLE(doxygen-doc,
-              [AC_HELP_STRING([--disable-doxygen-doc],
+              [AS_HELP_STRING([--disable-doxygen-doc],
                               [disable document generation with doxygen])],
               , enable_doxygen_doc="yes")
 
@@ -98,7 +97,7 @@ fi
 
 dnl where to install the doxygen-generated HTML doc
 AC_ARG_WITH(html-docdir,
-            [AC_HELP_STRING([--with-html-docdir=DIR],
+            [AS_HELP_STRING([--with-html-docdir=DIR],
                             [where to install the doxyten-generated HTML doc [PREFIX/share/doc/libthai/html]])],
             [htmldocdir="$withval"], [htmldocdir=\$\{prefix\}/share/doc/libthai/html])
 AC_SUBST(htmldocdir)
@@ -107,7 +106,7 @@ AM_CONDITIONAL(ENABLE_DOXYGEN_DOC,test "x$enable_doxygen_doc" = "xyes")
 
 dnl dictionary data generation
 AC_ARG_ENABLE(dict,
-              [AC_HELP_STRING([--disable-dict],
+              [AS_HELP_STRING([--disable-dict],
                               [disable dictionary data generation])],
               , enable_dict="yes")
 
@@ -133,8 +132,7 @@ AC_TYPE_SIZE_T
 dnl Checks for library functions.
 dnl AC_FUNC_MALLOC
 
-AC_OUTPUT(
-  libthai.pc
+AC_CONFIG_FILES([libthai.pc
   Makefile
   include/Makefile
   include/thai/Makefile
@@ -154,7 +152,8 @@ AC_OUTPUT(
   tests/Makefile
   doc/Makefile
   doc/Doxyfile
-)
+])
+AC_OUTPUT
 
 AC_MSG_RESULT([Type make to build libthai.])
 
