@@ -88,7 +88,7 @@
 #define TIS_SARA_U		0xd8
 #define TIS_SARA_UU		0xd9
 #define TIS_PHINTHU		0xda
-#define TIS_YMBOL_BAHT		0xdf
+#define TIS_SYMBOL_BAHT		0xdf
 #define TIS_SARA_E		0xe0
 #define TIS_SARA_AE		0xe1
 #define TIS_SARA_O		0xe2
@@ -117,6 +117,9 @@
 #define TIS_THAI_DIGIT_NINE	0xf9
 #define TIS_ANGKHANKHU		0xfa
 #define TIS_KHOMUT		0xfb
+
+/* For backward compatibility with libthai 0.1.28 and below */
+#define TIS_YMBOL_BAHT		0xdf
 
 #endif  /* THAI_TIS_H */
 
