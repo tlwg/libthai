@@ -231,9 +231,12 @@ brk_maximal_do_impl (const thwchar_t *ws, int len,
                 !trie_state_is_single (shot->dict_state))
             {
                 /* add node to mark break position instead of current */
-                node = brk_pool_node_new (shot, env);
-                pool = brk_pool_add (pool, node);
-                shot = &node->shot;
+                BrkPool *new_node = brk_pool_node_new (shot, env);
+                if (LIKELY (new_node)) {
+                    node = new_node;
+                    pool = brk_pool_add (pool, node);
+                    shot = &node->shot;
+                }
             }
 
             trie_state_rewind (shot->dict_state);
@@ -326,9 +329,12 @@ brk_recover_try (const thwchar_t *ws, int len,
                 !trie_state_is_single (shot->dict_state))
             {
                 /* add node to mark break position instead of current */
-                node = brk_pool_node_new (shot, env);
-                pool = brk_pool_add (pool, node);
-                shot = &node->shot;
+                BrkPool *new_node = brk_pool_node_new (shot, env);
+                if (LIKELY (new_node)) {
+                    node = new_node;
+                    pool = brk_pool_add (pool, node);
+                    shot = &node->shot;
+                }
             }
 
             trie_state_rewind (shot->dict_state);

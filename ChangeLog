@@ -1,5 +1,16 @@
 2021-09-18  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Handle possible malloc failures.
+
+	* src/thbrk/brk-maximal.c (brk_maximal_do_impl, brk_recover_try):
+	  - Handle cases where brk_pool_node_new() possibly returns NULL.
+	    In both places, fail gracefully by behaving as if the dict state
+	    were single there.
+
+	Partially addresses Issue #15.
+
+2021-09-18  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Fix typo in TIS-620 character name.
 
 	* include/thai/tis.h:
