@@ -2,6 +2,12 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.29 (21 Dec 2021):
+* Rewritten thbrk test.
+* More compliance with UAX#14 (Unicode Line Breaking Algorithm) for thbrk.
+* Fix a typo in TIS-620 character name in tis.h.
+* Updated word break dictionary.
+
 LibThai 0.1.28 (1 Aug 2018):
 * Fix missing includes in wchar-related headers.
 * More C90 (ANSI C) compliance.
