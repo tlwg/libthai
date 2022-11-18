@@ -1,3 +1,17 @@
+2022-11-18  Theppitak Karoonboonyanan <theppitak@gmail.com>
+
+	Update word break dictionary.
+
+	* data/tdict-city.txt:
+	* data/tdict-common.txt:
+	* data/tdict-geo.txt:
+	* data/tdict-history.txt:
+	* data/tdict-ict.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt:
+	* data/tdict-slang.txt:
+	  - Add words.
+
 2022-06-25  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Update word break dictionary.
