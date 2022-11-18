@@ -2,6 +2,14 @@
 
 	Update word break dictionary.
 
+	* data/tdict-std-compound.txt:
+	  - Remove rare compound "สู่สม", which caused weird word segmentation
+	    "สู่สม|ดุล".
+
+2022-11-18  Theppitak Karoonboonyanan <theppitak@gmail.com>
+
+	Update word break dictionary.
+
 	* data/tdict-city.txt:
 	* data/tdict-common.txt:
 	* data/tdict-geo.txt:
