@@ -27,6 +27,8 @@
 
 #include <thai/thwchar.h>
 
+#include <limits.h>
+
 #define WC_ERR THWCHAR_ERR
 #define TH_ERR THCHAR_ERR
 
@@ -122,18 +124,20 @@ th_tis2uni (thchar_t c)
  * @param  result : buffer for storing resulting Unicode string
  * @param  n      : size of @a result buffer (as number of elements)
  *
- * @return  the length of the output Unicode string
+ * @return the length of the output Unicode string, or INT_MAX, if the result
+ * exceeds the range of @c int, in which case the real result has to computed
+ * by the caller as the lesser of @c{n - 1} and @c{strlen(s)}.
  */
-int
+int /* FIXME: size_t */
 th_tis2uni_line (const thchar_t *s, thwchar_t *result, size_t n)
 {
-    int left = n;
+    size_t left = n;
     while (*s && left > 1) {
         *result++ = th_tis2uni (*s++);
         --left;
     }
     *result = 0;
-    return n - left;
+    return n - left > (size_t)INT_MAX ? INT_MAX : (int)(n - left);
 }
 
 /**
@@ -193,23 +197,24 @@ th_uni2tis (thwchar_t wc)
  * @param  result : buffer for storing resulting TIS-620 string
  * @param  n      : size of @a result buffer (as number of elements)
  *
- * @return  the length of the output TIS-620 string
+ * @return the length of the output TIS-620 string, or INT_MAX, if the result
+ * exceeds the range of @c int, in which case the real result has to computed
+ * by the caller as the lesser of @c{n - 1} and @c{strlen(s)}.
  *
  * Note that, since the conversion is lossy, some characters in the 
  * convesion result may be @c TH_ERR, indicating conversion error.
  */
-int
+int /* FIXME: size_t */
 th_uni2tis_line (const thwchar_t *s, thchar_t *result, size_t n)
 {
-    int left = n;
+    size_t left = n;
     while (*s && left > 1) {
         *result++ = th_uni2tis (*s++);
         --left;
     }
     *result = 0;
-    return n - left;
+    return n - left > (size_t)INT_MAX ? INT_MAX : (int)(n - left);
 }
-
 
 static thchar_t
 uni2thai_ext_ (thwchar_t wc, const thwchar_t rev_map[])
