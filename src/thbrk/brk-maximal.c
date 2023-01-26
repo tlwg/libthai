@@ -84,7 +84,6 @@ struct _BrkEnv {
  */
 typedef struct {
     int    *brk_pos;
-    int     n_brk_pos;
     int     cur_brk_pos;
     int     str_pos;
     int     penalty;
@@ -638,7 +637,6 @@ best_brk_new (int n_brk_pos)
     best_brk->brk_pos = (int *) malloc ((size_t) n_brk_pos * sizeof (int));
     if (UNLIKELY (!best_brk->brk_pos))
         goto exit1;
-    best_brk->n_brk_pos = n_brk_pos;
     best_brk->cur_brk_pos = best_brk->str_pos = 0;
     best_brk->penalty = 0;
 
