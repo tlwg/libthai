@@ -89,7 +89,7 @@ typedef struct {
     int     penalty;
 } BestBrk;
 
-static BestBrk *    best_brk_new (int n_brk_pos);
+static BestBrk *    best_brk_new (size_t n_brk_pos);
 static void         best_brk_free (BestBrk *best_brk);
 static int          best_brk_contest (BestBrk *best_brk, const BrkShot *shot);
 
@@ -623,18 +623,18 @@ brk_pool_delete_node (BrkPool *pool, BrkPool *node, BrkEnv *env)
 }
 
 static BestBrk *
-best_brk_new (int n_brk_pos)
+best_brk_new (size_t n_brk_pos)
 {
     BestBrk *best_brk;
 
-    if (UNLIKELY ((size_t) n_brk_pos > SIZE_MAX / sizeof (int)))
+    if (UNLIKELY (n_brk_pos > SIZE_MAX / sizeof (int)))
         return NULL;
 
     best_brk = (BestBrk *) malloc (sizeof (BestBrk));
     if (UNLIKELY (!best_brk))
         return NULL;
 
-    best_brk->brk_pos = (int *) malloc ((size_t) n_brk_pos * sizeof (int));
+    best_brk->brk_pos = (int *) malloc (n_brk_pos * sizeof (int));
     if (UNLIKELY (!best_brk->brk_pos))
         goto exit1;
     best_brk->cur_brk_pos = best_brk->str_pos = 0;
