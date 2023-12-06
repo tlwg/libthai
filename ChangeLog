@@ -1,3 +1,10 @@
+2023-12-06  Montree Phromthong <montree.p@digitsoul.com>
+
+	Add country "คอซอวอ".
+
+	* data/tdict-country.txt:
+	  - Add "คอซอวอ".
+
 2023-12-06  Arthit Suriyawongkul <arthit@gmail.com>
 
 	Update README.
