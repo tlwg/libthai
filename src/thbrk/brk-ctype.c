@@ -26,7 +26,7 @@
 
 #include "brk-ctype.h"
 
-static brk_class_t _char_class[] = {
+static const brk_class_t _char_class[] = {
 /*0x00*/ BRK_CLASS_NBB,      /* Unicode: CM */  /* <control> */
 /*0x01*/ BRK_CLASS_NBB,      /* Unicode: CM */  /* <control> */
 /*0x02*/ BRK_CLASS_NBB,      /* Unicode: CM */  /* <control> */
@@ -289,7 +289,7 @@ static brk_class_t _char_class[] = {
 #define _A BRK_OP_ALLOWED
 #define _I BRK_OP_INDIRECT
 
-static brk_op_t _break_table[BRK_CLASS_TOTAL][BRK_CLASS_TOTAL] = {
+static const brk_op_t _break_table[BRK_CLASS_TOTAL][BRK_CLASS_TOTAL] = {
            /* THA ALP NUM NBB NBA NB  MB  SPA QUO HYP CLO NUM NUM NUM TER */
            /* I   HA                      CE  TE  HEN SE  NBB CUR NB  M   */
 /*THAI*/    { _I, _A, _I, _P, _A, _I, _P, _P, _I, _I, _P, _I, _A, _P, _I, },

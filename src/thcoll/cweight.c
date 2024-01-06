@@ -205,7 +205,7 @@ enum l4_symbols {
 };
 
 
-static thchar_t char_weight_tbl_[TOT_CHARS][TOT_LEVELS] = {
+static const thchar_t char_weight_tbl_[TOT_CHARS][TOT_LEVELS] = {
     /*0x00*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
     /*0x01*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
     /*0x02*/ { IGNORE, IGNORE, IGNORE, IGNORE }, /* ***IGNORED*** */
