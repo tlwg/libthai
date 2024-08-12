@@ -3,9 +3,6 @@ project(
     version: run_command(files('build-aux/git-version-gen'), check : true).stdout().strip()
 )
 
-# --enable-ansi: Removed. C compiler with Meson should be quite mature now
-# --enable-debug: Replaced with Meson --buildtype=debug
-
 sh = find_program('sh')
 compiler = meson.get_compiler('c')
 datrie = dependency('datrie-0.2')
