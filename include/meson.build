@@ -1,4 +1,4 @@
-install_headers(
+headers_src = files(
 	'thai/thailib.h',
 	'thai/thctype.h',
 	'thai/thstr.h',
@@ -15,7 +15,10 @@ install_headers(
 	'thai/thwstr.h',
 	'thai/thwbrk.h',
 	'thai/tis.h',
-	'thai/wtt.h',
+	'thai/wtt.h'
+)
+install_headers(
+	headers_src,
 	subdir : 'thai',
 )
 

@@ -11,42 +11,44 @@ else
 	]
 endif
 
+thai_src = files(
+	'thctype/thctype.c',
+	'thctype/wtt.c',
+
+	'thstr/thstr.c',
+
+	'thcell/thcell.c',
+
+	'thinp/thinp.c',
+
+	'thrend/thrend.c',
+
+	'thcoll/cweight.c',
+	'thcoll/cweight.h',
+	'thcoll/thcoll.c',
+
+	'thbrk/thbrk.c',
+	'thbrk/thbrk-priv.h',
+	'thbrk/thbrk-utils.h',
+	'thbrk/brk-ctype.c',
+	'thbrk/brk-ctype.h',
+	'thbrk/brk-common.c',
+	'thbrk/brk-common.h',
+	'thbrk/brk-maximal.c',
+	'thbrk/brk-maximal.h',
+
+	'thwchar/thwchar.c',
+
+	'thwctype/thwctype.c',
+
+	'thwstr/thwstr.c',
+
+	'thwbrk/thwbrk.c',
+)
+
 thai = library(
 	'thai',
-	[
-		'thctype/thctype.c',
-		'thctype/wtt.c',
-
-		'thstr/thstr.c',
-
-		'thcell/thcell.c',
-
-		'thinp/thinp.c',
-
-		'thrend/thrend.c',
-
-		'thcoll/cweight.c',
-		'thcoll/cweight.h',
-		'thcoll/thcoll.c',
-
-		'thbrk/thbrk.c',
-		'thbrk/thbrk-priv.h',
-		'thbrk/thbrk-utils.h',
-		'thbrk/brk-ctype.c',
-		'thbrk/brk-ctype.h',
-		'thbrk/brk-common.c',
-		'thbrk/brk-common.h',
-		'thbrk/brk-maximal.c',
-		'thbrk/brk-maximal.h',
-
-		'thwchar/thwchar.c',
-
-		'thwctype/thwctype.c',
-
-		'thwstr/thwstr.c',
-
-		'thwbrk/thwbrk.c',
-	],
+	thai_src,
 
 	install : true,
 	link_args : ldflags,

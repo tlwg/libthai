@@ -1,6 +1,6 @@
 [wrap-git]
 url = https://github.com/tlwg/libdatrie.git
-revision = daa9c6d33ef95931a0796294f005f249af97cc05
+revision = 558d8ba9aec8298a3883a0b4ec505f5af04e0b1f
 depth = 1
 
 [provide]
