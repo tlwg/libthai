@@ -54,6 +54,7 @@ libthai_dep = declare_dependency(
     include_directories: include_dir,
     link_with: thai,
 )
+meson.override_dependency('libthai', libthai_dep)
 
 pkg = import('pkgconfig')
 pkg.generate(
