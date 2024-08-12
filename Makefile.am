@@ -7,6 +7,7 @@ EXTRA_DIST = \
 	build-aux/test.map	\
 	meson.build	\
 	meson_options.txt	\
+	subprojects/libdatrie.wrap	\
 	$(NULL)
 
 MAINTAINERCLEANFILES = Makefile.in
