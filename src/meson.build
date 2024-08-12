@@ -7,6 +7,23 @@ if ld_has_version_script
             meson.current_source_dir() / 'libthai.map',
         ),
     ]
+elif compiler.get_linker_id() in ['link', 'lld-link']
+    link_def = custom_target(
+        'link-def',
+        input: ['libthai.def'],
+        # This use ASCII as some PS version do not have UTF8NoBOM
+        command: [
+            find_program('powershell'),
+            '-Command',
+            '''& {
+            Write-Output "EXPORTS" | Out-File -Encoding ascii -FilePath @OUTPUT0@
+            Get-Content -Path @INPUT0@ | Out-File -Append -Encoding ascii -FilePath @OUTPUT0@
+        }''',
+        ],
+        output: 'libthai.def',
+    )
+    ldflags += ['/def:@0@'.format(link_def.full_path())]
+    link_depends += [link_def]
 else
     ldflags += [
         '-export-symbols @0@'.format(meson.current_source_dir() / 'libthai.def'),
@@ -36,6 +53,7 @@ thai_src = files(
     'thwchar/thwchar.c',
     'thwctype/thwctype.c',
     'thwstr/thwstr.c',
+    'libthai.c',
 )
 
 thai = library(
