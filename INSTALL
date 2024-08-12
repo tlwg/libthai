@@ -1,6 +1,11 @@
 Basic Installation
 ==================
 
+libthai can be built by Autotools or Meson
+
+Autotools build
+---------------
+
 # Build requirements:
 # - libtool
 # - libdatrie development package (or https://github.com/tlwg/libdatrie)
@@ -24,3 +29,21 @@ make install
 # In order to uninstall
 make uninstall
 
+Meson build
+-----------
+
+# Build requirements:
+# - meson 1.0 or better
+# - doxygen (optional, for documentation generation)
+#
+# Meson will use local libdatrie if installed, otherwise will automatically
+# download and build libdatrie.
+
+# Add -Ddocs=disabled to disable documentation generation
+meson setup builddir --buildtype release --default-library both --strip --prefix=...
+
+cd builddir
+ninja test
+
+# With elevated permissions if required
+ninja install

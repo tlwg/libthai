@@ -3,7 +3,7 @@ SUBDIRS = thctype thstr thcell thinp thrend thcoll thbrk thwchar thwctype \
 
 MAINTAINERCLEANFILES = Makefile.in
 
-EXTRA_DIST = libthai.map libthai.def
+EXTRA_DIST = libthai.map libthai.def meson.build
 
 AM_CPPFLAGS = -I. -I$(top_srcdir)/include $(DATRIE_CFLAGS)
 

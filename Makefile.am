@@ -4,6 +4,9 @@ SUBDIRS = include src data tests doc
 
 EXTRA_DIST = \
 	build-aux/git-version-gen	\
+	build-aux/test.map	\
+	meson.build	\
+	meson_options.txt	\
 	$(NULL)
 
 MAINTAINERCLEANFILES = Makefile.in
