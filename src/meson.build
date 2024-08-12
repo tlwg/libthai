@@ -57,6 +57,10 @@ thai = library(
 	soversion : soversion,
 	include_directories : include_dir,
 )
+libthai_dep = declare_dependency(
+	include_directories : include_dir,
+	link_with : thai,
+)
 
 pkg = import('pkgconfig')
 pkg.generate(
@@ -65,5 +69,5 @@ pkg.generate(
 	name : 'libthai',
 	description : 'Thai support library',
 	version : version,
-	requires_private: datrie,
+	requires_private: ['datrie-0.2'],
 )

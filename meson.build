@@ -9,9 +9,6 @@ project(
 sh = find_program('sh')
 compiler = meson.get_compiler('c')
 datrie = dependency('datrie-0.2')
-deps = [
-    datrie,
-]
 
 version = run_command(files('build-aux/git-version-gen'), check : true).stdout().strip()
 meson.add_dist_script(sh, '-c', 'echo "@0@" > "$MESON_DIST_ROOT/VERSION"'.format(version))

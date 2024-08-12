@@ -3,7 +3,7 @@ dict_dir = get_option('datadir') / 'libthai'
 if get_option('dict')
 	sort = find_program('sort')
 	cp = find_program('cp')
-	trietool = find_program('trietool', dirs : datrie.get_variable('bindir'))
+	trietool = find_program('trietool')
 
 	dictionary = custom_target(
 		'tdict',
