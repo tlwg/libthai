@@ -40,8 +40,6 @@ if get_option('buildtype') in ['debug', 'debugoptimized']
     add_project_arguments('-DNDEBUG', language: ['c'])
 endif
 
-# TODO: Doxygen
-
 subdir('data')
 subdir('include')
 subdir('src')
