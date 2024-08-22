@@ -1,5 +1,16 @@
 2024-08-22  Theppitak Karoonboonyanan <theppitak@gmail.com>
 
+	Update std. spelling ทุกฏ -> ทุกกฏ in dictionary.
+
+	According to RI dict 2542 -> 2554 update.
+
+	* tdict-std.txt:
+	  - Add new spelling 'ทุกกฏ'.
+	* tdict-std.txt, tdict-spell.txt:
+	  - Move old spelling 'ทุกฏ' to tdict-spell.
+
+2024-08-22  Theppitak Karoonboonyanan <theppitak@gmail.com>
+
 	Update word break dictionary.
 
 	* data/tdict-common.txt:
