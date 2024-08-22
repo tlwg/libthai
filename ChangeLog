@@ -1,3 +1,16 @@
+2024-08-22  Theppitak Karoonboonyanan <theppitak@gmail.com>
+
+	Update word break dictionary.
+
+	* data/tdict-common.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt:
+	* data/tdict-spell.txt:
+	  - Add words.
+
+	* data/tdict-common.txt:
+	  - Correct collation order of 'บิสซิเนส'.
+
 2023-12-06  Theppitak Karoonboonyanan <theppitak@gmail.com>
 
 	Update word break dictionary.
