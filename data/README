@@ -9,10 +9,20 @@ the Thai word-breaking function (thbrk).
 Misspelled words
 ================
 
-It is important to note that 'tdict-spell.txt' is a list of misspelled words.
-From the thbk perspective, it is needed so that sentences with misspelled words
-can be segmented optimally.
+It's crucial to understand the distinct purposes of 'tdict-spell.txt' and
+'tdict-common.txt'.
 
-Due to this characteristic, this particular word list is not suitable for
-spelling-check purposes. To construct a dictionary of correctly spelled words,
-please omit this file.
+- tdict-spell.txt: This file exclusively lists misspelled words.
+  It is used by the word-breaking function (thbk) to optimize sentence
+  boundaries, even in the presence of spelling errors.
+
+- tdict-common.txt: This file contains commonly used words, including those
+  with alternative spellings or foreign origins. While these words might not
+  be officially recognized by language authorities, they are widely accepted
+  in everyday usage.
+
+To construct a dictionary of correctly spelled words, it is recommended to omit
+'tdict-spell.txt'.
+
+'tdict-common.txt' was split from the original 'tdict.txt' on 2006-08-31.
+'tdict-spell.txt' was split from the original 'tdict-spell.txt' on 2006-09-01.
