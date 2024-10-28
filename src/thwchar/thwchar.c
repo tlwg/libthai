@@ -30,7 +30,7 @@
 #define WC_ERR THWCHAR_ERR
 #define TH_ERR THCHAR_ERR
 
-static thwchar_t tis620_0_uni_map_[128] = {
+static const thwchar_t tis620_0_uni_map_[128] = {
     WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, 
     WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, 
     WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, WC_ERR, 
@@ -49,7 +49,7 @@ static thwchar_t tis620_0_uni_map_[128] = {
     0x0e58, 0x0e59, 0x0e5a, 0x0e5b, WC_ERR, WC_ERR, WC_ERR, WC_ERR
 };
 
-static thchar_t uni_tis620_0_map_[96] = {
+static const thchar_t uni_tis620_0_map_[96] = {
   TH_ERR,    0xa1,   0xa2,   0xa3,   0xa4,   0xa5,   0xa6,   0xa7,
     0xa8,    0xa9,   0xaa,   0xab,   0xac,   0xad,   0xae,   0xaf,
     0xb0,    0xb1,   0xb2,   0xb3,   0xb4,   0xb5,   0xb6,   0xb7,
@@ -64,7 +64,7 @@ static thchar_t uni_tis620_0_map_[96] = {
     0xf8,    0xf9,   0xfa,   0xfb, TH_ERR, TH_ERR, TH_ERR, TH_ERR
 };
 
-static thwchar_t tis620_1_uni_map_[128] = {
+static const thwchar_t tis620_1_uni_map_[128] = {
     0x00ab, 0x00bb, 0x2026, 0xf88c, 0xf88f, 0xf892, 0xf895, 0xf898,
     0xf88b, 0xf88e, 0xf891, 0xf894, 0xf897, 0x201c, 0x201d, 0xf899,
     WC_ERR, 0x2022, 0xf884, 0xf889, 0xf885, 0xf886, 0xf887, 0xf888,
@@ -83,7 +83,7 @@ static thwchar_t tis620_1_uni_map_[128] = {
     0x0e58, 0x0e59, 0x00ae, 0x00a9, WC_ERR, WC_ERR, WC_ERR, WC_ERR
 };
 
-static thwchar_t tis620_2_uni_map_[128] = {
+static const thwchar_t tis620_2_uni_map_[128] = {
     0xf700, 0xf701, 0xf702, 0xf703, 0xf704, 0x2026, 0xf705, 0xf706,
     0xf707, 0xf708, 0xf709, 0xf70a, 0xf70b, 0xf70c, 0xf70d, 0xf70e,
     0xf70f, 0x2018, 0x2019, 0x201c, 0x201d, 0x2022, 0x2013, 0x2014,
