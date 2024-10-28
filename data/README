@@ -1,0 +1,18 @@
+Data
+====
+
+This directory contains Thai word lists.
+
+Files listed in 'Makefile.am' will be used to construct a dictionary for
+the Thai word-breaking function (thbrk).
+
+Misspelled words
+================
+
+It is important to note that 'tdict-spell.txt' is a list of misspelled words.
+From the thbk perspective, it is needed so that sentences with misspelled words
+can be segmented optimally.
+
+Due to this characteristic, this particular word list is not suitable for
+spelling-check purposes. To construct a dictionary of correctly spelled words,
+please omit this file.
