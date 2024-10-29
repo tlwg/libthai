@@ -12,17 +12,24 @@ Misspelled words
 It's crucial to understand the distinct purposes of 'tdict-spell.txt' and
 'tdict-common.txt'.
 
-- tdict-spell.txt: This file exclusively lists misspelled words.
-  It is used by the word-breaking function (thbk) to optimize sentence
-  boundaries, even in the presence of spelling errors.
+- tdict-spell.txt: This file contains non-standard spellings of words found in
+  'tdict-std.txt'. These are typically considered misspellings by authoritative
+  sources. For example, "อิเลคโทรนิคส์" (for "electronics"), found in
+  'tdict-spell.txt', is considered a misspelling of "อิเล็กทรอนิกส์" found in
+  'tdict-std.txt'.
 
-- tdict-common.txt: This file contains commonly used words, including those
-  with alternative spellings or foreign origins. While these words might not
-  be officially recognized by language authorities, they are widely accepted
-  in everyday usage.
+- tdict-common.txt: This file contains words used in real-life contexts but not
+  defined in standard dictionaries. It also includes spelling variations of
+  these words, as official standards for them have not yet been established.
+  For example, "กิมจิ" ("kimchi"), "ครัวซอง" ("croissant"), and "ครัวซองต์" ("croissant").
 
-To construct a dictionary of correctly spelled words, it is recommended to omit
-'tdict-spell.txt'.
+- Other field-specific tdict-*.txt files: These files follow the same
+  principles. They contain spelling variations of words specific to particular
+  fields. For example, 'tdict-lang-ethic.txt' contains both "คาตากานะ" and
+  "คาตาคานะ" as alternative spellings for "katakana" (a Japanese script).
+
+To construct a dictionary of "correctly spelled words", it is recommended to
+omit 'tdict-spell.txt'.
 
 'tdict-common.txt' was split from the original 'tdict.txt' on 2006-08-31.
 'tdict-spell.txt' was split from the original 'tdict-spell.txt' on 2006-09-01.
