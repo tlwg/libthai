@@ -21,7 +21,8 @@ It's crucial to understand the distinct purposes of 'tdict-spell.txt' and
 - tdict-common.txt: This file contains words used in real-life contexts but not
   defined in standard dictionaries. It also includes spelling variations of
   these words, as official standards for them have not yet been established.
-  For example, "กิมจิ" ("kimchi"), "ครัวซอง" ("croissant"), and "ครัวซองต์" ("croissant").
+  For example, "กิมจิ" ("kimchi"), "ครัวซอง" ("croissant"), and "ครัวซองต์"
+  ("croissant").
 
 - Other field-specific tdict-*.txt files: These files follow the same
   principles. They contain spelling variations of words specific to particular
