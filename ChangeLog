@@ -1,3 +1,10 @@
+2024-10-30  Arthit Suriyawongkul <arthit@gmail.com>
+
+	Add data README explaining word lists.
+
+	* +data/README:
+	  Added to describe the purpose of each word list.
+
 2024-08-22  Theppitak Karoonboonyanan <theppitak@gmail.com>
 
 	Update std. spelling ทุกฏ -> ทุกกฏ in dictionary.
