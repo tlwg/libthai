@@ -33,4 +33,4 @@ To construct a dictionary of "correctly spelled words", it is recommended to
 omit 'tdict-spell.txt'.
 
 'tdict-common.txt' was split from the original 'tdict.txt' on 2006-08-31.
-'tdict-spell.txt' was split from the original 'tdict-spell.txt' on 2006-09-01.
+'tdict-spell.txt' was split from the original 'tdict-std.txt' on 2006-09-01.
