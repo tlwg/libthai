@@ -1,0 +1,8 @@
+[wrap-git]
+url = https://github.com/tlwg/libdatrie.git
+revision = 3985d6f7b5e56bc60bb9581337bf6a3782bd71be
+depth = 1
+
+[provide]
+dependency_names = datrie-0.2
+program_names = trietool
