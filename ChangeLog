@@ -1,5 +1,13 @@
 2024-11-05  Theppitak Karoonboonyanan <theppitak@gmail.com>
 
+	Remove standardized terms from tdict-science.
+
+	* data/tdict-science.txt, data/tdict-spell.txt:
+	  - Remove "กาแล็กโทส" and "แล็กโทส", which are already in tdict-std.
+	  - Move spelling variations to tdict-spell.
+
+2024-11-05  Theppitak Karoonboonyanan <theppitak@gmail.com>
+
 	Add entries to std, std-compound.
 
 	* data/tdict-std.txt, data/tdict-std-compound.txt:
