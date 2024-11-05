@@ -1,3 +1,10 @@
+2024-11-05  Theppitak Karoonboonyanan <theppitak@gmail.com>
+
+	Add entries to std, std-compound.
+
+	* data/tdict-std.txt, data/tdict-std-compound.txt:
+	  - Add some new entries from the web.
+
 2024-10-30  Arthit Suriyawongkul <arthit@gmail.com>
 
 	Add data README explaining word lists.
