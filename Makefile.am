@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = include src data tests doc
+SUBDIRS = include src data tests doc win32
 
 EXTRA_DIST = \
 	build-aux/git-version-gen	\
