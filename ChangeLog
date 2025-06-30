@@ -1,3 +1,13 @@
+2025-06-30  Marc Mutz <@marcmutz@github.com>
+
+	Make static tables const
+
+	* src/thbrk/brk-ctype.c (_char_class, _break_table):
+	* src/thcoll/cweight.c (char_weight_tbl_):
+	* src/thwchar/thwchar.c (tis620_0_uni_map_, uni_tis620_0_map_,
+	  tis620_1_uni_map_, tis620_2_uni_map_):
+	  - Declare static tables as const.
+
 2025-06-30  Theppitak Karoonboonyanan <theppitak@gmail.com>
 
 	Adjust code sequence a little bit.
