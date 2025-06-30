@@ -50,7 +50,7 @@ typedef struct _BrkShot {
 } BrkShot;
 
 static int          brk_shot_init (BrkShot *dst, const BrkShot *src);
-static void         brk_shot_reuse (BrkShot *dst, const BrkShot *src);
+static int          brk_shot_reuse(BrkShot *dst, const BrkShot *src);
 static void         brk_shot_destruct (BrkShot *shot);
 
 /**
@@ -448,19 +448,24 @@ brk_shot_init (BrkShot *dst, const BrkShot *src)
     return 0;
 }
 
-static void
+static int
 brk_shot_reuse (BrkShot *dst, const BrkShot *src)
 {
+    if (dst->n_brk_pos < src->n_brk_pos) {
+        int *p = (int *) realloc (dst->brk_pos,
+                                  src->n_brk_pos * sizeof (int));
+        if (UNLIKELY(!p))
+            return -1;
+        dst->brk_pos = p;
+    }
     trie_state_copy (dst->dict_state, src->dict_state);
     dst->str_pos = src->str_pos;
-    if (dst->n_brk_pos < src->n_brk_pos) {
-        dst->brk_pos = (int *) realloc (dst->brk_pos,
-                                        src->n_brk_pos * sizeof (int));
-    }
     memcpy (dst->brk_pos, src->brk_pos, src->cur_brk_pos * sizeof (int));
     dst->n_brk_pos = src->n_brk_pos;
     dst->cur_brk_pos = src->cur_brk_pos;
     dst->penalty = src->penalty;
+
+    return 0;
 }
 
 static void
@@ -501,16 +506,29 @@ brk_env_free (BrkEnv *env)
 }
 
 static BrkPool *
-brk_pool_node_new (const BrkShot *shot, BrkEnv *env)
+brk_pool_node_new_from_free_list(const BrkShot *shot, BrkEnv *env)
 {
     BrkPool *node;
 
     if (env->free_list) {
         /* reuse old node if possible */
+        if (UNLIKELY(brk_shot_reuse (&env->free_list->shot, shot) != 0))
+            return NULL;
         node = env->free_list;
         env->free_list = env->free_list->next;
-        brk_shot_reuse (&node->shot, shot);
-    } else {
+        return node;
+    }
+
+    return NULL;
+}
+
+static BrkPool *
+brk_pool_node_new (const BrkShot *shot, BrkEnv *env)
+{
+    BrkPool *node;
+
+    if (!(node = brk_pool_node_new_from_free_list(shot, env))) {
+        /* no old node or failed to grow old node */
         node = (BrkPool *) malloc (sizeof (BrkPool));
         if (UNLIKELY (!node))
             return NULL;
