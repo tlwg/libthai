@@ -1,3 +1,22 @@
+2025-06-30  Marc Mutz <@marcmutz@github.com>
+
+	brk_pool_node_new: realloc() in brk_shot_reuse() can fail
+
+	* src/thbrk/brk-maximal.c:
+
+	Handle failure of realloc() in brk_shot_reuse(), which requires adding
+	a return value to brk_shot_reuse() and handling it in
+	brk_pool_new_node().
+
+	If brk_shot_reuse() fails, try allocating a new node. Yes, if
+	realloc() failed, a following malloc() will likely fail, too, but this
+	way the error at least propagates up the call chain.
+
+	To keep the logic clean, factor the old if (env->free_list) code into
+	a separate function brk_pool_node_new_from_free_list().
+
+	Fixes #23.
+
 2024-11-05  Theppitak Karoonboonyanan <theppitak@gmail.com>
 
 	Remove standardized terms from tdict-science.
