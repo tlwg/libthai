@@ -4,6 +4,7 @@
 /libtool
 /ltmain.sh
 /configure
+/configure~
 /config.cache
 /config.guess
 /config.h
