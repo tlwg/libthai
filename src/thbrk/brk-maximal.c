@@ -512,9 +512,9 @@ brk_pool_node_new_from_free_list(const BrkShot *shot, BrkEnv *env)
 
     if (env->free_list) {
         /* reuse old node if possible */
-        if (UNLIKELY(brk_shot_reuse (&env->free_list->shot, shot) != 0))
-            return NULL;
         node = env->free_list;
+        if (UNLIKELY(brk_shot_reuse (&node->shot, shot) != 0))
+            return NULL;
         env->free_list = env->free_list->next;
         return node;
     }

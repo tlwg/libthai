@@ -1,3 +1,11 @@
+2025-06-30  Theppitak Karoonboonyanan <theppitak@gmail.com>
+
+	Adjust code sequence a little bit.
+
+	* src/thbrk/brk-maximal.c (brk_pool_node_new_from_free_list):
+	  - I'd rather keep the old logic that the brk_shot_reuse()
+	    is called upon 'node', which was picked beforehand.
+
 2025-06-30  Marc Mutz <@marcmutz@github.com>
 
 	brk_pool_node_new: realloc() in brk_shot_reuse() can fail
