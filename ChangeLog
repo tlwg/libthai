@@ -1,5 +1,14 @@
 2025-07-03  Theppitak Karoonboonyanan <theppitak@gmail.com>
 
+	Move common typo from -common to -spell
+
+	* data/tdict-common.txt:
+	* data/tdict-spell.txt:
+	  - Move กาสะลอง (common typo of กาซะลอง)
+	    from -common to -spell.
+
+2025-07-03  Theppitak Karoonboonyanan <theppitak@gmail.com>
+
 	Update tdict-std as found
 
 	* data/tdict-std.txt:
