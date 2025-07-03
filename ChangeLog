@@ -1,3 +1,23 @@
+2025-07-03  Theppitak Karoonboonyanan <theppitak@gmail.com>
+
+	Update tdict-std as found
+
+	* data/tdict-std.txt:
+	* data/tdict-common.txt:
+	* data/tdict-spell.txt:
+	  - กาฬาวก -> กาฬาวกหัตถี
+	  - add จิรัฐิติกาล
+	  - remove ญานาซะฮ์, add more-common ญะนาซะห์ to -common
+	  - ตัณฑุล -> ตัณฑุละ
+	  - บังอวจ -> บังอวด, add บังอวจ to -spell
+	  - ม่อลอกม่อแลก -> ม่อล่อกม่อแล่ก
+	  - มะลอกมะแลก -> มะล่อกมะแล่ก
+	  - add มัฆวา
+	  - ลิกขา -> ลิกษา, add ลิกขา to -common
+	  - remove เหมี่ยว
+	* data/tdict-std-compound.txt:
+	  - add เกมโชว์
+
 2025-06-30  Marc Mutz <@marcmutz@github.com>
 
 	Make static tables const
