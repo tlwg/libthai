@@ -1,5 +1,21 @@
 2025-07-03  Theppitak Karoonboonyanan <theppitak@gmail.com>
 
+	Update word break dictionaries
+
+	* data/tdict-city.txt:
+	* data/tdict-common.txt:
+	* data/tdict-geo.txt:
+	* data/tdict-history.txt:
+	* data/tdict-proper.txt:
+	* data/tdict-science.txt:
+	* data/tdict-spell.txt:
+	  - Add words.
+
+	* data/tdict-science.txt:
+	  - Remove คลอโรฟิลล์, duplicated with -std.
+
+2025-07-03  Theppitak Karoonboonyanan <theppitak@gmail.com>
+
 	Move common typo from -common to -spell
 
 	* data/tdict-common.txt:
