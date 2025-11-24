@@ -5,7 +5,6 @@ Basic Installation
 # - libtool
 # - libdatrie development package (or https://github.com/tlwg/libdatrie)
 # - doxygen (optional, for documentation generation)
-# - autoconf-archive (for Git snapshot, for 'configure' script generation)
 
 # When downloaded from the Github repo (Skip for released tarballs)
 ./autogen.sh
