@@ -1,5 +1,17 @@
 2025-11-27  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Fix utf-8 char pointer type warnings in test_thbrk
+
+	* tests/test_thbrk.c:
+	  - Add u8char_t typedef.
+	  - struct _Sample: redeclare str and ins_str as u8char_t pointers.
+	  - utf8_to_tis, tis_to_utf8: make utf-8 args u8char_t pointers.
+	  - test_samples:
+	    - Redefine utf8_str as u8char_t array.
+	    - Cast utf-8 strings to char pointers to satisfy strcmp().
+
+2025-11-27  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Resore BestBrk::n_brk_pos
 
 	Although it's unused for now, let's still keep brk_pos

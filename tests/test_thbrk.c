@@ -9,12 +9,14 @@
 #include <thai/thbrk.h>
 #include <iconv.h>
 
+typedef unsigned char u8char_t;
+
 typedef struct _Sample Sample;
 struct _Sample {
-    const char *str;
-    int         n_brk;
-    int         brk_pos[MAXLINELENGTH];
-    const char *ins_str;
+    const u8char_t      *str;
+    int                  n_brk;
+    int                  brk_pos[MAXLINELENGTH];
+    const u8char_t      *ins_str;
 };
 
 const Sample TestSamples[] = {
@@ -69,7 +71,7 @@ void close_iconv (void)
     iconv_close (tis_to_utf8_iconv);
 }
 
-size_t utf8_to_tis (const char *utf8_str, thchar_t *tis, size_t tis_sz)
+size_t utf8_to_tis (const u8char_t *utf8_str, thchar_t *tis, size_t tis_sz)
 {
     char  *in = (char *)utf8_str;
     size_t in_left = strlen (in) + 1;
@@ -78,11 +80,11 @@ size_t utf8_to_tis (const char *utf8_str, thchar_t *tis, size_t tis_sz)
     return iconv (utf8_to_tis_iconv, &in, &in_left, &out, &out_left);
 }
 
-size_t tis_to_utf8 (const thchar_t *tis_str, char *utf8, size_t utf8_sz)
+size_t tis_to_utf8 (const thchar_t *tis_str, u8char_t *utf8, size_t utf8_sz)
 {
     char  *in = (char *)tis_str;
     size_t in_left = strlen (in) + 1;
-    char  *out = utf8;
+    char  *out = (char *)utf8;
     size_t out_left = utf8_sz;
     return iconv (tis_to_utf8_iconv, &in, &in_left, &out, &out_left);
 }
@@ -111,7 +113,7 @@ int test_samples (ThBrk *brk, const Sample samples[])
         int brk_pos[MAXLINELENGTH];
         int n_brk, j;
         thchar_t ins_str[MAXLINELENGTH*2 + 1];
-        char utf8_str[MAXLINELENGTH*3 + 1];
+        u8char_t utf8_str[MAXLINELENGTH*3 + 1];
 
         printf ("Testing: %s\n", samples[i].str);
 
@@ -139,7 +141,9 @@ int test_samples (ThBrk *brk, const Sample samples[])
 
         printf ("Segmented: %s\n", utf8_str);
 
-        if (strcmp (utf8_str, samples[i].ins_str) != 0) {
+        if (strcmp ((const char *)utf8_str,
+                    (const char *)samples[i].ins_str) != 0)
+        {
             printf ("Failed at case #%d: ins_str = \"%s\", expected \"%s\"\n",
                     i, utf8_str, samples[i].ins_str);
             success = 0;
