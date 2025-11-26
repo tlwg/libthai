@@ -1,3 +1,14 @@
+2025-11-27  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Resore BestBrk::n_brk_pos
+
+	Although it's unused for now, let's still keep brk_pos
+	allocation size for future use when needed.
+
+	* src/thbrk/brk-maximal.c:
+	  - BestBrk::n_brk_pos: restore as size_t type.
+	  - best_brk_new: restore old BestBrk::n_brk_pos initialization.
+
 2025-11-27  Marc Mutz <@marcmutz@github.com>
 
 	Fix narrowing size_t to int in BestBrk
