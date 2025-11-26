@@ -1,3 +1,14 @@
+2025-11-26  Marc Mutz <@marcmutz@github.com>
+
+	brk_root_pool: port to size_t
+
+	All callers (brk_recover_try() and brk_maximal_do_impl()),
+	pass size_t variables, so don't narrow.
+
+	* src/thbrk/brk-maximal.c:
+	  - BrkShot::n_brk_pos: type int -> size_t.
+	  - brk_root_pool: type of pos_size arg, int -> size_t
+
 2025-11-24  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Check Doxygen version without autoconf-archive.
