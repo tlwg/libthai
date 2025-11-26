@@ -1,3 +1,11 @@
+2025-11-27  Marc Mutz <@marcmutz@github.com>
+
+	Fix narrowing size_t to int in BestBrk
+
+	* src/thbrk/brk-maximal.c:
+	  - BestBrk::n_brk_pos: remove unused field.
+	  - best_brk_new: port to size_t.
+
 2025-11-26  Marc Mutz <@marcmutz@github.com>
 
 	brk_root_pool: port to size_t
