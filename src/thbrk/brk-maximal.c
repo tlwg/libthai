@@ -44,7 +44,7 @@ typedef struct _BrkShot {
     TrieState      *dict_state;
     int             str_pos;
     int            *brk_pos;
-    int             n_brk_pos;
+    size_t          n_brk_pos;
     int             cur_brk_pos;
     int             penalty;
 } BrkShot;
@@ -106,7 +106,7 @@ typedef struct {
  *   PRIVATE METHODS DECLARATIONS   *
  *----------------------------------*/
 
-static BrkPool *    brk_root_pool (int pos_size, BrkEnv *env);
+static BrkPool *    brk_root_pool (size_t pos_size, BrkEnv *env);
 static int          brk_maximal_do_impl (const thwchar_t *ws, int len,
                                          const char *brkpos_hints,
                                          int pos[], size_t n, BrkEnv *env);
@@ -371,7 +371,7 @@ recov_done:
 }
 
 static BrkPool *
-brk_root_pool (int pos_size, BrkEnv *env)
+brk_root_pool (size_t pos_size, BrkEnv *env)
 {
     ThBrk      *brk;
     BrkPool    *pool;
