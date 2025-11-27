@@ -1,3 +1,32 @@
+2025-11-27  Marc Mutz <@marcmutz@github.com>
+
+	Fix integer truncation in th_{tis2uni,uni2tis}_line
+
+	The size_t n parameter was narrowed to an int left variable,
+	which is wrong on 64-bit platforms, as callers expect
+	min(n, strlen(s) + 1) result characters to be written
+	(incl. the terminating NUL), yet, due to the truncation,
+	at most n mod 2^31 characters are written, which may be 0,
+	if n is size_t(INT_MAX) + .
+
+	Fix by making the left variable also be of type size_t.
+	This is safe, as each --left is protected by a left > 1 check,
+	so the value can never become negative.
+
+	We can't fix the return type, that would be incompatible with
+	existing users, but users don't need the return value: it's easily
+	calculated as min(n - 1, strlen(s)). Add a FIXME comment nonetheless,
+	for when compatibility can be broken, and use saturation arithmetic
+	instead of modular arithmetic to avoid the pseudo-random return value.
+
+	Amend the documentation accordingly.
+
+	* src/thwchar/thwchar.c:
+	  - th_tis2uni_line, th_uni2tis_line:
+	    - Redefine type of 'left' as size_t.
+	    - Handle int overflow on the return value.
+	    - Update documentation.
+
 2025-11-27  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Fix utf-8 char pointer type warnings in test_thbrk
