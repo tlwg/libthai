@@ -40,7 +40,9 @@ full_path (const char *path, const char *name, const char *ext)
 {
     int full_size = strlen (path) + strlen (name) + strlen (ext) + 2;
     char *full_path_buff = (char *) malloc (full_size);
-    sprintf (full_path_buff, "%s/%s%s", path, name, ext);
+    if (LIKELY (full_path_buff)) {
+        sprintf (full_path_buff, "%s/%s%s", path, name, ext);
+    }
     return full_path_buff;
 }
 
@@ -54,8 +56,10 @@ brk_load_default_dict ()
     dict_dir = getenv ("LIBTHAI_DICTDIR");
     if (dict_dir) {
         char *path = full_path (dict_dir, DICT_NAME, ".tri");
-        dict_trie = trie_new_from_file (path);
-        free (path);
+        if (LIKELY (path)) {
+            dict_trie = trie_new_from_file (path);
+            free (path);
+        }
     }
 
     /* Then, fall back to default DICT_DIR macro */

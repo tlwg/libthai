@@ -1,3 +1,13 @@
+2025-11-27  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Fix possible dereference of NULL pointer
+
+	As detected by GCC analyzer,
+
+	* src/thbrk/brk-common.c:
+	  - (full_path): guard sprintf() against NULL 'full_path_buff'.
+	  - (brk_load_default_dict): guard against NULL 'path'.
+
 2025-11-27  Marc Mutz <@marcmutz@github.com>
 
 	Fix integer truncation in th_{tis2uni,uni2tis}_line
