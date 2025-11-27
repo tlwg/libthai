@@ -1,3 +1,13 @@
+2025-11-28  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Fix possible dereference of NULL pointer in th_wthaichunk()
+
+	As caught by GCC analyzer,
+
+	* src/thwstr/thwstr.c (th_wnormalize):
+	  - Handle malloc() failures before the NULL pointers are finally
+	    dereferenced in th_wthaichunk().
+
 2025-11-27  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Fix possible dereference of NULL pointer

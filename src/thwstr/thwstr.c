@@ -30,6 +30,8 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#include "../thbrk/thbrk-utils.h"
+
 static int
 th_wthaichunk (thchar_t dest[], const thwchar_t *wsrc, size_t n)
 {
@@ -73,8 +75,14 @@ size_t
 th_wnormalize (thwchar_t wdest[], const thwchar_t *wsrc, size_t n)
 {
     size_t left = n;
-    thchar_t *src8 = (thchar_t*) malloc(n * sizeof (thchar_t));
-    thchar_t *norm8 = (thchar_t*) malloc(n * sizeof (thchar_t));
+    thchar_t *src8, *norm8;
+
+    src8 = (thchar_t*) malloc(n * sizeof (thchar_t));
+    if (UNLIKELY (!src8))
+        goto err;
+    norm8 = (thchar_t*) malloc(n * sizeof (thchar_t));
+    if (UNLIKELY (!norm8))
+        goto err_src8_created;
 
     while (left > 1 && *wsrc) {
         int chunk_len = th_wthaichunk (src8, wsrc, n-1);
@@ -102,6 +110,11 @@ th_wnormalize (thwchar_t wdest[], const thwchar_t *wsrc, size_t n)
     free (src8);
 
     return n - left;
+
+err_src8_created:
+    free (src8);
+err:
+    return 0;
 }
 
 /*
