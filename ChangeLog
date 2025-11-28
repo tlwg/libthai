@@ -1,5 +1,37 @@
 2025-11-28  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Move "thbrk-utils.h" to a separate location
+
+	As "thbrk-utils.h" is now used by other modules than "thbrk",
+	let's move it to a separate "utils" module and allow
+	C sources to include it as "utils/priv-utils.h".
+
+	* src/thbrk/thbrk-utils.h -> src/utils/priv-utils.h:
+	* configure.ac, src/Makefile.am, +src/utils/Makefile.am:
+	  - Move thbrk/thbrk-utils.h to a seperate "utils" module.
+	  - Rename the double-inclusion prevention macro accordingly.
+
+	* src/thbrk/Makefile.am
+	* src/thcell/Makefile.am
+	* src/thcoll/Makefile.am
+	* src/thctype/Makefile.am
+	* src/thinp/Makefile.am
+	* src/thrend/Makefile.am
+	* src/thstr/Makefile.am
+	* src/thwbrk/Makefile.am
+	* src/thwchar/Makefile.am
+	* src/thwctype/Makefile.am
+	* src/thwstr/Makefile.am
+	  - Add "$(top_srcdir)/src" to the include path.
+
+	* src/thbrk/brk-common.c:
+	* src/thbrk/brk-maximal.c:
+	* src/thbrk/thbrk.c:
+	* src/thwstr/thwstr.c:
+	  - Change inclusion clauses to the new one.
+
+2025-11-28  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Fix possible dereference of NULL pointer in th_wthaichunk()
 
 	As caught by GCC analyzer,

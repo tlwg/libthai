@@ -1,11 +1,11 @@
 SUBDIRS = thctype thstr thcell thinp thrend thcoll thbrk thwchar thwctype \
-	thwstr thwbrk
+	thwstr thwbrk utils
 
 MAINTAINERCLEANFILES = Makefile.in
 
 EXTRA_DIST = libthai.map libthai.def
 
-AM_CPPFLAGS = -I. -I$(top_srcdir)/include $(DATRIE_CFLAGS)
+AM_CPPFLAGS = -I. -I$(top_srcdir)/src -I$(top_srcdir)/include $(DATRIE_CFLAGS)
 
 lib_LTLIBRARIES = libthai.la
 

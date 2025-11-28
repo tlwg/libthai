@@ -152,6 +152,7 @@ AC_CONFIG_FILES([libthai.pc
   src/thwctype/Makefile
   src/thwstr/Makefile
   src/thwbrk/Makefile
+  src/utils/Makefile
   data/Makefile
   tests/Makefile
   doc/Makefile

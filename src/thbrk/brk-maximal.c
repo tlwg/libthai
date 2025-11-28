@@ -33,7 +33,7 @@
 #include <thai/thwchar.h>
 #include <thai/thbrk.h>
 #include "thbrk-priv.h"
-#include "thbrk-utils.h"
+#include "utils/priv-utils.h"
 #include "brk-maximal.h"
 #include "brk-common.h"
 

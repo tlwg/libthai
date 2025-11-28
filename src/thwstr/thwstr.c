@@ -30,7 +30,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "../thbrk/thbrk-utils.h"
+#include "utils/priv-utils.h"
 
 static int
 th_wthaichunk (thchar_t dest[], const thwchar_t *wsrc, size_t n)

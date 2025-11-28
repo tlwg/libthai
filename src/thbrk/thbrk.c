@@ -32,7 +32,7 @@
 #include <thai/thctype.h>
 #include <thai/thbrk.h>
 #include "thbrk-priv.h"
-#include "thbrk-utils.h"
+#include "utils/priv-utils.h"
 #include "brk-ctype.h"
 #include "brk-maximal.h"
 #include "brk-common.h"

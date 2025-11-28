@@ -30,7 +30,7 @@
 #include <datrie/trie.h>
 #include <thai/tis.h>
 #include <thai/thctype.h>
-#include "thbrk-utils.h"
+#include "utils/priv-utils.h"
 #include "brk-common.h"
 
 #define DICT_NAME   "thbrk"
