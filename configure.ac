@@ -157,6 +157,8 @@ AC_CONFIG_FILES([libthai.pc
   tests/Makefile
   doc/Makefile
   doc/Doxyfile
+  win32/Makefile
+  win32/config-msvc.mak
 ])
 AC_OUTPUT
 

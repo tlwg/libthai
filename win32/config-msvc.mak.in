@@ -1,0 +1,35 @@
+# NMake Makefile portion for enabling features for Windows builds
+
+# These are the base minimum libraries required for building libdatrie.
+BASE_INCLUDES = /I$(PREFIX)\include
+
+# Please do not change anything beneath this line unless maintaining the NMake Makefiles
+# Bare minimum features and sources built into libdatrie on Windows
+
+!ifndef LIBDATRIE_INCLUDE_BASE
+LIBDATRIE_INCLUDE_BASE = $(PREFIX)\include
+!endif
+!ifndef LIBDATRIE_LIB
+LIBDATRIE_LIB = datrie.lib
+!endif
+!ifndef TRIETOOL
+TRIETOOL = $(PREFIX)\bin\trietool.exe
+!endif
+
+LIBTHAI_DEP_LIBS = $(LIBDATRIE_LIB)
+
+!if "$(LIBDATRIE_INCLUDE_BASE:/=\)" != "$(PREFIX)\include"
+BASE_INCLUDES = /I$(LIBDATRIE_INCLUDE_BASE) $(BASE_INCLUDES)
+!endif
+
+LIBTHAI_VERSION = @VERSION@
+LIBTHAI_LIBS = vs$(PDBVER)\$(CFG)\$(PLAT)\thai.lib
+LIBTHAI_BASE_CFLAGS = /I..\src /I..\include /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_WARNINGS $(BASE_INCLUDES)
+LIBTHAI_TEST_CFLAGS = /DMSVC_BUILD_LIBTHAI_TESTS $(LIBTHAI_BASE_CFLAGS)
+
+# Disable building trietool.exe if requested
+!ifdef LIB_ONLY
+LIBTHAI_DATA =
+!else
+LIBTHAI_DATA = vs$(PDBVER)\$(CFG)\$(PLAT)\thbrk.tri
+!endif
