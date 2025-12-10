@@ -90,8 +90,10 @@
 
 #include "thbrk/thbrk-priv.h"
 
-__attribute__ ((destructor)) void
-_libthai_on_unload ()
+#if defined (__GNUC__) || defined (__clang__)
+__attribute__ ((destructor))
+#endif
+void _libthai_on_unload ()
 {
     brk_free_shared_brk ();
 }
