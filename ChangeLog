@@ -1,3 +1,11 @@
+2026-01-01  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
+	Update word break dictionary
+
+	* data/tdict-common.txt:
+	* data/tdict-science.txt:
+	  - Add words.
+
 2025-11-28  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
 	Move "thbrk-utils.h" to a separate location
