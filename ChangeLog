@@ -1,5 +1,15 @@
 2026-01-01  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Clarify license as LGPL-2.1+.
+
+	* README:
+	  - Replace the "License" section with the contents suggested
+	    at the end of LGPL, for clarity that it's under LGPL-2.1+.
+
+	Fixes #34.
+
+2026-01-01  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update word break dictionary
 
 	* data/tdict-common.txt:

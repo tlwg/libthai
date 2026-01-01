@@ -31,8 +31,25 @@ See the file 'INSTALL'.
 License
 =======
 
-LibThai is copyrighted by its authors and licensed under terms of the
-GNU Lesser Public License (LGPL) - see file COPYING for details.
+    Copyright (C) 2001-2026 Theppitak Karoonboonyanan
+    Copyright (C) 2001-2005 Pattara Kiatisevi
+    Copyright (C) 2001 Chanop Silpa-Anan
+    Copyright (C) 2001 Poonlap Veerathanabutr
+    Copyright (C) 2001 Vuthichai Ampornaramveth
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, see
+    <https://www.gnu.org/licenses/>.
 
 History
 =======
