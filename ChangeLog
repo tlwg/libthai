@@ -1,5 +1,15 @@
 2026-01-02  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Update COPYING from GNU Project.
+
+	* COPYING:
+	  - Update to the latest version of the LGPL-2.1 text
+	    from the GNU project, where FSF postal address has been
+	    replaced with web site URL.
+	    https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
+
+2026-01-02  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update library versioning.
 
 	* configure.ac:
