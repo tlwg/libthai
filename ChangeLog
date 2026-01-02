@@ -1,5 +1,12 @@
 2026-01-02  Theppitak Karoonboonyanan  <theppitak@gmail.com>
 
+	Update library versioning.
+
+	* configure.ac:
+	  - Bump LT_REVISION (1 -> 2) to reflect code change.
+
+2026-01-02  Theppitak Karoonboonyanan  <theppitak@gmail.com>
+
 	Update Doxyfile for doxygen 1.15.0.
 
 	* doc/Doxyfile.in:
