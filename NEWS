@@ -2,6 +2,19 @@
 RELEASES INFORMATION
 =======================================================================
 
+LibThai 0.1.30 (2 Jan 2026):
+* No more dependency on autoconf-archive when building from Git.
+* Handle memory allocation failures.
+  Thanks: Marc Mutz (Issue #23, PR #24), Peng Wu (Issue #15)
+* Save more memory by sharing constant data in text segment.
+  Thanks: Marc Mutz (PR #21)
+* Fix potential integer overflows in code.
+  Thanks: Mark Mutz (PR #22, PR #25, PR #26)
+* Improved documentation.
+  Thanks: Arthit Suriyawongkul (PR #27, PR #31, Issue #34)
+* Updated word break dictionary.
+  Thanks: montree phromthong (PR #28)
+
 LibThai 0.1.29 (21 Dec 2021):
 * Rewritten thbrk test.
 * More compliance with UAX#14 (Unicode Line Breaking Algorithm) for thbrk.
