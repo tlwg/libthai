@@ -27,7 +27,7 @@ TDICT_SRC = 				\
 	$(srcdir)/tdict-std.txt		\
 	$(srcdir)/tdict-std-compound.txt
 
-EXTRA_DIST = thbrk.abm $(TDICT_SRC)
+EXTRA_DIST = thbrk.abm $(TDICT_SRC) meson.build
 
 tdict.txt: $(TDICT_SRC)
 	cat $(TDICT_SRC) | LC_ALL=C sort -u > tdict.txt
