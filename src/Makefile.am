@@ -30,7 +30,7 @@ EXPORTS_FLAGS = -export-symbols $(srcdir)/libthai.def
 EXPORTS_DEPS = libthai.def
 endif
 
-libthai_la_SOURCES = libthai.c
+libthai_la_SOURCES = libthai.c utils/win-utils.c
 libthai_la_LIBADD = $(libthai_sublibs)
 libthai_la_LDFLAGS = -no-undefined \
 	-version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) \

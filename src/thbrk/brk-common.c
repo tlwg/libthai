@@ -86,30 +86,29 @@ brk_load_default_dict ()
         }
     }
 
-    /* Then, fall back to default DICT_DIR macro */
-    if (!dict_trie) {
 #if defined (_WIN32) && !defined (__CYGWIN__)
-        {
-            wchar_t *basedir = win_inst_dir ();
-            if (basedir) {
-                static const wchar_t sharename[] =
-                    L"share\\libthai\\" WIDEN (DICT_NAME);
-                wchar_t *filepath = wfull_path (basedir, sharename, L".tri");
-                if (filepath) {
-                    FILE *f = _wfopen (filepath, L"rb");
-                    if (f) {
-                        dict_trie = trie_fread (f);
-                        fclose (f);
-                    }
-                    free (filepath);
+    /* Try to find dict under the base dir used to install the DLL */
+    if (!dict_trie) {
+        wchar_t *basedir = win_inst_dir ();
+        if (basedir) {
+            static const wchar_t sharename[] =
+                L"share\\libthai\\" WIDEN (DICT_NAME);
+            wchar_t *filepath = wfull_path (basedir, sharename, L".tri");
+            if (filepath) {
+                FILE *f = _wfopen (filepath, L"rb");
+                if (f) {
+                    dict_trie = trie_fread (f);
+                    fclose (f);
                 }
+                free (filepath);
             }
         }
-        if (!dict_trie)
-            dict_trie = trie_new_from_file (DICT_DIR "/" DICT_NAME ".tri");
-#else
-        dict_trie = trie_new_from_file (DICT_DIR "/" DICT_NAME ".tri");
+    }
 #endif
+
+    /* Then, fall back to default DICT_DIR macro */
+    if (!dict_trie) {
+        dict_trie = trie_new_from_file (DICT_DIR "/" DICT_NAME ".tri");
     }
 
     return dict_trie;
