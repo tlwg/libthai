@@ -8,12 +8,12 @@
  */
 
 /*
- * win-utils.c - Windows-specific private utility functions
+ * win-utils.c - Windows-specific private utilities
  * Created: 2026-07-25
  * Author: Arthit Suriyawongkul <suriyawa@tcd.ie>
  */
 
-#include "utils/priv-utils.h"
+#include "utils/win-utils.h"
 
 #if defined (_WIN32) && !defined (__CYGWIN__)
 #define WIN32_LEAN_AND_MEAN 1

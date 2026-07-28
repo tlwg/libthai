@@ -35,18 +35,6 @@
 #define UNLIKELY(expr) (expr)
 #endif
 
-#if defined (_WIN32) && !defined (__CYGWIN__)
-#include <wchar.h>
-
-/* Absolute directory of the loaded libthai DLL, or NULL on failure.
- * The returned pointer is cached and owned by the library;
- * valid for the process's lifetime, the caller must not free it. */
-wchar_t * win_inst_dir (void);
-
-/* Free the pointer cached by win_inst_dir(). Call once on unload. */
-void win_inst_dir_free (void);
-#endif
-
 #endif  /* __PRIV_UTILS_H */
 
 /*

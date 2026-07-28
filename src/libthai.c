@@ -89,7 +89,7 @@
  */
 
 #include "thbrk/thbrk-priv.h"
-#include "utils/priv-utils.h"
+#include "utils/win-utils.h"
 
 #if (defined (__GNUC__) || defined (__clang__)) && \
     !(defined (_WIN32) && !defined (__CYGWIN__))

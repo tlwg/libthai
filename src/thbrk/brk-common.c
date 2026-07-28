@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * libthai - Thai Language Support Library
- * Copyright (C) 2001  Theppitak Karoonboonyanan <theppitak@gmail.com>
+ * Copyright (C) 2001-2026 Theppitak Karoonboonyanan <theppitak@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -35,6 +35,7 @@
 
 #if defined (_WIN32) && !defined (__CYGWIN__)
 #include <wchar.h>
+#include "utils/win-utils.h"
 /* turns a narrow string-literal macro into a wide one */
 #define WIDEN_(s) L ## s
 #define WIDEN(s) WIDEN_(s)
