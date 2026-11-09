@@ -83,8 +83,8 @@ th_strcoll (const thchar_t *s1, const thchar_t *s2)
                     return ww1 - ww2;
                 if (w1 != w2)
                     return w1 - w2;
-                p1 = th_non_ignore_ (q1+1, 0);
-                p2 = th_non_ignore_ (q2+1, 0);
+                p1 = *q1 ? th_non_ignore_ (q1+1, 0) : q1;
+                p2 = *q2 ? th_non_ignore_ (q2+1, 0) : q2;
             } else {
                 return (ww1 != w2) ? ww1 - w2 : 1;
             }
