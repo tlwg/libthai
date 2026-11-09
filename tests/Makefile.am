@@ -12,6 +12,7 @@ TESTS = \
 	test_thinp \
 	test_thrend \
 	test_thstr \
+	test_thcoll_bounds \
 	test-thcoll.sh \
 	test_thwchar \
 	$(NULL)
@@ -35,6 +36,7 @@ check_PROGRAMS = \
 	test_thinp \
 	test_thrend \
 	test_thstr \
+	test_thcoll_bounds \
 	thsort \
 	test_thbrk \
 	test_thwchar \
@@ -64,6 +66,11 @@ test_thrend_LDADD = \
 test_thstr_SOURCES = test_thstr.c
 test_thstr_LDADD = \
 	$(top_builddir)/src/thstr/libthstr.la \
+	$(top_builddir)/src/thctype/libthctype.la
+
+test_thcoll_bounds_SOURCES = test_thcoll_bounds.c
+test_thcoll_bounds_LDADD = \
+	$(top_builddir)/src/thcoll/libthcoll.la \
 	$(top_builddir)/src/thctype/libthctype.la
 
 thsort_SOURCES = thsort.c
